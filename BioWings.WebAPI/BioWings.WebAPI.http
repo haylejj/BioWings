@@ -1,0 +1,6 @@
+@BioWings.WebAPI_HostAddress = http://localhost:5054
+
+GET {{BioWings.WebAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

@@ -1,0 +1,34 @@
+﻿using BioWings.Domain.Interfaces;
+using BioWings.Persistence.Context;
+using BioWings.Persistence.Repositories;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
+
+namespace BioWings.Persistence.Extensions;
+public static class PersistenceExtensions
+{
+    public static IServiceCollection AddPersistenceExtensions(this IServiceCollection services, IConfiguration configuration)
+    {
+        services.AddDbContext<AppDbContext>(opt =>
+        {
+            var connectionString = configuration.GetConnectionString("MySqlConnection") ?? throw new InvalidOperationException("Connection string not found.");
+            opt.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString), mysqloptions => mysqloptions.EnableRetryOnFailure().MigrationsAssembly(Assembly.GetExecutingAssembly().GetName().Name));
+        });
+        services.AddScoped<IUnitOfWork, UnitOfWork.UnitOfWork>();
+        services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+        services.AddScoped<IAuthorityRepository, AuthorityRepository>();
+        services.AddScoped<IFamilyRepository, FamilyRepository>();
+        services.AddScoped<IGenusRepository, GenusRepository>();
+        services.AddScoped<ISpeciesRepository, SpeciesRepository>();
+        services.AddScoped<ILocationRepository, LocationRepository>();
+        services.AddScoped<IMediaRepository, MediaRepository>();
+        services.AddScoped<IObservationRepository, ObservationRepository>();
+        services.AddScoped<IObserverRepository, ObserverRepository>();
+        services.AddScoped<IProvinceRepository, ProvinceRepository>();
+        services.AddScoped<ISpeciesTypeRepository, SpeciesTypeRepository>();
+        services.AddScoped<ISubspeciesRepository, SubspeciesRepository>();
+        return services;
+    }
+}

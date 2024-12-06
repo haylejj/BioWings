@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "dgSpecHash": "O/7wXUVuTDw=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.UI\\BioWings.UI.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\cagat\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
+    "C:\\Users\\cagat\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\8.0.0\\microsoft.extensions.configuration.abstractions.8.0.0.nupkg.sha512",
+    "C:\\Users\\cagat\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.2\\microsoft.extensions.dependencyinjection.abstractions.8.0.2.nupkg.sha512",
+    "C:\\Users\\cagat\\.nuget\\packages\\microsoft.extensions.options\\6.0.0\\microsoft.extensions.options.6.0.0.nupkg.sha512",
+    "C:\\Users\\cagat\\.nuget\\packages\\microsoft.extensions.primitives\\8.0.0\\microsoft.extensions.primitives.8.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

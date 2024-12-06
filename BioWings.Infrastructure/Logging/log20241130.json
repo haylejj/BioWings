@@ -1,0 +1,327 @@
+[15:57:35 INF] Now listening on: http://localhost:5054 <s:Microsoft.Hosting.Lifetime>
+[15:57:35 INF] Application started. Press Ctrl+C to shut down. <s:Microsoft.Hosting.Lifetime>
+[15:57:35 INF] Hosting environment: Development <s:Microsoft.Hosting.Lifetime>
+[15:57:35 INF] Content root path: C:\Users\cagat\VisualStudio2022\BioWings\BioWings\BioWings.WebAPI <s:Microsoft.Hosting.Lifetime>
+[15:57:36 INF] Request starting HTTP/1.1 GET http://localhost:5054/swagger/index.html - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[15:57:36 INF] Request finished HTTP/1.1 GET http://localhost:5054/swagger/index.html - 200 null text/html;charset=utf-8 294.4549ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[15:57:37 INF] Request starting HTTP/1.1 GET http://localhost:5054/_framework/aspnetcore-browser-refresh.js - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[15:57:37 INF] Request finished HTTP/1.1 GET http://localhost:5054/_framework/aspnetcore-browser-refresh.js - 200 13782 application/javascript; charset=utf-8 2.6058ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[15:57:37 INF] Request starting HTTP/1.1 GET http://localhost:5054/_vs/browserLink - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[15:57:38 INF] Request finished HTTP/1.1 GET http://localhost:5054/_vs/browserLink - 200 null text/javascript; charset=UTF-8 63.9228ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[15:57:38 INF] Request starting HTTP/1.1 GET http://localhost:5054/swagger/v1/swagger.json - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[15:57:38 INF] Request finished HTTP/1.1 GET http://localhost:5054/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 17.1873ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[15:57:44 INF] Request starting HTTP/1.1 GET http://localhost:5054/weatherforecast/ - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[15:57:44 WRN] Failed to determine the https port for redirect. <s:Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware>
+[15:57:44 INF] Executing endpoint 'BioWings.WebAPI.Controllers.WeatherForecastController.Get (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[15:57:44 INF] Route matched with {action = "Get", controller = "WeatherForecast"}. Executing controller action with signature System.Collections.Generic.IEnumerable`1[BioWings.WebAPI.WeatherForecast] Get() on controller BioWings.WebAPI.Controllers.WeatherForecastController (BioWings.WebAPI). <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[15:57:44 INF] Executing ObjectResult, writing value of type 'BioWings.WebAPI.WeatherForecast[]'. <s:Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor>
+[15:57:44 INF] Executed action BioWings.WebAPI.Controllers.WeatherForecastController.Get (BioWings.WebAPI) in 19.6539ms <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[15:57:44 INF] Executed endpoint 'BioWings.WebAPI.Controllers.WeatherForecastController.Get (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[15:57:44 INF] HTTP GET /weatherforecast/ responded 200 in 50.0210 ms <s:Serilog.AspNetCore.RequestLoggingMiddleware>
+[15:57:44 INF] Request finished HTTP/1.1 GET http://localhost:5054/weatherforecast/ - 200 null application/json; charset=utf-8 54.7931ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[15:57:50 INF] Request starting HTTP/1.1 GET http://localhost:5054/weatherforecast/ - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[15:57:50 INF] Executing endpoint 'BioWings.WebAPI.Controllers.WeatherForecastController.Get (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[15:57:50 INF] Route matched with {action = "Get", controller = "WeatherForecast"}. Executing controller action with signature System.Collections.Generic.IEnumerable`1[BioWings.WebAPI.WeatherForecast] Get() on controller BioWings.WebAPI.Controllers.WeatherForecastController (BioWings.WebAPI). <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[15:57:50 INF] Executing ObjectResult, writing value of type 'BioWings.WebAPI.WeatherForecast[]'. <s:Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor>
+[15:57:50 INF] Executed action BioWings.WebAPI.Controllers.WeatherForecastController.Get (BioWings.WebAPI) in 0.603ms <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[15:57:50 INF] Executed endpoint 'BioWings.WebAPI.Controllers.WeatherForecastController.Get (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[15:57:50 INF] HTTP GET /weatherforecast/ responded 200 in 2.2374 ms <s:Serilog.AspNetCore.RequestLoggingMiddleware>
+[15:57:50 INF] Request finished HTTP/1.1 GET http://localhost:5054/weatherforecast/ - 200 null application/json; charset=utf-8 3.1366ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[15:57:54 INF] Request starting HTTP/1.1 GET http://localhost:5054/weatherforecast/ - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[15:57:54 INF] Executing endpoint 'BioWings.WebAPI.Controllers.WeatherForecastController.Get (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[15:57:54 INF] Route matched with {action = "Get", controller = "WeatherForecast"}. Executing controller action with signature System.Collections.Generic.IEnumerable`1[BioWings.WebAPI.WeatherForecast] Get() on controller BioWings.WebAPI.Controllers.WeatherForecastController (BioWings.WebAPI). <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[15:57:54 INF] Executing ObjectResult, writing value of type 'BioWings.WebAPI.WeatherForecast[]'. <s:Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor>
+[15:57:54 INF] Executed action BioWings.WebAPI.Controllers.WeatherForecastController.Get (BioWings.WebAPI) in 0.7751ms <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[15:57:54 INF] Executed endpoint 'BioWings.WebAPI.Controllers.WeatherForecastController.Get (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[15:57:54 INF] HTTP GET /weatherforecast/ responded 200 in 2.6893 ms <s:Serilog.AspNetCore.RequestLoggingMiddleware>
+[15:57:54 INF] Request finished HTTP/1.1 GET http://localhost:5054/weatherforecast/ - 200 null application/json; charset=utf-8 5.9131ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[15:57:56 INF] Request starting HTTP/1.1 GET http://localhost:5054/weatherforecast/ - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[15:57:56 INF] Executing endpoint 'BioWings.WebAPI.Controllers.WeatherForecastController.Get (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[15:57:56 INF] Route matched with {action = "Get", controller = "WeatherForecast"}. Executing controller action with signature System.Collections.Generic.IEnumerable`1[BioWings.WebAPI.WeatherForecast] Get() on controller BioWings.WebAPI.Controllers.WeatherForecastController (BioWings.WebAPI). <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[15:57:56 INF] Executing ObjectResult, writing value of type 'BioWings.WebAPI.WeatherForecast[]'. <s:Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor>
+[15:57:56 INF] Executed action BioWings.WebAPI.Controllers.WeatherForecastController.Get (BioWings.WebAPI) in 0.5006ms <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[15:57:56 INF] Executed endpoint 'BioWings.WebAPI.Controllers.WeatherForecastController.Get (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[15:57:56 INF] HTTP GET /weatherforecast/ responded 200 in 2.1257 ms <s:Serilog.AspNetCore.RequestLoggingMiddleware>
+[15:57:56 INF] Request finished HTTP/1.1 GET http://localhost:5054/weatherforecast/ - 200 null application/json; charset=utf-8 3.0993ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[15:57:58 INF] Request starting HTTP/1.1 GET http://localhost:5054/weatherforecast/ - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[15:57:58 INF] Executing endpoint 'BioWings.WebAPI.Controllers.WeatherForecastController.Get (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[15:57:58 INF] Route matched with {action = "Get", controller = "WeatherForecast"}. Executing controller action with signature System.Collections.Generic.IEnumerable`1[BioWings.WebAPI.WeatherForecast] Get() on controller BioWings.WebAPI.Controllers.WeatherForecastController (BioWings.WebAPI). <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[15:57:58 INF] Executing ObjectResult, writing value of type 'BioWings.WebAPI.WeatherForecast[]'. <s:Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor>
+[15:57:58 INF] Executed action BioWings.WebAPI.Controllers.WeatherForecastController.Get (BioWings.WebAPI) in 0.4445ms <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[15:57:58 INF] Executed endpoint 'BioWings.WebAPI.Controllers.WeatherForecastController.Get (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[15:57:58 INF] HTTP GET /weatherforecast/ responded 200 in 2.1719 ms <s:Serilog.AspNetCore.RequestLoggingMiddleware>
+[15:57:58 INF] Request finished HTTP/1.1 GET http://localhost:5054/weatherforecast/ - 200 null application/json; charset=utf-8 3.2271ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[15:58:05 INF] Request starting HTTP/1.1 GET http://localhost:5054/WeatherForecast - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[15:58:05 INF] Executing endpoint 'BioWings.WebAPI.Controllers.WeatherForecastController.Get (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[15:58:05 INF] Route matched with {action = "Get", controller = "WeatherForecast"}. Executing controller action with signature System.Collections.Generic.IEnumerable`1[BioWings.WebAPI.WeatherForecast] Get() on controller BioWings.WebAPI.Controllers.WeatherForecastController (BioWings.WebAPI). <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[15:58:05 INF] Executing ObjectResult, writing value of type 'BioWings.WebAPI.WeatherForecast[]'. <s:Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor>
+[15:58:05 INF] Executed action BioWings.WebAPI.Controllers.WeatherForecastController.Get (BioWings.WebAPI) in 1.1003ms <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[15:58:05 INF] Executed endpoint 'BioWings.WebAPI.Controllers.WeatherForecastController.Get (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[15:58:05 INF] HTTP GET /WeatherForecast responded 200 in 3.6302 ms <s:Serilog.AspNetCore.RequestLoggingMiddleware>
+[15:58:05 INF] Request finished HTTP/1.1 GET http://localhost:5054/WeatherForecast - 200 null application/json; charset=utf-8 5.15ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[15:58:06 INF] Request starting HTTP/1.1 GET http://localhost:5054/WeatherForecast - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[15:58:06 INF] Executing endpoint 'BioWings.WebAPI.Controllers.WeatherForecastController.Get (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[15:58:06 INF] Route matched with {action = "Get", controller = "WeatherForecast"}. Executing controller action with signature System.Collections.Generic.IEnumerable`1[BioWings.WebAPI.WeatherForecast] Get() on controller BioWings.WebAPI.Controllers.WeatherForecastController (BioWings.WebAPI). <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[15:58:06 INF] Executing ObjectResult, writing value of type 'BioWings.WebAPI.WeatherForecast[]'. <s:Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor>
+[15:58:06 INF] Executed action BioWings.WebAPI.Controllers.WeatherForecastController.Get (BioWings.WebAPI) in 0.4534ms <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[15:58:06 INF] Executed endpoint 'BioWings.WebAPI.Controllers.WeatherForecastController.Get (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[15:58:06 INF] HTTP GET /WeatherForecast responded 200 in 2.1798 ms <s:Serilog.AspNetCore.RequestLoggingMiddleware>
+[15:58:06 INF] Request finished HTTP/1.1 GET http://localhost:5054/WeatherForecast - 200 null application/json; charset=utf-8 3.2651ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[15:58:06 INF] Request starting HTTP/1.1 GET http://localhost:5054/WeatherForecast - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[15:58:06 INF] Executing endpoint 'BioWings.WebAPI.Controllers.WeatherForecastController.Get (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[15:58:06 INF] Route matched with {action = "Get", controller = "WeatherForecast"}. Executing controller action with signature System.Collections.Generic.IEnumerable`1[BioWings.WebAPI.WeatherForecast] Get() on controller BioWings.WebAPI.Controllers.WeatherForecastController (BioWings.WebAPI). <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[15:58:06 INF] Executing ObjectResult, writing value of type 'BioWings.WebAPI.WeatherForecast[]'. <s:Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor>
+[15:58:06 INF] Executed action BioWings.WebAPI.Controllers.WeatherForecastController.Get (BioWings.WebAPI) in 0.6091ms <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[15:58:06 INF] Executed endpoint 'BioWings.WebAPI.Controllers.WeatherForecastController.Get (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[15:58:06 INF] HTTP GET /WeatherForecast responded 200 in 2.3500 ms <s:Serilog.AspNetCore.RequestLoggingMiddleware>
+[15:58:06 INF] Request finished HTTP/1.1 GET http://localhost:5054/WeatherForecast - 200 null application/json; charset=utf-8 3.4444ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[15:58:06 INF] Request starting HTTP/1.1 GET http://localhost:5054/WeatherForecast - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[15:58:06 INF] Executing endpoint 'BioWings.WebAPI.Controllers.WeatherForecastController.Get (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[15:58:06 INF] Route matched with {action = "Get", controller = "WeatherForecast"}. Executing controller action with signature System.Collections.Generic.IEnumerable`1[BioWings.WebAPI.WeatherForecast] Get() on controller BioWings.WebAPI.Controllers.WeatherForecastController (BioWings.WebAPI). <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[15:58:06 INF] Executing ObjectResult, writing value of type 'BioWings.WebAPI.WeatherForecast[]'. <s:Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor>
+[15:58:06 INF] Executed action BioWings.WebAPI.Controllers.WeatherForecastController.Get (BioWings.WebAPI) in 0.604ms <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[15:58:06 INF] Executed endpoint 'BioWings.WebAPI.Controllers.WeatherForecastController.Get (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[15:58:06 INF] HTTP GET /WeatherForecast responded 200 in 5.6167 ms <s:Serilog.AspNetCore.RequestLoggingMiddleware>
+[15:58:06 INF] Request finished HTTP/1.1 GET http://localhost:5054/WeatherForecast - 200 null application/json; charset=utf-8 7.0018ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[15:58:06 INF] Request starting HTTP/1.1 GET http://localhost:5054/WeatherForecast - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[15:58:06 INF] Executing endpoint 'BioWings.WebAPI.Controllers.WeatherForecastController.Get (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[15:58:06 INF] Route matched with {action = "Get", controller = "WeatherForecast"}. Executing controller action with signature System.Collections.Generic.IEnumerable`1[BioWings.WebAPI.WeatherForecast] Get() on controller BioWings.WebAPI.Controllers.WeatherForecastController (BioWings.WebAPI). <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[15:58:06 INF] Executing ObjectResult, writing value of type 'BioWings.WebAPI.WeatherForecast[]'. <s:Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor>
+[15:58:06 INF] Executed action BioWings.WebAPI.Controllers.WeatherForecastController.Get (BioWings.WebAPI) in 0.8168ms <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[15:58:06 INF] Executed endpoint 'BioWings.WebAPI.Controllers.WeatherForecastController.Get (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[15:58:06 INF] HTTP GET /WeatherForecast responded 200 in 4.4511 ms <s:Serilog.AspNetCore.RequestLoggingMiddleware>
+[15:58:06 INF] Request finished HTTP/1.1 GET http://localhost:5054/WeatherForecast - 200 null application/json; charset=utf-8 5.7637ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[15:58:06 INF] Request starting HTTP/1.1 GET http://localhost:5054/WeatherForecast - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[15:58:06 INF] Executing endpoint 'BioWings.WebAPI.Controllers.WeatherForecastController.Get (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[15:58:06 INF] Route matched with {action = "Get", controller = "WeatherForecast"}. Executing controller action with signature System.Collections.Generic.IEnumerable`1[BioWings.WebAPI.WeatherForecast] Get() on controller BioWings.WebAPI.Controllers.WeatherForecastController (BioWings.WebAPI). <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[15:58:06 INF] Executing ObjectResult, writing value of type 'BioWings.WebAPI.WeatherForecast[]'. <s:Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor>
+[15:58:06 INF] Executed action BioWings.WebAPI.Controllers.WeatherForecastController.Get (BioWings.WebAPI) in 0.5786ms <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[15:58:06 INF] Executed endpoint 'BioWings.WebAPI.Controllers.WeatherForecastController.Get (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[15:58:06 INF] HTTP GET /WeatherForecast responded 200 in 2.4307 ms <s:Serilog.AspNetCore.RequestLoggingMiddleware>
+[15:58:06 INF] Request finished HTTP/1.1 GET http://localhost:5054/WeatherForecast - 200 null application/json; charset=utf-8 3.4315ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[15:58:06 INF] Request starting HTTP/1.1 GET http://localhost:5054/WeatherForecast - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[15:58:06 INF] Executing endpoint 'BioWings.WebAPI.Controllers.WeatherForecastController.Get (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[15:58:06 INF] Route matched with {action = "Get", controller = "WeatherForecast"}. Executing controller action with signature System.Collections.Generic.IEnumerable`1[BioWings.WebAPI.WeatherForecast] Get() on controller BioWings.WebAPI.Controllers.WeatherForecastController (BioWings.WebAPI). <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[15:58:06 INF] Executing ObjectResult, writing value of type 'BioWings.WebAPI.WeatherForecast[]'. <s:Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor>
+[15:58:06 INF] Executed action BioWings.WebAPI.Controllers.WeatherForecastController.Get (BioWings.WebAPI) in 0.4076ms <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[15:58:06 INF] Executed endpoint 'BioWings.WebAPI.Controllers.WeatherForecastController.Get (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[15:58:06 INF] HTTP GET /WeatherForecast responded 200 in 3.6111 ms <s:Serilog.AspNetCore.RequestLoggingMiddleware>
+[15:58:06 INF] Request finished HTTP/1.1 GET http://localhost:5054/WeatherForecast - 200 null application/json; charset=utf-8 6.3424ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[15:58:07 INF] Request starting HTTP/1.1 GET http://localhost:5054/WeatherForecast - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[15:58:07 INF] Executing endpoint 'BioWings.WebAPI.Controllers.WeatherForecastController.Get (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[15:58:07 INF] Route matched with {action = "Get", controller = "WeatherForecast"}. Executing controller action with signature System.Collections.Generic.IEnumerable`1[BioWings.WebAPI.WeatherForecast] Get() on controller BioWings.WebAPI.Controllers.WeatherForecastController (BioWings.WebAPI). <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[15:58:07 INF] Executing ObjectResult, writing value of type 'BioWings.WebAPI.WeatherForecast[]'. <s:Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor>
+[15:58:07 INF] Executed action BioWings.WebAPI.Controllers.WeatherForecastController.Get (BioWings.WebAPI) in 0.7069ms <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[15:58:07 INF] Executed endpoint 'BioWings.WebAPI.Controllers.WeatherForecastController.Get (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[15:58:07 INF] HTTP GET /WeatherForecast responded 200 in 2.7585 ms <s:Serilog.AspNetCore.RequestLoggingMiddleware>
+[15:58:07 INF] Request finished HTTP/1.1 GET http://localhost:5054/WeatherForecast - 200 null application/json; charset=utf-8 4.4335ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[15:58:07 INF] Request starting HTTP/1.1 GET http://localhost:5054/WeatherForecast - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[15:58:07 INF] Executing endpoint 'BioWings.WebAPI.Controllers.WeatherForecastController.Get (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[15:58:07 INF] Route matched with {action = "Get", controller = "WeatherForecast"}. Executing controller action with signature System.Collections.Generic.IEnumerable`1[BioWings.WebAPI.WeatherForecast] Get() on controller BioWings.WebAPI.Controllers.WeatherForecastController (BioWings.WebAPI). <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[15:58:07 INF] Executing ObjectResult, writing value of type 'BioWings.WebAPI.WeatherForecast[]'. <s:Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor>
+[15:58:07 INF] Executed action BioWings.WebAPI.Controllers.WeatherForecastController.Get (BioWings.WebAPI) in 0.7295ms <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[15:58:07 INF] Executed endpoint 'BioWings.WebAPI.Controllers.WeatherForecastController.Get (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[15:58:07 INF] HTTP GET /WeatherForecast responded 200 in 3.0095 ms <s:Serilog.AspNetCore.RequestLoggingMiddleware>
+[15:58:07 INF] Request finished HTTP/1.1 GET http://localhost:5054/WeatherForecast - 200 null application/json; charset=utf-8 4.6381ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[15:58:07 INF] Request starting HTTP/1.1 GET http://localhost:5054/WeatherForecast - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[15:58:07 INF] Executing endpoint 'BioWings.WebAPI.Controllers.WeatherForecastController.Get (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[15:58:07 INF] Route matched with {action = "Get", controller = "WeatherForecast"}. Executing controller action with signature System.Collections.Generic.IEnumerable`1[BioWings.WebAPI.WeatherForecast] Get() on controller BioWings.WebAPI.Controllers.WeatherForecastController (BioWings.WebAPI). <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[15:58:07 INF] Executing ObjectResult, writing value of type 'BioWings.WebAPI.WeatherForecast[]'. <s:Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor>
+[15:58:07 INF] Executed action BioWings.WebAPI.Controllers.WeatherForecastController.Get (BioWings.WebAPI) in 0.6876ms <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[15:58:07 INF] Executed endpoint 'BioWings.WebAPI.Controllers.WeatherForecastController.Get (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[15:58:07 INF] HTTP GET /WeatherForecast responded 200 in 2.8423 ms <s:Serilog.AspNetCore.RequestLoggingMiddleware>
+[15:58:07 INF] Request finished HTTP/1.1 GET http://localhost:5054/WeatherForecast - 200 null application/json; charset=utf-8 3.9083ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[15:58:07 INF] Request starting HTTP/1.1 GET http://localhost:5054/WeatherForecast - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[15:58:07 INF] Executing endpoint 'BioWings.WebAPI.Controllers.WeatherForecastController.Get (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[15:58:07 INF] Route matched with {action = "Get", controller = "WeatherForecast"}. Executing controller action with signature System.Collections.Generic.IEnumerable`1[BioWings.WebAPI.WeatherForecast] Get() on controller BioWings.WebAPI.Controllers.WeatherForecastController (BioWings.WebAPI). <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[15:58:07 INF] Executing ObjectResult, writing value of type 'BioWings.WebAPI.WeatherForecast[]'. <s:Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor>
+[15:58:07 INF] Executed action BioWings.WebAPI.Controllers.WeatherForecastController.Get (BioWings.WebAPI) in 1.2505ms <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[15:58:07 INF] Executed endpoint 'BioWings.WebAPI.Controllers.WeatherForecastController.Get (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[15:58:07 INF] HTTP GET /WeatherForecast responded 200 in 10.3483 ms <s:Serilog.AspNetCore.RequestLoggingMiddleware>
+[15:58:07 INF] Request finished HTTP/1.1 GET http://localhost:5054/WeatherForecast - 200 null application/json; charset=utf-8 12.1848ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[16:00:21 INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='Db_BioWings' AND TABLE_NAME='__EFMigrationsHistory'; <s:Microsoft.EntityFrameworkCore.Database.Command>
+[16:00:22 INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `MigrationId`, `ProductVersion`
+FROM `__EFMigrationsHistory`
+ORDER BY `MigrationId`; <s:Microsoft.EntityFrameworkCore.Database.Command>
+[16:08:23 INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='Db_BioWings' AND TABLE_NAME='__EFMigrationsHistory'; <s:Microsoft.EntityFrameworkCore.Database.Command>
+[16:08:23 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='Db_BioWings' AND TABLE_NAME='__EFMigrationsHistory'; <s:Microsoft.EntityFrameworkCore.Database.Command>
+[16:08:23 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `MigrationId`, `ProductVersion`
+FROM `__EFMigrationsHistory`
+ORDER BY `MigrationId`; <s:Microsoft.EntityFrameworkCore.Database.Command>
+[16:08:23 INF] Applying migration '20241130130740_mig_add_firstMig'. <s:Microsoft.EntityFrameworkCore.Migrations>
+[16:08:23 INF] Executed DbCommand (19ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE `Authorities` (
+    `Id` int NOT NULL AUTO_INCREMENT,
+    `Name` varchar(50) CHARACTER SET utf8mb4 NOT NULL,
+    `Year` int NOT NULL,
+    `CreatedDateTime` datetime(6) NOT NULL,
+    `UpdatedDateTime` datetime(6) NOT NULL,
+    CONSTRAINT `PK_Authorities` PRIMARY KEY (`Id`)
+) CHARACTER SET=utf8mb4; <s:Microsoft.EntityFrameworkCore.Database.Command>
+[16:08:23 INF] Executed DbCommand (12ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE `Families` (
+    `Id` int NOT NULL AUTO_INCREMENT,
+    `Name` varchar(50) CHARACTER SET utf8mb4 NOT NULL,
+    `CreatedDateTime` datetime(6) NOT NULL,
+    `UpdatedDateTime` datetime(6) NOT NULL,
+    CONSTRAINT `PK_Families` PRIMARY KEY (`Id`)
+) CHARACTER SET=utf8mb4; <s:Microsoft.EntityFrameworkCore.Database.Command>
+[16:08:23 INF] Executed DbCommand (12ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE `Observers` (
+    `Id` int NOT NULL AUTO_INCREMENT,
+    `Name` varchar(40) CHARACTER SET utf8mb4 NOT NULL,
+    `Surname` varchar(20) CHARACTER SET utf8mb4 NOT NULL,
+    `FullName` longtext CHARACTER SET utf8mb4 NOT NULL,
+    `Email` varchar(40) CHARACTER SET utf8mb4 NOT NULL,
+    `Phone` varchar(20) CHARACTER SET utf8mb4 NOT NULL,
+    `PasswordHash` varchar(70) CHARACTER SET utf8mb4 NOT NULL,
+    `CreatedDateTime` datetime(6) NOT NULL,
+    `UpdatedDateTime` datetime(6) NOT NULL,
+    CONSTRAINT `PK_Observers` PRIMARY KEY (`Id`)
+) CHARACTER SET=utf8mb4; <s:Microsoft.EntityFrameworkCore.Database.Command>
+[16:08:23 INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE `Provinces` (
+    `Id` int NOT NULL AUTO_INCREMENT,
+    `Name` varchar(70) CHARACTER SET utf8mb4 NOT NULL,
+    `ProvinceCode` int NOT NULL,
+    `CreatedDateTime` datetime(6) NOT NULL,
+    `UpdatedDateTime` datetime(6) NOT NULL,
+    CONSTRAINT `PK_Provinces` PRIMARY KEY (`Id`)
+) CHARACTER SET=utf8mb4; <s:Microsoft.EntityFrameworkCore.Database.Command>
+[16:08:23 INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE `SpeciesTypes` (
+    `Id` int NOT NULL AUTO_INCREMENT,
+    `Name` varchar(70) CHARACTER SET utf8mb4 NOT NULL,
+    `Description` varchar(500) CHARACTER SET utf8mb4 NOT NULL,
+    `CreatedDateTime` datetime(6) NOT NULL,
+    `UpdatedDateTime` datetime(6) NOT NULL,
+    CONSTRAINT `PK_SpeciesTypes` PRIMARY KEY (`Id`)
+) CHARACTER SET=utf8mb4; <s:Microsoft.EntityFrameworkCore.Database.Command>
+[16:08:23 INF] Executed DbCommand (32ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE `Genera` (
+    `Id` int NOT NULL AUTO_INCREMENT,
+    `Name` varchar(50) CHARACTER SET utf8mb4 NOT NULL,
+    `FamilyId` int NOT NULL,
+    `CreatedDateTime` datetime(6) NOT NULL,
+    `UpdatedDateTime` datetime(6) NOT NULL,
+    CONSTRAINT `PK_Genera` PRIMARY KEY (`Id`),
+    CONSTRAINT `FK_Genera_Families_FamilyId` FOREIGN KEY (`FamilyId`) REFERENCES `Families` (`Id`) ON DELETE RESTRICT
+) CHARACTER SET=utf8mb4; <s:Microsoft.EntityFrameworkCore.Database.Command>
+[16:08:23 INF] Executed DbCommand (29ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE `Locations` (
+    `Id` int NOT NULL AUTO_INCREMENT,
+    `ProvinceId` int NOT NULL,
+    `Name` varchar(50) CHARACTER SET utf8mb4 NOT NULL,
+    `SquareRef` varchar(50) CHARACTER SET utf8mb4 NOT NULL,
+    `Latitude` varchar(50) CHARACTER SET utf8mb4 NOT NULL,
+    `Longitude` varchar(50) CHARACTER SET utf8mb4 NOT NULL,
+    `Altitude1` varchar(50) CHARACTER SET utf8mb4 NOT NULL,
+    `Altitude2` varchar(50) CHARACTER SET utf8mb4 NOT NULL,
+    `XCoord` decimal(65,30) NOT NULL,
+    `YCoord` decimal(65,30) NOT NULL,
+    `UtmReference` varchar(50) CHARACTER SET utf8mb4 NOT NULL,
+    `Description` varchar(500) CHARACTER SET utf8mb4 NOT NULL,
+    `CreatedDateTime` datetime(6) NOT NULL,
+    `UpdatedDateTime` datetime(6) NOT NULL,
+    CONSTRAINT `PK_Locations` PRIMARY KEY (`Id`),
+    CONSTRAINT `FK_Locations_Provinces_ProvinceId` FOREIGN KEY (`ProvinceId`) REFERENCES `Provinces` (`Id`) ON DELETE RESTRICT
+) CHARACTER SET=utf8mb4; <s:Microsoft.EntityFrameworkCore.Database.Command>
+[16:08:23 INF] Executed DbCommand (26ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE `Species` (
+    `Id` int NOT NULL AUTO_INCREMENT,
+    `AuthorityId` int NOT NULL,
+    `GenusId` int NOT NULL,
+    `SpeciesTypeId` int NOT NULL,
+    `ScientificName` varchar(200) CHARACTER SET utf8mb4 NOT NULL,
+    `Name` varchar(70) CHARACTER SET utf8mb4 NOT NULL,
+    `EUName` varchar(70) CHARACTER SET utf8mb4 NOT NULL,
+    `FullName` varchar(100) CHARACTER SET utf8mb4 NOT NULL,
+    `TurkishName` varchar(70) CHARACTER SET utf8mb4 NOT NULL,
+    `EnglishName` varchar(70) CHARACTER SET utf8mb4 NOT NULL,
+    `TurkishNamesTrakel` varchar(70) CHARACTER SET utf8mb4 NOT NULL,
+    `Trakel` varchar(70) CHARACTER SET utf8mb4 NOT NULL,
+    `CreatedDateTime` datetime(6) NOT NULL,
+    `UpdatedDateTime` datetime(6) NOT NULL,
+    CONSTRAINT `PK_Species` PRIMARY KEY (`Id`),
+    CONSTRAINT `FK_Species_Authorities_AuthorityId` FOREIGN KEY (`AuthorityId`) REFERENCES `Authorities` (`Id`) ON DELETE RESTRICT,
+    CONSTRAINT `FK_Species_Genera_GenusId` FOREIGN KEY (`GenusId`) REFERENCES `Genera` (`Id`) ON DELETE RESTRICT,
+    CONSTRAINT `FK_Species_SpeciesTypes_SpeciesTypeId` FOREIGN KEY (`SpeciesTypeId`) REFERENCES `SpeciesTypes` (`Id`) ON DELETE RESTRICT
+) CHARACTER SET=utf8mb4; <s:Microsoft.EntityFrameworkCore.Database.Command>
+[16:08:23 INF] Executed DbCommand (33ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE `Observations` (
+    `Id` int NOT NULL AUTO_INCREMENT,
+    `FullName` varchar(200) CHARACTER SET utf8mb4 NOT NULL,
+    `Sex` varchar(15) CHARACTER SET utf8mb4 NOT NULL,
+    `ObservationDate` datetime(6) NOT NULL,
+    `Method` varchar(50) CHARACTER SET utf8mb4 NOT NULL,
+    `Activity` varchar(50) CHARACTER SET utf8mb4 NOT NULL,
+    `LifeStage` varchar(50) CHARACTER SET utf8mb4 NOT NULL,
+    `NumberSeen` int NOT NULL,
+    `Accuracy` decimal(65,30) NOT NULL,
+    `Notes` varchar(1000) CHARACTER SET utf8mb4 NOT NULL,
+    `Source` varchar(200) CHARACTER SET utf8mb4 NOT NULL,
+    `Link` varchar(500) CHARACTER SET utf8mb4 NOT NULL,
+    `SpeciesId` int NOT NULL,
+    `LocationId` int NOT NULL,
+    `ObserverId` int NOT NULL,
+    `CreatedDateTime` datetime(6) NOT NULL,
+    `UpdatedDateTime` datetime(6) NOT NULL,
+    CONSTRAINT `PK_Observations` PRIMARY KEY (`Id`),
+    CONSTRAINT `FK_Observations_Locations_LocationId` FOREIGN KEY (`LocationId`) REFERENCES `Locations` (`Id`) ON DELETE RESTRICT,
+    CONSTRAINT `FK_Observations_Observers_ObserverId` FOREIGN KEY (`ObserverId`) REFERENCES `Observers` (`Id`) ON DELETE RESTRICT,
+    CONSTRAINT `FK_Observations_Species_SpeciesId` FOREIGN KEY (`SpeciesId`) REFERENCES `Species` (`Id`) ON DELETE RESTRICT
+) CHARACTER SET=utf8mb4; <s:Microsoft.EntityFrameworkCore.Database.Command>
+[16:08:23 INF] Executed DbCommand (25ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE `Subspecies` (
+    `Id` int NOT NULL AUTO_INCREMENT,
+    `Name` varchar(70) CHARACTER SET utf8mb4 NOT NULL,
+    `SpeciesId` int NOT NULL,
+    `CreatedDateTime` datetime(6) NOT NULL,
+    `UpdatedDateTime` datetime(6) NOT NULL,
+    CONSTRAINT `PK_Subspecies` PRIMARY KEY (`Id`),
+    CONSTRAINT `FK_Subspecies_Species_SpeciesId` FOREIGN KEY (`SpeciesId`) REFERENCES `Species` (`Id`) ON DELETE RESTRICT
+) CHARACTER SET=utf8mb4; <s:Microsoft.EntityFrameworkCore.Database.Command>
+[16:08:23 INF] Executed DbCommand (27ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE `Media` (
+    `Id` int NOT NULL AUTO_INCREMENT,
+    `MediaType` varchar(50) CHARACTER SET utf8mb4 NOT NULL,
+    `FilePath` varchar(200) CHARACTER SET utf8mb4 NOT NULL,
+    `Description` varchar(1000) CHARACTER SET utf8mb4 NOT NULL,
+    `ObservationId` int NOT NULL,
+    `SpeciesId` int NOT NULL,
+    `CreatedDateTime` datetime(6) NOT NULL,
+    `UpdatedDateTime` datetime(6) NOT NULL,
+    CONSTRAINT `PK_Media` PRIMARY KEY (`Id`),
+    CONSTRAINT `FK_Media_Observations_ObservationId` FOREIGN KEY (`ObservationId`) REFERENCES `Observations` (`Id`) ON DELETE RESTRICT,
+    CONSTRAINT `FK_Media_Species_SpeciesId` FOREIGN KEY (`SpeciesId`) REFERENCES `Species` (`Id`) ON DELETE RESTRICT
+) CHARACTER SET=utf8mb4; <s:Microsoft.EntityFrameworkCore.Database.Command>
+[16:08:26 INF] Executed DbCommand (21ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX `IX_Genera_FamilyId` ON `Genera` (`FamilyId`); <s:Microsoft.EntityFrameworkCore.Database.Command>
+[16:08:26 INF] Executed DbCommand (21ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX `IX_Locations_ProvinceId` ON `Locations` (`ProvinceId`); <s:Microsoft.EntityFrameworkCore.Database.Command>
+[16:08:26 INF] Executed DbCommand (14ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX `IX_Media_ObservationId` ON `Media` (`ObservationId`); <s:Microsoft.EntityFrameworkCore.Database.Command>
+[16:08:26 INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX `IX_Media_SpeciesId` ON `Media` (`SpeciesId`); <s:Microsoft.EntityFrameworkCore.Database.Command>
+[16:08:26 INF] Executed DbCommand (19ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX `IX_Observations_LocationId` ON `Observations` (`LocationId`); <s:Microsoft.EntityFrameworkCore.Database.Command>
+[16:08:26 INF] Executed DbCommand (16ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX `IX_Observations_ObserverId` ON `Observations` (`ObserverId`); <s:Microsoft.EntityFrameworkCore.Database.Command>
+[16:08:26 INF] Executed DbCommand (18ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX `IX_Observations_SpeciesId` ON `Observations` (`SpeciesId`); <s:Microsoft.EntityFrameworkCore.Database.Command>
+[16:08:26 INF] Executed DbCommand (24ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX `IX_Species_AuthorityId` ON `Species` (`AuthorityId`); <s:Microsoft.EntityFrameworkCore.Database.Command>
+[16:08:26 INF] Executed DbCommand (20ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX `IX_Species_GenusId` ON `Species` (`GenusId`); <s:Microsoft.EntityFrameworkCore.Database.Command>
+[16:08:26 INF] Executed DbCommand (19ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX `IX_Species_SpeciesTypeId` ON `Species` (`SpeciesTypeId`); <s:Microsoft.EntityFrameworkCore.Database.Command>
+[16:08:26 INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX `IX_Subspecies_SpeciesId` ON `Subspecies` (`SpeciesId`); <s:Microsoft.EntityFrameworkCore.Database.Command>
+[16:08:26 INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `__EFMigrationsHistory` (`MigrationId`, `ProductVersion`)
+VALUES ('20241130130740_mig_add_firstMig', '8.0.11'); <s:Microsoft.EntityFrameworkCore.Database.Command>

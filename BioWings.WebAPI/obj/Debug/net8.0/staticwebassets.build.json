@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "0Urv6Ok3vVVLAXbzAM/zMvgrrQoi8bHGRwBtAR3d81w=",
+  "Source": "BioWings.WebAPI",
+  "BasePath": "_content/BioWings.WebAPI",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}
