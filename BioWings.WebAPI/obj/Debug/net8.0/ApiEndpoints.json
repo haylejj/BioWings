@@ -1,5 +1,116 @@
 [
   {
+    "ContainingType": "BioWings.WebAPI.Controllers.FamiliesController",
+    "Method": "GetAll",
+    "RelativePath": "api/Families",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BioWings.WebAPI.Controllers.FamiliesController",
+    "Method": "Create",
+    "RelativePath": "api/Families",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "command",
+        "Type": "BioWings.Application.Features.Commands.FamilyCommands.FamilyCreateCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BioWings.WebAPI.Controllers.FamiliesController",
+    "Method": "Update",
+    "RelativePath": "api/Families",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "command",
+        "Type": "BioWings.Application.Features.Commands.FamilyCommands.FamilyUpdateCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BioWings.WebAPI.Controllers.FamiliesController",
+    "Method": "GetById",
+    "RelativePath": "api/Families/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BioWings.WebAPI.Controllers.FamiliesController",
+    "Method": "Remove",
+    "RelativePath": "api/Families/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BioWings.WebAPI.Controllers.FamiliesController",
+    "Method": "GetPaged",
+    "RelativePath": "api/Families/Paged",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pageNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BioWings.WebAPI.Controllers.FamiliesController",
+    "Method": "CreateRange",
+    "RelativePath": "api/Families/Range",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "command",
+        "Type": "BioWings.Application.Features.Commands.FamilyCommands.FamilyCreateRangeCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "BioWings.WebAPI.Controllers.WeatherForecastController",
     "Method": "Get",
     "RelativePath": "WeatherForecast",

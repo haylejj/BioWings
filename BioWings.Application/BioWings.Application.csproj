@@ -11,16 +11,29 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\" />
-    <Folder Include="DTOs\" />
+    <Folder Include="Features\Commands\GenusCommands\" />
+    <Folder Include="Features\Commands\SubspeciesCommands\" />
+    <Folder Include="Features\Commands\SpeciesTypeCommands\" />
+    <Folder Include="Features\Commands\SpeciesCommands\" />
+    <Folder Include="Features\Handlers\GenusHandlers\" />
+    <Folder Include="Features\Handlers\SubspeciesHandlers\" />
+    <Folder Include="Features\Handlers\SpeciesTypeHandlers\" />
+    <Folder Include="Features\Handlers\SpeciesHandlers\" />
+    <Folder Include="Features\Queries\GenusQueries\" />
+    <Folder Include="Features\Queries\SubspeciesQueries\" />
+    <Folder Include="Features\Queries\SpeciesTypeQueries\" />
+    <Folder Include="Features\Queries\SpeciesQueries\" />
     <Folder Include="Mappings\" />
     <Folder Include="Exceptions\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="MediatR" Version="12.4.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.11" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="8.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.2" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.2" />
   </ItemGroup>
 
 </Project>

@@ -11,7 +11,8 @@ public class GenericRepository<T>(AppDbContext dbContext) : IGenericRepository<T
     public async Task AddAsync(T entity, CancellationToken cancellationToken = default) => await _dbSet.AddAsync(entity, cancellationToken);
     public async Task AddRangeAsync(IEnumerable<T> entities, CancellationToken cancellationToken = default) => await _dbSet.AddRangeAsync(entities, cancellationToken);
     public IQueryable<T> GetAllAsNoTracking() => _dbSet.AsNoTracking();
-    public IQueryable<T> GetAll() => _dbSet;
+    public IQueryable<T> GetAllAsQueryable() => _dbSet.AsQueryable();
+    public async Task<IEnumerable<T>> GetAllAsync(CancellationToken cancellationToken=default) => await _dbSet.ToListAsync(cancellationToken);
     public async Task<T?> GetByIdAsync(int id, CancellationToken cancellationToken = default) => await _dbSet.FindAsync(id, cancellationToken);
     public async Task<IEnumerable<T>> GetFilteredAsNoTrackingAsync(Expression<Func<T, bool>> predicate, CancellationToken cancellationToken = default) => await _dbSet.AsNoTracking().Where(predicate).ToListAsync();
     public async Task<IEnumerable<T>> GetFilteredAsync(Expression<Func<T, bool>> predicate, CancellationToken cancellationToken = default) => await _dbSet.Where(predicate).ToListAsync(cancellationToken);
@@ -21,4 +22,5 @@ public class GenericRepository<T>(AppDbContext dbContext) : IGenericRepository<T
     public void RemoveRange(IEnumerable<T> entities) => _dbSet.RemoveRange(entities);
     public void Update(T entity) => _dbSet.Update(entity);
     public void UpdateRange(IEnumerable<T> entities) => _dbSet.UpdateRange(entities);
+    public async Task<int> GetTotalCountAsync(CancellationToken cancellationToken = default) => await _dbSet.CountAsync(cancellationToken);
 }

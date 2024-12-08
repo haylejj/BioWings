@@ -1,3 +1,4 @@
+using BioWings.Application.Extensions;
 using BioWings.Persistence.Extensions;
 using BioWings.WebAPI.Exceptions;
 using Serilog;
@@ -15,6 +16,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // Add services from the Persistence project
+builder.Services.AddApplicationExtensions(builder.Configuration);
 builder.Services.AddPersistenceExtensions(builder.Configuration);
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 var app = builder.Build();

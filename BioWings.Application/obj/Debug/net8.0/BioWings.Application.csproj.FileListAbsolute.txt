@@ -13,3 +13,4 @@ C:\Users\cagat\VisualStudio2022\BioWings\BioWings\BioWings.Application\bin\Debug
 C:\Users\cagat\VisualStudio2022\BioWings\BioWings\BioWings.Application\bin\Debug\net8.0\BioWings.Domain.pdb
 C:\Users\cagat\VisualStudio2022\BioWings\BioWings\BioWings.Application\obj\Debug\net8.0\BioWings.Application.csproj.AssemblyReference.cache
 C:\Users\cagat\VisualStudio2022\BioWings\BioWings\BioWings.Application\obj\Debug\net8.0\BioWings.7C26C959.Up2Date
+C:\Users\cagat\VisualStudio2022\BioWings\BioWings\BioWings.Application\obj\Debug\net8.0\BioWings.Application.sourcelink.json

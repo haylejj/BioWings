@@ -9,3 +9,4 @@ C:\Users\cagat\VisualStudio2022\BioWings\BioWings\BioWings.Domain\obj\Debug\net8
 C:\Users\cagat\VisualStudio2022\BioWings\BioWings\BioWings.Domain\obj\Debug\net8.0\refint\BioWings.Domain.dll
 C:\Users\cagat\VisualStudio2022\BioWings\BioWings\BioWings.Domain\obj\Debug\net8.0\BioWings.Domain.pdb
 C:\Users\cagat\VisualStudio2022\BioWings\BioWings\BioWings.Domain\obj\Debug\net8.0\ref\BioWings.Domain.dll
+C:\Users\cagat\VisualStudio2022\BioWings\BioWings\BioWings.Domain\obj\Debug\net8.0\BioWings.Domain.sourcelink.json

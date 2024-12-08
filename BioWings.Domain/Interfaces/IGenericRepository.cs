@@ -10,6 +10,9 @@ public interface IGenericRepository<T> where T : BaseEntity
     void Update(T entity);
     void Remove(T entity);
     IQueryable<T> GetAllAsNoTracking();
+    IQueryable<T> GetAllAsQueryable();
+    Task<IEnumerable<T>> GetAllAsync(CancellationToken cancellationToken = default);
+    Task<int> GetTotalCountAsync(CancellationToken cancellationToken = default);
     //Toplu işlemler
     Task AddRangeAsync(IEnumerable<T> entities, CancellationToken cancellationToken = default);
     void UpdateRange(IEnumerable<T> entities);

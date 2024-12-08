@@ -1,0 +1,339 @@
+[10:47:40 INF] Now listening on: http://localhost:5054 <s:Microsoft.Hosting.Lifetime>
+[10:47:40 INF] Application started. Press Ctrl+C to shut down. <s:Microsoft.Hosting.Lifetime>
+[10:47:40 INF] Hosting environment: Development <s:Microsoft.Hosting.Lifetime>
+[10:47:40 INF] Content root path: C:\Users\cagat\VisualStudio2022\BioWings\BioWings\BioWings.WebAPI <s:Microsoft.Hosting.Lifetime>
+[10:47:42 INF] Request starting HTTP/1.1 GET http://localhost:5054/swagger/index.html - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[10:47:42 INF] Request finished HTTP/1.1 GET http://localhost:5054/swagger/index.html - 200 null text/html;charset=utf-8 262.6467ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[10:47:42 INF] Request starting HTTP/1.1 GET http://localhost:5054/_framework/aspnetcore-browser-refresh.js - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[10:47:42 INF] Request finished HTTP/1.1 GET http://localhost:5054/_framework/aspnetcore-browser-refresh.js - 200 13782 application/javascript; charset=utf-8 3.0403ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[10:47:43 INF] Request starting HTTP/1.1 GET http://localhost:5054/_vs/browserLink - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[10:47:43 INF] Request finished HTTP/1.1 GET http://localhost:5054/_vs/browserLink - 200 null text/javascript; charset=UTF-8 49.447ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[10:47:43 INF] Request starting HTTP/1.1 GET http://localhost:5054/swagger/v1/swagger.json - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[10:47:43 INF] Request finished HTTP/1.1 GET http://localhost:5054/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 11.2589ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[10:47:53 INF] Request starting HTTP/1.1 GET http://localhost:5054/api/Families - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[10:47:53 WRN] Failed to determine the https port for redirect. <s:Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware>
+[10:47:53 INF] Executing endpoint 'BioWings.WebAPI.Controllers.FamiliesController.GetAll (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[10:47:53 INF] Route matched with {action = "GetAll", controller = "Families"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller BioWings.WebAPI.Controllers.FamiliesController (BioWings.WebAPI). <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[10:47:53 INF] Executed action BioWings.WebAPI.Controllers.FamiliesController.GetAll (BioWings.WebAPI) in 7.415ms <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[10:47:53 INF] Executed endpoint 'BioWings.WebAPI.Controllers.FamiliesController.GetAll (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[10:47:53 ERR] An unhandled exception has occurred while executing the request. <s:Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware>
+System.InvalidOperationException: Unable to resolve service for type 'MediatR.IMediator' while attempting to activate 'BioWings.WebAPI.Controllers.FamiliesController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ThrowHelperUnableToResolveService(Type type, Type requiredBy)
+   at lambda_method9(Closure, IServiceProvider, Object[])
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass6_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+[10:47:53 ERR] An unhandled exception occurred: InvalidOperationException - Unable to resolve service for type 'MediatR.IMediator' while attempting to activate 'BioWings.WebAPI.Controllers.FamiliesController'. <s:BioWings.WebAPI.Exceptions.GlobalExceptionHandler>
+System.InvalidOperationException: Unable to resolve service for type 'MediatR.IMediator' while attempting to activate 'BioWings.WebAPI.Controllers.FamiliesController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ThrowHelperUnableToResolveService(Type type, Type requiredBy)
+   at lambda_method9(Closure, IServiceProvider, Object[])
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass6_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+[10:47:53 ERR] HTTP GET /api/Families responded 500 in 138.0151 ms <s:Serilog.AspNetCore.RequestLoggingMiddleware>
+[10:47:53 INF] Request finished HTTP/1.1 GET http://localhost:5054/api/Families - 500 null application/json; charset=utf-8 143.0573ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[10:48:14 INF] Request starting HTTP/1.1 GET http://localhost:5054/api/Families/1 - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[10:48:14 INF] Executing endpoint 'BioWings.WebAPI.Controllers.FamiliesController.GetById (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[10:48:14 INF] Route matched with {action = "GetById", controller = "Families"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetById(Int32) on controller BioWings.WebAPI.Controllers.FamiliesController (BioWings.WebAPI). <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[10:48:14 INF] Executed action BioWings.WebAPI.Controllers.FamiliesController.GetById (BioWings.WebAPI) in 0.1381ms <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[10:48:14 INF] Executed endpoint 'BioWings.WebAPI.Controllers.FamiliesController.GetById (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[10:48:14 ERR] An unhandled exception has occurred while executing the request. <s:Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware>
+System.InvalidOperationException: Unable to resolve service for type 'MediatR.IMediator' while attempting to activate 'BioWings.WebAPI.Controllers.FamiliesController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ThrowHelperUnableToResolveService(Type type, Type requiredBy)
+   at lambda_method17(Closure, IServiceProvider, Object[])
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass6_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+[10:48:14 ERR] An unhandled exception occurred: InvalidOperationException - Unable to resolve service for type 'MediatR.IMediator' while attempting to activate 'BioWings.WebAPI.Controllers.FamiliesController'. <s:BioWings.WebAPI.Exceptions.GlobalExceptionHandler>
+System.InvalidOperationException: Unable to resolve service for type 'MediatR.IMediator' while attempting to activate 'BioWings.WebAPI.Controllers.FamiliesController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ThrowHelperUnableToResolveService(Type type, Type requiredBy)
+   at lambda_method17(Closure, IServiceProvider, Object[])
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass6_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+[10:48:14 ERR] HTTP GET /api/Families/1 responded 500 in 20.6573 ms <s:Serilog.AspNetCore.RequestLoggingMiddleware>
+[10:48:14 INF] Request finished HTTP/1.1 GET http://localhost:5054/api/Families/1 - 500 null application/json; charset=utf-8 21.931ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[10:48:31 INF] Request starting HTTP/1.1 POST http://localhost:5054/api/Families - application/json 18 <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[10:48:31 INF] Executing endpoint 'BioWings.WebAPI.Controllers.FamiliesController.Create (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[10:48:31 INF] Route matched with {action = "Create", controller = "Families"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(BioWings.Application.Features.Commands.FamilyCommands.FamilyCreateCommand) on controller BioWings.WebAPI.Controllers.FamiliesController (BioWings.WebAPI). <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[10:48:31 INF] Executed action BioWings.WebAPI.Controllers.FamiliesController.Create (BioWings.WebAPI) in 0.1226ms <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[10:48:31 INF] Executed endpoint 'BioWings.WebAPI.Controllers.FamiliesController.Create (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[10:48:31 ERR] An unhandled exception has occurred while executing the request. <s:Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware>
+System.InvalidOperationException: Unable to resolve service for type 'MediatR.IMediator' while attempting to activate 'BioWings.WebAPI.Controllers.FamiliesController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ThrowHelperUnableToResolveService(Type type, Type requiredBy)
+   at lambda_method25(Closure, IServiceProvider, Object[])
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass6_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+[10:48:31 ERR] An unhandled exception occurred: InvalidOperationException - Unable to resolve service for type 'MediatR.IMediator' while attempting to activate 'BioWings.WebAPI.Controllers.FamiliesController'. <s:BioWings.WebAPI.Exceptions.GlobalExceptionHandler>
+System.InvalidOperationException: Unable to resolve service for type 'MediatR.IMediator' while attempting to activate 'BioWings.WebAPI.Controllers.FamiliesController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ThrowHelperUnableToResolveService(Type type, Type requiredBy)
+   at lambda_method25(Closure, IServiceProvider, Object[])
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass6_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+[10:48:31 ERR] HTTP POST /api/Families responded 500 in 11.0344 ms <s:Serilog.AspNetCore.RequestLoggingMiddleware>
+[10:48:31 INF] Request finished HTTP/1.1 POST http://localhost:5054/api/Families - 500 null application/json; charset=utf-8 12.1083ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[10:49:51 INF] Now listening on: http://localhost:5054 <s:Microsoft.Hosting.Lifetime>
+[10:49:52 INF] Application started. Press Ctrl+C to shut down. <s:Microsoft.Hosting.Lifetime>
+[10:49:52 INF] Hosting environment: Development <s:Microsoft.Hosting.Lifetime>
+[10:49:52 INF] Content root path: C:\Users\cagat\VisualStudio2022\BioWings\BioWings\BioWings.WebAPI <s:Microsoft.Hosting.Lifetime>
+[10:49:53 INF] Request starting HTTP/1.1 GET http://localhost:5054/swagger/index.html - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[10:49:53 INF] Request finished HTTP/1.1 GET http://localhost:5054/swagger/index.html - 200 null text/html;charset=utf-8 223.3558ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[10:49:53 INF] Request starting HTTP/1.1 GET http://localhost:5054/_framework/aspnetcore-browser-refresh.js - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[10:49:53 INF] Request finished HTTP/1.1 GET http://localhost:5054/_framework/aspnetcore-browser-refresh.js - 200 13782 application/javascript; charset=utf-8 4.1328ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[10:49:54 INF] Request starting HTTP/1.1 GET http://localhost:5054/_vs/browserLink - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[10:49:54 INF] Request finished HTTP/1.1 GET http://localhost:5054/_vs/browserLink - 200 null text/javascript; charset=UTF-8 23.7191ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[10:49:54 INF] Request starting HTTP/1.1 GET http://localhost:5054/swagger/v1/swagger.json - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[10:49:54 INF] Request finished HTTP/1.1 GET http://localhost:5054/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 9.9402ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[10:49:59 INF] Request starting HTTP/1.1 GET http://localhost:5054/api/Families - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[10:49:59 WRN] Failed to determine the https port for redirect. <s:Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware>
+[10:49:59 INF] Executing endpoint 'BioWings.WebAPI.Controllers.FamiliesController.GetAll (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[10:49:59 INF] Route matched with {action = "GetAll", controller = "Families"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller BioWings.WebAPI.Controllers.FamiliesController (BioWings.WebAPI). <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[10:50:01 INF] Executed DbCommand (81ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `f`.`Id`, `f`.`CreatedDateTime`, `f`.`Name`, `f`.`UpdatedDateTime`
+FROM `Families` AS `f` <s:Microsoft.EntityFrameworkCore.Database.Command>
+[10:50:01 WRN] No families found <s:BioWings.Application.Features.Handlers.FamilyHandlers.Read.FamilyGetQueryHandler>
+[10:50:01 INF] Executing ObjectResult, writing value of type 'BioWings.Application.Results.ServiceResult`1[[System.Collections.Generic.IEnumerable`1[[BioWings.Application.Features.Results.FamilyResults.FamilyGetQueryResult, BioWings.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'. <s:Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor>
+[10:50:01 INF] Executed action BioWings.WebAPI.Controllers.FamiliesController.GetAll (BioWings.WebAPI) in 1360.8415ms <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[10:50:01 INF] Executed endpoint 'BioWings.WebAPI.Controllers.FamiliesController.GetAll (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[10:50:01 INF] HTTP GET /api/Families responded 404 in 1381.1191 ms <s:Serilog.AspNetCore.RequestLoggingMiddleware>
+[10:50:01 INF] Request finished HTTP/1.1 GET http://localhost:5054/api/Families - 404 null application/json; charset=utf-8 1392.0821ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[10:51:33 INF] Request starting HTTP/1.1 GET http://localhost:5054/api/Families/Paged?pageNumber=1&pageSize=25 - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[10:51:49 INF] Now listening on: http://localhost:5054 <s:Microsoft.Hosting.Lifetime>
+[10:51:49 INF] Application started. Press Ctrl+C to shut down. <s:Microsoft.Hosting.Lifetime>
+[10:51:49 INF] Hosting environment: Development <s:Microsoft.Hosting.Lifetime>
+[10:51:49 INF] Content root path: C:\Users\cagat\VisualStudio2022\BioWings\BioWings\BioWings.WebAPI <s:Microsoft.Hosting.Lifetime>
+[10:51:51 INF] Request starting HTTP/1.1 GET http://localhost:5054/swagger/index.html - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[10:51:51 INF] Request finished HTTP/1.1 GET http://localhost:5054/swagger/index.html - 200 null text/html;charset=utf-8 257.0176ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[10:51:51 INF] Request starting HTTP/1.1 GET http://localhost:5054/_framework/aspnetcore-browser-refresh.js - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[10:51:51 INF] Request finished HTTP/1.1 GET http://localhost:5054/_framework/aspnetcore-browser-refresh.js - 200 13782 application/javascript; charset=utf-8 3.1491ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[10:51:52 INF] Request starting HTTP/1.1 GET http://localhost:5054/_vs/browserLink - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[10:51:52 INF] Request finished HTTP/1.1 GET http://localhost:5054/_vs/browserLink - 200 null text/javascript; charset=UTF-8 27.0062ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[10:51:52 INF] Request starting HTTP/1.1 GET http://localhost:5054/swagger/v1/swagger.json - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[10:51:52 INF] Request finished HTTP/1.1 GET http://localhost:5054/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 10.2324ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[10:51:56 INF] Request starting HTTP/1.1 GET http://localhost:5054/api/Families/Paged?pageNumber=1&pageSize=25 - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[10:51:56 WRN] Failed to determine the https port for redirect. <s:Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware>
+[10:51:56 INF] Executing endpoint 'BioWings.WebAPI.Controllers.FamiliesController.GetPaged (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[10:51:56 INF] Route matched with {action = "GetPaged", controller = "Families"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPaged(Int32, Int32) on controller BioWings.WebAPI.Controllers.FamiliesController (BioWings.WebAPI). <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[10:51:57 INF] Executed DbCommand (27ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM `Families` AS `f` <s:Microsoft.EntityFrameworkCore.Database.Command>
+[10:51:57 WRN] No family found with paged <s:BioWings.Application.Features.Handlers.FamilyHandlers.Read.FamilyGetPagedQueryHandler>
+[10:51:57 INF] Executing ObjectResult, writing value of type 'BioWings.Application.Results.ServiceResult`1[[BioWings.Application.Results.PaginatedList`1[[BioWings.Application.Features.Results.FamilyResults.FamilyGetPagedQueryResult, BioWings.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], BioWings.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'. <s:Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor>
+[10:51:57 INF] Executed action BioWings.WebAPI.Controllers.FamiliesController.GetPaged (BioWings.WebAPI) in 930.2062ms <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[10:51:57 INF] Executed endpoint 'BioWings.WebAPI.Controllers.FamiliesController.GetPaged (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[10:51:57 INF] HTTP GET /api/Families/Paged responded 404 in 960.3812 ms <s:Serilog.AspNetCore.RequestLoggingMiddleware>
+[10:51:57 INF] Request finished HTTP/1.1 GET http://localhost:5054/api/Families/Paged?pageNumber=1&pageSize=25 - 404 null application/json; charset=utf-8 973.0175ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[10:51:59 INF] Request starting HTTP/1.1 GET http://localhost:5054/api/Families/Paged?pageNumber=1&pageSize=25 - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[10:51:59 INF] Executing endpoint 'BioWings.WebAPI.Controllers.FamiliesController.GetPaged (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[10:51:59 INF] Route matched with {action = "GetPaged", controller = "Families"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPaged(Int32, Int32) on controller BioWings.WebAPI.Controllers.FamiliesController (BioWings.WebAPI). <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[10:51:59 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM `Families` AS `f` <s:Microsoft.EntityFrameworkCore.Database.Command>
+[10:51:59 WRN] No family found with paged <s:BioWings.Application.Features.Handlers.FamilyHandlers.Read.FamilyGetPagedQueryHandler>
+[10:51:59 INF] Executing ObjectResult, writing value of type 'BioWings.Application.Results.ServiceResult`1[[BioWings.Application.Results.PaginatedList`1[[BioWings.Application.Features.Results.FamilyResults.FamilyGetPagedQueryResult, BioWings.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], BioWings.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'. <s:Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor>
+[10:51:59 INF] Executed action BioWings.WebAPI.Controllers.FamiliesController.GetPaged (BioWings.WebAPI) in 57.9565ms <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[10:51:59 INF] Executed endpoint 'BioWings.WebAPI.Controllers.FamiliesController.GetPaged (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[10:51:59 INF] HTTP GET /api/Families/Paged responded 404 in 61.4248 ms <s:Serilog.AspNetCore.RequestLoggingMiddleware>
+[10:51:59 INF] Request finished HTTP/1.1 GET http://localhost:5054/api/Families/Paged?pageNumber=1&pageSize=25 - 404 null application/json; charset=utf-8 64.9776ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[10:51:59 INF] Request starting HTTP/1.1 GET http://localhost:5054/api/Families/Paged?pageNumber=1&pageSize=25 - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[10:51:59 INF] Executing endpoint 'BioWings.WebAPI.Controllers.FamiliesController.GetPaged (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[10:51:59 INF] Route matched with {action = "GetPaged", controller = "Families"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPaged(Int32, Int32) on controller BioWings.WebAPI.Controllers.FamiliesController (BioWings.WebAPI). <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[10:51:59 INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM `Families` AS `f` <s:Microsoft.EntityFrameworkCore.Database.Command>
+[10:51:59 WRN] No family found with paged <s:BioWings.Application.Features.Handlers.FamilyHandlers.Read.FamilyGetPagedQueryHandler>
+[10:51:59 INF] Executing ObjectResult, writing value of type 'BioWings.Application.Results.ServiceResult`1[[BioWings.Application.Results.PaginatedList`1[[BioWings.Application.Features.Results.FamilyResults.FamilyGetPagedQueryResult, BioWings.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], BioWings.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'. <s:Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor>
+[10:51:59 INF] Executed action BioWings.WebAPI.Controllers.FamiliesController.GetPaged (BioWings.WebAPI) in 23.4956ms <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[10:51:59 INF] Executed endpoint 'BioWings.WebAPI.Controllers.FamiliesController.GetPaged (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[10:51:59 INF] HTTP GET /api/Families/Paged responded 404 in 25.3680 ms <s:Serilog.AspNetCore.RequestLoggingMiddleware>
+[10:51:59 INF] Request finished HTTP/1.1 GET http://localhost:5054/api/Families/Paged?pageNumber=1&pageSize=25 - 404 null application/json; charset=utf-8 27.0069ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[10:52:00 INF] Request starting HTTP/1.1 GET http://localhost:5054/api/Families/Paged?pageNumber=1&pageSize=25 - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[10:52:00 INF] Executing endpoint 'BioWings.WebAPI.Controllers.FamiliesController.GetPaged (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[10:52:00 INF] Route matched with {action = "GetPaged", controller = "Families"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPaged(Int32, Int32) on controller BioWings.WebAPI.Controllers.FamiliesController (BioWings.WebAPI). <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[10:52:00 INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM `Families` AS `f` <s:Microsoft.EntityFrameworkCore.Database.Command>
+[10:52:00 WRN] No family found with paged <s:BioWings.Application.Features.Handlers.FamilyHandlers.Read.FamilyGetPagedQueryHandler>
+[10:52:00 INF] Executing ObjectResult, writing value of type 'BioWings.Application.Results.ServiceResult`1[[BioWings.Application.Results.PaginatedList`1[[BioWings.Application.Features.Results.FamilyResults.FamilyGetPagedQueryResult, BioWings.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], BioWings.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'. <s:Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor>
+[10:52:00 INF] Executed action BioWings.WebAPI.Controllers.FamiliesController.GetPaged (BioWings.WebAPI) in 7.3172ms <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[10:52:00 INF] Executed endpoint 'BioWings.WebAPI.Controllers.FamiliesController.GetPaged (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[10:52:00 INF] HTTP GET /api/Families/Paged responded 404 in 9.1743 ms <s:Serilog.AspNetCore.RequestLoggingMiddleware>
+[10:52:00 INF] Request finished HTTP/1.1 GET http://localhost:5054/api/Families/Paged?pageNumber=1&pageSize=25 - 404 null application/json; charset=utf-8 10.8307ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[10:52:00 INF] Request starting HTTP/1.1 GET http://localhost:5054/api/Families/Paged?pageNumber=1&pageSize=25 - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[10:52:00 INF] Executing endpoint 'BioWings.WebAPI.Controllers.FamiliesController.GetPaged (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[10:52:00 INF] Route matched with {action = "GetPaged", controller = "Families"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPaged(Int32, Int32) on controller BioWings.WebAPI.Controllers.FamiliesController (BioWings.WebAPI). <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[10:52:00 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM `Families` AS `f` <s:Microsoft.EntityFrameworkCore.Database.Command>
+[10:52:00 WRN] No family found with paged <s:BioWings.Application.Features.Handlers.FamilyHandlers.Read.FamilyGetPagedQueryHandler>
+[10:52:00 INF] Executing ObjectResult, writing value of type 'BioWings.Application.Results.ServiceResult`1[[BioWings.Application.Results.PaginatedList`1[[BioWings.Application.Features.Results.FamilyResults.FamilyGetPagedQueryResult, BioWings.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], BioWings.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'. <s:Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor>
+[10:52:00 INF] Executed action BioWings.WebAPI.Controllers.FamiliesController.GetPaged (BioWings.WebAPI) in 6.7126ms <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[10:52:00 INF] Executed endpoint 'BioWings.WebAPI.Controllers.FamiliesController.GetPaged (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[10:52:00 INF] HTTP GET /api/Families/Paged responded 404 in 10.5286 ms <s:Serilog.AspNetCore.RequestLoggingMiddleware>
+[10:52:00 INF] Request finished HTTP/1.1 GET http://localhost:5054/api/Families/Paged?pageNumber=1&pageSize=25 - 404 null application/json; charset=utf-8 11.8455ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[10:52:00 INF] Request starting HTTP/1.1 GET http://localhost:5054/api/Families/Paged?pageNumber=1&pageSize=25 - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[10:52:00 INF] Executing endpoint 'BioWings.WebAPI.Controllers.FamiliesController.GetPaged (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[10:52:00 INF] Route matched with {action = "GetPaged", controller = "Families"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPaged(Int32, Int32) on controller BioWings.WebAPI.Controllers.FamiliesController (BioWings.WebAPI). <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[10:52:00 INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM `Families` AS `f` <s:Microsoft.EntityFrameworkCore.Database.Command>
+[10:52:00 WRN] No family found with paged <s:BioWings.Application.Features.Handlers.FamilyHandlers.Read.FamilyGetPagedQueryHandler>
+[10:52:00 INF] Executing ObjectResult, writing value of type 'BioWings.Application.Results.ServiceResult`1[[BioWings.Application.Results.PaginatedList`1[[BioWings.Application.Features.Results.FamilyResults.FamilyGetPagedQueryResult, BioWings.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], BioWings.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'. <s:Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor>
+[10:52:00 INF] Executed action BioWings.WebAPI.Controllers.FamiliesController.GetPaged (BioWings.WebAPI) in 8.5749ms <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[10:52:00 INF] Executed endpoint 'BioWings.WebAPI.Controllers.FamiliesController.GetPaged (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[10:52:00 INF] HTTP GET /api/Families/Paged responded 404 in 10.9631 ms <s:Serilog.AspNetCore.RequestLoggingMiddleware>
+[10:52:00 INF] Request finished HTTP/1.1 GET http://localhost:5054/api/Families/Paged?pageNumber=1&pageSize=25 - 404 null application/json; charset=utf-8 12.3429ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[10:52:00 INF] Request starting HTTP/1.1 GET http://localhost:5054/api/Families/Paged?pageNumber=1&pageSize=25 - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[10:52:00 INF] Executing endpoint 'BioWings.WebAPI.Controllers.FamiliesController.GetPaged (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[10:52:00 INF] Route matched with {action = "GetPaged", controller = "Families"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPaged(Int32, Int32) on controller BioWings.WebAPI.Controllers.FamiliesController (BioWings.WebAPI). <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[10:52:00 INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM `Families` AS `f` <s:Microsoft.EntityFrameworkCore.Database.Command>
+[10:52:00 WRN] No family found with paged <s:BioWings.Application.Features.Handlers.FamilyHandlers.Read.FamilyGetPagedQueryHandler>
+[10:52:00 INF] Executing ObjectResult, writing value of type 'BioWings.Application.Results.ServiceResult`1[[BioWings.Application.Results.PaginatedList`1[[BioWings.Application.Features.Results.FamilyResults.FamilyGetPagedQueryResult, BioWings.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], BioWings.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'. <s:Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor>
+[10:52:00 INF] Executed action BioWings.WebAPI.Controllers.FamiliesController.GetPaged (BioWings.WebAPI) in 6.6479ms <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[10:52:00 INF] Executed endpoint 'BioWings.WebAPI.Controllers.FamiliesController.GetPaged (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[10:52:00 INF] HTTP GET /api/Families/Paged responded 404 in 8.3439 ms <s:Serilog.AspNetCore.RequestLoggingMiddleware>
+[10:52:00 INF] Request finished HTTP/1.1 GET http://localhost:5054/api/Families/Paged?pageNumber=1&pageSize=25 - 404 null application/json; charset=utf-8 9.7945ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[10:52:03 INF] Request starting HTTP/1.1 GET http://localhost:5054/api/Families - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[10:52:03 INF] Executing endpoint 'BioWings.WebAPI.Controllers.FamiliesController.GetAll (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[10:52:03 INF] Route matched with {action = "GetAll", controller = "Families"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller BioWings.WebAPI.Controllers.FamiliesController (BioWings.WebAPI). <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[10:52:03 INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `f`.`Id`, `f`.`CreatedDateTime`, `f`.`Name`, `f`.`UpdatedDateTime`
+FROM `Families` AS `f` <s:Microsoft.EntityFrameworkCore.Database.Command>
+[10:52:03 WRN] No families found <s:BioWings.Application.Features.Handlers.FamilyHandlers.Read.FamilyGetQueryHandler>
+[10:52:03 INF] Executing ObjectResult, writing value of type 'BioWings.Application.Results.ServiceResult`1[[System.Collections.Generic.IEnumerable`1[[BioWings.Application.Features.Results.FamilyResults.FamilyGetQueryResult, BioWings.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'. <s:Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor>
+[10:52:03 INF] Executed action BioWings.WebAPI.Controllers.FamiliesController.GetAll (BioWings.WebAPI) in 38.9037ms <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[10:52:03 INF] Executed endpoint 'BioWings.WebAPI.Controllers.FamiliesController.GetAll (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[10:52:03 INF] HTTP GET /api/Families responded 404 in 44.0184 ms <s:Serilog.AspNetCore.RequestLoggingMiddleware>
+[10:52:03 INF] Request finished HTTP/1.1 GET http://localhost:5054/api/Families - 404 null application/json; charset=utf-8 45.1453ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[10:52:04 INF] Request starting HTTP/1.1 GET http://localhost:5054/api/Families - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[10:52:04 INF] Executing endpoint 'BioWings.WebAPI.Controllers.FamiliesController.GetAll (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[10:52:04 INF] Route matched with {action = "GetAll", controller = "Families"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller BioWings.WebAPI.Controllers.FamiliesController (BioWings.WebAPI). <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[10:52:04 INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `f`.`Id`, `f`.`CreatedDateTime`, `f`.`Name`, `f`.`UpdatedDateTime`
+FROM `Families` AS `f` <s:Microsoft.EntityFrameworkCore.Database.Command>
+[10:52:04 WRN] No families found <s:BioWings.Application.Features.Handlers.FamilyHandlers.Read.FamilyGetQueryHandler>
+[10:52:04 INF] Executing ObjectResult, writing value of type 'BioWings.Application.Results.ServiceResult`1[[System.Collections.Generic.IEnumerable`1[[BioWings.Application.Features.Results.FamilyResults.FamilyGetQueryResult, BioWings.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'. <s:Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor>
+[10:52:04 INF] Executed action BioWings.WebAPI.Controllers.FamiliesController.GetAll (BioWings.WebAPI) in 5.998ms <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[10:52:04 INF] Executed endpoint 'BioWings.WebAPI.Controllers.FamiliesController.GetAll (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[10:52:04 INF] HTTP GET /api/Families responded 404 in 7.5903 ms <s:Serilog.AspNetCore.RequestLoggingMiddleware>
+[10:52:04 INF] Request finished HTTP/1.1 GET http://localhost:5054/api/Families - 404 null application/json; charset=utf-8 8.6938ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[10:52:05 INF] Request starting HTTP/1.1 GET http://localhost:5054/api/Families - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[10:52:05 INF] Executing endpoint 'BioWings.WebAPI.Controllers.FamiliesController.GetAll (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[10:52:05 INF] Route matched with {action = "GetAll", controller = "Families"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller BioWings.WebAPI.Controllers.FamiliesController (BioWings.WebAPI). <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[10:52:05 INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `f`.`Id`, `f`.`CreatedDateTime`, `f`.`Name`, `f`.`UpdatedDateTime`
+FROM `Families` AS `f` <s:Microsoft.EntityFrameworkCore.Database.Command>
+[10:52:05 WRN] No families found <s:BioWings.Application.Features.Handlers.FamilyHandlers.Read.FamilyGetQueryHandler>
+[10:52:05 INF] Executing ObjectResult, writing value of type 'BioWings.Application.Results.ServiceResult`1[[System.Collections.Generic.IEnumerable`1[[BioWings.Application.Features.Results.FamilyResults.FamilyGetQueryResult, BioWings.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'. <s:Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor>
+[10:52:05 INF] Executed action BioWings.WebAPI.Controllers.FamiliesController.GetAll (BioWings.WebAPI) in 6.294ms <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[10:52:05 INF] Executed endpoint 'BioWings.WebAPI.Controllers.FamiliesController.GetAll (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[10:52:05 INF] HTTP GET /api/Families responded 404 in 7.7316 ms <s:Serilog.AspNetCore.RequestLoggingMiddleware>
+[10:52:05 INF] Request finished HTTP/1.1 GET http://localhost:5054/api/Families - 404 null application/json; charset=utf-8 8.7013ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[10:52:16 INF] Request starting HTTP/1.1 DELETE http://localhost:5054/api/Families/3 - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[10:52:16 INF] Executing endpoint 'BioWings.WebAPI.Controllers.FamiliesController.Remove (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[10:52:16 INF] Route matched with {action = "Remove", controller = "Families"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Remove(Int32) on controller BioWings.WebAPI.Controllers.FamiliesController (BioWings.WebAPI). <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[10:52:16 INF] Executed DbCommand (22ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `f`.`Id`, `f`.`CreatedDateTime`, `f`.`Name`, `f`.`UpdatedDateTime`
+FROM `Families` AS `f`
+WHERE `f`.`Id` = @__p_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[10:52:16 WRN] Family not found with ID: 3 <s:BioWings.Application.Features.Handlers.FamilyHandlers.Write.FamilyRemoveCommandHandler>
+[10:52:16 INF] Executing ObjectResult, writing value of type 'BioWings.Application.Results.ServiceResult'. <s:Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor>
+[10:52:16 INF] Executed action BioWings.WebAPI.Controllers.FamiliesController.Remove (BioWings.WebAPI) in 61.681ms <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[10:52:16 INF] Executed endpoint 'BioWings.WebAPI.Controllers.FamiliesController.Remove (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[10:52:16 INF] HTTP DELETE /api/Families/3 responded 404 in 67.1933 ms <s:Serilog.AspNetCore.RequestLoggingMiddleware>
+[10:52:16 INF] Request finished HTTP/1.1 DELETE http://localhost:5054/api/Families/3 - 404 null application/json; charset=utf-8 68.9441ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[10:52:32 INF] Request starting HTTP/1.1 GET http://localhost:5054/api/Families - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[10:52:32 INF] Executing endpoint 'BioWings.WebAPI.Controllers.FamiliesController.GetAll (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[10:52:32 INF] Route matched with {action = "GetAll", controller = "Families"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller BioWings.WebAPI.Controllers.FamiliesController (BioWings.WebAPI). <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[10:52:32 INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `f`.`Id`, `f`.`CreatedDateTime`, `f`.`Name`, `f`.`UpdatedDateTime`
+FROM `Families` AS `f` <s:Microsoft.EntityFrameworkCore.Database.Command>
+[10:52:32 WRN] No families found <s:BioWings.Application.Features.Handlers.FamilyHandlers.Read.FamilyGetQueryHandler>
+[10:52:32 INF] Executing ObjectResult, writing value of type 'BioWings.Application.Results.ServiceResult`1[[System.Collections.Generic.IEnumerable`1[[BioWings.Application.Features.Results.FamilyResults.FamilyGetQueryResult, BioWings.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'. <s:Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor>
+[10:52:32 INF] Executed action BioWings.WebAPI.Controllers.FamiliesController.GetAll (BioWings.WebAPI) in 9.5584ms <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[10:52:32 INF] Executed endpoint 'BioWings.WebAPI.Controllers.FamiliesController.GetAll (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[10:52:32 INF] HTTP GET /api/Families responded 404 in 11.3561 ms <s:Serilog.AspNetCore.RequestLoggingMiddleware>
+[10:52:32 INF] Request finished HTTP/1.1 GET http://localhost:5054/api/Families - 404 null application/json; charset=utf-8 13.0864ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[11:03:11 INF] Now listening on: http://localhost:5054 <s:Microsoft.Hosting.Lifetime>
+[11:03:11 INF] Application started. Press Ctrl+C to shut down. <s:Microsoft.Hosting.Lifetime>
+[11:03:11 INF] Hosting environment: Development <s:Microsoft.Hosting.Lifetime>
+[11:03:11 INF] Content root path: C:\Users\cagat\VisualStudio2022\BioWings\BioWings\BioWings.WebAPI <s:Microsoft.Hosting.Lifetime>
+[11:03:12 INF] Request starting HTTP/1.1 GET http://localhost:5054/swagger/index.html - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[11:03:12 INF] Request finished HTTP/1.1 GET http://localhost:5054/swagger/index.html - 200 null text/html;charset=utf-8 263.1085ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[11:03:12 INF] Request starting HTTP/1.1 GET http://localhost:5054/_framework/aspnetcore-browser-refresh.js - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[11:03:12 INF] Request finished HTTP/1.1 GET http://localhost:5054/_framework/aspnetcore-browser-refresh.js - 200 13782 application/javascript; charset=utf-8 3.5311ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[11:03:13 INF] Request starting HTTP/1.1 GET http://localhost:5054/_vs/browserLink - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[11:03:13 INF] Request finished HTTP/1.1 GET http://localhost:5054/_vs/browserLink - 200 null text/javascript; charset=UTF-8 23.622ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[11:03:13 INF] Request starting HTTP/1.1 GET http://localhost:5054/swagger/v1/swagger.json - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[11:03:13 INF] Request finished HTTP/1.1 GET http://localhost:5054/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 13.6888ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[11:06:22 INF] Now listening on: http://localhost:5054 <s:Microsoft.Hosting.Lifetime>
+[11:06:22 INF] Application started. Press Ctrl+C to shut down. <s:Microsoft.Hosting.Lifetime>
+[11:06:22 INF] Hosting environment: Development <s:Microsoft.Hosting.Lifetime>
+[11:06:22 INF] Content root path: C:\Users\cagat\VisualStudio2022\BioWings\BioWings\BioWings.WebAPI <s:Microsoft.Hosting.Lifetime>
+[11:06:24 INF] Request starting HTTP/1.1 GET http://localhost:5054/swagger/index.html - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[11:06:24 INF] Request finished HTTP/1.1 GET http://localhost:5054/swagger/index.html - 200 null text/html;charset=utf-8 352.8114ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[11:06:24 INF] Request starting HTTP/1.1 GET http://localhost:5054/_framework/aspnetcore-browser-refresh.js - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[11:06:24 INF] Request finished HTTP/1.1 GET http://localhost:5054/_framework/aspnetcore-browser-refresh.js - 200 13782 application/javascript; charset=utf-8 6.3787ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[11:06:25 INF] Request starting HTTP/1.1 GET http://localhost:5054/_vs/browserLink - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[11:06:25 INF] Request finished HTTP/1.1 GET http://localhost:5054/_vs/browserLink - 200 null text/javascript; charset=UTF-8 34.3311ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[11:06:25 INF] Request starting HTTP/1.1 GET http://localhost:5054/swagger/v1/swagger.json - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[11:06:25 INF] Request finished HTTP/1.1 GET http://localhost:5054/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 13.5447ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[11:18:18 INF] Now listening on: http://localhost:5054 <s:Microsoft.Hosting.Lifetime>
+[11:18:18 INF] Application started. Press Ctrl+C to shut down. <s:Microsoft.Hosting.Lifetime>
+[11:18:18 INF] Hosting environment: Development <s:Microsoft.Hosting.Lifetime>
+[11:18:18 INF] Content root path: C:\Users\cagat\VisualStudio2022\BioWings\BioWings\BioWings.WebAPI <s:Microsoft.Hosting.Lifetime>
+[11:18:18 INF] Request starting HTTP/1.1 GET http://localhost:5054/swagger/index.html - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[11:18:19 INF] Request finished HTTP/1.1 GET http://localhost:5054/swagger/index.html - 200 null text/html;charset=utf-8 142.0512ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[11:18:19 INF] Request starting HTTP/1.1 GET http://localhost:5054/_framework/aspnetcore-browser-refresh.js - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[11:18:19 INF] Request finished HTTP/1.1 GET http://localhost:5054/_framework/aspnetcore-browser-refresh.js - 200 13782 application/javascript; charset=utf-8 2.0875ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[11:18:19 INF] Request starting HTTP/1.1 GET http://localhost:5054/_vs/browserLink - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[11:18:19 INF] Request finished HTTP/1.1 GET http://localhost:5054/_vs/browserLink - 200 null text/javascript; charset=UTF-8 27.1537ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[11:18:20 INF] Request starting HTTP/1.1 GET http://localhost:5054/swagger/v1/swagger.json - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[11:18:20 INF] Request finished HTTP/1.1 GET http://localhost:5054/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 12.8608ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>

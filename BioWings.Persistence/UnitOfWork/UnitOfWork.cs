@@ -10,5 +10,6 @@ public class UnitOfWork(AppDbContext context) : IUnitOfWork
         GC.SuppressFinalize(this);
     }
     public int SaveChanges() => context.SaveChanges();
-    public async Task<int> SaveChangesAsync() => await context.SaveChangesAsync();
+    public async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default) => await context.SaveChangesAsync(cancellationToken);
+
 }
