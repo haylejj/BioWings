@@ -10,6 +10,11 @@ public class FamilyCreateRangeCommandHandler(IFamilyRepository familyRepository,
 {
     public async Task<ServiceResult> Handle(FamilyCreateRangeCommand request, CancellationToken cancellationToken)
     {
+        if (request.Families == null || !request.Families.Any())
+        {
+            logger.LogWarning("No families found to create");
+            return ServiceResult.Error("No families found to create");
+        }
         var families = request.Families.Select(f => new Family
         {
             Name = f.Name

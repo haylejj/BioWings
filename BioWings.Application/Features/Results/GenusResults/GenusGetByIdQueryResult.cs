@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BioWings.Application.Features.Results.GenusResults;
-internal class GenusGetByIdQueryResult
+﻿namespace BioWings.Application.Features.Results.GenusResults;
+public class GenusGetByIdQueryResult
 {
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public int FamilyId { get; set; }
+    public string FamilyName { get; set; }
 }

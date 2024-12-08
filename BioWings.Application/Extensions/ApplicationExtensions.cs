@@ -4,7 +4,7 @@ using System.Reflection;
 namespace BioWings.Application.Extensions;
 public static class ApplicationExtensions
 {
-    public static IServiceCollection AddApplicationExtensions(this IServiceCollection services,IConfiguration configuration)
+    public static IServiceCollection AddApplicationExtensions(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddMediatR(opt =>
         {

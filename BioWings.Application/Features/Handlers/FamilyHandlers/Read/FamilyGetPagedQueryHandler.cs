@@ -13,15 +13,15 @@ public class FamilyGetPagedQueryHandler(IFamilyRepository familyRepository, ILog
     {
         // Validasyon
         request.PageNumber = request.PageNumber <= 0 ? 1 : request.PageNumber;
-        request.PageSize = request.PageSize <= 0 ? 10 : Math.Min(request.PageSize, 50);
-        var totalCount=await familyRepository.GetTotalCountAsync();
+        request.PageSize = request.PageSize <= 0 ? 25 : Math.Min(request.PageSize, 50);
+        var totalCount = await familyRepository.GetTotalCountAsync();
         if (totalCount==0)
         {
             logger.LogWarning("No family found with paged");
             return ServiceResult<PaginatedList<FamilyGetPagedQueryResult>>.Error("No families found", HttpStatusCode.NotFound);
         }
-        var families = await familyRepository.GetPagedAsync(request.PageNumber, request.PageSize,cancellationToken);
-        if(families == null || !families.Any())
+        var families = await familyRepository.GetPagedAsync(request.PageNumber, request.PageSize, cancellationToken);
+        if (families == null || !families.Any())
         {
             logger.LogWarning("No family found with paged");
             return ServiceResult<PaginatedList<FamilyGetPagedQueryResult>>.Error("No family found with paged", HttpStatusCode.NotFound);

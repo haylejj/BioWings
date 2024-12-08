@@ -1,9 +1,11 @@
 ﻿using BioWings.Domain.Interfaces;
 using BioWings.Persistence.Context;
+using BioWings.Persistence.Interceptors;
 using BioWings.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using System.Reflection;
 
 namespace BioWings.Persistence.Extensions;
@@ -15,6 +17,7 @@ public static class PersistenceExtensions
         {
             var connectionString = configuration.GetConnectionString("MySqlConnection") ?? throw new InvalidOperationException("Connection string not found.");
             opt.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString), mysqloptions => mysqloptions.EnableRetryOnFailure().MigrationsAssembly(Assembly.GetExecutingAssembly().GetName().Name));
+            opt.AddInterceptors(new CustomSaveChangeInterceptor());
         });
         services.AddScoped<IUnitOfWork, UnitOfWork.UnitOfWork>();
         services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));

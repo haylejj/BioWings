@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BioWings.Application.Features.Results.SpeciesTypeResults;
-internal class SubspeciesGetPagedQueryResult
+namespace BioWings.Application.DTOs.Genus;
+internal class GenusDto
 {
 }

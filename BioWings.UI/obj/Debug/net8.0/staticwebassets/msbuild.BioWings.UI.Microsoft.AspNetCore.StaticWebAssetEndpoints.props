@@ -4,13 +4,13 @@
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\BioWings.UI.0g4f0fh0t2.bundle.scp.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
       <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"0g4f0fh0t2"},{"Name":"integrity","Value":"sha256-QHAvZwFoyqElHFyPz7GEoFT6uat2QQuPAM4VsYJL7M0="},{"Name":"label","Value":"_content/BioWings.UI/BioWings.UI.bundle.scp.css"}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"1129"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022QHAvZwFoyqElHFyPz7GEoFT6uat2QQuPAM4VsYJL7M0=\u0022"},{"Name":"Last-Modified","Value":"Sun, 08 Dec 2024 08:42:09 GMT"}]]]></ResponseHeaders>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"1129"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022QHAvZwFoyqElHFyPz7GEoFT6uat2QQuPAM4VsYJL7M0=\u0022"},{"Name":"Last-Modified","Value":"Sun, 08 Dec 2024 08:43:32 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/BioWings.UI/BioWings.UI.bundle.scp.css">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\BioWings.UI.0g4f0fh0t2.bundle.scp.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
       <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-QHAvZwFoyqElHFyPz7GEoFT6uat2QQuPAM4VsYJL7M0="}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"1129"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022QHAvZwFoyqElHFyPz7GEoFT6uat2QQuPAM4VsYJL7M0=\u0022"},{"Name":"Last-Modified","Value":"Sun, 08 Dec 2024 08:42:09 GMT"}]]]></ResponseHeaders>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"1129"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022QHAvZwFoyqElHFyPz7GEoFT6uat2QQuPAM4VsYJL7M0=\u0022"},{"Name":"Last-Modified","Value":"Sun, 08 Dec 2024 08:43:32 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/BioWings.UI/css/site.c2tiyv64ts.css">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\site.css'))</AssetFile>

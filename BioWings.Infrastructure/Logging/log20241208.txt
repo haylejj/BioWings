@@ -337,3 +337,331 @@ FROM `Families` AS `f` <s:Microsoft.EntityFrameworkCore.Database.Command>
 [11:18:19 INF] Request finished HTTP/1.1 GET http://localhost:5054/_vs/browserLink - 200 null text/javascript; charset=UTF-8 27.1537ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
 [11:18:20 INF] Request starting HTTP/1.1 GET http://localhost:5054/swagger/v1/swagger.json - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
 [11:18:20 INF] Request finished HTTP/1.1 GET http://localhost:5054/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 12.8608ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[13:00:50 INF] Now listening on: http://localhost:5054 <s:Microsoft.Hosting.Lifetime>
+[13:00:50 INF] Application started. Press Ctrl+C to shut down. <s:Microsoft.Hosting.Lifetime>
+[13:00:50 INF] Hosting environment: Development <s:Microsoft.Hosting.Lifetime>
+[13:00:50 INF] Content root path: C:\Users\cagat\VisualStudio2022\BioWings\BioWings\BioWings.WebAPI <s:Microsoft.Hosting.Lifetime>
+[13:00:52 INF] Request starting HTTP/1.1 GET http://localhost:5054/swagger/index.html - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[13:00:52 INF] Request finished HTTP/1.1 GET http://localhost:5054/swagger/index.html - 200 null text/html;charset=utf-8 349.2275ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[13:00:52 INF] Request starting HTTP/1.1 GET http://localhost:5054/_framework/aspnetcore-browser-refresh.js - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[13:00:52 INF] Request finished HTTP/1.1 GET http://localhost:5054/_framework/aspnetcore-browser-refresh.js - 200 13782 application/javascript; charset=utf-8 11.5598ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[13:00:53 INF] Request starting HTTP/1.1 GET http://localhost:5054/_vs/browserLink - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[13:00:53 INF] Request finished HTTP/1.1 GET http://localhost:5054/_vs/browserLink - 200 null text/javascript; charset=UTF-8 46.5582ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[13:00:53 INF] Request starting HTTP/1.1 GET http://localhost:5054/swagger/v1/swagger.json - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[13:00:53 INF] Request finished HTTP/1.1 GET http://localhost:5054/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 11.9422ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[13:01:44 INF] Request starting HTTP/1.1 GET http://localhost:5054/api/Genera - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[13:01:44 WRN] Failed to determine the https port for redirect. <s:Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware>
+[13:01:44 INF] Executing endpoint 'BioWings.WebAPI.Controllers.GeneraController.GetAll (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[13:01:44 INF] Route matched with {action = "GetAll", controller = "Genera"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller BioWings.WebAPI.Controllers.GeneraController (BioWings.WebAPI). <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[13:01:46 INF] Executed DbCommand (41ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `g`.`Id`, `g`.`CreatedDateTime`, `g`.`FamilyId`, `g`.`Name`, `g`.`UpdatedDateTime`
+FROM `Genera` AS `g` <s:Microsoft.EntityFrameworkCore.Database.Command>
+[13:01:46 WRN] No genera found <s:BioWings.Application.Features.Handlers.GenusHandlers.Read.GenusGetQueryHandler>
+[13:01:46 INF] Executing ObjectResult, writing value of type 'BioWings.Application.Results.ServiceResult`1[[System.Collections.Generic.IEnumerable`1[[BioWings.Application.Features.Results.GenusResults.GenusGetQueryResult, BioWings.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'. <s:Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor>
+[13:01:46 INF] Executed action BioWings.WebAPI.Controllers.GeneraController.GetAll (BioWings.WebAPI) in 1488.3555ms <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[13:01:46 INF] Executed endpoint 'BioWings.WebAPI.Controllers.GeneraController.GetAll (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[13:01:46 INF] HTTP GET /api/Genera responded 404 in 1519.7275 ms <s:Serilog.AspNetCore.RequestLoggingMiddleware>
+[13:01:46 INF] Request finished HTTP/1.1 GET http://localhost:5054/api/Genera - 404 null application/json; charset=utf-8 1532.9325ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[13:02:10 INF] Request starting HTTP/1.1 POST http://localhost:5054/api/Families - application/json 23 <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[13:02:10 INF] Executing endpoint 'BioWings.WebAPI.Controllers.FamiliesController.Create (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[13:02:10 INF] Route matched with {action = "Create", controller = "Families"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(BioWings.Application.Features.Commands.FamilyCommands.FamilyCreateCommand) on controller BioWings.WebAPI.Controllers.FamiliesController (BioWings.WebAPI). <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[13:02:10 INF] Executed DbCommand (36ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (Size = 50), @p2='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `Families` (`CreatedDateTime`, `Name`, `UpdatedDateTime`)
+VALUES (@p0, @p1, @p2);
+SELECT `Id`
+FROM `Families`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID(); <s:Microsoft.EntityFrameworkCore.Database.Command>
+[13:02:10 INF] Family created successfully with ID: 1 <s:BioWings.Application.Features.Handlers.FamilyHandlers.Write.FamilyCreateCommandHandler>
+[13:02:10 INF] Executing ObjectResult, writing value of type 'BioWings.Application.Results.ServiceResult'. <s:Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor>
+[13:02:10 INF] Executed action BioWings.WebAPI.Controllers.FamiliesController.Create (BioWings.WebAPI) in 251.3663ms <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[13:02:10 INF] Executed endpoint 'BioWings.WebAPI.Controllers.FamiliesController.Create (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[13:02:10 INF] HTTP POST /api/Families responded 201 in 260.2073 ms <s:Serilog.AspNetCore.RequestLoggingMiddleware>
+[13:02:10 INF] Request finished HTTP/1.1 POST http://localhost:5054/api/Families - 201 null application/json; charset=utf-8 263.7777ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[13:02:22 INF] Request starting HTTP/1.1 GET http://localhost:5054/api/Families - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[13:02:22 INF] Executing endpoint 'BioWings.WebAPI.Controllers.FamiliesController.GetAll (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[13:02:22 INF] Route matched with {action = "GetAll", controller = "Families"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller BioWings.WebAPI.Controllers.FamiliesController (BioWings.WebAPI). <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[13:02:22 INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `f`.`Id`, `f`.`CreatedDateTime`, `f`.`Name`, `f`.`UpdatedDateTime`
+FROM `Families` AS `f` <s:Microsoft.EntityFrameworkCore.Database.Command>
+[13:02:22 INF] Families found successfully <s:BioWings.Application.Features.Handlers.FamilyHandlers.Read.FamilyGetQueryHandler>
+[13:02:22 INF] Executing ObjectResult, writing value of type 'BioWings.Application.Results.ServiceResult`1[[System.Collections.Generic.IEnumerable`1[[BioWings.Application.Features.Results.FamilyResults.FamilyGetQueryResult, BioWings.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'. <s:Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor>
+[13:02:22 INF] Executed action BioWings.WebAPI.Controllers.FamiliesController.GetAll (BioWings.WebAPI) in 39.6627ms <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[13:02:22 INF] Executed endpoint 'BioWings.WebAPI.Controllers.FamiliesController.GetAll (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[13:02:22 INF] HTTP GET /api/Families responded 200 in 51.6630 ms <s:Serilog.AspNetCore.RequestLoggingMiddleware>
+[13:02:22 INF] Request finished HTTP/1.1 GET http://localhost:5054/api/Families - 200 null application/json; charset=utf-8 53.1016ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[13:02:35 INF] Request starting HTTP/1.1 POST http://localhost:5054/api/Genera - application/json 40 <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[13:02:35 INF] Executing endpoint 'BioWings.WebAPI.Controllers.GeneraController.Create (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[13:02:35 INF] Route matched with {action = "Create", controller = "Genera"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(BioWings.Application.Features.Commands.GenusCommands.GenusCreateCommand) on controller BioWings.WebAPI.Controllers.GeneraController (BioWings.WebAPI). <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[13:02:35 INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (DbType = Int32), @p2='?' (Size = 50), @p3='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `Genera` (`CreatedDateTime`, `FamilyId`, `Name`, `UpdatedDateTime`)
+VALUES (@p0, @p1, @p2, @p3);
+SELECT `Id`
+FROM `Genera`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID(); <s:Microsoft.EntityFrameworkCore.Database.Command>
+[13:02:35 INF] Genus created successfully with ID: 1 <s:BioWings.Application.Features.Handlers.GenusHandlers.Write.GenusCreateCommandHandler>
+[13:02:35 INF] Executing ObjectResult, writing value of type 'BioWings.Application.Results.ServiceResult'. <s:Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor>
+[13:02:35 INF] Executed action BioWings.WebAPI.Controllers.GeneraController.Create (BioWings.WebAPI) in 31.5213ms <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[13:02:35 INF] Executed endpoint 'BioWings.WebAPI.Controllers.GeneraController.Create (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[13:02:35 INF] HTTP POST /api/Genera responded 201 in 36.9549 ms <s:Serilog.AspNetCore.RequestLoggingMiddleware>
+[13:02:35 INF] Request finished HTTP/1.1 POST http://localhost:5054/api/Genera - 201 null application/json; charset=utf-8 38.2296ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[13:02:45 INF] Request starting HTTP/1.1 GET http://localhost:5054/api/Genera/1 - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[13:02:45 INF] Executing endpoint 'BioWings.WebAPI.Controllers.GeneraController.GetById (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[13:02:45 INF] Route matched with {action = "GetById", controller = "Genera"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetById(Int32) on controller BioWings.WebAPI.Controllers.GeneraController (BioWings.WebAPI). <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[13:02:45 INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `g`.`Id`, `g`.`CreatedDateTime`, `g`.`FamilyId`, `g`.`Name`, `g`.`UpdatedDateTime`
+FROM `Genera` AS `g`
+WHERE `g`.`Id` = @__p_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[13:02:45 INF] Genus found successfully <s:BioWings.Application.Features.Handlers.GenusHandlers.Read.GenusGetByIdQueryHandler>
+[13:02:45 INF] Executing ObjectResult, writing value of type 'BioWings.Application.Results.ServiceResult`1[[BioWings.Application.Features.Results.GenusResults.GenusGetByIdQueryResult, BioWings.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'. <s:Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor>
+[13:02:45 INF] Executed action BioWings.WebAPI.Controllers.GeneraController.GetById (BioWings.WebAPI) in 95.9997ms <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[13:02:45 INF] Executed endpoint 'BioWings.WebAPI.Controllers.GeneraController.GetById (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[13:02:45 INF] HTTP GET /api/Genera/1 responded 200 in 109.2579 ms <s:Serilog.AspNetCore.RequestLoggingMiddleware>
+[13:02:45 INF] Request finished HTTP/1.1 GET http://localhost:5054/api/Genera/1 - 200 null application/json; charset=utf-8 110.8122ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[13:05:58 INF] Now listening on: http://localhost:5054 <s:Microsoft.Hosting.Lifetime>
+[13:05:58 INF] Application started. Press Ctrl+C to shut down. <s:Microsoft.Hosting.Lifetime>
+[13:05:58 INF] Hosting environment: Development <s:Microsoft.Hosting.Lifetime>
+[13:05:58 INF] Content root path: C:\Users\cagat\VisualStudio2022\BioWings\BioWings\BioWings.WebAPI <s:Microsoft.Hosting.Lifetime>
+[13:06:19 INF] Request starting HTTP/1.1 GET http://localhost:5054/swagger/index.html - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[13:06:19 INF] Request finished HTTP/1.1 GET http://localhost:5054/swagger/index.html - 200 null text/html;charset=utf-8 242.3538ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[13:06:20 INF] Request starting HTTP/1.1 GET http://localhost:5054/_framework/aspnetcore-browser-refresh.js - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[13:06:20 INF] Request finished HTTP/1.1 GET http://localhost:5054/_framework/aspnetcore-browser-refresh.js - 200 13782 application/javascript; charset=utf-8 4.2542ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[13:06:20 INF] Request starting HTTP/1.1 GET http://localhost:5054/_vs/browserLink - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[13:06:20 INF] Request finished HTTP/1.1 GET http://localhost:5054/_vs/browserLink - 200 null text/javascript; charset=UTF-8 37.5391ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[13:06:21 INF] Request starting HTTP/1.1 GET http://localhost:5054/swagger/v1/swagger.json - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[13:06:21 INF] Request finished HTTP/1.1 GET http://localhost:5054/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 15.5473ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[13:06:27 INF] Request starting HTTP/1.1 DELETE http://localhost:5054/api/Families/1 - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[13:06:27 WRN] Failed to determine the https port for redirect. <s:Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware>
+[13:06:27 INF] Executing endpoint 'BioWings.WebAPI.Controllers.FamiliesController.Remove (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[13:06:27 INF] Route matched with {action = "Remove", controller = "Families"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Remove(Int32) on controller BioWings.WebAPI.Controllers.FamiliesController (BioWings.WebAPI). <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[13:06:27 INF] Executed DbCommand (28ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `f`.`Id`, `f`.`CreatedDateTime`, `f`.`Name`, `f`.`UpdatedDateTime`
+FROM `Families` AS `f`
+WHERE `f`.`Id` = @__p_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[13:06:28 ERR] Failed executing DbCommand (8ms) [Parameters=[@p0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET AUTOCOMMIT = 1;
+DELETE FROM `Families`
+WHERE `Id` = @p0;
+SELECT ROW_COUNT(); <s:Microsoft.EntityFrameworkCore.Database.Command>
+[13:06:28 ERR] An exception occurred in the database while saving changes for context type 'BioWings.Persistence.Context.AppDbContext'.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> MySqlConnector.MySqlException (0x80004005): Cannot delete or update a parent row: a foreign key constraint fails (`db_biowings`.`genera`, CONSTRAINT `FK_Genera_Families_FamilyId` FOREIGN KEY (`FamilyId`) REFERENCES `families` (`Id`) ON DELETE RESTRICT)
+   at MySqlConnector.Core.ServerSession.ReceiveReplyAsync(IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/ServerSession.cs:line 894
+   at MySqlConnector.Core.ResultSet.ReadResultSetHeaderAsync(IOBehavior ioBehavior) in /_/src/MySqlConnector/Core/ResultSet.cs:line 37
+   at MySqlConnector.MySqlDataReader.ActivateResultSet(CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlDataReader.cs:line 130
+   at MySqlConnector.MySqlDataReader.InitAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, IDictionary`2 cachedProcedures, IMySqlCommand command, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlDataReader.cs:line 483
+   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 56
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 357
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.<>c__DisplayClass30_0`2.<<ExecuteAsync>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementationAsync[TState,TResult](Func`4 operation, Func`4 verifySucceeded, TState state, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementationAsync[TState,TResult](Func`4 operation, Func`4 verifySucceeded, TState state, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken) <s:Microsoft.EntityFrameworkCore.Update>
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> MySqlConnector.MySqlException (0x80004005): Cannot delete or update a parent row: a foreign key constraint fails (`db_biowings`.`genera`, CONSTRAINT `FK_Genera_Families_FamilyId` FOREIGN KEY (`FamilyId`) REFERENCES `families` (`Id`) ON DELETE RESTRICT)
+   at MySqlConnector.Core.ServerSession.ReceiveReplyAsync(IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/ServerSession.cs:line 894
+   at MySqlConnector.Core.ResultSet.ReadResultSetHeaderAsync(IOBehavior ioBehavior) in /_/src/MySqlConnector/Core/ResultSet.cs:line 37
+   at MySqlConnector.MySqlDataReader.ActivateResultSet(CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlDataReader.cs:line 130
+   at MySqlConnector.MySqlDataReader.InitAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, IDictionary`2 cachedProcedures, IMySqlCommand command, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlDataReader.cs:line 483
+   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 56
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 357
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.<>c__DisplayClass30_0`2.<<ExecuteAsync>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementationAsync[TState,TResult](Func`4 operation, Func`4 verifySucceeded, TState state, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementationAsync[TState,TResult](Func`4 operation, Func`4 verifySucceeded, TState state, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+[13:06:28 INF] Executed action BioWings.WebAPI.Controllers.FamiliesController.Remove (BioWings.WebAPI) in 1089.187ms <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[13:06:28 INF] Executed endpoint 'BioWings.WebAPI.Controllers.FamiliesController.Remove (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[13:06:28 ERR] An unhandled exception has occurred while executing the request. <s:Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware>
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> MySqlConnector.MySqlException (0x80004005): Cannot delete or update a parent row: a foreign key constraint fails (`db_biowings`.`genera`, CONSTRAINT `FK_Genera_Families_FamilyId` FOREIGN KEY (`FamilyId`) REFERENCES `families` (`Id`) ON DELETE RESTRICT)
+   at MySqlConnector.Core.ServerSession.ReceiveReplyAsync(IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/ServerSession.cs:line 894
+   at MySqlConnector.Core.ResultSet.ReadResultSetHeaderAsync(IOBehavior ioBehavior) in /_/src/MySqlConnector/Core/ResultSet.cs:line 37
+   at MySqlConnector.MySqlDataReader.ActivateResultSet(CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlDataReader.cs:line 130
+   at MySqlConnector.MySqlDataReader.InitAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, IDictionary`2 cachedProcedures, IMySqlCommand command, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlDataReader.cs:line 483
+   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 56
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 357
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.<>c__DisplayClass30_0`2.<<ExecuteAsync>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementationAsync[TState,TResult](Func`4 operation, Func`4 verifySucceeded, TState state, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementationAsync[TState,TResult](Func`4 operation, Func`4 verifySucceeded, TState state, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at BioWings.Persistence.UnitOfWork.UnitOfWork.SaveChangesAsync(CancellationToken cancellationToken) in C:\Users\cagat\VisualStudio2022\BioWings\BioWings\BioWings.Persistence\UnitOfWork\UnitOfWork.cs:line 13
+   at BioWings.Application.Features.Handlers.FamilyHandlers.Write.FamilyRemoveCommandHandler.Handle(FamilyRemoveCommand request, CancellationToken cancellationToken) in C:\Users\cagat\VisualStudio2022\BioWings\BioWings\BioWings.Application\Features\Handlers\FamilyHandlers\Write\FamilyRemoveCommandHandler.cs:line 20
+   at BioWings.WebAPI.Controllers.FamiliesController.Remove(Int32 id) in C:\Users\cagat\VisualStudio2022\BioWings\BioWings\BioWings.WebAPI\Controllers\FamiliesController.cs:line 64
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+[13:06:28 ERR] An unhandled exception occurred: DbUpdateException - An error occurred while saving the entity changes. See the inner exception for details. <s:BioWings.WebAPI.Exceptions.GlobalExceptionHandler>
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> MySqlConnector.MySqlException (0x80004005): Cannot delete or update a parent row: a foreign key constraint fails (`db_biowings`.`genera`, CONSTRAINT `FK_Genera_Families_FamilyId` FOREIGN KEY (`FamilyId`) REFERENCES `families` (`Id`) ON DELETE RESTRICT)
+   at MySqlConnector.Core.ServerSession.ReceiveReplyAsync(IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/ServerSession.cs:line 894
+   at MySqlConnector.Core.ResultSet.ReadResultSetHeaderAsync(IOBehavior ioBehavior) in /_/src/MySqlConnector/Core/ResultSet.cs:line 37
+   at MySqlConnector.MySqlDataReader.ActivateResultSet(CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlDataReader.cs:line 130
+   at MySqlConnector.MySqlDataReader.InitAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, IDictionary`2 cachedProcedures, IMySqlCommand command, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlDataReader.cs:line 483
+   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 56
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 357
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.<>c__DisplayClass30_0`2.<<ExecuteAsync>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementationAsync[TState,TResult](Func`4 operation, Func`4 verifySucceeded, TState state, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementationAsync[TState,TResult](Func`4 operation, Func`4 verifySucceeded, TState state, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at BioWings.Persistence.UnitOfWork.UnitOfWork.SaveChangesAsync(CancellationToken cancellationToken) in C:\Users\cagat\VisualStudio2022\BioWings\BioWings\BioWings.Persistence\UnitOfWork\UnitOfWork.cs:line 13
+   at BioWings.Application.Features.Handlers.FamilyHandlers.Write.FamilyRemoveCommandHandler.Handle(FamilyRemoveCommand request, CancellationToken cancellationToken) in C:\Users\cagat\VisualStudio2022\BioWings\BioWings\BioWings.Application\Features\Handlers\FamilyHandlers\Write\FamilyRemoveCommandHandler.cs:line 20
+   at BioWings.WebAPI.Controllers.FamiliesController.Remove(Int32 id) in C:\Users\cagat\VisualStudio2022\BioWings\BioWings\BioWings.WebAPI\Controllers\FamiliesController.cs:line 64
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+[13:06:28 ERR] HTTP DELETE /api/Families/1 responded 500 in 1166.5735 ms <s:Serilog.AspNetCore.RequestLoggingMiddleware>
+[13:06:28 INF] Request finished HTTP/1.1 DELETE http://localhost:5054/api/Families/1 - 500 null application/json; charset=utf-8 1175.7605ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[13:06:38 INF] Request starting HTTP/1.1 DELETE http://localhost:5054/api/Genera/1 - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[13:06:38 INF] Executing endpoint 'BioWings.WebAPI.Controllers.GeneraController.Remove (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[13:06:38 INF] Route matched with {action = "Remove", controller = "Genera"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Remove(Int32) on controller BioWings.WebAPI.Controllers.GeneraController (BioWings.WebAPI). <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[13:06:38 INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `g`.`Id`, `g`.`CreatedDateTime`, `g`.`FamilyId`, `g`.`Name`, `g`.`UpdatedDateTime`
+FROM `Genera` AS `g`
+WHERE `g`.`Id` = @__p_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[13:06:38 INF] Executed DbCommand (18ms) [Parameters=[@p0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET AUTOCOMMIT = 1;
+DELETE FROM `Genera`
+WHERE `Id` = @p0;
+SELECT ROW_COUNT(); <s:Microsoft.EntityFrameworkCore.Database.Command>
+[13:06:38 INF] Genus removed successfully with ID: 1 <s:BioWings.Application.Features.Handlers.GenusHandlers.Write.GenusRemoveCommandHandler>
+[13:06:38 INF] Executing ObjectResult, writing value of type 'null'. <s:Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor>
+[13:06:38 INF] Executed action BioWings.WebAPI.Controllers.GeneraController.Remove (BioWings.WebAPI) in 97.0451ms <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[13:06:38 INF] Executed endpoint 'BioWings.WebAPI.Controllers.GeneraController.Remove (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[13:06:38 INF] HTTP DELETE /api/Genera/1 responded 204 in 104.2119 ms <s:Serilog.AspNetCore.RequestLoggingMiddleware>
+[13:06:38 INF] Request finished HTTP/1.1 DELETE http://localhost:5054/api/Genera/1 - 204 null null 106.8587ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[13:06:47 INF] Request starting HTTP/1.1 GET http://localhost:5054/api/Genera - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[13:06:47 INF] Executing endpoint 'BioWings.WebAPI.Controllers.GeneraController.GetAll (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[13:06:47 INF] Route matched with {action = "GetAll", controller = "Genera"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller BioWings.WebAPI.Controllers.GeneraController (BioWings.WebAPI). <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[13:06:47 INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `g`.`Id`, `g`.`CreatedDateTime`, `g`.`FamilyId`, `g`.`Name`, `g`.`UpdatedDateTime`
+FROM `Genera` AS `g` <s:Microsoft.EntityFrameworkCore.Database.Command>
+[13:06:47 WRN] No genera found <s:BioWings.Application.Features.Handlers.GenusHandlers.Read.GenusGetQueryHandler>
+[13:06:47 INF] Executing ObjectResult, writing value of type 'BioWings.Application.Results.ServiceResult`1[[System.Collections.Generic.IEnumerable`1[[BioWings.Application.Features.Results.GenusResults.GenusGetQueryResult, BioWings.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'. <s:Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor>
+[13:06:47 INF] Executed action BioWings.WebAPI.Controllers.GeneraController.GetAll (BioWings.WebAPI) in 33.2453ms <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[13:06:47 INF] Executed endpoint 'BioWings.WebAPI.Controllers.GeneraController.GetAll (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[13:06:47 INF] HTTP GET /api/Genera responded 404 in 37.4402 ms <s:Serilog.AspNetCore.RequestLoggingMiddleware>
+[13:06:47 INF] Request finished HTTP/1.1 GET http://localhost:5054/api/Genera - 404 null application/json; charset=utf-8 41.6566ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[13:06:57 INF] Request starting HTTP/1.1 GET http://localhost:5054/api/Genera - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[13:06:57 INF] Executing endpoint 'BioWings.WebAPI.Controllers.GeneraController.GetAll (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[13:06:57 INF] Route matched with {action = "GetAll", controller = "Genera"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller BioWings.WebAPI.Controllers.GeneraController (BioWings.WebAPI). <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[13:06:57 INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `g`.`Id`, `g`.`CreatedDateTime`, `g`.`FamilyId`, `g`.`Name`, `g`.`UpdatedDateTime`
+FROM `Genera` AS `g` <s:Microsoft.EntityFrameworkCore.Database.Command>
+[13:06:57 WRN] No genera found <s:BioWings.Application.Features.Handlers.GenusHandlers.Read.GenusGetQueryHandler>
+[13:06:57 INF] Executing ObjectResult, writing value of type 'BioWings.Application.Results.ServiceResult`1[[System.Collections.Generic.IEnumerable`1[[BioWings.Application.Features.Results.GenusResults.GenusGetQueryResult, BioWings.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'. <s:Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor>
+[13:06:57 INF] Executed action BioWings.WebAPI.Controllers.GeneraController.GetAll (BioWings.WebAPI) in 9.6732ms <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[13:06:57 INF] Executed endpoint 'BioWings.WebAPI.Controllers.GeneraController.GetAll (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[13:06:57 INF] HTTP GET /api/Genera responded 404 in 11.5215 ms <s:Serilog.AspNetCore.RequestLoggingMiddleware>
+[13:06:57 INF] Request finished HTTP/1.1 GET http://localhost:5054/api/Genera - 404 null application/json; charset=utf-8 12.6683ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[13:06:57 INF] Request starting HTTP/1.1 GET http://localhost:5054/api/Genera - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[13:06:57 INF] Executing endpoint 'BioWings.WebAPI.Controllers.GeneraController.GetAll (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[13:06:57 INF] Route matched with {action = "GetAll", controller = "Genera"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller BioWings.WebAPI.Controllers.GeneraController (BioWings.WebAPI). <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[13:06:57 INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `g`.`Id`, `g`.`CreatedDateTime`, `g`.`FamilyId`, `g`.`Name`, `g`.`UpdatedDateTime`
+FROM `Genera` AS `g` <s:Microsoft.EntityFrameworkCore.Database.Command>
+[13:06:57 WRN] No genera found <s:BioWings.Application.Features.Handlers.GenusHandlers.Read.GenusGetQueryHandler>
+[13:06:57 INF] Executing ObjectResult, writing value of type 'BioWings.Application.Results.ServiceResult`1[[System.Collections.Generic.IEnumerable`1[[BioWings.Application.Features.Results.GenusResults.GenusGetQueryResult, BioWings.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'. <s:Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor>
+[13:06:57 INF] Executed action BioWings.WebAPI.Controllers.GeneraController.GetAll (BioWings.WebAPI) in 14.4522ms <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[13:06:57 INF] Executed endpoint 'BioWings.WebAPI.Controllers.GeneraController.GetAll (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[13:06:57 INF] HTTP GET /api/Genera responded 404 in 16.2325 ms <s:Serilog.AspNetCore.RequestLoggingMiddleware>
+[13:06:57 INF] Request finished HTTP/1.1 GET http://localhost:5054/api/Genera - 404 null application/json; charset=utf-8 17.9488ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[13:06:58 INF] Request starting HTTP/1.1 GET http://localhost:5054/api/Genera - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[13:06:58 INF] Executing endpoint 'BioWings.WebAPI.Controllers.GeneraController.GetAll (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[13:06:58 INF] Route matched with {action = "GetAll", controller = "Genera"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller BioWings.WebAPI.Controllers.GeneraController (BioWings.WebAPI). <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[13:06:58 INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `g`.`Id`, `g`.`CreatedDateTime`, `g`.`FamilyId`, `g`.`Name`, `g`.`UpdatedDateTime`
+FROM `Genera` AS `g` <s:Microsoft.EntityFrameworkCore.Database.Command>
+[13:06:58 WRN] No genera found <s:BioWings.Application.Features.Handlers.GenusHandlers.Read.GenusGetQueryHandler>
+[13:06:58 INF] Executing ObjectResult, writing value of type 'BioWings.Application.Results.ServiceResult`1[[System.Collections.Generic.IEnumerable`1[[BioWings.Application.Features.Results.GenusResults.GenusGetQueryResult, BioWings.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'. <s:Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor>
+[13:06:58 INF] Executed action BioWings.WebAPI.Controllers.GeneraController.GetAll (BioWings.WebAPI) in 6.9711ms <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[13:06:58 INF] Executed endpoint 'BioWings.WebAPI.Controllers.GeneraController.GetAll (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[13:06:58 INF] HTTP GET /api/Genera responded 404 in 8.3131 ms <s:Serilog.AspNetCore.RequestLoggingMiddleware>
+[13:06:58 INF] Request finished HTTP/1.1 GET http://localhost:5054/api/Genera - 404 null application/json; charset=utf-8 9.576ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[13:07:23 INF] Request starting HTTP/1.1 POST http://localhost:5054/api/Genera - application/json 39 <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[13:07:23 INF] Executing endpoint 'BioWings.WebAPI.Controllers.GeneraController.Create (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[13:07:23 INF] Route matched with {action = "Create", controller = "Genera"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(BioWings.Application.Features.Commands.GenusCommands.GenusCreateCommand) on controller BioWings.WebAPI.Controllers.GeneraController (BioWings.WebAPI). <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[13:07:23 INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (DbType = Int32), @p2='?' (Size = 50), @p3='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `Genera` (`CreatedDateTime`, `FamilyId`, `Name`, `UpdatedDateTime`)
+VALUES (@p0, @p1, @p2, @p3);
+SELECT `Id`
+FROM `Genera`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID(); <s:Microsoft.EntityFrameworkCore.Database.Command>
+[13:07:23 INF] Genus created successfully with ID: 2 <s:BioWings.Application.Features.Handlers.GenusHandlers.Write.GenusCreateCommandHandler>
+[13:07:23 INF] Executing ObjectResult, writing value of type 'BioWings.Application.Results.ServiceResult'. <s:Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor>
+[13:07:23 INF] Executed action BioWings.WebAPI.Controllers.GeneraController.Create (BioWings.WebAPI) in 72.3515ms <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[13:07:23 INF] Executed endpoint 'BioWings.WebAPI.Controllers.GeneraController.Create (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[13:07:23 INF] HTTP POST /api/Genera responded 201 in 77.3575 ms <s:Serilog.AspNetCore.RequestLoggingMiddleware>
+[13:07:23 INF] Request finished HTTP/1.1 POST http://localhost:5054/api/Genera - 201 null application/json; charset=utf-8 78.5785ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>

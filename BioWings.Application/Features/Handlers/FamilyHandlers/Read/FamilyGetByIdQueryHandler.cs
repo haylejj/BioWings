@@ -11,7 +11,7 @@ public class FamilyGetByIdQueryHandler(IFamilyRepository familyRepository, ILogg
 {
     public async Task<ServiceResult<FamilyGetByIdQueryResult>> Handle(FamilyGetByIdQuery request, CancellationToken cancellationToken)
     {
-        var family=await familyRepository.GetByIdAsync(request.Id);
+        var family = await familyRepository.GetByIdAsync(request.Id);
         if (family == null)
         {
             logger.LogWarning("Family not found with ID: {FamilyId}", request.Id);
