@@ -3,22 +3,25 @@
 [Oo]bj/
 [Dd]ebug/
 [Rr]elease/
-x64/
-x86/
-[Aa][Rr][Mm]/
-[Aa][Rr][Mm]64/
-bld/
-[Ll]og/
 
 # Visual Studio files
 .vs/
+*.suo
 *.user
 *.userosscache
 *.sln.docstates
-*.suo
-
-# Other files to ignore
-*.exe
 *.dll
 *.pdb
+*.exe
 *.cache
+
+# .NET Core
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# NuGet Packages
+*.nupkg
+*.snupkg
+**/[Pp]ackages/*
+!**/[Pp]ackages/build/
