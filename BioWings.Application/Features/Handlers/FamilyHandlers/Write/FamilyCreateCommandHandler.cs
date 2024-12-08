@@ -10,7 +10,7 @@ public class FamilyCreateCommandHandler(IFamilyRepository familyRepository, IUni
 {
     public async Task<ServiceResult> Handle(FamilyCreateCommand request, CancellationToken cancellationToken)
     {
-        if(request == null)
+        if (request == null)
         {
             logger.LogWarning("FamilyCreateCommand is null");
             return ServiceResult.Error("FamilyCreateCommand is null");

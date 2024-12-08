@@ -665,3 +665,84 @@ WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID(); <s:Microsoft.EntityFrameworkC
 [13:07:23 INF] Executed endpoint 'BioWings.WebAPI.Controllers.GeneraController.Create (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
 [13:07:23 INF] HTTP POST /api/Genera responded 201 in 77.3575 ms <s:Serilog.AspNetCore.RequestLoggingMiddleware>
 [13:07:23 INF] Request finished HTTP/1.1 POST http://localhost:5054/api/Genera - 201 null application/json; charset=utf-8 78.5785ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[14:19:43 INF] Request starting HTTP/1.1 GET http://localhost:5054/swagger/index.html - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[14:19:43 INF] Request finished HTTP/1.1 GET http://localhost:5054/swagger/index.html - 200 null text/html;charset=utf-8 95.1763ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[14:19:43 INF] Request starting HTTP/1.1 GET http://localhost:5054/_framework/aspnetcore-browser-refresh.js - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[14:19:43 INF] Request finished HTTP/1.1 GET http://localhost:5054/_framework/aspnetcore-browser-refresh.js - 200 13782 application/javascript; charset=utf-8 3.8849ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[14:19:44 INF] Request starting HTTP/1.1 GET http://localhost:5054/_vs/browserLink - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[14:19:44 INF] Request finished HTTP/1.1 GET http://localhost:5054/_vs/browserLink - 200 null text/javascript; charset=UTF-8 8.0548ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[14:19:45 INF] Request starting HTTP/1.1 GET http://localhost:5054/swagger/v1/swagger.json - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[14:19:45 INF] Request finished HTTP/1.1 GET http://localhost:5054/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 13.0244ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[14:20:12 INF] Request starting HTTP/1.1 POST http://localhost:5054/api/Families/Range - application/json 96 <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[14:20:12 INF] Executing endpoint 'BioWings.WebAPI.Controllers.FamiliesController.CreateRange (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[14:20:12 INF] Route matched with {action = "CreateRange", controller = "Families"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateRange(BioWings.Application.Features.Commands.FamilyCommands.FamilyCreateRangeCommand) on controller BioWings.WebAPI.Controllers.FamiliesController (BioWings.WebAPI). <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[14:20:12 INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (Size = 50), @p2='?' (DbType = DateTime), @p3='?' (DbType = DateTime), @p4='?' (Size = 50), @p5='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `Families` (`CreatedDateTime`, `Name`, `UpdatedDateTime`)
+VALUES (@p0, @p1, @p2);
+SELECT `Id`
+FROM `Families`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+
+INSERT INTO `Families` (`CreatedDateTime`, `Name`, `UpdatedDateTime`)
+VALUES (@p3, @p4, @p5);
+SELECT `Id`
+FROM `Families`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID(); <s:Microsoft.EntityFrameworkCore.Database.Command>
+[14:20:12 INF] Families created successfully <s:BioWings.Application.Features.Handlers.FamilyHandlers.Write.FamilyCreateRangeCommandHandler>
+[14:20:12 INF] Executing ObjectResult, writing value of type 'BioWings.Application.Results.ServiceResult'. <s:Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor>
+[14:20:12 INF] Executed action BioWings.WebAPI.Controllers.FamiliesController.CreateRange (BioWings.WebAPI) in 47.25ms <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[14:20:12 INF] Executed endpoint 'BioWings.WebAPI.Controllers.FamiliesController.CreateRange (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[14:20:12 INF] HTTP POST /api/Families/Range responded 201 in 51.8217 ms <s:Serilog.AspNetCore.RequestLoggingMiddleware>
+[14:20:12 INF] Request finished HTTP/1.1 POST http://localhost:5054/api/Families/Range - 201 null application/json; charset=utf-8 53.7258ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[15:04:59 INF] Now listening on: http://localhost:5054 <s:Microsoft.Hosting.Lifetime>
+[15:04:59 INF] Application started. Press Ctrl+C to shut down. <s:Microsoft.Hosting.Lifetime>
+[15:04:59 INF] Hosting environment: Development <s:Microsoft.Hosting.Lifetime>
+[15:04:59 INF] Content root path: C:\Users\cagat\VisualStudio2022\BioWings\BioWings\BioWings.WebAPI <s:Microsoft.Hosting.Lifetime>
+[15:05:01 INF] Request starting HTTP/1.1 GET http://localhost:5054/swagger/index.html - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[15:05:01 INF] Request finished HTTP/1.1 GET http://localhost:5054/swagger/index.html - 200 null text/html;charset=utf-8 277.2615ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[15:05:02 INF] Request starting HTTP/1.1 GET http://localhost:5054/_framework/aspnetcore-browser-refresh.js - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[15:05:02 INF] Request starting HTTP/1.1 GET http://localhost:5054/_vs/browserLink - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[15:05:02 INF] Request finished HTTP/1.1 GET http://localhost:5054/_framework/aspnetcore-browser-refresh.js - 200 13782 application/javascript; charset=utf-8 3.2483ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[15:05:02 INF] Request finished HTTP/1.1 GET http://localhost:5054/_vs/browserLink - 200 null text/javascript; charset=UTF-8 38.9485ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[15:05:02 INF] Request starting HTTP/1.1 GET http://localhost:5054/swagger/v1/swagger.json - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[15:05:02 INF] Request finished HTTP/1.1 GET http://localhost:5054/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 15.6455ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[15:08:08 INF] Request starting HTTP/1.1 GET http://localhost:5054/api/SpeciesTypes - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[15:08:08 WRN] Failed to determine the https port for redirect. <s:Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware>
+[15:08:08 INF] Executing endpoint 'BioWings.WebAPI.Controllers.SpeciesTypesController.GetAll (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[15:08:08 INF] Route matched with {action = "GetAll", controller = "SpeciesTypes"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller BioWings.WebAPI.Controllers.SpeciesTypesController (BioWings.WebAPI). <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[15:08:09 INF] Executed DbCommand (30ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `s`.`Id`, `s`.`CreatedDateTime`, `s`.`Description`, `s`.`Name`, `s`.`UpdatedDateTime`
+FROM `SpeciesTypes` AS `s` <s:Microsoft.EntityFrameworkCore.Database.Command>
+[15:08:09 INF] SpeciesTypeGetPagedQueryHandler: 0 species types found <s:BioWings.Application.Features.Handlers.SpeciesTypeHandlers.Read.SpeciesTypeGetQueryHandler>
+[15:08:09 INF] Executing ObjectResult, writing value of type 'BioWings.Application.Results.ServiceResult`1[[System.Collections.Generic.IEnumerable`1[[BioWings.Application.Features.Results.SpeciesTypeResults.SpeciesTypeGetQueryResult, BioWings.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'. <s:Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor>
+[15:08:09 INF] Executed action BioWings.WebAPI.Controllers.SpeciesTypesController.GetAll (BioWings.WebAPI) in 1049.0779ms <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[15:08:09 INF] Executed endpoint 'BioWings.WebAPI.Controllers.SpeciesTypesController.GetAll (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[15:08:09 INF] HTTP GET /api/SpeciesTypes responded 200 in 1096.4013 ms <s:Serilog.AspNetCore.RequestLoggingMiddleware>
+[15:08:09 INF] Request finished HTTP/1.1 GET http://localhost:5054/api/SpeciesTypes - 200 null application/json; charset=utf-8 1114.5962ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[15:08:19 INF] Request starting HTTP/1.1 POST http://localhost:5054/api/SpeciesTypes - application/json 51 <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[15:08:19 INF] Executing endpoint 'BioWings.WebAPI.Controllers.SpeciesTypesController.Create (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[15:08:19 INF] Route matched with {action = "Create", controller = "SpeciesTypes"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(BioWings.Application.Features.Commands.SpeciesTypeCommands.SpeciesTypeCreateCommand) on controller BioWings.WebAPI.Controllers.SpeciesTypesController (BioWings.WebAPI). <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[15:08:19 INF] Executed DbCommand (20ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (Size = 500), @p2='?' (Size = 70), @p3='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `SpeciesTypes` (`CreatedDateTime`, `Description`, `Name`, `UpdatedDateTime`)
+VALUES (@p0, @p1, @p2, @p3);
+SELECT `Id`
+FROM `SpeciesTypes`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID(); <s:Microsoft.EntityFrameworkCore.Database.Command>
+[15:08:19 INF] SpeciesType deneme1 created <s:BioWings.Application.Features.Handlers.SpeciesTypeHandlers.Write.SpeciesTypeCreateCommandHandler>
+[15:08:19 INF] Executing ObjectResult, writing value of type 'BioWings.Application.Results.ServiceResult'. <s:Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor>
+[15:08:19 INF] Executed action BioWings.WebAPI.Controllers.SpeciesTypesController.Create (BioWings.WebAPI) in 235.8147ms <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[15:08:19 INF] Executed endpoint 'BioWings.WebAPI.Controllers.SpeciesTypesController.Create (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[15:08:19 INF] HTTP POST /api/SpeciesTypes responded 201 in 258.1675 ms <s:Serilog.AspNetCore.RequestLoggingMiddleware>
+[15:08:19 INF] Request finished HTTP/1.1 POST http://localhost:5054/api/SpeciesTypes - 201 null application/json; charset=utf-8 262.8568ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[15:08:23 INF] Request starting HTTP/1.1 GET http://localhost:5054/api/SpeciesTypes - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[15:08:23 INF] Executing endpoint 'BioWings.WebAPI.Controllers.SpeciesTypesController.GetAll (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[15:08:23 INF] Route matched with {action = "GetAll", controller = "SpeciesTypes"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller BioWings.WebAPI.Controllers.SpeciesTypesController (BioWings.WebAPI). <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[15:08:23 INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `s`.`Id`, `s`.`CreatedDateTime`, `s`.`Description`, `s`.`Name`, `s`.`UpdatedDateTime`
+FROM `SpeciesTypes` AS `s` <s:Microsoft.EntityFrameworkCore.Database.Command>
+[15:08:23 INF] SpeciesTypeGetPagedQueryHandler: 1 species types found <s:BioWings.Application.Features.Handlers.SpeciesTypeHandlers.Read.SpeciesTypeGetQueryHandler>
+[15:08:23 INF] Executing ObjectResult, writing value of type 'BioWings.Application.Results.ServiceResult`1[[System.Collections.Generic.IEnumerable`1[[BioWings.Application.Features.Results.SpeciesTypeResults.SpeciesTypeGetQueryResult, BioWings.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'. <s:Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor>
+[15:08:23 INF] Executed action BioWings.WebAPI.Controllers.SpeciesTypesController.GetAll (BioWings.WebAPI) in 29.0293ms <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[15:08:23 INF] Executed endpoint 'BioWings.WebAPI.Controllers.SpeciesTypesController.GetAll (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[15:08:23 INF] HTTP GET /api/SpeciesTypes responded 200 in 31.5746 ms <s:Serilog.AspNetCore.RequestLoggingMiddleware>
+[15:08:23 INF] Request finished HTTP/1.1 GET http://localhost:5054/api/SpeciesTypes - 200 null application/json; charset=utf-8 33.0448ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>

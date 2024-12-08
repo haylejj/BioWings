@@ -4,12 +4,7 @@ using BioWings.Application.Results;
 using BioWings.Domain.Interfaces;
 using MediatR;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BioWings.Application.Features.Handlers.GenusHandlers.Read;
 internal class GenusGetByIdQueryHandler(IGenusRepository genusRepository, ILogger<GenusGetByIdQueryHandler> logger) : IRequestHandler<GenusGetByIdQuery, ServiceResult<GenusGetByIdQueryResult>>

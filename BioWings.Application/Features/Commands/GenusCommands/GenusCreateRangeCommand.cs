@@ -5,5 +5,5 @@ using MediatR;
 namespace BioWings.Application.Features.Commands.GenusCommands;
 public class GenusCreateRangeCommand : IRequest<ServiceResult>
 {
-    public IEnumerable<GenusCreateDto> Genera { get; set; }
+    public List<GenusCreateDto> Genera { get; set; }
 }

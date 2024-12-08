@@ -9,7 +9,7 @@ public class FamilyUpdateCommandHandler(IFamilyRepository familyRepository, ILog
 {
     public async Task<ServiceResult> Handle(FamilyUpdateCommand request, CancellationToken cancellationToken)
     {
-        if(request == null)
+        if (request == null)
         {
             logger.LogWarning("FamilyUpdateCommand is null");
             return ServiceResult.Error("FamilyUpdateCommand is null");
@@ -18,7 +18,7 @@ public class FamilyUpdateCommandHandler(IFamilyRepository familyRepository, ILog
         if (family == null)
         {
             logger.LogWarning($"Family with id {request.Id} not found.");
-            return ServiceResult.Error($"Family with id {request.Id} not found.",System.Net.HttpStatusCode.NotFound);
+            return ServiceResult.Error($"Family with id {request.Id} not found.", System.Net.HttpStatusCode.NotFound);
         }
         family.Name = request.Name;
         familyRepository.Update(family);

@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 using System.Net;
 
 namespace BioWings.Application.Features.Handlers.GenusHandlers.Read;
-public class GenusGetPagedQueryHandler(IGenusRepository genusRepository, ILogger<GenusGetPagedQueryHandler> logger) :IRequestHandler<GenusGetPagedQuery, ServiceResult<PaginatedList<GenusGetPagedQueryResult>>>
+public class GenusGetPagedQueryHandler(IGenusRepository genusRepository, ILogger<GenusGetPagedQueryHandler> logger) : IRequestHandler<GenusGetPagedQuery, ServiceResult<PaginatedList<GenusGetPagedQueryResult>>>
 {
     public async Task<ServiceResult<PaginatedList<GenusGetPagedQueryResult>>> Handle(GenusGetPagedQuery request, CancellationToken cancellationToken)
     {

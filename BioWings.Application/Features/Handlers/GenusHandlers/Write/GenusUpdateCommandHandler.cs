@@ -9,7 +9,7 @@ public class GenusUpdateCommandHandler(IGenusRepository genusRepository, ILogger
 {
     public async Task<ServiceResult> Handle(GenusUpdateCommand request, CancellationToken cancellationToken)
     {
-        if(request == null)
+        if (request == null)
         {
             logger.LogError("GenusUpdateCommand is null");
             return ServiceResult.Error("GenusUpdateCommand is null");
@@ -18,7 +18,7 @@ public class GenusUpdateCommandHandler(IGenusRepository genusRepository, ILogger
         if (genus == null)
         {
             logger.LogError("Genus not found with ID: {GenusId}", request.Id);
-            return ServiceResult.Error("Genus not found",System.Net.HttpStatusCode.NotFound);
+            return ServiceResult.Error("Genus not found", System.Net.HttpStatusCode.NotFound);
         }
         genus.Name = request.Name;
         genus.FamilyId = request.FamilyId;
