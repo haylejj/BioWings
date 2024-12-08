@@ -1,4 +1,4 @@
-﻿using BioWings.Application.DTOs.Family;
+﻿using BioWings.Application.DTOs.FamilyDtos;
 using BioWings.Application.Results;
 using MediatR;
 

@@ -1,4 +1,4 @@
-﻿namespace BioWings.Application.DTOs.Genus;
+﻿namespace BioWings.Application.DTOs.GenusDtos;
 public class GenusCreateDto
 {
     public string Name { get; set; }

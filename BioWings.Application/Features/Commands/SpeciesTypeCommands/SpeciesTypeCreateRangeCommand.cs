@@ -1,4 +1,4 @@
-﻿using BioWings.Application.DTOs;
+﻿using BioWings.Application.DTOs.SpeciesTypeDtos;
 using BioWings.Application.Results;
 using MediatR;
 

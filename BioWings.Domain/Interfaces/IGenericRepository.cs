@@ -19,6 +19,7 @@ public interface IGenericRepository<T> where T : BaseEntity
     void RemoveRange(IEnumerable<T> entities);
     // Sayfalama
     Task<IEnumerable<T>> GetPagedAsync(int pageNumber, int pageSize, CancellationToken cancellationToken = default);
+    IQueryable<T> GetPagedAsQueryable(int pageNumber, int pageSize);
     Task<IEnumerable<T>> GetPagedAsNoTrackingAsync(int pageNumber, int pageSize, CancellationToken cancellationToken = default);
     // Filtreleme
     Task<IEnumerable<T>> GetFilteredAsync(Expression<Func<T, bool>> predicate, CancellationToken cancellationToken = default);

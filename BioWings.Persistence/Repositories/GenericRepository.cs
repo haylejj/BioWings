@@ -23,4 +23,5 @@ public class GenericRepository<T>(AppDbContext dbContext) : IGenericRepository<T
     public void Update(T entity) => _dbSet.Update(entity);
     public void UpdateRange(IEnumerable<T> entities) => _dbSet.UpdateRange(entities);
     public async Task<int> GetTotalCountAsync(CancellationToken cancellationToken = default) => await _dbSet.CountAsync(cancellationToken);
+    public IQueryable<T> GetPagedAsQueryable(int pageNumber, int pageSize) => _dbSet.Skip((pageNumber - 1) * pageSize).Take(pageSize);
 }

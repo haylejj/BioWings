@@ -746,3 +746,19 @@ FROM `SpeciesTypes` AS `s` <s:Microsoft.EntityFrameworkCore.Database.Command>
 [15:08:23 INF] Executed endpoint 'BioWings.WebAPI.Controllers.SpeciesTypesController.GetAll (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
 [15:08:23 INF] HTTP GET /api/SpeciesTypes responded 200 in 31.5746 ms <s:Serilog.AspNetCore.RequestLoggingMiddleware>
 [15:08:23 INF] Request finished HTTP/1.1 GET http://localhost:5054/api/SpeciesTypes - 200 null application/json; charset=utf-8 33.0448ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[15:36:15 INF] Now listening on: http://localhost:5054 <s:Microsoft.Hosting.Lifetime>
+[15:36:15 INF] Application started. Press Ctrl+C to shut down. <s:Microsoft.Hosting.Lifetime>
+[15:36:15 INF] Hosting environment: Development <s:Microsoft.Hosting.Lifetime>
+[15:36:15 INF] Content root path: C:\Users\cagat\VisualStudio2022\BioWings\BioWings\BioWings.WebAPI <s:Microsoft.Hosting.Lifetime>
+[23:06:00 INF] Now listening on: http://localhost:5054 <s:Microsoft.Hosting.Lifetime>
+[23:06:00 INF] Application started. Press Ctrl+C to shut down. <s:Microsoft.Hosting.Lifetime>
+[23:06:00 INF] Hosting environment: Development <s:Microsoft.Hosting.Lifetime>
+[23:06:00 INF] Content root path: C:\Users\cagat\VisualStudio2022\BioWings\BioWings\BioWings.WebAPI <s:Microsoft.Hosting.Lifetime>
+[23:06:02 INF] Request starting HTTP/1.1 GET http://localhost:5054/swagger/index.html - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[23:06:03 INF] Request finished HTTP/1.1 GET http://localhost:5054/swagger/index.html - 200 null text/html;charset=utf-8 313.4462ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[23:06:03 INF] Request starting HTTP/1.1 GET http://localhost:5054/_framework/aspnetcore-browser-refresh.js - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[23:06:03 INF] Request starting HTTP/1.1 GET http://localhost:5054/_vs/browserLink - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[23:06:03 INF] Request finished HTTP/1.1 GET http://localhost:5054/_framework/aspnetcore-browser-refresh.js - 200 13782 application/javascript; charset=utf-8 2.9437ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[23:06:03 INF] Request finished HTTP/1.1 GET http://localhost:5054/_vs/browserLink - 200 null text/javascript; charset=UTF-8 61.7443ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[23:06:03 INF] Request starting HTTP/1.1 GET http://localhost:5054/swagger/v1/swagger.json - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[23:06:03 INF] Request finished HTTP/1.1 GET http://localhost:5054/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 22.0988ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>

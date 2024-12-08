@@ -1,0 +1,64 @@
+[01:33:05 INF] Now listening on: http://localhost:5054 <s:Microsoft.Hosting.Lifetime>
+[01:33:05 INF] Application started. Press Ctrl+C to shut down. <s:Microsoft.Hosting.Lifetime>
+[01:33:05 INF] Hosting environment: Development <s:Microsoft.Hosting.Lifetime>
+[01:33:05 INF] Content root path: C:\Users\cagat\VisualStudio2022\BioWings\BioWings\BioWings.WebAPI <s:Microsoft.Hosting.Lifetime>
+[01:33:06 INF] Request starting HTTP/1.1 GET http://localhost:5054/swagger - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[01:33:07 INF] Request finished HTTP/1.1 GET http://localhost:5054/swagger - 301 0 null 251.7594ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[01:33:07 INF] Request starting HTTP/1.1 GET http://localhost:5054/swagger/index.html - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[01:33:07 INF] Request finished HTTP/1.1 GET http://localhost:5054/swagger/index.html - 200 null text/html;charset=utf-8 93.4774ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[01:33:07 INF] Request starting HTTP/1.1 GET http://localhost:5054/swagger/swagger-ui.css - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[01:33:07 INF] Request starting HTTP/1.1 GET http://localhost:5054/swagger/swagger-ui-standalone-preset.js - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[01:33:07 INF] Request starting HTTP/1.1 GET http://localhost:5054/_framework/aspnetcore-browser-refresh.js - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[01:33:07 INF] Request starting HTTP/1.1 GET http://localhost:5054/_vs/browserLink - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[01:33:07 INF] Request starting HTTP/1.1 GET http://localhost:5054/swagger/swagger-ui-bundle.js - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[01:33:07 INF] Request finished HTTP/1.1 GET http://localhost:5054/_framework/aspnetcore-browser-refresh.js - 200 13782 application/javascript; charset=utf-8 4.0098ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[01:33:07 INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A' <s:Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware>
+[01:33:07 INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A' <s:Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware>
+[01:33:07 INF] Request finished HTTP/1.1 GET http://localhost:5054/swagger/swagger-ui.css - 200 152034 text/css 29.071ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[01:33:07 INF] Request finished HTTP/1.1 GET http://localhost:5054/swagger/swagger-ui-standalone-preset.js - 200 230280 text/javascript 22.3183ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[01:33:07 INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A' <s:Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware>
+[01:33:07 INF] Request finished HTTP/1.1 GET http://localhost:5054/swagger/swagger-ui-bundle.js - 200 1456926 text/javascript 30.2171ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[01:33:07 INF] Request finished HTTP/1.1 GET http://localhost:5054/_vs/browserLink - 200 null text/javascript; charset=UTF-8 67.7209ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[01:33:07 INF] Request starting HTTP/1.1 GET http://localhost:5054/swagger/v1/swagger.json - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[01:33:07 INF] Request finished HTTP/1.1 GET http://localhost:5054/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 20.5691ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[01:33:18 INF] Request starting HTTP/1.1 GET http://localhost:5054/api/SpeciesTypes - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[01:33:18 WRN] Failed to determine the https port for redirect. <s:Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware>
+[01:33:18 INF] Executing endpoint 'BioWings.WebAPI.Controllers.SpeciesTypesController.GetAll (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[01:33:18 INF] Route matched with {action = "GetAll", controller = "SpeciesTypes"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller BioWings.WebAPI.Controllers.SpeciesTypesController (BioWings.WebAPI). <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[01:33:19 INF] Executed DbCommand (47ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `s`.`Id`, `s`.`CreatedDateTime`, `s`.`Description`, `s`.`Name`, `s`.`UpdatedDateTime`
+FROM `SpeciesTypes` AS `s` <s:Microsoft.EntityFrameworkCore.Database.Command>
+[01:33:19 INF] SpeciesTypeGetPagedQueryHandler: 1 species types found <s:BioWings.Application.Features.Handlers.SpeciesTypeHandlers.Read.SpeciesTypeGetQueryHandler>
+[01:33:19 INF] Executing ObjectResult, writing value of type 'BioWings.Application.Results.ServiceResult`1[[System.Collections.Generic.IEnumerable`1[[BioWings.Application.Features.Results.SpeciesTypeResults.SpeciesTypeGetQueryResult, BioWings.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'. <s:Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor>
+[01:33:19 INF] Executed action BioWings.WebAPI.Controllers.SpeciesTypesController.GetAll (BioWings.WebAPI) in 1353.7048ms <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[01:33:19 INF] Executed endpoint 'BioWings.WebAPI.Controllers.SpeciesTypesController.GetAll (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[01:33:19 INF] HTTP GET /api/SpeciesTypes responded 200 in 1381.3526 ms <s:Serilog.AspNetCore.RequestLoggingMiddleware>
+[01:33:19 INF] Request finished HTTP/1.1 GET http://localhost:5054/api/SpeciesTypes - 200 null application/json; charset=utf-8 1392.6036ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[01:33:31 INF] Request starting HTTP/1.1 GET http://localhost:5054/api/Subspecies - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[01:33:31 INF] Executing endpoint 'BioWings.WebAPI.Controllers.SubspeciesController.GetAll (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[01:33:31 INF] Route matched with {action = "GetAll", controller = "Subspecies"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller BioWings.WebAPI.Controllers.SubspeciesController (BioWings.WebAPI). <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[01:33:31 INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `s`.`Id`, `s`.`CreatedDateTime`, `s`.`Name`, `s`.`SpeciesId`, `s`.`UpdatedDateTime`, `s0`.`Id`, `s0`.`AuthorityId`, `s0`.`CreatedDateTime`, `s0`.`EUName`, `s0`.`EnglishName`, `s0`.`FullName`, `s0`.`GenusId`, `s0`.`Name`, `s0`.`ScientificName`, `s0`.`SpeciesTypeId`, `s0`.`Trakel`, `s0`.`TurkishName`, `s0`.`TurkishNamesTrakel`, `s0`.`UpdatedDateTime`
+FROM `Subspecies` AS `s`
+INNER JOIN `Species` AS `s0` ON `s`.`SpeciesId` = `s0`.`Id` <s:Microsoft.EntityFrameworkCore.Database.Command>
+[01:33:31 WRN] No subspecies found <s:BioWings.Application.Features.Handlers.SubspeciesHandlers.Read.SubspeciesGetQueryHandler>
+[01:33:31 INF] Executing ObjectResult, writing value of type 'BioWings.Application.Results.ServiceResult`1[[System.Collections.Generic.IEnumerable`1[[BioWings.Application.Features.Results.SubspeciesResults.SubspeciesGetQueryResult, BioWings.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'. <s:Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor>
+[01:33:31 INF] Executed action BioWings.WebAPI.Controllers.SubspeciesController.GetAll (BioWings.WebAPI) in 189.0428ms <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[01:33:31 INF] Executed endpoint 'BioWings.WebAPI.Controllers.SubspeciesController.GetAll (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[01:33:31 INF] HTTP GET /api/Subspecies responded 400 in 195.0142 ms <s:Serilog.AspNetCore.RequestLoggingMiddleware>
+[01:33:31 INF] Request finished HTTP/1.1 GET http://localhost:5054/api/Subspecies - 400 null application/json; charset=utf-8 198.8272ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[01:33:46 INF] Request starting HTTP/1.1 GET http://localhost:5054/api/Subspecies/1 - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[01:33:46 INF] Executing endpoint 'BioWings.WebAPI.Controllers.SubspeciesController.GetById (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[01:33:46 INF] Route matched with {action = "GetById", controller = "Subspecies"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetById(Int32) on controller BioWings.WebAPI.Controllers.SubspeciesController (BioWings.WebAPI). <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[01:33:46 INF] Executed DbCommand (21ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `s`.`Id`, `s`.`CreatedDateTime`, `s`.`Name`, `s`.`SpeciesId`, `s`.`UpdatedDateTime`, `s0`.`Id`, `s0`.`AuthorityId`, `s0`.`CreatedDateTime`, `s0`.`EUName`, `s0`.`EnglishName`, `s0`.`FullName`, `s0`.`GenusId`, `s0`.`Name`, `s0`.`ScientificName`, `s0`.`SpeciesTypeId`, `s0`.`Trakel`, `s0`.`TurkishName`, `s0`.`TurkishNamesTrakel`, `s0`.`UpdatedDateTime`
+FROM `Subspecies` AS `s`
+INNER JOIN `Species` AS `s0` ON `s`.`SpeciesId` = `s0`.`Id`
+WHERE `s`.`Id` = @__id_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[01:33:46 WRN] Subspecies not found <s:BioWings.Application.Features.Handlers.SubspeciesHandlers.Read.SubspeciesGetQueryHandler>
+[01:33:46 INF] Executing ObjectResult, writing value of type 'BioWings.Application.Results.ServiceResult`1[[BioWings.Application.Features.Results.SubspeciesResults.SubspeciesGetByIdQueryResult, BioWings.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'. <s:Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor>
+[01:33:46 INF] Executed action BioWings.WebAPI.Controllers.SubspeciesController.GetById (BioWings.WebAPI) in 80.8355ms <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[01:33:46 INF] Executed endpoint 'BioWings.WebAPI.Controllers.SubspeciesController.GetById (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[01:33:46 INF] HTTP GET /api/Subspecies/1 responded 404 in 95.5891 ms <s:Serilog.AspNetCore.RequestLoggingMiddleware>
+[01:33:46 INF] Request finished HTTP/1.1 GET http://localhost:5054/api/Subspecies/1 - 404 null application/json; charset=utf-8 97.2073ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>

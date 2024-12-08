@@ -11,11 +11,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Commands\SubspeciesCommands\" />
     <Folder Include="Features\Commands\SpeciesCommands\" />
-    <Folder Include="Features\Handlers\SubspeciesHandlers\" />
     <Folder Include="Features\Handlers\SpeciesHandlers\" />
-    <Folder Include="Features\Queries\SubspeciesQueries\" />
     <Folder Include="Features\Queries\SpeciesQueries\" />
     <Folder Include="Mappings\" />
     <Folder Include="Exceptions\" />
