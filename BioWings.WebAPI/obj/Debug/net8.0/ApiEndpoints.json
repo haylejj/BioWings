@@ -1,5 +1,116 @@
 [
   {
+    "ContainingType": "BioWings.WebAPI.Controllers.AuthorityController",
+    "Method": "GetAll",
+    "RelativePath": "api/Authority",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BioWings.WebAPI.Controllers.AuthorityController",
+    "Method": "Create",
+    "RelativePath": "api/Authority",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "command",
+        "Type": "BioWings.Application.Features.Commands.AuthorityCommands.AuthorityCreateCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BioWings.WebAPI.Controllers.AuthorityController",
+    "Method": "Update",
+    "RelativePath": "api/Authority",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "command",
+        "Type": "BioWings.Application.Features.Commands.AuthorityCommands.AuthorityUpdateCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BioWings.WebAPI.Controllers.AuthorityController",
+    "Method": "GetById",
+    "RelativePath": "api/Authority/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BioWings.WebAPI.Controllers.AuthorityController",
+    "Method": "Remove",
+    "RelativePath": "api/Authority/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BioWings.WebAPI.Controllers.AuthorityController",
+    "Method": "GetPaged",
+    "RelativePath": "api/Authority/Paged",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pageNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BioWings.WebAPI.Controllers.AuthorityController",
+    "Method": "CreateRange",
+    "RelativePath": "api/Authority/Range",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "command",
+        "Type": "BioWings.Application.Features.Commands.AuthorityCommands.AuthorityCreateRangeCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "BioWings.WebAPI.Controllers.FamiliesController",
     "Method": "GetAll",
     "RelativePath": "api/Families",

@@ -62,3 +62,121 @@ LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
 [01:33:46 INF] Executed endpoint 'BioWings.WebAPI.Controllers.SubspeciesController.GetById (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
 [01:33:46 INF] HTTP GET /api/Subspecies/1 responded 404 in 95.5891 ms <s:Serilog.AspNetCore.RequestLoggingMiddleware>
 [01:33:46 INF] Request finished HTTP/1.1 GET http://localhost:5054/api/Subspecies/1 - 404 null application/json; charset=utf-8 97.2073ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[20:12:26 INF] Now listening on: http://localhost:5054 <s:Microsoft.Hosting.Lifetime>
+[20:12:26 INF] Application started. Press Ctrl+C to shut down. <s:Microsoft.Hosting.Lifetime>
+[20:12:26 INF] Hosting environment: Development <s:Microsoft.Hosting.Lifetime>
+[20:12:26 INF] Content root path: C:\Users\cagat\VisualStudio2022\BioWings\BioWings\BioWings.WebAPI <s:Microsoft.Hosting.Lifetime>
+[20:12:28 INF] Request starting HTTP/1.1 GET http://localhost:5054/swagger - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[20:12:28 INF] Request finished HTTP/1.1 GET http://localhost:5054/swagger - 301 0 null 253.6914ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[20:12:28 INF] Request starting HTTP/1.1 GET http://localhost:5054/swagger/index.html - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[20:12:28 INF] Request finished HTTP/1.1 GET http://localhost:5054/swagger/index.html - 200 null text/html;charset=utf-8 106.9416ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[20:12:29 INF] Request starting HTTP/1.1 GET http://localhost:5054/_framework/aspnetcore-browser-refresh.js - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[20:12:29 INF] Request starting HTTP/1.1 GET http://localhost:5054/_vs/browserLink - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[20:12:29 INF] Request finished HTTP/1.1 GET http://localhost:5054/_framework/aspnetcore-browser-refresh.js - 200 13782 application/javascript; charset=utf-8 2.1374ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[20:12:29 INF] Request finished HTTP/1.1 GET http://localhost:5054/_vs/browserLink - 200 null text/javascript; charset=UTF-8 38.83ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[20:12:29 INF] Request starting HTTP/1.1 GET http://localhost:5054/swagger/favicon-32x32.png - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[20:12:29 INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A' <s:Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware>
+[20:12:29 INF] Request finished HTTP/1.1 GET http://localhost:5054/swagger/favicon-32x32.png - 200 628 image/png 7.5083ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[20:12:30 INF] Request starting HTTP/1.1 GET http://localhost:5054/swagger/v1/swagger.json - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[20:12:30 INF] Request finished HTTP/1.1 GET http://localhost:5054/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 17.5089ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[20:12:58 INF] Request starting HTTP/1.1 GET http://localhost:5054/api/Authority - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[20:12:58 WRN] Failed to determine the https port for redirect. <s:Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware>
+[20:12:58 INF] Executing endpoint 'BioWings.WebAPI.Controllers.AuthorityController.GetAll (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[20:12:58 INF] Route matched with {action = "GetAll", controller = "Authority"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller BioWings.WebAPI.Controllers.AuthorityController (BioWings.WebAPI). <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[20:12:59 INF] Executed DbCommand (30ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `a`.`Id`, `a`.`CreatedDateTime`, `a`.`Name`, `a`.`UpdatedDateTime`, `a`.`Year`
+FROM `Authorities` AS `a` <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:12:59 WRN] No authorities found <s:BioWings.Application.Features.Handlers.AuthorityHandlers.Read.AuthorityGetQueryHandler>
+[20:12:59 INF] Executing ObjectResult, writing value of type 'BioWings.Application.Results.ServiceResult`1[[System.Collections.Generic.IEnumerable`1[[BioWings.Application.Features.Results.AuthorityResults.AuthorityGetQueryResult, BioWings.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'. <s:Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor>
+[20:12:59 INF] Executed action BioWings.WebAPI.Controllers.AuthorityController.GetAll (BioWings.WebAPI) in 1319.7194ms <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[20:12:59 INF] Executed endpoint 'BioWings.WebAPI.Controllers.AuthorityController.GetAll (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[20:12:59 INF] HTTP GET /api/Authority responded 404 in 1358.8792 ms <s:Serilog.AspNetCore.RequestLoggingMiddleware>
+[20:12:59 INF] Request finished HTTP/1.1 GET http://localhost:5054/api/Authority - 404 null application/json; charset=utf-8 1371.3895ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[20:13:11 INF] Request starting HTTP/1.1 POST http://localhost:5054/api/Authority - application/json 39 <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[20:13:11 INF] Executing endpoint 'BioWings.WebAPI.Controllers.AuthorityController.Create (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[20:13:11 INF] Route matched with {action = "Create", controller = "Authority"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(BioWings.Application.Features.Commands.AuthorityCommands.AuthorityCreateCommand) on controller BioWings.WebAPI.Controllers.AuthorityController (BioWings.WebAPI). <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[20:13:12 INF] Executed DbCommand (25ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (Size = 50), @p2='?' (DbType = DateTime), @p3='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `Authorities` (`CreatedDateTime`, `Name`, `UpdatedDateTime`, `Year`)
+VALUES (@p0, @p1, @p2, @p3);
+SELECT `Id`
+FROM `Authorities`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID(); <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:13:12 INF] Authority created Id:1 <s:BioWings.Application.Features.Handlers.AuthorityHandlers.Write.AuthorityCreateCommandHandler>
+[20:13:12 INF] Executing ObjectResult, writing value of type 'BioWings.Application.Results.ServiceResult'. <s:Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor>
+[20:13:12 INF] Executed action BioWings.WebAPI.Controllers.AuthorityController.Create (BioWings.WebAPI) in 238.3097ms <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[20:13:12 INF] Executed endpoint 'BioWings.WebAPI.Controllers.AuthorityController.Create (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[20:13:12 INF] HTTP POST /api/Authority responded 201 in 248.4321 ms <s:Serilog.AspNetCore.RequestLoggingMiddleware>
+[20:13:12 INF] Request finished HTTP/1.1 POST http://localhost:5054/api/Authority - 201 null application/json; charset=utf-8 251.1107ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[20:14:38 INF] Now listening on: http://localhost:5054 <s:Microsoft.Hosting.Lifetime>
+[20:14:38 INF] Application started. Press Ctrl+C to shut down. <s:Microsoft.Hosting.Lifetime>
+[20:14:38 INF] Hosting environment: Development <s:Microsoft.Hosting.Lifetime>
+[20:14:38 INF] Content root path: C:\Users\cagat\VisualStudio2022\BioWings\BioWings\BioWings.WebAPI <s:Microsoft.Hosting.Lifetime>
+[20:14:39 INF] Request starting HTTP/1.1 GET http://localhost:5054/swagger/index.html - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[20:14:40 INF] Request finished HTTP/1.1 GET http://localhost:5054/swagger/index.html - 200 null text/html;charset=utf-8 199.1104ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[20:14:40 INF] Request starting HTTP/1.1 GET http://localhost:5054/_framework/aspnetcore-browser-refresh.js - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[20:14:40 INF] Request finished HTTP/1.1 GET http://localhost:5054/_framework/aspnetcore-browser-refresh.js - 200 13782 application/javascript; charset=utf-8 3.3356ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[20:14:40 INF] Request starting HTTP/1.1 GET http://localhost:5054/_vs/browserLink - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[20:14:40 INF] Request finished HTTP/1.1 GET http://localhost:5054/_vs/browserLink - 200 null text/javascript; charset=UTF-8 28.7981ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[20:14:41 INF] Request starting HTTP/1.1 GET http://localhost:5054/swagger/v1/swagger.json - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[20:14:41 INF] Request finished HTTP/1.1 GET http://localhost:5054/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 14.9033ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[20:15:07 INF] Request starting HTTP/1.1 POST http://localhost:5054/api/Authority - application/json 39 <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[20:15:07 WRN] Failed to determine the https port for redirect. <s:Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware>
+[20:15:07 INF] Executing endpoint 'BioWings.WebAPI.Controllers.AuthorityController.Create (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[20:15:07 INF] Route matched with {action = "Create", controller = "Authority"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(BioWings.Application.Features.Commands.AuthorityCommands.AuthorityCreateCommand) on controller BioWings.WebAPI.Controllers.AuthorityController (BioWings.WebAPI). <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[20:15:08 INF] Executed DbCommand (31ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (Size = 50), @p2='?' (DbType = DateTime), @p3='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `Authorities` (`CreatedDateTime`, `Name`, `UpdatedDateTime`, `Year`)
+VALUES (@p0, @p1, @p2, @p3);
+SELECT `Id`
+FROM `Authorities`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID(); <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:15:08 INF] Authority created Id:2 <s:BioWings.Application.Features.Handlers.AuthorityHandlers.Write.AuthorityCreateCommandHandler>
+[20:15:08 INF] Executing ObjectResult, writing value of type 'BioWings.Application.Results.ServiceResult'. <s:Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor>
+[20:15:08 INF] Executed action BioWings.WebAPI.Controllers.AuthorityController.Create (BioWings.WebAPI) in 970.9159ms <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[20:15:08 INF] Executed endpoint 'BioWings.WebAPI.Controllers.AuthorityController.Create (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[20:15:08 INF] HTTP POST /api/Authority responded 201 in 995.7071 ms <s:Serilog.AspNetCore.RequestLoggingMiddleware>
+[20:15:08 INF] Request finished HTTP/1.1 POST http://localhost:5054/api/Authority - 201 null application/json; charset=utf-8 1006.163ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[20:16:35 INF] Request starting HTTP/1.1 GET http://localhost:5054/api/Authority - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[20:16:35 INF] Executing endpoint 'BioWings.WebAPI.Controllers.AuthorityController.GetAll (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[20:16:35 INF] Route matched with {action = "GetAll", controller = "Authority"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller BioWings.WebAPI.Controllers.AuthorityController (BioWings.WebAPI). <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[20:16:35 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `a`.`Id`, `a`.`CreatedDateTime`, `a`.`Name`, `a`.`UpdatedDateTime`, `a`.`Year`
+FROM `Authorities` AS `a` <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:16:35 INF] Authorities found <s:BioWings.Application.Features.Handlers.AuthorityHandlers.Read.AuthorityGetQueryHandler>
+[20:16:35 INF] Executing ObjectResult, writing value of type 'BioWings.Application.Results.ServiceResult`1[[System.Collections.Generic.IEnumerable`1[[BioWings.Application.Features.Results.AuthorityResults.AuthorityGetQueryResult, BioWings.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'. <s:Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor>
+[20:16:35 INF] Executed action BioWings.WebAPI.Controllers.AuthorityController.GetAll (BioWings.WebAPI) in 227.1387ms <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[20:16:35 INF] Executed endpoint 'BioWings.WebAPI.Controllers.AuthorityController.GetAll (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[20:16:35 INF] HTTP GET /api/Authority responded 200 in 235.2261 ms <s:Serilog.AspNetCore.RequestLoggingMiddleware>
+[20:16:35 INF] Request finished HTTP/1.1 GET http://localhost:5054/api/Authority - 200 null application/json; charset=utf-8 241.7279ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[20:17:15 INF] Request starting HTTP/1.1 PUT http://localhost:5054/api/Authority - application/json 50 <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[20:17:15 INF] Executing endpoint 'BioWings.WebAPI.Controllers.AuthorityController.Update (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[20:17:15 INF] Route matched with {action = "Update", controller = "Authority"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Update(BioWings.Application.Features.Commands.AuthorityCommands.AuthorityUpdateCommand) on controller BioWings.WebAPI.Controllers.AuthorityController (BioWings.WebAPI). <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[20:17:15 INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `a`.`Id`, `a`.`CreatedDateTime`, `a`.`Name`, `a`.`UpdatedDateTime`, `a`.`Year`
+FROM `Authorities` AS `a`
+WHERE `a`.`Id` = @__p_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:17:15 INF] Executed DbCommand (4ms) [Parameters=[@p3='?' (DbType = Int32), @p0='?' (Size = 50), @p1='?' (DbType = DateTime), @p2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET AUTOCOMMIT = 1;
+UPDATE `Authorities` SET `Name` = @p0, `UpdatedDateTime` = @p1, `Year` = @p2
+WHERE `Id` = @p3;
+SELECT ROW_COUNT(); <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:17:15 INF] Authority updated Id:2 <s:BioWings.Application.Features.Handlers.AuthorityHandlers.Write.AuthorityUpdateCommandHandler>
+[20:17:15 INF] Executing ObjectResult, writing value of type 'null'. <s:Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor>
+[20:17:15 INF] Executed action BioWings.WebAPI.Controllers.AuthorityController.Update (BioWings.WebAPI) in 118.5342ms <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[20:17:15 INF] Executed endpoint 'BioWings.WebAPI.Controllers.AuthorityController.Update (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[20:17:15 INF] HTTP PUT /api/Authority responded 204 in 125.4722 ms <s:Serilog.AspNetCore.RequestLoggingMiddleware>
+[20:17:15 INF] Request finished HTTP/1.1 PUT http://localhost:5054/api/Authority - 204 null null 127.0143ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[20:17:22 INF] Request starting HTTP/1.1 GET http://localhost:5054/api/Authority/2 - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[20:17:22 INF] Executing endpoint 'BioWings.WebAPI.Controllers.AuthorityController.GetById (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[20:17:22 INF] Route matched with {action = "GetById", controller = "Authority"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetById(Int32) on controller BioWings.WebAPI.Controllers.AuthorityController (BioWings.WebAPI). <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[20:17:22 INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `a`.`Id`, `a`.`CreatedDateTime`, `a`.`Name`, `a`.`UpdatedDateTime`, `a`.`Year`
+FROM `Authorities` AS `a`
+WHERE `a`.`Id` = @__p_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:17:22 INF] Authority Id: 2 found <s:BioWings.Application.Features.Handlers.AuthorityHandlers.Read.AuthorityGetByIdQueryHandler>
+[20:17:22 INF] Executing ObjectResult, writing value of type 'BioWings.Application.Results.ServiceResult`1[[BioWings.Application.Features.Results.AuthorityResults.AuthorityGetByIdQueryResult, BioWings.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'. <s:Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor>
+[20:17:22 INF] Executed action BioWings.WebAPI.Controllers.AuthorityController.GetById (BioWings.WebAPI) in 22.4472ms <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[20:17:22 INF] Executed endpoint 'BioWings.WebAPI.Controllers.AuthorityController.GetById (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[20:17:22 INF] HTTP GET /api/Authority/2 responded 200 in 27.4555 ms <s:Serilog.AspNetCore.RequestLoggingMiddleware>
+[20:17:22 INF] Request finished HTTP/1.1 GET http://localhost:5054/api/Authority/2 - 200 null application/json; charset=utf-8 28.7502ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>

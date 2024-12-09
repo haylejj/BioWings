@@ -10,13 +10,13 @@ public class SubspeciesGetQueryHandler(ISubspeciesRepository subspeciesRepositor
 {
     public async Task<ServiceResult<IEnumerable<SubspeciesGetQueryResult>>> Handle(SubspeciesGetQuery request, CancellationToken cancellationToken)
     {
-        var subspecies=await subspeciesRepository.GetAllWithSpeciesAsync(cancellationToken);
+        var subspecies = await subspeciesRepository.GetAllWithSpeciesAsync(cancellationToken);
         if (subspecies == null || !subspecies.Any())
         {
             logger.LogWarning("No subspecies found");
-            return ServiceResult<IEnumerable<SubspeciesGetQueryResult>>.Error("No subspecies found",System.Net.HttpStatusCode.NotFound);
+            return ServiceResult<IEnumerable<SubspeciesGetQueryResult>>.Error("No subspecies found", System.Net.HttpStatusCode.NotFound);
         }
-        var result= subspecies.Select(s => new SubspeciesGetQueryResult
+        var result = subspecies.Select(s => new SubspeciesGetQueryResult
         {
             Id=s.Id,
             Name=s.Name,

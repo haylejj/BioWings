@@ -10,7 +10,7 @@ public class SubspeciesCreateRangeCommandHandler(ISubspeciesRepository subspecie
 {
     public async Task<ServiceResult> Handle(SubspeciesCreateRangeCommand request, CancellationToken cancellationToken)
     {
-        if(request == null || !request.Subspecies.Any())
+        if (request == null || !request.Subspecies.Any())
         {
             logger.LogWarning("SubspeciesCreateRangeCommandHandler: request is null");
             return ServiceResult.Error("Request is null");

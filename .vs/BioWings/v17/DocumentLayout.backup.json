@@ -3,24 +3,44 @@
   "WorkspaceRootPath": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{7079A309-DF1B-4492-B636-DC681C55BEE0}|BioWings.WebAPI\\BioWings.WebAPI.csproj|c:\\users\\cagat\\visualstudio2022\\biowings\\biowings\\biowings.webapi\\controllers\\subspeciescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7079A309-DF1B-4492-B636-DC681C55BEE0}|BioWings.WebAPI\\BioWings.WebAPI.csproj|solutionrelative:biowings.webapi\\controllers\\subspeciescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{91F18D67-BCC0-4A77-9B08-BE9133A4BDAE}|BioWings.Application\\BioWings.Application.csproj|c:\\users\\cagat\\visualstudio2022\\biowings\\biowings\\biowings.application\\features\\handlers\\authorityhandlers\\read\\authoritygetbyidqueryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{91F18D67-BCC0-4A77-9B08-BE9133A4BDAE}|BioWings.Application\\BioWings.Application.csproj|solutionrelative:biowings.application\\features\\handlers\\authorityhandlers\\read\\authoritygetbyidqueryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7079A309-DF1B-4492-B636-DC681C55BEE0}|BioWings.WebAPI\\BioWings.WebAPI.csproj|c:\\users\\cagat\\visualstudio2022\\biowings\\biowings\\biowings.webapi\\controllers\\familiescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7079A309-DF1B-4492-B636-DC681C55BEE0}|BioWings.WebAPI\\BioWings.WebAPI.csproj|solutionrelative:biowings.webapi\\controllers\\familiescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{91F18D67-BCC0-4A77-9B08-BE9133A4BDAE}|BioWings.Application\\BioWings.Application.csproj|c:\\users\\cagat\\visualstudio2022\\biowings\\biowings\\biowings.application\\features\\handlers\\authorityhandlers\\read\\authoritygetpagedqueryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{91F18D67-BCC0-4A77-9B08-BE9133A4BDAE}|BioWings.Application\\BioWings.Application.csproj|solutionrelative:biowings.application\\features\\handlers\\authorityhandlers\\read\\authoritygetpagedqueryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{91F18D67-BCC0-4A77-9B08-BE9133A4BDAE}|BioWings.Application\\BioWings.Application.csproj|c:\\users\\cagat\\visualstudio2022\\biowings\\biowings\\biowings.application\\features\\handlers\\subspecieshandlers\\write\\subspeciescreaterangecommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{91F18D67-BCC0-4A77-9B08-BE9133A4BDAE}|BioWings.Application\\BioWings.Application.csproj|solutionrelative:biowings.application\\features\\handlers\\subspecieshandlers\\write\\subspeciescreaterangecommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{91F18D67-BCC0-4A77-9B08-BE9133A4BDAE}|BioWings.Application\\BioWings.Application.csproj|c:\\users\\cagat\\visualstudio2022\\biowings\\biowings\\biowings.application\\features\\handlers\\authorityhandlers\\read\\authoritygetqueryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{91F18D67-BCC0-4A77-9B08-BE9133A4BDAE}|BioWings.Application\\BioWings.Application.csproj|solutionrelative:biowings.application\\features\\handlers\\authorityhandlers\\read\\authoritygetqueryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{91F18D67-BCC0-4A77-9B08-BE9133A4BDAE}|BioWings.Application\\BioWings.Application.csproj|c:\\users\\cagat\\visualstudio2022\\biowings\\biowings\\biowings.application\\features\\handlers\\subspecieshandlers\\write\\subspeciescreatecommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{91F18D67-BCC0-4A77-9B08-BE9133A4BDAE}|BioWings.Application\\BioWings.Application.csproj|solutionrelative:biowings.application\\features\\handlers\\subspecieshandlers\\write\\subspeciescreatecommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{91F18D67-BCC0-4A77-9B08-BE9133A4BDAE}|BioWings.Application\\BioWings.Application.csproj|c:\\users\\cagat\\visualstudio2022\\biowings\\biowings\\biowings.application\\features\\handlers\\authorityhandlers\\write\\authorityupdatecommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{91F18D67-BCC0-4A77-9B08-BE9133A4BDAE}|BioWings.Application\\BioWings.Application.csproj|solutionrelative:biowings.application\\features\\handlers\\authorityhandlers\\write\\authorityupdatecommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{91F18D67-BCC0-4A77-9B08-BE9133A4BDAE}|BioWings.Application\\BioWings.Application.csproj|c:\\users\\cagat\\visualstudio2022\\biowings\\biowings\\biowings.application\\features\\handlers\\speciestypehandlers\\write\\speciestypecreaterangecommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{91F18D67-BCC0-4A77-9B08-BE9133A4BDAE}|BioWings.Application\\BioWings.Application.csproj|solutionrelative:biowings.application\\features\\handlers\\speciestypehandlers\\write\\speciestypecreaterangecommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{91F18D67-BCC0-4A77-9B08-BE9133A4BDAE}|BioWings.Application\\BioWings.Application.csproj|c:\\users\\cagat\\visualstudio2022\\biowings\\biowings\\biowings.application\\features\\handlers\\authorityhandlers\\write\\authorityremovecommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{91F18D67-BCC0-4A77-9B08-BE9133A4BDAE}|BioWings.Application\\BioWings.Application.csproj|solutionrelative:biowings.application\\features\\handlers\\authorityhandlers\\write\\authorityremovecommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{91F18D67-BCC0-4A77-9B08-BE9133A4BDAE}|BioWings.Application\\BioWings.Application.csproj|c:\\users\\cagat\\visualstudio2022\\biowings\\biowings\\biowings.application\\features\\handlers\\authorityhandlers\\write\\authoritycreatecommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{91F18D67-BCC0-4A77-9B08-BE9133A4BDAE}|BioWings.Application\\BioWings.Application.csproj|solutionrelative:biowings.application\\features\\handlers\\authorityhandlers\\write\\authoritycreatecommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{91F18D67-BCC0-4A77-9B08-BE9133A4BDAE}|BioWings.Application\\BioWings.Application.csproj|c:\\users\\cagat\\visualstudio2022\\biowings\\biowings\\biowings.application\\features\\handlers\\authorityhandlers\\write\\authoritycreaterangecommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{91F18D67-BCC0-4A77-9B08-BE9133A4BDAE}|BioWings.Application\\BioWings.Application.csproj|solutionrelative:biowings.application\\features\\handlers\\authorityhandlers\\write\\authoritycreaterangecommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7079A309-DF1B-4492-B636-DC681C55BEE0}|BioWings.WebAPI\\BioWings.WebAPI.csproj|c:\\users\\cagat\\visualstudio2022\\biowings\\biowings\\biowings.webapi\\controllers\\authoritycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7079A309-DF1B-4492-B636-DC681C55BEE0}|BioWings.WebAPI\\BioWings.WebAPI.csproj|solutionrelative:biowings.webapi\\controllers\\authoritycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{91F18D67-BCC0-4A77-9B08-BE9133A4BDAE}|BioWings.Application\\BioWings.Application.csproj|c:\\users\\cagat\\visualstudio2022\\biowings\\biowings\\biowings.application\\dtos\\authoritydtos\\authoritycreatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{91F18D67-BCC0-4A77-9B08-BE9133A4BDAE}|BioWings.Application\\BioWings.Application.csproj|solutionrelative:biowings.application\\dtos\\authoritydtos\\authoritycreatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E61E0297-D79A-4DE9-B7DB-377C902F7137}|BioWings.Domain\\BioWings.Domain.csproj|c:\\users\\cagat\\visualstudio2022\\biowings\\biowings\\biowings.domain\\entities\\authority.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E61E0297-D79A-4DE9-B7DB-377C902F7137}|BioWings.Domain\\BioWings.Domain.csproj|solutionrelative:biowings.domain\\entities\\authority.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,8 +50,141 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 3,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Authority.cs",
+              "DocumentMoniker": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.Domain\\Entities\\Authority.cs",
+              "RelativeDocumentMoniker": "BioWings.Domain\\Entities\\Authority.cs",
+              "ToolTip": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.Domain\\Entities\\Authority.cs",
+              "RelativeToolTip": "BioWings.Domain\\Entities\\Authority.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-09T16:37:25.88Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "AuthorityCreateDto.cs",
+              "DocumentMoniker": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.Application\\DTOs\\AuthorityDtos\\AuthorityCreateDto.cs",
+              "RelativeDocumentMoniker": "BioWings.Application\\DTOs\\AuthorityDtos\\AuthorityCreateDto.cs",
+              "ToolTip": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.Application\\DTOs\\AuthorityDtos\\AuthorityCreateDto.cs",
+              "RelativeToolTip": "BioWings.Application\\DTOs\\AuthorityDtos\\AuthorityCreateDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-09T16:37:13.918Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "AuthorityController.cs",
+              "DocumentMoniker": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.WebAPI\\Controllers\\AuthorityController.cs",
+              "RelativeDocumentMoniker": "BioWings.WebAPI\\Controllers\\AuthorityController.cs",
+              "ToolTip": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.WebAPI\\Controllers\\AuthorityController.cs",
+              "RelativeToolTip": "BioWings.WebAPI\\Controllers\\AuthorityController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-09T16:36:21.725Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AuthorityGetByIdQueryHandler.cs",
+              "DocumentMoniker": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.Application\\Features\\Handlers\\AuthorityHandlers\\Read\\AuthorityGetByIdQueryHandler.cs",
+              "RelativeDocumentMoniker": "BioWings.Application\\Features\\Handlers\\AuthorityHandlers\\Read\\AuthorityGetByIdQueryHandler.cs",
+              "ToolTip": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.Application\\Features\\Handlers\\AuthorityHandlers\\Read\\AuthorityGetByIdQueryHandler.cs",
+              "RelativeToolTip": "BioWings.Application\\Features\\Handlers\\AuthorityHandlers\\Read\\AuthorityGetByIdQueryHandler.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-09T17:10:06.986Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AuthorityGetPagedQueryHandler.cs",
+              "DocumentMoniker": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.Application\\Features\\Handlers\\AuthorityHandlers\\Read\\AuthorityGetPagedQueryHandler.cs",
+              "RelativeDocumentMoniker": "BioWings.Application\\Features\\Handlers\\AuthorityHandlers\\Read\\AuthorityGetPagedQueryHandler.cs",
+              "ToolTip": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.Application\\Features\\Handlers\\AuthorityHandlers\\Read\\AuthorityGetPagedQueryHandler.cs",
+              "RelativeToolTip": "BioWings.Application\\Features\\Handlers\\AuthorityHandlers\\Read\\AuthorityGetPagedQueryHandler.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-09T17:09:59.621Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AuthorityGetQueryHandler.cs",
+              "DocumentMoniker": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.Application\\Features\\Handlers\\AuthorityHandlers\\Read\\AuthorityGetQueryHandler.cs",
+              "RelativeDocumentMoniker": "BioWings.Application\\Features\\Handlers\\AuthorityHandlers\\Read\\AuthorityGetQueryHandler.cs",
+              "ToolTip": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.Application\\Features\\Handlers\\AuthorityHandlers\\Read\\AuthorityGetQueryHandler.cs",
+              "RelativeToolTip": "BioWings.Application\\Features\\Handlers\\AuthorityHandlers\\Read\\AuthorityGetQueryHandler.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-09T17:09:53.346Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AuthorityUpdateCommandHandler.cs",
+              "DocumentMoniker": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.Application\\Features\\Handlers\\AuthorityHandlers\\Write\\AuthorityUpdateCommandHandler.cs",
+              "RelativeDocumentMoniker": "BioWings.Application\\Features\\Handlers\\AuthorityHandlers\\Write\\AuthorityUpdateCommandHandler.cs",
+              "ToolTip": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.Application\\Features\\Handlers\\AuthorityHandlers\\Write\\AuthorityUpdateCommandHandler.cs",
+              "RelativeToolTip": "BioWings.Application\\Features\\Handlers\\AuthorityHandlers\\Write\\AuthorityUpdateCommandHandler.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-09T17:09:35.769Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "AuthorityRemoveCommandHandler.cs",
+              "DocumentMoniker": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.Application\\Features\\Handlers\\AuthorityHandlers\\Write\\AuthorityRemoveCommandHandler.cs",
+              "RelativeDocumentMoniker": "BioWings.Application\\Features\\Handlers\\AuthorityHandlers\\Write\\AuthorityRemoveCommandHandler.cs",
+              "ToolTip": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.Application\\Features\\Handlers\\AuthorityHandlers\\Write\\AuthorityRemoveCommandHandler.cs",
+              "RelativeToolTip": "BioWings.Application\\Features\\Handlers\\AuthorityHandlers\\Write\\AuthorityRemoveCommandHandler.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-09T17:09:30.061Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "AuthorityCreateRangeCommandHandler.cs",
+              "DocumentMoniker": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.Application\\Features\\Handlers\\AuthorityHandlers\\Write\\AuthorityCreateRangeCommandHandler.cs",
+              "RelativeDocumentMoniker": "BioWings.Application\\Features\\Handlers\\AuthorityHandlers\\Write\\AuthorityCreateRangeCommandHandler.cs",
+              "ToolTip": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.Application\\Features\\Handlers\\AuthorityHandlers\\Write\\AuthorityCreateRangeCommandHandler.cs",
+              "RelativeToolTip": "BioWings.Application\\Features\\Handlers\\AuthorityHandlers\\Write\\AuthorityCreateRangeCommandHandler.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAABFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-09T17:09:26.15Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "AuthorityCreateCommandHandler.cs",
+              "DocumentMoniker": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.Application\\Features\\Handlers\\AuthorityHandlers\\Write\\AuthorityCreateCommandHandler.cs",
+              "RelativeDocumentMoniker": "BioWings.Application\\Features\\Handlers\\AuthorityHandlers\\Write\\AuthorityCreateCommandHandler.cs",
+              "ToolTip": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.Application\\Features\\Handlers\\AuthorityHandlers\\Write\\AuthorityCreateCommandHandler.cs",
+              "RelativeToolTip": "BioWings.Application\\Features\\Handlers\\AuthorityHandlers\\Write\\AuthorityCreateCommandHandler.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-09T17:09:20.197Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
@@ -47,71 +200,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "FamiliesController.cs",
-              "DocumentMoniker": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.WebAPI\\Controllers\\FamiliesController.cs",
-              "RelativeDocumentMoniker": "BioWings.WebAPI\\Controllers\\FamiliesController.cs",
-              "ToolTip": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.WebAPI\\Controllers\\FamiliesController.cs",
-              "RelativeToolTip": "BioWings.WebAPI\\Controllers\\FamiliesController.cs",
-              "ViewState": "AgIAABoAAAAAAAAAAAAUwEEAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-08T22:30:51.77Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "SubspeciesController.cs",
-              "DocumentMoniker": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.WebAPI\\Controllers\\SubspeciesController.cs",
-              "RelativeDocumentMoniker": "BioWings.WebAPI\\Controllers\\SubspeciesController.cs",
-              "ToolTip": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.WebAPI\\Controllers\\SubspeciesController.cs*",
-              "RelativeToolTip": "BioWings.WebAPI\\Controllers\\SubspeciesController.cs*",
-              "ViewState": "AgIAABUAAAAAAAAAAAAAAAAAAAA3AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-08T22:30:38.252Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "SubspeciesCreateRangeCommandHandler.cs",
-              "DocumentMoniker": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.Application\\Features\\Handlers\\SubspeciesHandlers\\Write\\SubspeciesCreateRangeCommandHandler.cs",
-              "RelativeDocumentMoniker": "BioWings.Application\\Features\\Handlers\\SubspeciesHandlers\\Write\\SubspeciesCreateRangeCommandHandler.cs",
-              "ToolTip": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.Application\\Features\\Handlers\\SubspeciesHandlers\\Write\\SubspeciesCreateRangeCommandHandler.cs",
-              "RelativeToolTip": "BioWings.Application\\Features\\Handlers\\SubspeciesHandlers\\Write\\SubspeciesCreateRangeCommandHandler.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-08T22:30:08.721Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "SubspeciesCreateCommandHandler.cs",
-              "DocumentMoniker": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.Application\\Features\\Handlers\\SubspeciesHandlers\\Write\\SubspeciesCreateCommandHandler.cs",
-              "RelativeDocumentMoniker": "BioWings.Application\\Features\\Handlers\\SubspeciesHandlers\\Write\\SubspeciesCreateCommandHandler.cs",
-              "ToolTip": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.Application\\Features\\Handlers\\SubspeciesHandlers\\Write\\SubspeciesCreateCommandHandler.cs",
-              "RelativeToolTip": "BioWings.Application\\Features\\Handlers\\SubspeciesHandlers\\Write\\SubspeciesCreateCommandHandler.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-08T22:29:49.928Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "SpeciesTypeCreateRangeCommandHandler.cs",
-              "DocumentMoniker": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.Application\\Features\\Handlers\\SpeciesTypeHandlers\\Write\\SpeciesTypeCreateRangeCommandHandler.cs",
-              "RelativeDocumentMoniker": "BioWings.Application\\Features\\Handlers\\SpeciesTypeHandlers\\Write\\SpeciesTypeCreateRangeCommandHandler.cs",
-              "ToolTip": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.Application\\Features\\Handlers\\SpeciesTypeHandlers\\Write\\SpeciesTypeCreateRangeCommandHandler.cs",
-              "RelativeToolTip": "BioWings.Application\\Features\\Handlers\\SpeciesTypeHandlers\\Write\\SpeciesTypeCreateRangeCommandHandler.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAABIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-08T22:29:17.187Z",
-              "EditorCaption": ""
             }
           ]
         }

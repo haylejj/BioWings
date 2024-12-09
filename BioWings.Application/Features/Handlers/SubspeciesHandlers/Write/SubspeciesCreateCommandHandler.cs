@@ -1,5 +1,4 @@
 ﻿using BioWings.Application.Features.Commands.SubspeciesCommands;
-using BioWings.Application.Features.Handlers.SubspeciesHandlers.Read;
 using BioWings.Application.Results;
 using BioWings.Domain.Entities;
 using BioWings.Domain.Interfaces;
@@ -11,17 +10,17 @@ public class SubspeciesCreateCommandHandler(ISubspeciesRepository subspeciesRepo
 {
     public async Task<ServiceResult> Handle(SubspeciesCreateCommand request, CancellationToken cancellationToken)
     {
-        if(request == null)
+        if (request == null)
         {
             logger.LogWarning("SubspeciesCreateCommandHandler: request is null");
             return ServiceResult.Error("Request is null");
         }
-        var subspecies= new Subspecies
+        var subspecies = new Subspecies
         {
             Name=request.Name,
             SpeciesId=request.SpeciesId
         };
-        await subspeciesRepository.AddAsync(subspecies,cancellationToken);
+        await subspeciesRepository.AddAsync(subspecies, cancellationToken);
         await unitOfWork.SaveChangesAsync(cancellationToken);
         logger.LogInformation("Subspecies Id : {0} created successfully", subspecies.Id);
         return ServiceResult.SuccessAsCreated("api/Subspecies/"+subspecies.Id);

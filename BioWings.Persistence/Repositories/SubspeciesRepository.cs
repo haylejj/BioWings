@@ -9,6 +9,6 @@ public class SubspeciesRepository(AppDbContext dbContext) : GenericRepository<Su
 {
     public async Task<IEnumerable<Subspecies>> GetAllWithSpeciesAsync(CancellationToken cancellationToken = default) => await _dbSet.Include(s => s.Species).ToListAsync(cancellationToken);
 
-    public async Task<Subspecies?> GetByIdWithSpeciesAsync(int id, CancellationToken cancellationToken = default) => await _dbSet.Include(x=> x.Species).FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
+    public async Task<Subspecies?> GetByIdWithSpeciesAsync(int id, CancellationToken cancellationToken = default) => await _dbSet.Include(x => x.Species).FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
 }
 

@@ -9,7 +9,6 @@ public class ServiceResult<T>
     public List<string>? ErrorList { get; set; }
     [JsonIgnore]
     public HttpStatusCode StatusCode { get; set; }
-    [JsonIgnore]
     public string? UrlAsCreated { get; set; }
 
     public static ServiceResult<T> Success(T data, HttpStatusCode statusCode = HttpStatusCode.OK) => new()
@@ -45,7 +44,6 @@ public class ServiceResult
     public List<string>? ErrorList { get; set; }
     [JsonIgnore]
     public HttpStatusCode StatusCode { get; set; }
-    [JsonIgnore]
     public string? UrlAsCreated { get; set; }
 
     public static ServiceResult Success(HttpStatusCode statusCode = HttpStatusCode.OK) => new()

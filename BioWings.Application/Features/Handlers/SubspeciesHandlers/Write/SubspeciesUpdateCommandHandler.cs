@@ -10,12 +10,12 @@ public class SubspeciesUpdateCommandHandler(ISubspeciesRepository subspeciesRepo
 {
     public async Task<ServiceResult> Handle(SubspeciesUpdateCommand request, CancellationToken cancellationToken)
     {
-        if(request == null)
+        if (request == null)
         {
             logger.LogWarning("SubspeciesUpdateCommandHandler: request is null");
             return ServiceResult.Error("Request is null");
         }
-        var subSpeciesType = await subspeciesRepository.GetByIdAsync(request.Id,cancellationToken);
+        var subSpeciesType = await subspeciesRepository.GetByIdAsync(request.Id, cancellationToken);
         if (subSpeciesType == null)
         {
             logger.LogWarning("SubspeciesUpdateCommandHandler: SpeciesType not found");

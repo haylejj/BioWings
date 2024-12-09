@@ -15,7 +15,7 @@ public class SubspeciesGetByIdQueryHandler(ISubspeciesRepository subspeciesRepos
         if (subspecies == null)
         {
             logger.LogWarning("Subspecies not found");
-            return ServiceResult<SubspeciesGetByIdQueryResult>.Error("Subspecies not found",System.Net.HttpStatusCode.NotFound);
+            return ServiceResult<SubspeciesGetByIdQueryResult>.Error("Subspecies not found", System.Net.HttpStatusCode.NotFound);
         }
         var result = new SubspeciesGetByIdQueryResult
         {

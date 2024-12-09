@@ -1,5 +1,4 @@
 ﻿using BioWings.Application.Features.Commands.SubspeciesCommands;
-using BioWings.Application.Features.Handlers.SpeciesTypeHandlers.Write;
 using BioWings.Application.Results;
 using BioWings.Domain.Interfaces;
 using MediatR;
