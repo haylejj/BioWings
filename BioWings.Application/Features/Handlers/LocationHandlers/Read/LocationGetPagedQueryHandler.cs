@@ -5,7 +5,6 @@ using BioWings.Domain.Interfaces;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using System.Net;
 
 namespace BioWings.Application.Features.Handlers.LocationHandlers.Read;
 public class LocationGetPagedQueryHandler(ILocationRepository locationRepository, ILogger<LocationGetPagedQueryHandler> logger) : IRequestHandler<LocationGetPagedQuery, ServiceResult<PaginatedList<LocationGetPagedQueryResult>>>
@@ -15,17 +14,9 @@ public class LocationGetPagedQueryHandler(ILocationRepository locationRepository
         request.PageNumber = request.PageNumber <= 0 ? 1 : request.PageNumber;
         request.PageSize = request.PageSize <= 0 ? 25 : Math.Min(request.PageSize, 50);
         var totalCount = await locationRepository.GetTotalCountAsync(cancellationToken);
-        if (totalCount == 0)
-        {
-            logger.LogInformation("No locations found");
-            return ServiceResult<PaginatedList<LocationGetPagedQueryResult>>.Error("No locations found", HttpStatusCode.NotFound);
-        }
-        var locations = await locationRepository.GetPagedAsQueryable(request.PageNumber, request.PageSize).Include(x=> x.Province).ToListAsync(cancellationToken);
-        if (locations == null || !locations.Any())
-        {
-            logger.LogWarning("No locations found with paged");
-            return ServiceResult<PaginatedList<LocationGetPagedQueryResult>>.Error("No locations found with paged", HttpStatusCode.NotFound);
-        }
+
+        var locations = await locationRepository.GetPagedAsQueryable(request.PageNumber, request.PageSize).Include(x => x.Province).ToListAsync(cancellationToken);
+
         var result = locations.Select(l => new LocationGetPagedQueryResult
         {
             Id = l.Id,

@@ -10,7 +10,7 @@ public class SpeciesTypeGetQueryHandler(ISpeciesTypeRepository speciesTypeReposi
 {
     public async Task<ServiceResult<IEnumerable<SpeciesTypeGetQueryResult>>> Handle(SpeciesTypeGetQuery request, CancellationToken cancellationToken)
     {
-        var speciesTypes = await speciesTypeRepository.GetAllAsync();
+        var speciesTypes = await speciesTypeRepository.GetAllAsync(cancellationToken);
         var result = speciesTypes.Select(x => new SpeciesTypeGetQueryResult
         {
             Id = x.Id,

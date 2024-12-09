@@ -3,24 +3,19 @@ using BioWings.Application.Results;
 using BioWings.Domain.Interfaces;
 using MediatR;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BioWings.Application.Features.Handlers.LocationHandlers.Write;
 public class LocationUpdateCommandHandler(ILocationRepository locationRepository, ILogger<LocationUpdateCommandHandler> logger, IUnitOfWork unitOfWork) : IRequestHandler<LocationUpdateCommand, ServiceResult>
 {
     public async Task<ServiceResult> Handle(LocationUpdateCommand request, CancellationToken cancellationToken)
     {
-        if(request == null)
+        if (request == null)
         {
             logger.LogWarning("LocationUpdateCommand is null");
             return ServiceResult.Error("LocationUpdateCommand is null", HttpStatusCode.BadRequest);
         }
-        var location=await locationRepository.GetByIdAsync(request.Id, cancellationToken);
+        var location = await locationRepository.GetByIdAsync(request.Id, cancellationToken);
         if (location == null)
         {
             logger.LogWarning("Location not found");
@@ -39,7 +34,7 @@ public class LocationUpdateCommandHandler(ILocationRepository locationRepository
         location.Description = request.Description;
         locationRepository.Update(location);
         await unitOfWork.SaveChangesAsync(cancellationToken);
-        logger.LogInformation("Location Id : {0} updated successfully.",location.Id);
+        logger.LogInformation("Location Id : {0} updated successfully.", location.Id);
         return ServiceResult.Success(HttpStatusCode.NoContent);
     }
 }

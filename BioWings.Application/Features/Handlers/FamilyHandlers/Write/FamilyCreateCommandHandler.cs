@@ -19,7 +19,7 @@ public class FamilyCreateCommandHandler(IFamilyRepository familyRepository, IUni
         {
             Name = request.Name
         };
-        await familyRepository.AddAsync(family);
+        await familyRepository.AddAsync(family, cancellationToken);
         await unitOfWork.SaveChangesAsync(cancellationToken);
         logger.LogInformation("Family created successfully with ID: {FamilyId}", family.Id);
         return ServiceResult.SuccessAsCreated("/api/Families/"+family.Id);

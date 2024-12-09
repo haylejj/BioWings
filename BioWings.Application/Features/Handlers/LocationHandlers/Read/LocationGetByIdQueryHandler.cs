@@ -11,7 +11,7 @@ public class LocationGetByIdQueryHandler(ILocationRepository locationRepository,
 {
     public async Task<ServiceResult<LocationGetByIdQueryResult>> Handle(LocationGetByIdQuery request, CancellationToken cancellationToken)
     {
-        var location = await locationRepository.GetByIdWithProvinceAsync(request.Id,cancellationToken);
+        var location = await locationRepository.GetByIdWithProvinceAsync(request.Id, cancellationToken);
         if (location == null)
         {
             logger.LogWarning("Location not found");
@@ -33,7 +33,7 @@ public class LocationGetByIdQueryHandler(ILocationRepository locationRepository,
             UtmReference = location.UtmReference,
             Description = location.Description
         };
-        logger.LogInformation("Location found Id:{0} ",result.Id);
+        logger.LogInformation("Location found Id:{0} ", result.Id);
         return ServiceResult<LocationGetByIdQueryResult>.Success(result);
     }
 }

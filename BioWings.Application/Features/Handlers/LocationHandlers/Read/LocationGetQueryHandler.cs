@@ -5,7 +5,6 @@ using BioWings.Domain.Interfaces;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using System.Net;
 
 namespace BioWings.Application.Features.Handlers.LocationHandlers.Read;
 public class LocationGetQueryHandler(ILocationRepository locationRepository, ILogger<LocationGetQueryHandler> logger) : IRequestHandler<LocationGetQuery, ServiceResult<IEnumerable<LocationGetQueryResult>>>

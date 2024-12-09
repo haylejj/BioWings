@@ -12,7 +12,7 @@ public class LocationCreateRangeCommandHandler(ILocationRepository locationRepos
 {
     public async Task<ServiceResult> Handle(LocationCreateRangeCommand request, CancellationToken cancellationToken)
     {
-        if(request == null || !request.LocationCreateCommands.Any())
+        if (request == null || !request.LocationCreateCommands.Any())
         {
             logger.LogWarning("LocationCreateRangeCommand is null");
             return ServiceResult.Error("LocationCreateRangeCommand is null", HttpStatusCode.BadRequest);

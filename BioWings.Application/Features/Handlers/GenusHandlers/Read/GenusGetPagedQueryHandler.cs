@@ -4,7 +4,6 @@ using BioWings.Application.Results;
 using BioWings.Domain.Interfaces;
 using MediatR;
 using Microsoft.Extensions.Logging;
-using System.Net;
 
 namespace BioWings.Application.Features.Handlers.GenusHandlers.Read;
 public class GenusGetPagedQueryHandler(IGenusRepository genusRepository, ILogger<GenusGetPagedQueryHandler> logger) : IRequestHandler<GenusGetPagedQuery, ServiceResult<PaginatedList<GenusGetPagedQueryResult>>>
@@ -14,18 +13,10 @@ public class GenusGetPagedQueryHandler(IGenusRepository genusRepository, ILogger
         // Validasyon
         request.PageNumber = request.PageNumber <= 0 ? 1 : request.PageNumber;
         request.PageSize = request.PageSize <= 0 ? 25 : Math.Min(request.PageSize, 50);
-        var totalCount = await genusRepository.GetTotalCountAsync();
-        if (totalCount==0)
-        {
-            logger.LogWarning("No genus found with paged");
-            return ServiceResult<PaginatedList<GenusGetPagedQueryResult>>.Error("No genera found", HttpStatusCode.NotFound);
-        }
+        var totalCount = await genusRepository.GetTotalCountAsync(cancellationToken);
+
         var genera = await genusRepository.GetPagedAsync(request.PageNumber, request.PageSize, cancellationToken);
-        if (genera == null || !genera.Any())
-        {
-            logger.LogWarning("No genus found with paged");
-            return ServiceResult<PaginatedList<GenusGetPagedQueryResult>>.Error("No genus found with paged", HttpStatusCode.NotFound);
-        }
+
         var result = genera.Select(g => new GenusGetPagedQueryResult
         {
             Id = g.Id,

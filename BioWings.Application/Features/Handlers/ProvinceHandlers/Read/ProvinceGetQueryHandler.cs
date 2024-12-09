@@ -11,11 +11,6 @@ public class ProvinceGetQueryHandler(IProvinceRepository provinceRepository, ILo
     public async Task<ServiceResult<IEnumerable<ProvinceGetQueryResult>>> Handle(ProvinceGetQuery request, CancellationToken cancellationToken)
     {
         var provinces = await provinceRepository.GetAllAsync(cancellationToken);
-        if (provinces==null || !provinces.Any())
-        {
-            logger.LogError("Provinces not found");
-            return ServiceResult<IEnumerable<ProvinceGetQueryResult>>.Error("Provinces not found", System.Net.HttpStatusCode.NotFound);
-        }
         logger.LogInformation("Provinces found");
         return ServiceResult<IEnumerable<ProvinceGetQueryResult>>.Success(provinces.Select(p => new ProvinceGetQueryResult
         {

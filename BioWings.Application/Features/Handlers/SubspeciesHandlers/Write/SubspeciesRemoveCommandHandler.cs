@@ -10,7 +10,7 @@ public class SubspeciesRemoveCommandHandler(ISubspeciesRepository speciesTypeRep
 {
     public async Task<ServiceResult> Handle(SubspeciesRemoveCommand request, CancellationToken cancellationToken)
     {
-        var speciesType = await speciesTypeRepository.GetByIdAsync(request.Id);
+        var speciesType = await speciesTypeRepository.GetByIdAsync(request.Id, cancellationToken);
         if (speciesType == null)
         {
             logger.LogWarning("SubspeciesRemoveCommandHandler: SpeciesType not found");

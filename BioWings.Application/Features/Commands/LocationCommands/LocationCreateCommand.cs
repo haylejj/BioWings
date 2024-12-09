@@ -2,7 +2,7 @@
 using MediatR;
 
 namespace BioWings.Application.Features.Commands.LocationCommands;
-public class LocationCreateCommand:IRequest<ServiceResult>
+public class LocationCreateCommand : IRequest<ServiceResult>
 {
     public int ProvinceId { get; set; }
     public string Name { get; set; }

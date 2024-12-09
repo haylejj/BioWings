@@ -11,7 +11,7 @@ public class LocationRemoveCommandHandler(ILocationRepository locationRepository
 {
     public async Task<ServiceResult> Handle(LocationRemoveCommand request, CancellationToken cancellationToken)
     {
-        var location=await locationRepository.GetByIdAsync(request.Id, cancellationToken);
+        var location = await locationRepository.GetByIdAsync(request.Id, cancellationToken);
         if (location == null)
         {
             logger.LogWarning("Location not found");

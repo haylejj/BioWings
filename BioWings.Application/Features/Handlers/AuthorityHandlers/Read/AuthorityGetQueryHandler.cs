@@ -11,11 +11,6 @@ public class AuthorityGetQueryHandler(IAuthorityRepository repository, ILogger<A
     public async Task<ServiceResult<IEnumerable<AuthorityGetQueryResult>>> Handle(AuthorityGetQuery request, CancellationToken cancellationToken)
     {
         var authorities = await repository.GetAllAsync(cancellationToken);
-        if (authorities==null || !authorities.Any())
-        {
-            logger.LogWarning("No authorities found");
-            return ServiceResult<IEnumerable<AuthorityGetQueryResult>>.Error("No authorities found", System.Net.HttpStatusCode.NotFound);
-        }
         var result = authorities.Select(a => new AuthorityGetQueryResult
         {
             Id = a.Id,

@@ -20,7 +20,7 @@ internal class GenusCreateRangeCommandHandler(IGenusRepository genusRepository, 
             Name = g.Name,
             FamilyId = g.FamilyId
         });
-        await genusRepository.AddRangeAsync(genera);
+        await genusRepository.AddRangeAsync(genera, cancellationToken);
         await unitOfWork.SaveChangesAsync(cancellationToken);
         logger.LogInformation("Genera created successfully");
         return ServiceResult.SuccessAsCreated("/api/Genera/Range");

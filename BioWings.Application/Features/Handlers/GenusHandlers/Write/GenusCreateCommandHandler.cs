@@ -20,7 +20,7 @@ public class GenusCreateCommandHandler(IGenusRepository genusRepository, ILogger
             Name = request.Name,
             FamilyId = request.FamilyId
         };
-        await genusRepository.AddAsync(genus);
+        await genusRepository.AddAsync(genus, cancellationToken);
         await unitOfWork.SaveChangesAsync(cancellationToken);
         logger.LogInformation("Genus created successfully with ID: {GenusId}", genus.Id);
         return ServiceResult.SuccessAsCreated("/api/Genera/"+genus.Id);

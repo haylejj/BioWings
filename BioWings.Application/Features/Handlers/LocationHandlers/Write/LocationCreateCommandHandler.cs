@@ -1,5 +1,4 @@
 ﻿using BioWings.Application.Features.Commands.LocationCommands;
-using BioWings.Application.Features.Handlers.ProvinceHandlers.Read;
 using BioWings.Application.Results;
 using BioWings.Domain.Entities;
 using BioWings.Domain.Interfaces;
@@ -12,7 +11,7 @@ public class LocationCreateCommandHandler(ILocationRepository locationRepository
 {
     public async Task<ServiceResult> Handle(LocationCreateCommand request, CancellationToken cancellationToken)
     {
-        if(request == null)
+        if (request == null)
         {
             logger.LogWarning("LocationCreateCommand is null");
             return ServiceResult.Error("LocationCreateCommand is null", HttpStatusCode.BadRequest);
@@ -31,9 +30,9 @@ public class LocationCreateCommandHandler(ILocationRepository locationRepository
             UtmReference = request.UtmReference,
             Description = request.Description
         };
-        await locationRepository.AddAsync(location,cancellationToken);
+        await locationRepository.AddAsync(location, cancellationToken);
         await unitOfWork.SaveChangesAsync(cancellationToken);
-        logger.LogInformation("Location created Id:{0}",location.Id);
+        logger.LogInformation("Location created Id:{0}", location.Id);
         return ServiceResult.SuccessAsCreated("api/Locations/"+location.Id);
     }
 }

@@ -5,7 +5,6 @@ using BioWings.Domain.Interfaces;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using System.Net;
 
 namespace BioWings.Application.Features.Handlers.SubspeciesHandlers.Read;
 
@@ -15,18 +14,10 @@ public class SubspeciesGetPagedQueryHandler(ISubspeciesRepository subspeciesRepo
     {
         request.PageNumber = request.PageNumber <= 0 ? 1 : request.PageNumber;
         request.PageSize = request.PageSize <= 0 ? 25 : Math.Min(request.PageSize, 50);
-        var totalCount = await subspeciesRepository.GetTotalCountAsync();
-        if (totalCount == 0)
-        {
-            logger.LogWarning("No subspecies found with paged");
-            return ServiceResult<PaginatedList<SubspeciesGetPagedQueryResult>>.Error("No subspecies found", HttpStatusCode.NotFound);
-        }
+        var totalCount = await subspeciesRepository.GetTotalCountAsync(cancellationToken);
+
         var subspecies = await subspeciesRepository.GetPagedAsQueryable(request.PageNumber, request.PageSize).Include(x => x.Species).ToListAsync();
-        if (subspecies == null || !subspecies.Any())
-        {
-            logger.LogWarning("No subspecies found with paged");
-            return ServiceResult<PaginatedList<SubspeciesGetPagedQueryResult>>.Error("No subspecies found with paged", HttpStatusCode.NotFound);
-        }
+
         var result = subspecies.Select(x => new SubspeciesGetPagedQueryResult
         {
             Id = x.Id,

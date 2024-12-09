@@ -13,17 +13,9 @@ public class AuthorityGetPagedQueryHandler(IAuthorityRepository repository, ILog
         request.PageNumber = request.PageNumber <= 0 ? 1 : request.PageNumber;
         request.PageSize = request.PageSize <= 0 ? 25 : Math.Min(request.PageSize, 50);
         var totalCount = await repository.GetTotalCountAsync(cancellationToken);
-        if (totalCount == 0)
-        {
-            logger.LogWarning("No authorities found with paged");
-            return ServiceResult<PaginatedList<AuthorityGetPagedQueryResult>>.Error("No authorities found", System.Net.HttpStatusCode.NotFound);
-        }
+
         var authorities = await repository.GetPagedAsync(request.PageNumber, request.PageSize, cancellationToken);
-        if (authorities == null || !authorities.Any())
-        {
-            logger.LogWarning("No authorities found with paged");
-            return ServiceResult<PaginatedList<AuthorityGetPagedQueryResult>>.Error("No authorities found with paged", System.Net.HttpStatusCode.NotFound);
-        }
+
         var result = authorities.Select(a => new AuthorityGetPagedQueryResult
         {
             Id = a.Id,
