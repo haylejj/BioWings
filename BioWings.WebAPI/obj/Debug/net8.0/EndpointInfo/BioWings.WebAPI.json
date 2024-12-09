@@ -5,10 +5,10 @@
     "version": "1.0"
   },
   "paths": {
-    "/api/Authority": {
+    "/api/Authorities": {
       "get": {
         "tags": [
-          "Authority"
+          "Authorities"
         ],
         "responses": {
           "200": {
@@ -18,7 +18,7 @@
       },
       "post": {
         "tags": [
-          "Authority"
+          "Authorities"
         ],
         "requestBody": {
           "content": {
@@ -47,7 +47,7 @@
       },
       "put": {
         "tags": [
-          "Authority"
+          "Authorities"
         ],
         "requestBody": {
           "content": {
@@ -75,10 +75,10 @@
         }
       }
     },
-    "/api/Authority/Paged": {
+    "/api/Authorities/Paged": {
       "get": {
         "tags": [
-          "Authority"
+          "Authorities"
         ],
         "parameters": [
           {
@@ -107,10 +107,10 @@
         }
       }
     },
-    "/api/Authority/{id}": {
+    "/api/Authorities/{id}": {
       "get": {
         "tags": [
-          "Authority"
+          "Authorities"
         ],
         "parameters": [
           {
@@ -131,7 +131,7 @@
       },
       "delete": {
         "tags": [
-          "Authority"
+          "Authorities"
         ],
         "parameters": [
           {
@@ -151,10 +151,10 @@
         }
       }
     },
-    "/api/Authority/Range": {
+    "/api/Authorities/Range": {
       "post": {
         "tags": [
-          "Authority"
+          "Authorities"
         ],
         "requestBody": {
           "content": {
@@ -525,6 +525,183 @@
             "application/*+json": {
               "schema": {
                 "$ref": "#/components/schemas/GenusCreateRangeCommand"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Locations": {
+      "get": {
+        "tags": [
+          "Locations"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Locations"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LocationCreateCommand"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LocationCreateCommand"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/LocationCreateCommand"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Locations"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LocationUpdateCommand"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LocationUpdateCommand"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/LocationUpdateCommand"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Locations/Paged": {
+      "get": {
+        "tags": [
+          "Locations"
+        ],
+        "parameters": [
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 1
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 25
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Locations/{id}": {
+      "get": {
+        "tags": [
+          "Locations"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Locations"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Locations/Range": {
+      "post": {
+        "tags": [
+          "Locations"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LocationCreateRangeCommand"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LocationCreateRangeCommand"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/LocationCreateRangeCommand"
               }
             }
           }
@@ -1231,6 +1408,123 @@
           "familyId": {
             "type": "integer",
             "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "LocationCreateCommand": {
+        "type": "object",
+        "properties": {
+          "provinceId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "squareRef": {
+            "type": "string",
+            "nullable": true
+          },
+          "latitude": {
+            "type": "number",
+            "format": "double"
+          },
+          "longitude": {
+            "type": "number",
+            "format": "double"
+          },
+          "altitude1": {
+            "type": "number",
+            "format": "double"
+          },
+          "altitude2": {
+            "type": "number",
+            "format": "double"
+          },
+          "xCoord": {
+            "type": "number",
+            "format": "double"
+          },
+          "yCoord": {
+            "type": "number",
+            "format": "double"
+          },
+          "utmReference": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "LocationCreateRangeCommand": {
+        "type": "object",
+        "properties": {
+          "locationCreateCommands": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LocationCreateCommand"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "LocationUpdateCommand": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "provinceId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "squareRef": {
+            "type": "string",
+            "nullable": true
+          },
+          "latitude": {
+            "type": "number",
+            "format": "double"
+          },
+          "longitude": {
+            "type": "number",
+            "format": "double"
+          },
+          "altitude1": {
+            "type": "number",
+            "format": "double"
+          },
+          "altitude2": {
+            "type": "number",
+            "format": "double"
+          },
+          "xCoord": {
+            "type": "number",
+            "format": "double"
+          },
+          "yCoord": {
+            "type": "number",
+            "format": "double"
+          },
+          "utmReference": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false

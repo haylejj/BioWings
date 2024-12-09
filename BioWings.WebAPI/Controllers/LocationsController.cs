@@ -1,66 +1,66 @@
-﻿using BioWings.Application.Features.Commands.AuthorityCommands;
-using BioWings.Application.Features.Queries.AuthorityQueries;
+﻿using BioWings.Application.Features.Commands.LocationCommands;
+using BioWings.Application.Features.Queries.LocationQueries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BioWings.WebAPI.Controllers;
-public class AuthorityController(IMediator mediator) : BaseController
+public class LocationsController(IMediator mediator) : BaseController
 {
-    // GET: api/Authorities
+    // GET: api/Locations
     [HttpGet]
     public async Task<IActionResult> GetAll()
     {
-        var query = new AuthorityGetQuery();
+        var query = new LocationGetQuery();
         var result = await mediator.Send(query);
         return CreateResult(result);
     }
-    // GET: api/Authorities/Paged
+    // GET: api/Locations/Paged
     [HttpGet("Paged")]
     public async Task<IActionResult> GetPaged([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 25)
     {
-        var query = new AuthorityGetPagedQuery { PageNumber = pageNumber, PageSize = pageSize };
+        var query = new LocationGetPagedQuery { PageNumber = pageNumber, PageSize = pageSize };
         var result = await mediator.Send(query);
         return CreateResult(result);
     }
 
-    // GET: api/Authorities/{id}
+    // GET: api/Locations/{id}
     [HttpGet("{id}")]
     public async Task<IActionResult> GetById(int id)
     {
-        var query = new AuthorityGetByIdQuery(id);
+        var query = new LocationGetByIdQuery(id);
         var result = await mediator.Send(query);
         return CreateResult(result);
     }
 
-    // POST: api/Authorities
+    // POST: api/Locations
     [HttpPost]
-    public async Task<IActionResult> Create(AuthorityCreateCommand command)
+    public async Task<IActionResult> Create(LocationCreateCommand command)
     {
         var result = await mediator.Send(command);
         return CreateResult(result);
     }
-    // POST: api/Authorities/Range
+    // POST: api/Locations/Range
     [HttpPost("Range")]
-    public async Task<IActionResult> CreateRange(AuthorityCreateRangeCommand command)
+    public async Task<IActionResult> CreateRange(LocationCreateRangeCommand command)
     {
         var result = await mediator.Send(command);
         return CreateResult(result);
     }
 
 
-    // PUT: api/Authorities
+    // PUT: api/Locations
     [HttpPut]
-    public async Task<IActionResult> Update(AuthorityUpdateCommand command)
+    public async Task<IActionResult> Update(LocationUpdateCommand command)
     {
         var result = await mediator.Send(command);
         return CreateResult(result);
     }
 
-    // DELETE: api/Authorities/{id}
+    // DELETE: api/Locations/{id}
     [HttpDelete("{id}")]
     public async Task<IActionResult> Remove(int id)
     {
-        var command = new AuthorityRemoveCommand(id);
+        var command = new LocationRemoveCommand(id);
         var result = await mediator.Send(command);
         return CreateResult(result);
     }

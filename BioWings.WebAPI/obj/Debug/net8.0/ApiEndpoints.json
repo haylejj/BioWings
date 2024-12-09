@@ -1,8 +1,8 @@
 [
   {
-    "ContainingType": "BioWings.WebAPI.Controllers.AuthorityController",
+    "ContainingType": "BioWings.WebAPI.Controllers.AuthoritiesController",
     "Method": "GetAll",
-    "RelativePath": "api/Authority",
+    "RelativePath": "api/Authorities",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -10,9 +10,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "BioWings.WebAPI.Controllers.AuthorityController",
+    "ContainingType": "BioWings.WebAPI.Controllers.AuthoritiesController",
     "Method": "Create",
-    "RelativePath": "api/Authority",
+    "RelativePath": "api/Authorities",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -26,9 +26,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "BioWings.WebAPI.Controllers.AuthorityController",
+    "ContainingType": "BioWings.WebAPI.Controllers.AuthoritiesController",
     "Method": "Update",
-    "RelativePath": "api/Authority",
+    "RelativePath": "api/Authorities",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -42,9 +42,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "BioWings.WebAPI.Controllers.AuthorityController",
+    "ContainingType": "BioWings.WebAPI.Controllers.AuthoritiesController",
     "Method": "GetById",
-    "RelativePath": "api/Authority/{id}",
+    "RelativePath": "api/Authorities/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -58,9 +58,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "BioWings.WebAPI.Controllers.AuthorityController",
+    "ContainingType": "BioWings.WebAPI.Controllers.AuthoritiesController",
     "Method": "Remove",
-    "RelativePath": "api/Authority/{id}",
+    "RelativePath": "api/Authorities/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -74,9 +74,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "BioWings.WebAPI.Controllers.AuthorityController",
+    "ContainingType": "BioWings.WebAPI.Controllers.AuthoritiesController",
     "Method": "GetPaged",
-    "RelativePath": "api/Authority/Paged",
+    "RelativePath": "api/Authorities/Paged",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -95,9 +95,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "BioWings.WebAPI.Controllers.AuthorityController",
+    "ContainingType": "BioWings.WebAPI.Controllers.AuthoritiesController",
     "Method": "CreateRange",
-    "RelativePath": "api/Authority/Range",
+    "RelativePath": "api/Authorities/Range",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -327,6 +327,117 @@
       {
         "Name": "command",
         "Type": "BioWings.Application.Features.Commands.GenusCommands.GenusCreateRangeCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BioWings.WebAPI.Controllers.LocationsController",
+    "Method": "GetAll",
+    "RelativePath": "api/Locations",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BioWings.WebAPI.Controllers.LocationsController",
+    "Method": "Create",
+    "RelativePath": "api/Locations",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "command",
+        "Type": "BioWings.Application.Features.Commands.LocationCommands.LocationCreateCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BioWings.WebAPI.Controllers.LocationsController",
+    "Method": "Update",
+    "RelativePath": "api/Locations",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "command",
+        "Type": "BioWings.Application.Features.Commands.LocationCommands.LocationUpdateCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BioWings.WebAPI.Controllers.LocationsController",
+    "Method": "GetById",
+    "RelativePath": "api/Locations/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BioWings.WebAPI.Controllers.LocationsController",
+    "Method": "Remove",
+    "RelativePath": "api/Locations/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BioWings.WebAPI.Controllers.LocationsController",
+    "Method": "GetPaged",
+    "RelativePath": "api/Locations/Paged",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pageNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BioWings.WebAPI.Controllers.LocationsController",
+    "Method": "CreateRange",
+    "RelativePath": "api/Locations/Range",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "command",
+        "Type": "BioWings.Application.Features.Commands.LocationCommands.LocationCreateRangeCommand",
         "IsRequired": true
       }
     ],

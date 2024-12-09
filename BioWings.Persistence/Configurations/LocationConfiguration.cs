@@ -11,22 +11,28 @@ public class LocationConfiguration : IEntityTypeConfiguration<Location>
         builder.HasKey(x => x.Id);
 
         builder.Property(x => x.Name)
-            .IsRequired()
-            .HasMaxLength(50);
-
-        builder.Property(x => x.SquareRef)
             .HasMaxLength(50);
 
         builder.Property(x => x.Latitude)
-            .HasMaxLength(50);
+            .HasPrecision(9, 6);
 
         builder.Property(x => x.Longitude)
-            .HasMaxLength(50);
+            .HasPrecision(10, 6)
+            .IsRequired();
+
+        builder.Property(x => x.XCoord)
+            .HasPrecision(18, 6);
+
+        builder.Property(x => x.YCoord)
+            .HasPrecision(18, 6);
 
         builder.Property(x => x.Altitude1)
-            .HasMaxLength(50);
+            .HasPrecision(8, 2);
 
         builder.Property(x => x.Altitude2)
+            .HasPrecision(8, 2);
+
+        builder.Property(x => x.SquareRef)
             .HasMaxLength(50);
 
         builder.Property(x => x.UtmReference)

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BioWings.Infrastructure")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e5decf21055d9a2643315286d731667b880375eb")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0d2538b776e03ca0b4c01cdddb13442ba3a4825c")]
 [assembly: System.Reflection.AssemblyProductAttribute("BioWings.Infrastructure")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BioWings.Infrastructure")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

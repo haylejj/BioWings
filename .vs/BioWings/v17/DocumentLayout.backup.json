@@ -3,8 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{7079A309-DF1B-4492-B636-DC681C55BEE0}|BioWings.WebAPI\\BioWings.WebAPI.csproj|c:\\users\\cagat\\visualstudio2022\\biowings\\biowings\\biowings.webapi\\controllers\\provincescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7079A309-DF1B-4492-B636-DC681C55BEE0}|BioWings.WebAPI\\BioWings.WebAPI.csproj|solutionrelative:biowings.webapi\\controllers\\provincescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.Persistence\\Migrations\\20241209184218_mig_add_updateLocation2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BioWings.Persistence\\Migrations\\20241209184218_mig_add_updateLocation2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B58743F9-585E-41A6-BD49-9E7924F29F94}|BioWings.Persistence\\BioWings.Persistence.csproj|c:\\users\\cagat\\visualstudio2022\\biowings\\biowings\\biowings.persistence\\configurations\\locationconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B58743F9-585E-41A6-BD49-9E7924F29F94}|BioWings.Persistence\\BioWings.Persistence.csproj|solutionrelative:biowings.persistence\\configurations\\locationconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.Persistence\\Migrations\\20241209183943_mig_add_updateLocation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BioWings.Persistence\\Migrations\\20241209183943_mig_add_updateLocation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E61E0297-D79A-4DE9-B7DB-377C902F7137}|BioWings.Domain\\BioWings.Domain.csproj|c:\\users\\cagat\\visualstudio2022\\biowings\\biowings\\biowings.domain\\entities\\location.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E61E0297-D79A-4DE9-B7DB-377C902F7137}|BioWings.Domain\\BioWings.Domain.csproj|solutionrelative:biowings.domain\\entities\\location.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{91F18D67-BCC0-4A77-9B08-BE9133A4BDAE}|BioWings.Application\\BioWings.Application.csproj|c:\\users\\cagat\\visualstudio2022\\biowings\\biowings\\biowings.application\\dtos\\locationdtos\\locationcreatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{91F18D67-BCC0-4A77-9B08-BE9133A4BDAE}|BioWings.Application\\BioWings.Application.csproj|solutionrelative:biowings.application\\dtos\\locationdtos\\locationcreatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,19 +30,73 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ProvincesController.cs",
-              "DocumentMoniker": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.WebAPI\\Controllers\\ProvincesController.cs",
-              "RelativeDocumentMoniker": "BioWings.WebAPI\\Controllers\\ProvincesController.cs",
-              "ToolTip": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.WebAPI\\Controllers\\ProvincesController.cs",
-              "RelativeToolTip": "BioWings.WebAPI\\Controllers\\ProvincesController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAD8AAAARAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "Location.cs",
+              "DocumentMoniker": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.Domain\\Entities\\Location.cs",
+              "RelativeDocumentMoniker": "BioWings.Domain\\Entities\\Location.cs",
+              "ToolTip": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.Domain\\Entities\\Location.cs",
+              "RelativeToolTip": "BioWings.Domain\\Entities\\Location.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-09T18:18:13.499Z",
+              "WhenOpened": "2024-12-09T18:37:01.79Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "LocationCreateDto.cs",
+              "DocumentMoniker": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.Application\\DTOs\\LocationDtos\\LocationCreateDto.cs",
+              "RelativeDocumentMoniker": "BioWings.Application\\DTOs\\LocationDtos\\LocationCreateDto.cs",
+              "ToolTip": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.Application\\DTOs\\LocationDtos\\LocationCreateDto.cs",
+              "RelativeToolTip": "BioWings.Application\\DTOs\\LocationDtos\\LocationCreateDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-09T18:36:34.14Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "20241209184218_mig_add_updateLocation2.cs",
+              "DocumentMoniker": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.Persistence\\Migrations\\20241209184218_mig_add_updateLocation2.cs",
+              "RelativeDocumentMoniker": "BioWings.Persistence\\Migrations\\20241209184218_mig_add_updateLocation2.cs",
+              "ToolTip": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.Persistence\\Migrations\\20241209184218_mig_add_updateLocation2.cs",
+              "RelativeToolTip": "BioWings.Persistence\\Migrations\\20241209184218_mig_add_updateLocation2.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-09T18:42:18.682Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "LocationConfiguration.cs",
+              "DocumentMoniker": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.Persistence\\Configurations\\LocationConfiguration.cs",
+              "RelativeDocumentMoniker": "BioWings.Persistence\\Configurations\\LocationConfiguration.cs",
+              "ToolTip": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.Persistence\\Configurations\\LocationConfiguration.cs",
+              "RelativeToolTip": "BioWings.Persistence\\Configurations\\LocationConfiguration.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAYwBIAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-09T18:40:08.76Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "20241209183943_mig_add_updateLocation.cs",
+              "DocumentMoniker": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.Persistence\\Migrations\\20241209183943_mig_add_updateLocation.cs",
+              "RelativeDocumentMoniker": "BioWings.Persistence\\Migrations\\20241209183943_mig_add_updateLocation.cs",
+              "ToolTip": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.Persistence\\Migrations\\20241209183943_mig_add_updateLocation.cs",
+              "RelativeToolTip": "BioWings.Persistence\\Migrations\\20241209183943_mig_add_updateLocation.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-09T18:39:43.259Z",
               "EditorCaption": ""
             },
             {
