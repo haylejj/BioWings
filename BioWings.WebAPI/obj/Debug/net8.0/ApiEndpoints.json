@@ -333,6 +333,117 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "BioWings.WebAPI.Controllers.ProvincesController",
+    "Method": "GetAll",
+    "RelativePath": "api/Provinces",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BioWings.WebAPI.Controllers.ProvincesController",
+    "Method": "Create",
+    "RelativePath": "api/Provinces",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "command",
+        "Type": "BioWings.Application.Features.Commands.ProvinceCommands.ProvinceCreateCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BioWings.WebAPI.Controllers.ProvincesController",
+    "Method": "Update",
+    "RelativePath": "api/Provinces",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "command",
+        "Type": "BioWings.Application.Features.Commands.ProvinceCommands.ProvinceUpdateCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BioWings.WebAPI.Controllers.ProvincesController",
+    "Method": "GetById",
+    "RelativePath": "api/Provinces/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BioWings.WebAPI.Controllers.ProvincesController",
+    "Method": "Remove",
+    "RelativePath": "api/Provinces/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BioWings.WebAPI.Controllers.ProvincesController",
+    "Method": "GetPaged",
+    "RelativePath": "api/Provinces/Paged",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pageNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BioWings.WebAPI.Controllers.ProvincesController",
+    "Method": "CreateRange",
+    "RelativePath": "api/Provinces/Range",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "command",
+        "Type": "BioWings.Application.Features.Commands.ProvinceCommands.ProvinceCreateRangeCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "BioWings.WebAPI.Controllers.SpeciesTypesController",
     "Method": "GetAll",
     "RelativePath": "api/SpeciesTypes",
