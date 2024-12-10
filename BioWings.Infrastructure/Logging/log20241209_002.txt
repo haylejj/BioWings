@@ -83,3 +83,15 @@ LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
 [22:40:21 INF] Executed endpoint 'BioWings.WebAPI.Controllers.LocationsController.GetById (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
 [22:40:21 INF] HTTP GET /api/Locations/3 responded 404 in 70.2772 ms <s:Serilog.AspNetCore.RequestLoggingMiddleware>
 [22:40:21 INF] Request finished HTTP/1.1 GET http://localhost:5054/api/Locations/3 - 404 null application/json; charset=utf-8 71.6069ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[22:59:49 INF] Now listening on: http://localhost:5054 <s:Microsoft.Hosting.Lifetime>
+[22:59:49 INF] Application started. Press Ctrl+C to shut down. <s:Microsoft.Hosting.Lifetime>
+[22:59:49 INF] Hosting environment: Development <s:Microsoft.Hosting.Lifetime>
+[22:59:49 INF] Content root path: C:\Users\cagat\VisualStudio2022\BioWings\BioWings\BioWings.WebAPI <s:Microsoft.Hosting.Lifetime>
+[22:59:50 INF] Request starting HTTP/1.1 GET http://localhost:5054/swagger/index.html - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[22:59:51 INF] Request finished HTTP/1.1 GET http://localhost:5054/swagger/index.html - 200 null text/html;charset=utf-8 251.5323ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[22:59:51 INF] Request starting HTTP/1.1 GET http://localhost:5054/_framework/aspnetcore-browser-refresh.js - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[22:59:51 INF] Request starting HTTP/1.1 GET http://localhost:5054/_vs/browserLink - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[22:59:51 INF] Request finished HTTP/1.1 GET http://localhost:5054/_framework/aspnetcore-browser-refresh.js - 200 13782 application/javascript; charset=utf-8 2.5636ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[22:59:51 INF] Request finished HTTP/1.1 GET http://localhost:5054/_vs/browserLink - 200 null text/javascript; charset=UTF-8 27.2276ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[22:59:52 INF] Request starting HTTP/1.1 GET http://localhost:5054/swagger/v1/swagger.json - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[22:59:52 INF] Request finished HTTP/1.1 GET http://localhost:5054/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 21.023ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
