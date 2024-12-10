@@ -28,10 +28,16 @@ public class LocationGetByIdQueryHandler(ILocationRepository locationRepository,
             Longitude = location.Longitude,
             Altitude1 = location.Altitude1,
             Altitude2 = location.Altitude2,
-            XCoord = location.XCoord,
-            YCoord = location.YCoord,
             UtmReference = location.UtmReference,
-            Description = location.Description
+            Description = location.Description,
+            DecimalDegrees = location.DecimalDegrees,
+            DegreesMinutesSeconds = location.DegreesMinutesSeconds,
+            DecimalMinutes = location.DecimalMinutes,
+            UtmCoordinates = location.UtmCoordinates,
+            MgrsCoordinates = location.MgrsCoordinates,
+            SquareLatitude = location.SquareLatitude,
+            SquareLongitude = location.SquareLongitude,
+            CoordinatePrecisionLevel = location.CoordinatePrecisionLevel
         };
         logger.LogInformation("Location found Id:{0} ", result.Id);
         return ServiceResult<LocationGetByIdQueryResult>.Success(result);

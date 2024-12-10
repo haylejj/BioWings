@@ -10,8 +10,6 @@ public class ObservationConfiguration : IEntityTypeConfiguration<Observation>
     {
         builder.HasKey(x => x.Id);
 
-        builder.Property(x => x.FullName)
-            .HasMaxLength(200);
 
         builder.Property(x => x.Sex)
             .HasMaxLength(15);
@@ -19,11 +17,6 @@ public class ObservationConfiguration : IEntityTypeConfiguration<Observation>
         builder.Property(x => x.ObservationDate)
             .IsRequired();
 
-        builder.Property(x => x.Method)
-            .HasMaxLength(50);
-
-        builder.Property(x => x.Activity)
-            .HasMaxLength(50);
 
         builder.Property(x => x.LifeStage)
             .HasMaxLength(50);
@@ -34,8 +27,6 @@ public class ObservationConfiguration : IEntityTypeConfiguration<Observation>
         builder.Property(x => x.Source)
             .HasMaxLength(200);
 
-        builder.Property(x => x.Link)
-            .HasMaxLength(500);
 
         builder.HasMany(x => x.Media)
             .WithOne(x => x.Observation)

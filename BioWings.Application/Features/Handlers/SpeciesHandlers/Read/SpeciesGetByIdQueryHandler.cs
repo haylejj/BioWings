@@ -33,7 +33,9 @@ public class SpeciesGetByIdQueryHandler(ISpeciesRepository speciesRepository, IL
             TurkishName = species.TurkishName,
             EnglishName = species.EnglishName,
             TurkishNamesTrakel = species.TurkishNamesTrakel,
-            Trakel = species.Trakel
+            Trakel = species.Trakel,
+            HesselbarthName = species.HesselbarthName,
+            KocakName = species.KocakName
         };
 
         logger.LogInformation("Retrieved species {SpeciesName} (ID: {SpeciesId}) of genus {GenusName}",

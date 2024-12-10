@@ -26,6 +26,8 @@ public class SpeciesUpdateCommandHandler(ISpeciesRepository speciesRepository, I
         species.EnglishName = request.EnglishName;
         species.TurkishNamesTrakel = request.TurkishNamesTrakel;
         species.Trakel = request.Trakel;
+        species.KocakName = request.KocakName;
+        species.HesselbarthName = request.HesselbarthName;
         if (request.NewFiles.Count > 0)
         {
             //TODO: Add new files to media

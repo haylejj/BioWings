@@ -28,6 +28,8 @@ public class SpeciesCreateCommanHandler(ISpeciesRepository speciesRepository, IU
             Trakel=request.Trakel,
             GenusId=request.GenusId,
             SpeciesTypeId=request.SpeciesTypeId,
+            HesselbarthName=request.HesselbarthName,
+            KocakName=request.KocakName
         };
         if (request.FormFiles!=null && request.FormFiles.Count>0)
         {

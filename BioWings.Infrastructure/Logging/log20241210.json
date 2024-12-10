@@ -90,3 +90,77 @@ LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
 [10:12:36 INF] Executed endpoint 'BioWings.WebAPI.Controllers.SpeciesController.GetById (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
 [10:12:36 INF] HTTP GET /api/Species/1 responded 404 in 1012.8911 ms <s:Serilog.AspNetCore.RequestLoggingMiddleware>
 [10:12:36 INF] Request finished HTTP/1.1 GET http://localhost:5054/api/Species/1 - 404 null application/json; charset=utf-8 1023.5611ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[16:59:18 INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='Db_BioWings' AND TABLE_NAME='__EFMigrationsHistory'; <s:Microsoft.EntityFrameworkCore.Database.Command>
+[16:59:19 INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `MigrationId`, `ProductVersion`
+FROM `__EFMigrationsHistory`
+ORDER BY `MigrationId`; <s:Microsoft.EntityFrameworkCore.Database.Command>
+[17:01:56 INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='Db_BioWings' AND TABLE_NAME='__EFMigrationsHistory'; <s:Microsoft.EntityFrameworkCore.Database.Command>
+[17:01:56 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='Db_BioWings' AND TABLE_NAME='__EFMigrationsHistory'; <s:Microsoft.EntityFrameworkCore.Database.Command>
+[17:01:56 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `MigrationId`, `ProductVersion`
+FROM `__EFMigrationsHistory`
+ORDER BY `MigrationId`; <s:Microsoft.EntityFrameworkCore.Database.Command>
+[17:01:56 INF] Applying migration '20241210140141_mig_add_updatetables'. <s:Microsoft.EntityFrameworkCore.Migrations>
+[17:01:56 INF] Executed DbCommand (58ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE `Observations` DROP COLUMN `Accuracy`; <s:Microsoft.EntityFrameworkCore.Database.Command>
+[17:01:56 INF] Executed DbCommand (18ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE `Observations` DROP COLUMN `Activity`; <s:Microsoft.EntityFrameworkCore.Database.Command>
+[17:01:56 INF] Executed DbCommand (17ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE `Observations` DROP COLUMN `FullName`; <s:Microsoft.EntityFrameworkCore.Database.Command>
+[17:01:56 INF] Executed DbCommand (17ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE `Observations` DROP COLUMN `Link`; <s:Microsoft.EntityFrameworkCore.Database.Command>
+[17:01:56 INF] Executed DbCommand (19ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE `Observations` DROP COLUMN `Method`; <s:Microsoft.EntityFrameworkCore.Database.Command>
+[17:01:56 INF] Executed DbCommand (16ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE `Locations` DROP COLUMN `XCoord`; <s:Microsoft.EntityFrameworkCore.Database.Command>
+[17:01:56 INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE `Locations` DROP COLUMN `YCoord`; <s:Microsoft.EntityFrameworkCore.Database.Command>
+[17:01:56 INF] Executed DbCommand (53ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE `Species` MODIFY COLUMN `TurkishNamesTrakel` varchar(70) CHARACTER SET utf8mb4 NULL; <s:Microsoft.EntityFrameworkCore.Database.Command>
+[17:01:56 INF] Executed DbCommand (47ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE `Species` MODIFY COLUMN `TurkishName` varchar(70) CHARACTER SET utf8mb4 NULL; <s:Microsoft.EntityFrameworkCore.Database.Command>
+[17:01:56 INF] Executed DbCommand (45ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE `Species` MODIFY COLUMN `Trakel` varchar(70) CHARACTER SET utf8mb4 NULL; <s:Microsoft.EntityFrameworkCore.Database.Command>
+[17:01:56 INF] Executed DbCommand (39ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE `Species` MODIFY COLUMN `Name` varchar(70) CHARACTER SET utf8mb4 NULL; <s:Microsoft.EntityFrameworkCore.Database.Command>
+[17:01:56 INF] Executed DbCommand (38ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE `Species` MODIFY COLUMN `FullName` varchar(100) CHARACTER SET utf8mb4 NULL; <s:Microsoft.EntityFrameworkCore.Database.Command>
+[17:01:56 INF] Executed DbCommand (42ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE `Species` MODIFY COLUMN `EnglishName` varchar(70) CHARACTER SET utf8mb4 NULL; <s:Microsoft.EntityFrameworkCore.Database.Command>
+[17:01:56 INF] Executed DbCommand (46ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE `Species` MODIFY COLUMN `EUName` varchar(70) CHARACTER SET utf8mb4 NULL; <s:Microsoft.EntityFrameworkCore.Database.Command>
+[17:01:56 INF] Executed DbCommand (19ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE `Species` ADD `HesselbarthName` varchar(70) CHARACTER SET utf8mb4 NULL; <s:Microsoft.EntityFrameworkCore.Database.Command>
+[17:01:56 INF] Executed DbCommand (17ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE `Species` ADD `KocakName` varchar(70) CHARACTER SET utf8mb4 NULL; <s:Microsoft.EntityFrameworkCore.Database.Command>
+[17:01:56 INF] Executed DbCommand (15ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE `Observations` ADD `LocationInfo` longtext CHARACTER SET utf8mb4 NOT NULL; <s:Microsoft.EntityFrameworkCore.Database.Command>
+[17:01:56 INF] Executed DbCommand (41ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE `Locations` MODIFY COLUMN `UtmReference` varchar(50) CHARACTER SET utf8mb4 NULL; <s:Microsoft.EntityFrameworkCore.Database.Command>
+[17:01:56 INF] Executed DbCommand (40ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE `Locations` MODIFY COLUMN `SquareRef` varchar(50) CHARACTER SET utf8mb4 NULL; <s:Microsoft.EntityFrameworkCore.Database.Command>
+[17:01:56 INF] Executed DbCommand (40ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE `Locations` MODIFY COLUMN `Description` varchar(500) CHARACTER SET utf8mb4 NULL; <s:Microsoft.EntityFrameworkCore.Database.Command>
+[17:01:56 INF] Executed DbCommand (15ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE `Locations` ADD `CoordinatePrecisionLevel` int NOT NULL DEFAULT 0; <s:Microsoft.EntityFrameworkCore.Database.Command>
+[17:01:56 INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE `Locations` ADD `DecimalDegrees` varchar(50) CHARACTER SET utf8mb4 NULL; <s:Microsoft.EntityFrameworkCore.Database.Command>
+[17:01:56 INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE `Locations` ADD `DecimalMinutes` varchar(50) CHARACTER SET utf8mb4 NULL; <s:Microsoft.EntityFrameworkCore.Database.Command>
+[17:01:56 INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE `Locations` ADD `DegreesMinutesSeconds` varchar(50) CHARACTER SET utf8mb4 NULL; <s:Microsoft.EntityFrameworkCore.Database.Command>
+[17:01:56 INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE `Locations` ADD `MgrsCoordinates` varchar(50) CHARACTER SET utf8mb4 NULL; <s:Microsoft.EntityFrameworkCore.Database.Command>
+[17:01:56 INF] Executed DbCommand (15ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE `Locations` ADD `SquareLatitude` decimal(9,6) NOT NULL DEFAULT 0.0; <s:Microsoft.EntityFrameworkCore.Database.Command>
+[17:01:57 INF] Executed DbCommand (26ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE `Locations` ADD `SquareLongitude` decimal(10,6) NOT NULL DEFAULT 0.0; <s:Microsoft.EntityFrameworkCore.Database.Command>
+[17:01:57 INF] Executed DbCommand (16ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE `Locations` ADD `UtmCoordinates` varchar(50) CHARACTER SET utf8mb4 NULL; <s:Microsoft.EntityFrameworkCore.Database.Command>
+[17:01:57 INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `__EFMigrationsHistory` (`MigrationId`, `ProductVersion`)
+VALUES ('20241210140141_mig_add_updatetables', '8.0.11'); <s:Microsoft.EntityFrameworkCore.Database.Command>

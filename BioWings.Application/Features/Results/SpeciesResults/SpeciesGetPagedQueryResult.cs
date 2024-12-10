@@ -16,4 +16,6 @@ public class SpeciesGetPagedQueryResult
     public string EnglishName { get; set; }
     public string TurkishNamesTrakel { get; set; }
     public string Trakel { get; set; }
+    public string KocakName { get; set; }
+    public string HesselbarthName { get; set; }
 }

@@ -23,10 +23,16 @@ public class LocationGetQueryHandler(ILocationRepository locationRepository, ILo
             Longitude = x.Longitude,
             Altitude1 = x.Altitude1,
             Altitude2 = x.Altitude2,
-            XCoord = x.XCoord,
-            YCoord = x.YCoord,
             UtmReference = x.UtmReference,
-            Description = x.Description
+            Description = x.Description,
+            DecimalDegrees = x.DecimalDegrees,
+            DegreesMinutesSeconds = x.DegreesMinutesSeconds,
+            DecimalMinutes = x.DecimalMinutes,
+            UtmCoordinates = x.UtmCoordinates,
+            MgrsCoordinates = x.MgrsCoordinates,
+            SquareLatitude = x.SquareLatitude,
+            SquareLongitude = x.SquareLongitude,
+            CoordinatePrecisionLevel=x.CoordinatePrecisionLevel
         });
         logger.LogInformation("Locations found");
         return ServiceResult<IEnumerable<LocationGetQueryResult>>.Success(result);

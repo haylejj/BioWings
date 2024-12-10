@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\BioWings.Application\BioWings.Application.csproj" />
+    <ProjectReference Include="..\BioWings.Domain\BioWings.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

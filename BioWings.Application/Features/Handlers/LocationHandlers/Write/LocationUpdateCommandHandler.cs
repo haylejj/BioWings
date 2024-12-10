@@ -28,10 +28,16 @@ public class LocationUpdateCommandHandler(ILocationRepository locationRepository
         location.Longitude = request.Longitude;
         location.Altitude1 = request.Altitude1;
         location.Altitude2 = request.Altitude2;
-        location.XCoord = request.XCoord;
-        location.YCoord = request.YCoord;
         location.UtmReference = request.UtmReference;
         location.Description = request.Description;
+        location.DecimalMinutes = request.DecimalMinutes;
+        location.DecimalDegrees = request.DecimalDegrees;
+        location.DegreesMinutesSeconds = request.DegreesMinutesSeconds;
+        location.UtmCoordinates = request.UtmCoordinates;
+        location.MgrsCoordinates = request.MgrsCoordinates;
+        location.SquareLatitude = request.SquareLatitude;
+        location.SquareLongitude = request.SquareLongitude;
+        location.CoordinatePrecisionLevel = request.CoordinatePrecisionLevel;
         locationRepository.Update(location);
         await unitOfWork.SaveChangesAsync(cancellationToken);
         logger.LogInformation("Location Id : {0} updated successfully.", location.Id);

@@ -25,10 +25,16 @@ public class LocationCreateCommandHandler(ILocationRepository locationRepository
             Longitude = request.Longitude,
             Altitude1 = request.Altitude1,
             Altitude2 = request.Altitude2,
-            XCoord = request.XCoord,
-            YCoord = request.YCoord,
             UtmReference = request.UtmReference,
-            Description = request.Description
+            Description = request.Description,
+            DecimalMinutes = request.DecimalMinutes,
+            DecimalDegrees = request.DecimalDegrees,
+            DegreesMinutesSeconds = request.DegreesMinutesSeconds,
+            UtmCoordinates = request.UtmCoordinates,
+            MgrsCoordinates = request.MgrsCoordinates,
+            SquareLatitude = request.SquareLatitude,
+            SquareLongitude = request.SquareLongitude,
+            CoordinatePrecisionLevel = request.CoordinatePrecisionLevel
         };
         await locationRepository.AddAsync(location, cancellationToken);
         await unitOfWork.SaveChangesAsync(cancellationToken);

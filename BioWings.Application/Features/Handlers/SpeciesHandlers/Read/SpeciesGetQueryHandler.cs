@@ -28,7 +28,9 @@ public class SpeciesGetQueryHandler(ISpeciesRepository speciesRepository, ILogge
             TurkishName = x.TurkishName,
             EnglishName = x.EnglishName,
             TurkishNamesTrakel = x.TurkishNamesTrakel,
-            Trakel = x.Trakel
+            Trakel = x.Trakel,
+            HesselbarthName = x.HesselbarthName,
+            KocakName = x.KocakName
         });
         return ServiceResult<IEnumerable<SpeciesGetQueryResult>>.Success(speciesResult);
     }

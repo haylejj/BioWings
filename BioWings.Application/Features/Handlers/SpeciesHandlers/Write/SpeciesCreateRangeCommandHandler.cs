@@ -28,6 +28,8 @@ public class SpeciesCreateRangeCommandHandler(ISpeciesRepository speciesReposito
             Trakel=x.Trakel,
             GenusId=x.GenusId,
             SpeciesTypeId=x.SpeciesTypeId,
+            KocakName=x.KocakName,
+            HesselbarthName=x.HesselbarthName
         });
         foreach (var item in request.SpeciesCreateDtos)
         {

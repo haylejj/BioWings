@@ -28,10 +28,16 @@ public class LocationGetPagedQueryHandler(ILocationRepository locationRepository
             Longitude = l.Longitude,
             Altitude1 = l.Altitude1,
             Altitude2 = l.Altitude2,
-            XCoord = l.XCoord,
-            YCoord = l.YCoord,
+            DecimalDegrees = l.DecimalDegrees,
+            DegreesMinutesSeconds = l.DegreesMinutesSeconds,
+            DecimalMinutes = l.DecimalMinutes,
+            UtmCoordinates = l.UtmCoordinates,
+            MgrsCoordinates = l.MgrsCoordinates,
+            SquareLatitude = l.SquareLatitude,
+            SquareLongitude = l.SquareLongitude,
             UtmReference = l.UtmReference,
-            Description = l.Description
+            Description = l.Description,
+            CoordinatePrecisionLevel = l.CoordinatePrecisionLevel
         });
         var paginatedResult = new PaginatedList<LocationGetPagedQueryResult>(
             result,

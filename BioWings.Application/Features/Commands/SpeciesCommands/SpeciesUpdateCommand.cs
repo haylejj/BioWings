@@ -19,6 +19,8 @@ public class SpeciesUpdateCommand : IRequest<ServiceResult>
     public string EnglishName { get; set; }
     public string TurkishNamesTrakel { get; set; }
     public string Trakel { get; set; }
+    public string KocakName { get; set; }
+    public string HesselbarthName { get; set; }
     public List<IFormFile> NewFiles { get; set; }//IFormFile is used to upload files . its equivalent to new file for Media
     public string DeletedFilesIds { get; set; }
     public List<Media> Medias { get; set; }

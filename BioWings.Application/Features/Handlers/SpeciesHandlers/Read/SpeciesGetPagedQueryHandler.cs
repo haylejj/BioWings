@@ -31,7 +31,9 @@ public class SpeciesGetPagedQueryHandler(ISpeciesRepository speciesRepository, I
             ScientificName = s.ScientificName,
             TurkishName = s.TurkishName,
             TurkishNamesTrakel = s.TurkishNamesTrakel,
-            Trakel=s.Trakel
+            Trakel=s.Trakel,
+            HesselbarthName = s.HesselbarthName,
+            KocakName = s.KocakName
         });
         var paginatedResult = new PaginatedList<SpeciesGetPagedQueryResult>(
             result,

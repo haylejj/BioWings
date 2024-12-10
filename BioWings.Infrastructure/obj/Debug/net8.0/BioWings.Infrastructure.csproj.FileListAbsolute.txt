@@ -10,3 +10,9 @@ C:\Users\cagat\VisualStudio2022\BioWings\BioWings\BioWings.Infrastructure\obj\De
 C:\Users\cagat\VisualStudio2022\BioWings\BioWings\BioWings.Infrastructure\obj\Debug\net8.0\BioWings.Infrastructure.pdb
 C:\Users\cagat\VisualStudio2022\BioWings\BioWings\BioWings.Infrastructure\obj\Debug\net8.0\ref\BioWings.Infrastructure.dll
 C:\Users\cagat\VisualStudio2022\BioWings\BioWings\BioWings.Infrastructure\obj\Debug\net8.0\BioWings.Infrastructure.sourcelink.json
+C:\Users\cagat\VisualStudio2022\BioWings\BioWings\BioWings.Infrastructure\obj\Debug\net8.0\BioWings.Infrastructure.csproj.AssemblyReference.cache
+C:\Users\cagat\VisualStudio2022\BioWings\BioWings\BioWings.Infrastructure\bin\Debug\net8.0\BioWings.Application.dll
+C:\Users\cagat\VisualStudio2022\BioWings\BioWings\BioWings.Infrastructure\bin\Debug\net8.0\BioWings.Domain.dll
+C:\Users\cagat\VisualStudio2022\BioWings\BioWings\BioWings.Infrastructure\bin\Debug\net8.0\BioWings.Application.pdb
+C:\Users\cagat\VisualStudio2022\BioWings\BioWings\BioWings.Infrastructure\bin\Debug\net8.0\BioWings.Domain.pdb
+C:\Users\cagat\VisualStudio2022\BioWings\BioWings\BioWings.Infrastructure\obj\Debug\net8.0\BioWings.BE281623.Up2Date

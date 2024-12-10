@@ -14,5 +14,7 @@ public class SpeciesCreateDto
     public string EnglishName { get; set; }
     public string TurkishNamesTrakel { get; set; }
     public string Trakel { get; set; }
+    public string KocakName { get; set; }
+    public string HesselbarthName { get; set; }
     public List<IFormFile> FormFiles { get; set; }//IFormFile is used to upload files . its equivalent to Media 
 }

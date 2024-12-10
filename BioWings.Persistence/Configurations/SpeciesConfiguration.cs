@@ -35,6 +35,12 @@ public class SpeciesConfiguration : IEntityTypeConfiguration<Species>
         builder.Property(x => x.Trakel)
             .HasMaxLength(70);
 
+        builder.Property(x => x.KocakName)
+            .HasMaxLength(70);
+
+        builder.Property(x => x.HesselbarthName)
+            .HasMaxLength(70);
+
         builder.HasMany(x => x.Subspecies)
             .WithOne(x => x.Species)
             .HasForeignKey(x => x.SpeciesId)

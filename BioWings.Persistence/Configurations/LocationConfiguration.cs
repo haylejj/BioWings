@@ -10,21 +10,41 @@ public class LocationConfiguration : IEntityTypeConfiguration<Location>
     {
         builder.HasKey(x => x.Id);
 
+
         builder.Property(x => x.Name)
             .HasMaxLength(50);
 
-        builder.Property(x => x.Latitude)
+        builder.Property(x => x.SquareRef)
+            .HasMaxLength(50);
+
+        builder.Property(x => x.SquareLatitude)
             .HasPrecision(9, 6);
+
+        builder.Property(x => x.SquareLongitude)
+            .HasPrecision(10, 6);
+
+        builder.Property(x => x.Latitude)
+            .HasPrecision(9, 6)
+            .IsRequired();
 
         builder.Property(x => x.Longitude)
             .HasPrecision(10, 6)
             .IsRequired();
 
-        builder.Property(x => x.XCoord)
-            .HasPrecision(18, 6);
+        builder.Property(x => x.DecimalDegrees)
+            .HasMaxLength(50);
 
-        builder.Property(x => x.YCoord)
-            .HasPrecision(18, 6);
+        builder.Property(x => x.DegreesMinutesSeconds)
+            .HasMaxLength(50);
+
+        builder.Property(x => x.DecimalMinutes)
+            .HasMaxLength(50);
+
+        builder.Property(x => x.UtmCoordinates)
+            .HasMaxLength(50);
+
+        builder.Property(x => x.MgrsCoordinates)
+            .HasMaxLength(50);
 
         builder.Property(x => x.Altitude1)
             .HasPrecision(8, 2);
@@ -32,14 +52,14 @@ public class LocationConfiguration : IEntityTypeConfiguration<Location>
         builder.Property(x => x.Altitude2)
             .HasPrecision(8, 2);
 
-        builder.Property(x => x.SquareRef)
-            .HasMaxLength(50);
-
         builder.Property(x => x.UtmReference)
             .HasMaxLength(50);
 
         builder.Property(x => x.Description)
             .HasMaxLength(500);
+
+        builder.Property(x => x.CoordinatePrecisionLevel)
+            .IsRequired();
 
         builder.HasMany(x => x.Observations)
             .WithOne(x => x.Location)
