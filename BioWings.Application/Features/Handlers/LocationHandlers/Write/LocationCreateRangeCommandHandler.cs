@@ -20,7 +20,6 @@ public class LocationCreateRangeCommandHandler(ILocationRepository locationRepos
         var locations = request.LocationCreateCommands.Select(x => new Location
         {
             ProvinceId = x.ProvinceId,
-            Name = x.Name,
             SquareRef = x.SquareRef,
             Latitude = x.Latitude,
             Longitude = x.Longitude,

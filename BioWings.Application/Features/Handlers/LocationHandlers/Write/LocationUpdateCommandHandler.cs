@@ -22,7 +22,6 @@ public class LocationUpdateCommandHandler(ILocationRepository locationRepository
             return ServiceResult.Error("Location not found", HttpStatusCode.NotFound);
         }
         location.ProvinceId = request.ProvinceId;
-        location.Name = request.Name;
         location.SquareRef = request.SquareRef;
         location.Latitude = request.Latitude;
         location.Longitude = request.Longitude;

@@ -164,3 +164,17 @@ ALTER TABLE `Locations` ADD `UtmCoordinates` varchar(50) CHARACTER SET utf8mb4 N
 [17:01:57 INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
 INSERT INTO `__EFMigrationsHistory` (`MigrationId`, `ProductVersion`)
 VALUES ('20241210140141_mig_add_updatetables', '8.0.11'); <s:Microsoft.EntityFrameworkCore.Database.Command>
+[22:48:53 INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='Db_BioWings' AND TABLE_NAME='__EFMigrationsHistory'; <s:Microsoft.EntityFrameworkCore.Database.Command>
+[22:48:53 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='Db_BioWings' AND TABLE_NAME='__EFMigrationsHistory'; <s:Microsoft.EntityFrameworkCore.Database.Command>
+[22:48:53 INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `MigrationId`, `ProductVersion`
+FROM `__EFMigrationsHistory`
+ORDER BY `MigrationId`; <s:Microsoft.EntityFrameworkCore.Database.Command>
+[22:48:53 INF] Applying migration '20241210194845_add_mig_updatelocation3'. <s:Microsoft.EntityFrameworkCore.Migrations>
+[22:48:53 INF] Executed DbCommand (30ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE `Locations` DROP COLUMN `Name`; <s:Microsoft.EntityFrameworkCore.Database.Command>
+[22:48:53 INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `__EFMigrationsHistory` (`MigrationId`, `ProductVersion`)
+VALUES ('20241210194845_add_mig_updatelocation3', '8.0.11'); <s:Microsoft.EntityFrameworkCore.Database.Command>

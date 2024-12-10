@@ -17,7 +17,6 @@ public class LocationGetQueryHandler(ILocationRepository locationRepository, ILo
             Id = x.Id,
             ProvinceId = x.ProvinceId,
             ProvinceName = x.Province.Name,
-            Name = x.Name,
             SquareRef = x.SquareRef,
             Latitude = x.Latitude,
             Longitude = x.Longitude,

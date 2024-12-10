@@ -6,7 +6,6 @@ public class LocationGetQueryResult
     public int Id { get; set; }
     public int ProvinceId { get; set; }
     public string ProvinceName { get; set; }
-    public string Name { get; set; }
     public string SquareRef { get; set; }
     public decimal SquareLatitude { get; set; }
     public decimal SquareLongitude { get; set; }

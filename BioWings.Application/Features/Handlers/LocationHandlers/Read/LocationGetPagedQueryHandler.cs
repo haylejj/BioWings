@@ -22,7 +22,6 @@ public class LocationGetPagedQueryHandler(ILocationRepository locationRepository
             Id = l.Id,
             ProvinceId = l.ProvinceId,
             ProvinceName = l.Province.Name,
-            Name = l.Name,
             SquareRef = l.SquareRef,
             Latitude = l.Latitude,
             Longitude = l.Longitude,

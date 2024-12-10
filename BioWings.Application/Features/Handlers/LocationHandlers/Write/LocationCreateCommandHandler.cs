@@ -19,7 +19,6 @@ public class LocationCreateCommandHandler(ILocationRepository locationRepository
         var location = new Location
         {
             ProvinceId = request.ProvinceId,
-            Name = request.Name,
             SquareRef = request.SquareRef,
             Latitude = request.Latitude,
             Longitude = request.Longitude,

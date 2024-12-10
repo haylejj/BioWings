@@ -6,7 +6,6 @@ namespace BioWings.Application.Features.Commands.LocationCommands;
 public class LocationCreateCommand : IRequest<ServiceResult>
 {
     public int ProvinceId { get; set; }
-    public string Name { get; set; }
     public string SquareRef { get; set; }
     public decimal SquareLatitude { get; set; }
     public decimal SquareLongitude { get; set; }

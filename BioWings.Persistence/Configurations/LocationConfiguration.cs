@@ -10,10 +10,6 @@ public class LocationConfiguration : IEntityTypeConfiguration<Location>
     {
         builder.HasKey(x => x.Id);
 
-
-        builder.Property(x => x.Name)
-            .HasMaxLength(50);
-
         builder.Property(x => x.SquareRef)
             .HasMaxLength(50);
 
