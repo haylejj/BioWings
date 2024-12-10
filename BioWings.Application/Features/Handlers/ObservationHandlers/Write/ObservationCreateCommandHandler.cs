@@ -74,7 +74,7 @@ public class ObservationCreateCommandHandler(IObservationRepository observationR
         await unitOfWork.SaveChangesAsync(cancellationToken);
 
         logger.LogInformation("Observation created successfully with ID: {ObservationId}", observation.Id);
-        return ServiceResult<int>.Success(observation.Id);
+        return ServiceResult<int>.SuccessAsCreated(observation.Id,"api/Observations/"+observation.Id);
 
     }
     private async Task<ServiceResult<Authority>> GetOrCreateAuthority(ObservationCreateCommand request, CancellationToken cancellationToken)

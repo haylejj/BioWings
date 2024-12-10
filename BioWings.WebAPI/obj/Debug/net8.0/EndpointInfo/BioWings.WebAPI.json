@@ -713,6 +713,68 @@
         }
       }
     },
+    "/api/Observations": {
+      "post": {
+        "tags": [
+          "Observations"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ObservationCreateCommand"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ObservationCreateCommand"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ObservationCreateCommand"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Observations/Range": {
+      "post": {
+        "tags": [
+          "Observations"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ObservationCreateRangeCommand"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ObservationCreateRangeCommand"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ObservationCreateRangeCommand"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Provinces": {
       "get": {
         "tags": [
@@ -985,6 +1047,20 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "KocakName",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "HesselbarthName",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -1104,6 +1180,20 @@
           },
           {
             "name": "Trakel",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "KocakName",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "HesselbarthName",
             "in": "query",
             "schema": {
               "type": "string"
@@ -1713,6 +1803,17 @@
         },
         "additionalProperties": false
       },
+      "CoordinatePrecisionLevel": {
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
       "Family": {
         "type": "object",
         "properties": {
@@ -1903,13 +2004,17 @@
             "type": "integer",
             "format": "int32"
           },
-          "name": {
-            "type": "string",
-            "nullable": true
-          },
           "squareRef": {
             "type": "string",
             "nullable": true
+          },
+          "squareLatitude": {
+            "type": "number",
+            "format": "double"
+          },
+          "squareLongitude": {
+            "type": "number",
+            "format": "double"
           },
           "latitude": {
             "type": "number",
@@ -1919,19 +2024,31 @@
             "type": "number",
             "format": "double"
           },
+          "decimalDegrees": {
+            "type": "string",
+            "nullable": true
+          },
+          "degreesMinutesSeconds": {
+            "type": "string",
+            "nullable": true
+          },
+          "decimalMinutes": {
+            "type": "string",
+            "nullable": true
+          },
+          "utmCoordinates": {
+            "type": "string",
+            "nullable": true
+          },
+          "mgrsCoordinates": {
+            "type": "string",
+            "nullable": true
+          },
           "altitude1": {
             "type": "number",
             "format": "double"
           },
           "altitude2": {
-            "type": "number",
-            "format": "double"
-          },
-          "xCoord": {
-            "type": "number",
-            "format": "double"
-          },
-          "yCoord": {
             "type": "number",
             "format": "double"
           },
@@ -1942,6 +2059,9 @@
           "description": {
             "type": "string",
             "nullable": true
+          },
+          "coordinatePrecisionLevel": {
+            "$ref": "#/components/schemas/CoordinatePrecisionLevel"
           },
           "province": {
             "$ref": "#/components/schemas/Province"
@@ -1963,13 +2083,17 @@
             "type": "integer",
             "format": "int32"
           },
-          "name": {
-            "type": "string",
-            "nullable": true
-          },
           "squareRef": {
             "type": "string",
             "nullable": true
+          },
+          "squareLatitude": {
+            "type": "number",
+            "format": "double"
+          },
+          "squareLongitude": {
+            "type": "number",
+            "format": "double"
           },
           "latitude": {
             "type": "number",
@@ -1979,19 +2103,31 @@
             "type": "number",
             "format": "double"
           },
+          "decimalDegrees": {
+            "type": "string",
+            "nullable": true
+          },
+          "degreesMinutesSeconds": {
+            "type": "string",
+            "nullable": true
+          },
+          "decimalMinutes": {
+            "type": "string",
+            "nullable": true
+          },
+          "utmCoordinates": {
+            "type": "string",
+            "nullable": true
+          },
+          "mgrsCoordinates": {
+            "type": "string",
+            "nullable": true
+          },
           "altitude1": {
             "type": "number",
             "format": "double"
           },
           "altitude2": {
-            "type": "number",
-            "format": "double"
-          },
-          "xCoord": {
-            "type": "number",
-            "format": "double"
-          },
-          "yCoord": {
             "type": "number",
             "format": "double"
           },
@@ -2002,6 +2138,9 @@
           "description": {
             "type": "string",
             "nullable": true
+          },
+          "coordinatePrecisionLevel": {
+            "$ref": "#/components/schemas/CoordinatePrecisionLevel"
           }
         },
         "additionalProperties": false
@@ -2038,6 +2177,14 @@
             "type": "string",
             "nullable": true
           },
+          "squareLatitude": {
+            "type": "number",
+            "format": "double"
+          },
+          "squareLongitude": {
+            "type": "number",
+            "format": "double"
+          },
           "latitude": {
             "type": "number",
             "format": "double"
@@ -2046,19 +2193,31 @@
             "type": "number",
             "format": "double"
           },
+          "decimalDegrees": {
+            "type": "string",
+            "nullable": true
+          },
+          "degreesMinutesSeconds": {
+            "type": "string",
+            "nullable": true
+          },
+          "decimalMinutes": {
+            "type": "string",
+            "nullable": true
+          },
+          "utmCoordinates": {
+            "type": "string",
+            "nullable": true
+          },
+          "mgrsCoordinates": {
+            "type": "string",
+            "nullable": true
+          },
           "altitude1": {
             "type": "number",
             "format": "double"
           },
           "altitude2": {
-            "type": "number",
-            "format": "double"
-          },
-          "xCoord": {
-            "type": "number",
-            "format": "double"
-          },
-          "yCoord": {
             "type": "number",
             "format": "double"
           },
@@ -2069,6 +2228,9 @@
           "description": {
             "type": "string",
             "nullable": true
+          },
+          "coordinatePrecisionLevel": {
+            "$ref": "#/components/schemas/CoordinatePrecisionLevel"
           }
         },
         "additionalProperties": false
@@ -2132,7 +2294,248 @@
             "type": "integer",
             "format": "int32"
           },
+          "speciesId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "locationId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "observerId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "sex": {
+            "type": "string",
+            "nullable": true
+          },
+          "observationDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "lifeStage": {
+            "type": "string",
+            "nullable": true
+          },
+          "numberSeen": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "notes": {
+            "type": "string",
+            "nullable": true
+          },
+          "source": {
+            "type": "string",
+            "nullable": true
+          },
+          "locationInfo": {
+            "type": "string",
+            "nullable": true
+          },
+          "species": {
+            "$ref": "#/components/schemas/Species"
+          },
+          "location": {
+            "$ref": "#/components/schemas/Location"
+          },
+          "observer": {
+            "$ref": "#/components/schemas/Observer"
+          },
+          "media": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Media"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ObservationCreateCommand": {
+        "type": "object",
+        "properties": {
+          "speciesId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "authorityId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "authorityName": {
+            "type": "string",
+            "nullable": true
+          },
+          "year": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "genusId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "genusName": {
+            "type": "string",
+            "nullable": true
+          },
+          "familyId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "familyName": {
+            "type": "string",
+            "nullable": true
+          },
+          "speciesTypeId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "speciesTypeName": {
+            "type": "string",
+            "nullable": true
+          },
+          "speciesTypeDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "scientificName": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "euName": {
+            "type": "string",
+            "nullable": true
+          },
           "fullName": {
+            "type": "string",
+            "nullable": true
+          },
+          "turkishName": {
+            "type": "string",
+            "nullable": true
+          },
+          "englishName": {
+            "type": "string",
+            "nullable": true
+          },
+          "turkishNamesTrakel": {
+            "type": "string",
+            "nullable": true
+          },
+          "trakel": {
+            "type": "string",
+            "nullable": true
+          },
+          "kocakName": {
+            "type": "string",
+            "nullable": true
+          },
+          "hesselbarthName": {
+            "type": "string",
+            "nullable": true
+          },
+          "formFiles": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "binary"
+            },
+            "nullable": true
+          },
+          "locationId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "provinceId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "provinceName": {
+            "type": "string",
+            "nullable": true
+          },
+          "provinceCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "squareRef": {
+            "type": "string",
+            "nullable": true
+          },
+          "squareLatitude": {
+            "type": "number",
+            "format": "double"
+          },
+          "squareLongitude": {
+            "type": "number",
+            "format": "double"
+          },
+          "latitude": {
+            "type": "number",
+            "format": "double"
+          },
+          "longitude": {
+            "type": "number",
+            "format": "double"
+          },
+          "decimalDegrees": {
+            "type": "string",
+            "nullable": true
+          },
+          "degreesMinutesSeconds": {
+            "type": "string",
+            "nullable": true
+          },
+          "decimalMinutes": {
+            "type": "string",
+            "nullable": true
+          },
+          "utmCoordinates": {
+            "type": "string",
+            "nullable": true
+          },
+          "mgrsCoordinates": {
+            "type": "string",
+            "nullable": true
+          },
+          "altitude1": {
+            "type": "number",
+            "format": "double"
+          },
+          "altitude2": {
+            "type": "number",
+            "format": "double"
+          },
+          "utmReference": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "coordinatePrecisionLevel": {
+            "$ref": "#/components/schemas/CoordinatePrecisionLevel"
+          },
+          "observerId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "observerName": {
+            "type": "string",
+            "nullable": true
+          },
+          "surname": {
+            "type": "string",
+            "nullable": true
+          },
+          "observerFullName": {
             "type": "string",
             "nullable": true
           },
@@ -2144,14 +2547,6 @@
             "type": "string",
             "format": "date-time"
           },
-          "method": {
-            "type": "string",
-            "nullable": true
-          },
-          "activity": {
-            "type": "string",
-            "nullable": true
-          },
           "lifeStage": {
             "type": "string",
             "nullable": true
@@ -2159,10 +2554,6 @@
           "numberSeen": {
             "type": "integer",
             "format": "int32"
-          },
-          "accuracy": {
-            "type": "number",
-            "format": "double"
           },
           "notes": {
             "type": "string",
@@ -2172,35 +2563,241 @@
             "type": "string",
             "nullable": true
           },
-          "link": {
+          "locationInfo": {
             "type": "string",
             "nullable": true
-          },
+          }
+        },
+        "additionalProperties": false
+      },
+      "ObservationCreateDto": {
+        "type": "object",
+        "properties": {
           "speciesId": {
             "type": "integer",
             "format": "int32"
           },
-          "species": {
-            "$ref": "#/components/schemas/Species"
+          "authorityId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "authorityName": {
+            "type": "string",
+            "nullable": true
+          },
+          "year": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "genusId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "genusName": {
+            "type": "string",
+            "nullable": true
+          },
+          "familyId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "familyName": {
+            "type": "string",
+            "nullable": true
+          },
+          "speciesTypeId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "speciesTypeName": {
+            "type": "string",
+            "nullable": true
+          },
+          "speciesTypeDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "scientificName": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "euName": {
+            "type": "string",
+            "nullable": true
+          },
+          "fullName": {
+            "type": "string",
+            "nullable": true
+          },
+          "turkishName": {
+            "type": "string",
+            "nullable": true
+          },
+          "englishName": {
+            "type": "string",
+            "nullable": true
+          },
+          "turkishNamesTrakel": {
+            "type": "string",
+            "nullable": true
+          },
+          "trakel": {
+            "type": "string",
+            "nullable": true
+          },
+          "kocakName": {
+            "type": "string",
+            "nullable": true
+          },
+          "hesselbarthName": {
+            "type": "string",
+            "nullable": true
+          },
+          "formFiles": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "binary"
+            },
+            "nullable": true
           },
           "locationId": {
             "type": "integer",
             "format": "int32"
           },
-          "location": {
-            "$ref": "#/components/schemas/Location"
+          "provinceId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "provinceName": {
+            "type": "string",
+            "nullable": true
+          },
+          "provinceCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "locationName": {
+            "type": "string",
+            "nullable": true
+          },
+          "squareRef": {
+            "type": "string",
+            "nullable": true
+          },
+          "squareLatitude": {
+            "type": "number",
+            "format": "double"
+          },
+          "squareLongitude": {
+            "type": "number",
+            "format": "double"
+          },
+          "latitude": {
+            "type": "number",
+            "format": "double"
+          },
+          "longitude": {
+            "type": "number",
+            "format": "double"
+          },
+          "decimalDegrees": {
+            "type": "string",
+            "nullable": true
+          },
+          "degreesMinutesSeconds": {
+            "type": "string",
+            "nullable": true
+          },
+          "decimalMinutes": {
+            "type": "string",
+            "nullable": true
+          },
+          "utmCoordinates": {
+            "type": "string",
+            "nullable": true
+          },
+          "mgrsCoordinates": {
+            "type": "string",
+            "nullable": true
+          },
+          "altitude1": {
+            "type": "number",
+            "format": "double"
+          },
+          "altitude2": {
+            "type": "number",
+            "format": "double"
+          },
+          "utmReference": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "coordinatePrecisionLevel": {
+            "$ref": "#/components/schemas/CoordinatePrecisionLevel"
           },
           "observerId": {
             "type": "integer",
             "format": "int32"
           },
-          "observer": {
-            "$ref": "#/components/schemas/Observer"
+          "observerName": {
+            "type": "string",
+            "nullable": true
           },
-          "media": {
+          "surname": {
+            "type": "string",
+            "nullable": true
+          },
+          "observerFullName": {
+            "type": "string",
+            "nullable": true
+          },
+          "sex": {
+            "type": "string",
+            "nullable": true
+          },
+          "observationDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "lifeStage": {
+            "type": "string",
+            "nullable": true
+          },
+          "numberSeen": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "notes": {
+            "type": "string",
+            "nullable": true
+          },
+          "source": {
+            "type": "string",
+            "nullable": true
+          },
+          "locationInfo": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ObservationCreateRangeCommand": {
+        "type": "object",
+        "properties": {
+          "observationCreateDtos": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Media"
+              "$ref": "#/components/schemas/ObservationCreateDto"
             },
             "nullable": true
           }
@@ -2391,6 +2988,10 @@
             "type": "string",
             "nullable": true
           },
+          "hesselbarthName": {
+            "type": "string",
+            "nullable": true
+          },
           "turkishName": {
             "type": "string",
             "nullable": true
@@ -2404,6 +3005,10 @@
             "nullable": true
           },
           "trakel": {
+            "type": "string",
+            "nullable": true
+          },
+          "kocakName": {
             "type": "string",
             "nullable": true
           },
@@ -2484,6 +3089,14 @@
             "nullable": true
           },
           "trakel": {
+            "type": "string",
+            "nullable": true
+          },
+          "kocakName": {
+            "type": "string",
+            "nullable": true
+          },
+          "hesselbarthName": {
             "type": "string",
             "nullable": true
           },

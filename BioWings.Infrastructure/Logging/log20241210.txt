@@ -178,3 +178,61 @@ ALTER TABLE `Locations` DROP COLUMN `Name`; <s:Microsoft.EntityFrameworkCore.Dat
 [22:48:53 INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
 INSERT INTO `__EFMigrationsHistory` (`MigrationId`, `ProductVersion`)
 VALUES ('20241210194845_add_mig_updatelocation3', '8.0.11'); <s:Microsoft.EntityFrameworkCore.Database.Command>
+[23:03:08 INF] Now listening on: http://localhost:5054 <s:Microsoft.Hosting.Lifetime>
+[23:03:08 INF] Application started. Press Ctrl+C to shut down. <s:Microsoft.Hosting.Lifetime>
+[23:03:08 INF] Hosting environment: Development <s:Microsoft.Hosting.Lifetime>
+[23:03:08 INF] Content root path: C:\Users\cagat\VisualStudio2022\BioWings\BioWings\BioWings.WebAPI <s:Microsoft.Hosting.Lifetime>
+[23:03:08 INF] Request starting HTTP/1.1 GET http://localhost:5054/swagger/index.html - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[23:03:08 INF] Request finished HTTP/1.1 GET http://localhost:5054/swagger/index.html - 200 null text/html;charset=utf-8 219.5653ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[23:03:08 INF] Request starting HTTP/1.1 GET http://localhost:5054/_framework/aspnetcore-browser-refresh.js - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[23:03:08 INF] Request finished HTTP/1.1 GET http://localhost:5054/_framework/aspnetcore-browser-refresh.js - 200 13782 application/javascript; charset=utf-8 4.8139ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[23:03:09 INF] Request starting HTTP/1.1 GET http://localhost:5054/_vs/browserLink - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[23:03:09 INF] Request finished HTTP/1.1 GET http://localhost:5054/_vs/browserLink - 200 null text/javascript; charset=UTF-8 24.7706ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[23:03:09 INF] Request starting HTTP/1.1 GET http://localhost:5054/swagger/v1/swagger.json - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[23:03:10 INF] Request finished HTTP/1.1 GET http://localhost:5054/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 46.9861ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[23:04:15 INF] Request starting HTTP/1.1 GET http://localhost:5054/swagger/index.html - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[23:04:15 INF] Request finished HTTP/1.1 GET http://localhost:5054/swagger/index.html - 200 null text/html;charset=utf-8 27.0529ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[23:04:15 INF] Request starting HTTP/1.1 GET http://localhost:5054/_framework/aspnetcore-browser-refresh.js - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[23:04:15 INF] Request finished HTTP/1.1 GET http://localhost:5054/_framework/aspnetcore-browser-refresh.js - 200 13782 application/javascript; charset=utf-8 4.6178ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[23:04:16 INF] Request starting HTTP/1.1 GET http://localhost:5054/_vs/browserLink - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[23:04:16 INF] Request finished HTTP/1.1 GET http://localhost:5054/_vs/browserLink - 200 null text/javascript; charset=UTF-8 22.8063ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[23:04:17 INF] Request starting HTTP/1.1 GET http://localhost:5054/swagger/v1/swagger.json - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[23:04:17 INF] Request finished HTTP/1.1 GET http://localhost:5054/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 52.7236ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[23:04:51 INF] Request starting HTTP/1.1 POST http://localhost:5054/api/Observations?CoordinatePrecisionLevel=0 - multipart/form-data; boundary=----WebKitFormBoundarynPjib47WS7rdsJO6 44 <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[23:04:51 WRN] Failed to determine the https port for redirect. <s:Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware>
+[23:04:51 INF] Executing endpoint 'BioWings.WebAPI.Controllers.ObservationsController.Create (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[23:04:51 INF] Route matched with {action = "Create", controller = "Observations"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(BioWings.Application.Features.Commands.ObservationCommands.ObservationCreateCommand) on controller BioWings.WebAPI.Controllers.ObservationsController (BioWings.WebAPI). <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[23:04:52 INF] Executed DbCommand (12ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `a`.`Id`, `a`.`CreatedDateTime`, `a`.`Name`, `a`.`UpdatedDateTime`, `a`.`Year`
+FROM `Authorities` AS `a`
+WHERE FALSE
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[23:04:52 INF] Executing ObjectResult, writing value of type 'BioWings.Application.Results.ServiceResult`1[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'. <s:Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor>
+[23:04:52 INF] Executed action BioWings.WebAPI.Controllers.ObservationsController.Create (BioWings.WebAPI) in 1315.7805ms <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[23:04:52 INF] Executed endpoint 'BioWings.WebAPI.Controllers.ObservationsController.Create (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[23:04:52 INF] HTTP POST /api/Observations responded 400 in 1365.2060 ms <s:Serilog.AspNetCore.RequestLoggingMiddleware>
+[23:04:52 INF] Request finished HTTP/1.1 POST http://localhost:5054/api/Observations?CoordinatePrecisionLevel=0 - 400 null application/json; charset=utf-8 1375.2404ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[23:08:24 INF] Now listening on: http://localhost:5054 <s:Microsoft.Hosting.Lifetime>
+[23:08:24 INF] Application started. Press Ctrl+C to shut down. <s:Microsoft.Hosting.Lifetime>
+[23:08:24 INF] Hosting environment: Development <s:Microsoft.Hosting.Lifetime>
+[23:08:24 INF] Content root path: C:\Users\cagat\VisualStudio2022\BioWings\BioWings\BioWings.WebAPI <s:Microsoft.Hosting.Lifetime>
+[23:08:25 INF] Request starting HTTP/1.1 GET http://localhost:5054/swagger/index.html - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[23:08:25 INF] Request finished HTTP/1.1 GET http://localhost:5054/swagger/index.html - 200 null text/html;charset=utf-8 122.0997ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[23:08:25 INF] Request starting HTTP/1.1 GET http://localhost:5054/_framework/aspnetcore-browser-refresh.js - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[23:08:25 INF] Request finished HTTP/1.1 GET http://localhost:5054/_framework/aspnetcore-browser-refresh.js - 200 13782 application/javascript; charset=utf-8 3.1982ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[23:08:25 INF] Request starting HTTP/1.1 GET http://localhost:5054/_vs/browserLink - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[23:08:25 INF] Request finished HTTP/1.1 GET http://localhost:5054/_vs/browserLink - 200 null text/javascript; charset=UTF-8 20.6099ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[23:08:25 INF] Request starting HTTP/1.1 GET http://localhost:5054/swagger/v1/swagger.json - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[23:08:26 INF] Request finished HTTP/1.1 GET http://localhost:5054/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 52.6463ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[23:09:21 INF] Now listening on: http://localhost:5054 <s:Microsoft.Hosting.Lifetime>
+[23:09:21 INF] Application started. Press Ctrl+C to shut down. <s:Microsoft.Hosting.Lifetime>
+[23:09:21 INF] Hosting environment: Development <s:Microsoft.Hosting.Lifetime>
+[23:09:21 INF] Content root path: C:\Users\cagat\VisualStudio2022\BioWings\BioWings\BioWings.WebAPI <s:Microsoft.Hosting.Lifetime>
+[23:09:22 INF] Request starting HTTP/1.1 GET http://localhost:5054/swagger/index.html - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[23:09:23 INF] Request finished HTTP/1.1 GET http://localhost:5054/swagger/index.html - 200 null text/html;charset=utf-8 337.1184ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[23:09:23 INF] Request starting HTTP/1.1 GET http://localhost:5054/_framework/aspnetcore-browser-refresh.js - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[23:09:23 INF] Request finished HTTP/1.1 GET http://localhost:5054/_framework/aspnetcore-browser-refresh.js - 200 13782 application/javascript; charset=utf-8 7.8303ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[23:09:23 INF] Request starting HTTP/1.1 GET http://localhost:5054/_vs/browserLink - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[23:09:23 INF] Request finished HTTP/1.1 GET http://localhost:5054/_vs/browserLink - 200 null text/javascript; charset=UTF-8 34.9707ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[23:09:24 INF] Request starting HTTP/1.1 GET http://localhost:5054/swagger/v1/swagger.json - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[23:09:24 INF] Request finished HTTP/1.1 GET http://localhost:5054/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 61.6657ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
