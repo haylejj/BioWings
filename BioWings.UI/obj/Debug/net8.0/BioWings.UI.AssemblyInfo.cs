@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BioWings.UI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bff44730db7932cef8ee7da140f1a1497460328c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c18b420d7a48bb9a494714a53c302bc72b33b9ff")]
 [assembly: System.Reflection.AssemblyProductAttribute("BioWings.UI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BioWings.UI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

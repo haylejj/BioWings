@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BioWings.Persistence")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bf43b0bfea0ee267be10313b1d9510ebc9fe568c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c18b420d7a48bb9a494714a53c302bc72b33b9ff")]
 [assembly: System.Reflection.AssemblyProductAttribute("BioWings.Persistence")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BioWings.Persistence")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

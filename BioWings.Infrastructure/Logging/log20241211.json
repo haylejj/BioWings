@@ -1,0 +1,315 @@
+[17:14:39 INF] Now listening on: http://localhost:5054 <s:Microsoft.Hosting.Lifetime>
+[17:14:39 INF] Application started. Press Ctrl+C to shut down. <s:Microsoft.Hosting.Lifetime>
+[17:14:39 INF] Hosting environment: Development <s:Microsoft.Hosting.Lifetime>
+[17:14:39 INF] Content root path: C:\Users\cagat\VisualStudio2022\BioWings\BioWings\BioWings.WebAPI <s:Microsoft.Hosting.Lifetime>
+[17:14:40 INF] Request starting HTTP/1.1 GET http://localhost:5054/swagger/index.html - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[17:14:41 INF] Request finished HTTP/1.1 GET http://localhost:5054/swagger/index.html - 200 null text/html;charset=utf-8 196.7733ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[17:14:41 INF] Request starting HTTP/1.1 GET http://localhost:5054/_framework/aspnetcore-browser-refresh.js - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[17:14:41 INF] Request finished HTTP/1.1 GET http://localhost:5054/_framework/aspnetcore-browser-refresh.js - 200 13782 application/javascript; charset=utf-8 5.4399ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[17:14:41 INF] Request starting HTTP/1.1 GET http://localhost:5054/_vs/browserLink - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[17:14:41 INF] Request finished HTTP/1.1 GET http://localhost:5054/_vs/browserLink - 200 null text/javascript; charset=UTF-8 22.6537ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[17:14:42 INF] Request starting HTTP/1.1 GET http://localhost:5054/swagger/v1/swagger.json - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[17:14:42 INF] Request finished HTTP/1.1 GET http://localhost:5054/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 40.6172ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[17:14:47 INF] Request starting HTTP/1.1 GET http://localhost:5054/api/ExcelTemplate/download - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[17:14:47 WRN] Failed to determine the https port for redirect. <s:Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware>
+[17:14:47 INF] Executing endpoint 'BioWings.WebAPI.Controllers.ExcelTemplateController.DownloadTemplate (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[17:14:47 INF] Route matched with {action = "DownloadTemplate", controller = "ExcelTemplate"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult DownloadTemplate() on controller BioWings.WebAPI.Controllers.ExcelTemplateController (BioWings.WebAPI). <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[17:14:47 INF] Executed action BioWings.WebAPI.Controllers.ExcelTemplateController.DownloadTemplate (BioWings.WebAPI) in 671.7655ms <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[17:14:47 INF] Executed endpoint 'BioWings.WebAPI.Controllers.ExcelTemplateController.DownloadTemplate (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[17:14:47 ERR] An unhandled exception has occurred while executing the request. <s:Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware>
+System.ArgumentOutOfRangeException: length ('-2') must be a non-negative value. (Parameter 'length')
+Actual value was -2.
+   at System.ArgumentOutOfRangeException.ThrowNegative[T](T value, String paramName)
+   at System.ArgumentOutOfRangeException.ThrowIfNegative[T](T value, String paramName)
+   at System.String.ThrowSubstringArgumentOutOfRange(Int32 startIndex, Int32 length)
+   at System.String.Substring(Int32 startIndex, Int32 length)
+   at OfficeOpenXml.ExcelAddressBase.SetWbWs(String address)
+   at OfficeOpenXml.ExcelAddressBase.SetAddress(String address, ExcelWorkbook wb, String wsName)
+   at OfficeOpenXml.ExcelAddressBase..ctor(String address, ExcelWorkbook wb, String wsName)
+   at OfficeOpenXml.ExcelAddress..ctor(String address)
+   at OfficeOpenXml.DataValidation.ExcelDataValidation.CheckAndFixRangeAddress(String address)
+   at OfficeOpenXml.DataValidation.ExcelDataValidation..ctor(String uid, String address, ExcelWorksheet ws)
+   at OfficeOpenXml.DataValidation.ExcelDataValidationWithFormula`1..ctor(String uid, String address, ExcelWorksheet ws)
+   at OfficeOpenXml.DataValidation.ExcelDataValidationList..ctor(String uid, String address, ExcelWorksheet ws)
+   at OfficeOpenXml.DataValidation.ExcelDataValidationCollection.AddListValidation(String address)
+   at BioWings.Infrastructure.Services.ExcelTemplate.ExcelTemplateService.CreateImportTemplate() in C:\Users\cagat\VisualStudio2022\BioWings\BioWings\BioWings.Infrastructure\Services\ExcelTemplate\ExcelTemplateService.cs:line 82
+   at BioWings.WebAPI.Controllers.ExcelTemplateController.DownloadTemplate() in C:\Users\cagat\VisualStudio2022\BioWings\BioWings\BioWings.WebAPI\Controllers\ExcelTemplateController.cs:line 10
+   at lambda_method2(Closure, Object, Object[])
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+[17:14:47 ERR] An unhandled exception occurred: ArgumentOutOfRangeException - length ('-2') must be a non-negative value. (Parameter 'length')
+Actual value was -2. <s:BioWings.WebAPI.Exceptions.GlobalExceptionHandler>
+System.ArgumentOutOfRangeException: length ('-2') must be a non-negative value. (Parameter 'length')
+Actual value was -2.
+   at System.ArgumentOutOfRangeException.ThrowNegative[T](T value, String paramName)
+   at System.ArgumentOutOfRangeException.ThrowIfNegative[T](T value, String paramName)
+   at System.String.ThrowSubstringArgumentOutOfRange(Int32 startIndex, Int32 length)
+   at System.String.Substring(Int32 startIndex, Int32 length)
+   at OfficeOpenXml.ExcelAddressBase.SetWbWs(String address)
+   at OfficeOpenXml.ExcelAddressBase.SetAddress(String address, ExcelWorkbook wb, String wsName)
+   at OfficeOpenXml.ExcelAddressBase..ctor(String address, ExcelWorkbook wb, String wsName)
+   at OfficeOpenXml.ExcelAddress..ctor(String address)
+   at OfficeOpenXml.DataValidation.ExcelDataValidation.CheckAndFixRangeAddress(String address)
+   at OfficeOpenXml.DataValidation.ExcelDataValidation..ctor(String uid, String address, ExcelWorksheet ws)
+   at OfficeOpenXml.DataValidation.ExcelDataValidationWithFormula`1..ctor(String uid, String address, ExcelWorksheet ws)
+   at OfficeOpenXml.DataValidation.ExcelDataValidationList..ctor(String uid, String address, ExcelWorksheet ws)
+   at OfficeOpenXml.DataValidation.ExcelDataValidationCollection.AddListValidation(String address)
+   at BioWings.Infrastructure.Services.ExcelTemplate.ExcelTemplateService.CreateImportTemplate() in C:\Users\cagat\VisualStudio2022\BioWings\BioWings\BioWings.Infrastructure\Services\ExcelTemplate\ExcelTemplateService.cs:line 82
+   at BioWings.WebAPI.Controllers.ExcelTemplateController.DownloadTemplate() in C:\Users\cagat\VisualStudio2022\BioWings\BioWings\BioWings.WebAPI\Controllers\ExcelTemplateController.cs:line 10
+   at lambda_method2(Closure, Object, Object[])
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+[17:14:47 ERR] HTTP GET /api/ExcelTemplate/download responded 500 in 739.2483 ms <s:Serilog.AspNetCore.RequestLoggingMiddleware>
+[17:14:47 INF] Request finished HTTP/1.1 GET http://localhost:5054/api/ExcelTemplate/download - 500 null application/json; charset=utf-8 746.2461ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[17:18:56 INF] Request starting HTTP/1.1 GET http://localhost:5054/api/ExcelTemplate/download - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[17:18:56 INF] Executing endpoint 'BioWings.WebAPI.Controllers.ExcelTemplateController.DownloadTemplate (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[17:18:56 INF] Route matched with {action = "DownloadTemplate", controller = "ExcelTemplate"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult DownloadTemplate() on controller BioWings.WebAPI.Controllers.ExcelTemplateController (BioWings.WebAPI). <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[17:18:56 INF] Executed action BioWings.WebAPI.Controllers.ExcelTemplateController.DownloadTemplate (BioWings.WebAPI) in 34.3501ms <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[17:18:56 INF] Executed endpoint 'BioWings.WebAPI.Controllers.ExcelTemplateController.DownloadTemplate (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[17:18:56 ERR] An unhandled exception has occurred while executing the request. <s:Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware>
+System.ArgumentOutOfRangeException: length ('-2') must be a non-negative value. (Parameter 'length')
+Actual value was -2.
+   at System.ArgumentOutOfRangeException.ThrowNegative[T](T value, String paramName)
+   at System.ArgumentOutOfRangeException.ThrowIfNegative[T](T value, String paramName)
+   at System.String.ThrowSubstringArgumentOutOfRange(Int32 startIndex, Int32 length)
+   at System.String.Substring(Int32 startIndex, Int32 length)
+   at OfficeOpenXml.ExcelAddressBase.SetWbWs(String address)
+   at OfficeOpenXml.ExcelAddressBase.SetAddress(String address, ExcelWorkbook wb, String wsName)
+   at OfficeOpenXml.ExcelAddressBase..ctor(String address, ExcelWorkbook wb, String wsName)
+   at OfficeOpenXml.ExcelAddress..ctor(String address)
+   at OfficeOpenXml.DataValidation.ExcelDataValidation.CheckAndFixRangeAddress(String address)
+   at OfficeOpenXml.DataValidation.ExcelDataValidation..ctor(String uid, String address, ExcelWorksheet ws)
+   at OfficeOpenXml.DataValidation.ExcelDataValidationWithFormula`1..ctor(String uid, String address, ExcelWorksheet ws)
+   at OfficeOpenXml.DataValidation.ExcelDataValidationList..ctor(String uid, String address, ExcelWorksheet ws)
+   at OfficeOpenXml.DataValidation.ExcelDataValidationCollection.AddListValidation(String address)
+   at BioWings.Infrastructure.Services.ExcelTemplate.ExcelTemplateService.CreateImportTemplate() in C:\Users\cagat\VisualStudio2022\BioWings\BioWings\BioWings.Infrastructure\Services\ExcelTemplate\ExcelTemplateService.cs:line 82
+   at BioWings.WebAPI.Controllers.ExcelTemplateController.DownloadTemplate() in C:\Users\cagat\VisualStudio2022\BioWings\BioWings\BioWings.WebAPI\Controllers\ExcelTemplateController.cs:line 10
+   at lambda_method2(Closure, Object, Object[])
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+[17:18:56 ERR] An unhandled exception occurred: ArgumentOutOfRangeException - length ('-2') must be a non-negative value. (Parameter 'length')
+Actual value was -2. <s:BioWings.WebAPI.Exceptions.GlobalExceptionHandler>
+System.ArgumentOutOfRangeException: length ('-2') must be a non-negative value. (Parameter 'length')
+Actual value was -2.
+   at System.ArgumentOutOfRangeException.ThrowNegative[T](T value, String paramName)
+   at System.ArgumentOutOfRangeException.ThrowIfNegative[T](T value, String paramName)
+   at System.String.ThrowSubstringArgumentOutOfRange(Int32 startIndex, Int32 length)
+   at System.String.Substring(Int32 startIndex, Int32 length)
+   at OfficeOpenXml.ExcelAddressBase.SetWbWs(String address)
+   at OfficeOpenXml.ExcelAddressBase.SetAddress(String address, ExcelWorkbook wb, String wsName)
+   at OfficeOpenXml.ExcelAddressBase..ctor(String address, ExcelWorkbook wb, String wsName)
+   at OfficeOpenXml.ExcelAddress..ctor(String address)
+   at OfficeOpenXml.DataValidation.ExcelDataValidation.CheckAndFixRangeAddress(String address)
+   at OfficeOpenXml.DataValidation.ExcelDataValidation..ctor(String uid, String address, ExcelWorksheet ws)
+   at OfficeOpenXml.DataValidation.ExcelDataValidationWithFormula`1..ctor(String uid, String address, ExcelWorksheet ws)
+   at OfficeOpenXml.DataValidation.ExcelDataValidationList..ctor(String uid, String address, ExcelWorksheet ws)
+   at OfficeOpenXml.DataValidation.ExcelDataValidationCollection.AddListValidation(String address)
+   at BioWings.Infrastructure.Services.ExcelTemplate.ExcelTemplateService.CreateImportTemplate() in C:\Users\cagat\VisualStudio2022\BioWings\BioWings\BioWings.Infrastructure\Services\ExcelTemplate\ExcelTemplateService.cs:line 82
+   at BioWings.WebAPI.Controllers.ExcelTemplateController.DownloadTemplate() in C:\Users\cagat\VisualStudio2022\BioWings\BioWings\BioWings.WebAPI\Controllers\ExcelTemplateController.cs:line 10
+   at lambda_method2(Closure, Object, Object[])
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+[17:18:56 ERR] HTTP GET /api/ExcelTemplate/download responded 500 in 55.0948 ms <s:Serilog.AspNetCore.RequestLoggingMiddleware>
+[17:18:56 INF] Request finished HTTP/1.1 GET http://localhost:5054/api/ExcelTemplate/download - 500 null application/json; charset=utf-8 59.4794ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[17:18:57 INF] Request starting HTTP/1.1 GET http://localhost:5054/api/ExcelTemplate/download - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[17:18:57 INF] Executing endpoint 'BioWings.WebAPI.Controllers.ExcelTemplateController.DownloadTemplate (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[17:18:57 INF] Route matched with {action = "DownloadTemplate", controller = "ExcelTemplate"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult DownloadTemplate() on controller BioWings.WebAPI.Controllers.ExcelTemplateController (BioWings.WebAPI). <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[17:18:57 INF] Executed action BioWings.WebAPI.Controllers.ExcelTemplateController.DownloadTemplate (BioWings.WebAPI) in 19.3252ms <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[17:18:57 INF] Executed endpoint 'BioWings.WebAPI.Controllers.ExcelTemplateController.DownloadTemplate (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[17:18:57 ERR] An unhandled exception has occurred while executing the request. <s:Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware>
+System.ArgumentOutOfRangeException: length ('-2') must be a non-negative value. (Parameter 'length')
+Actual value was -2.
+   at System.ArgumentOutOfRangeException.ThrowNegative[T](T value, String paramName)
+   at System.ArgumentOutOfRangeException.ThrowIfNegative[T](T value, String paramName)
+   at System.String.ThrowSubstringArgumentOutOfRange(Int32 startIndex, Int32 length)
+   at System.String.Substring(Int32 startIndex, Int32 length)
+   at OfficeOpenXml.ExcelAddressBase.SetWbWs(String address)
+   at OfficeOpenXml.ExcelAddressBase.SetAddress(String address, ExcelWorkbook wb, String wsName)
+   at OfficeOpenXml.ExcelAddressBase..ctor(String address, ExcelWorkbook wb, String wsName)
+   at OfficeOpenXml.ExcelAddress..ctor(String address)
+   at OfficeOpenXml.DataValidation.ExcelDataValidation.CheckAndFixRangeAddress(String address)
+   at OfficeOpenXml.DataValidation.ExcelDataValidation..ctor(String uid, String address, ExcelWorksheet ws)
+   at OfficeOpenXml.DataValidation.ExcelDataValidationWithFormula`1..ctor(String uid, String address, ExcelWorksheet ws)
+   at OfficeOpenXml.DataValidation.ExcelDataValidationList..ctor(String uid, String address, ExcelWorksheet ws)
+   at OfficeOpenXml.DataValidation.ExcelDataValidationCollection.AddListValidation(String address)
+   at BioWings.Infrastructure.Services.ExcelTemplate.ExcelTemplateService.CreateImportTemplate() in C:\Users\cagat\VisualStudio2022\BioWings\BioWings\BioWings.Infrastructure\Services\ExcelTemplate\ExcelTemplateService.cs:line 82
+   at BioWings.WebAPI.Controllers.ExcelTemplateController.DownloadTemplate() in C:\Users\cagat\VisualStudio2022\BioWings\BioWings\BioWings.WebAPI\Controllers\ExcelTemplateController.cs:line 10
+   at lambda_method2(Closure, Object, Object[])
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+[17:18:57 ERR] An unhandled exception occurred: ArgumentOutOfRangeException - length ('-2') must be a non-negative value. (Parameter 'length')
+Actual value was -2. <s:BioWings.WebAPI.Exceptions.GlobalExceptionHandler>
+System.ArgumentOutOfRangeException: length ('-2') must be a non-negative value. (Parameter 'length')
+Actual value was -2.
+   at System.ArgumentOutOfRangeException.ThrowNegative[T](T value, String paramName)
+   at System.ArgumentOutOfRangeException.ThrowIfNegative[T](T value, String paramName)
+   at System.String.ThrowSubstringArgumentOutOfRange(Int32 startIndex, Int32 length)
+   at System.String.Substring(Int32 startIndex, Int32 length)
+   at OfficeOpenXml.ExcelAddressBase.SetWbWs(String address)
+   at OfficeOpenXml.ExcelAddressBase.SetAddress(String address, ExcelWorkbook wb, String wsName)
+   at OfficeOpenXml.ExcelAddressBase..ctor(String address, ExcelWorkbook wb, String wsName)
+   at OfficeOpenXml.ExcelAddress..ctor(String address)
+   at OfficeOpenXml.DataValidation.ExcelDataValidation.CheckAndFixRangeAddress(String address)
+   at OfficeOpenXml.DataValidation.ExcelDataValidation..ctor(String uid, String address, ExcelWorksheet ws)
+   at OfficeOpenXml.DataValidation.ExcelDataValidationWithFormula`1..ctor(String uid, String address, ExcelWorksheet ws)
+   at OfficeOpenXml.DataValidation.ExcelDataValidationList..ctor(String uid, String address, ExcelWorksheet ws)
+   at OfficeOpenXml.DataValidation.ExcelDataValidationCollection.AddListValidation(String address)
+   at BioWings.Infrastructure.Services.ExcelTemplate.ExcelTemplateService.CreateImportTemplate() in C:\Users\cagat\VisualStudio2022\BioWings\BioWings\BioWings.Infrastructure\Services\ExcelTemplate\ExcelTemplateService.cs:line 82
+   at BioWings.WebAPI.Controllers.ExcelTemplateController.DownloadTemplate() in C:\Users\cagat\VisualStudio2022\BioWings\BioWings\BioWings.WebAPI\Controllers\ExcelTemplateController.cs:line 10
+   at lambda_method2(Closure, Object, Object[])
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+[17:18:57 ERR] HTTP GET /api/ExcelTemplate/download responded 500 in 35.7685 ms <s:Serilog.AspNetCore.RequestLoggingMiddleware>
+[17:18:57 INF] Request finished HTTP/1.1 GET http://localhost:5054/api/ExcelTemplate/download - 500 null application/json; charset=utf-8 37.982ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[17:18:58 INF] Request starting HTTP/1.1 GET http://localhost:5054/api/ExcelTemplate/download - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[17:18:58 INF] Executing endpoint 'BioWings.WebAPI.Controllers.ExcelTemplateController.DownloadTemplate (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[17:18:58 INF] Route matched with {action = "DownloadTemplate", controller = "ExcelTemplate"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult DownloadTemplate() on controller BioWings.WebAPI.Controllers.ExcelTemplateController (BioWings.WebAPI). <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[17:18:58 INF] Executed action BioWings.WebAPI.Controllers.ExcelTemplateController.DownloadTemplate (BioWings.WebAPI) in 12.0956ms <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[17:18:58 INF] Executed endpoint 'BioWings.WebAPI.Controllers.ExcelTemplateController.DownloadTemplate (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[17:18:58 ERR] An unhandled exception has occurred while executing the request. <s:Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware>
+System.ArgumentOutOfRangeException: length ('-2') must be a non-negative value. (Parameter 'length')
+Actual value was -2.
+   at System.ArgumentOutOfRangeException.ThrowNegative[T](T value, String paramName)
+   at System.ArgumentOutOfRangeException.ThrowIfNegative[T](T value, String paramName)
+   at System.String.ThrowSubstringArgumentOutOfRange(Int32 startIndex, Int32 length)
+   at System.String.Substring(Int32 startIndex, Int32 length)
+   at OfficeOpenXml.ExcelAddressBase.SetWbWs(String address)
+   at OfficeOpenXml.ExcelAddressBase.SetAddress(String address, ExcelWorkbook wb, String wsName)
+   at OfficeOpenXml.ExcelAddress..ctor(String address)
+   at OfficeOpenXml.DataValidation.ExcelDataValidation.CheckAndFixRangeAddress(String address)
+   at OfficeOpenXml.DataValidation.ExcelDataValidation..ctor(String uid, String address, ExcelWorksheet ws)
+   at OfficeOpenXml.DataValidation.ExcelDataValidationWithFormula`1..ctor(String uid, String address, ExcelWorksheet ws)
+   at OfficeOpenXml.DataValidation.ExcelDataValidationList..ctor(String uid, String address, ExcelWorksheet ws)
+   at OfficeOpenXml.DataValidation.ExcelDataValidationCollection.AddListValidation(String address)
+   at BioWings.Infrastructure.Services.ExcelTemplate.ExcelTemplateService.CreateImportTemplate() in C:\Users\cagat\VisualStudio2022\BioWings\BioWings\BioWings.Infrastructure\Services\ExcelTemplate\ExcelTemplateService.cs:line 82
+   at BioWings.WebAPI.Controllers.ExcelTemplateController.DownloadTemplate() in C:\Users\cagat\VisualStudio2022\BioWings\BioWings\BioWings.WebAPI\Controllers\ExcelTemplateController.cs:line 10
+   at lambda_method2(Closure, Object, Object[])
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+[17:18:58 ERR] An unhandled exception occurred: ArgumentOutOfRangeException - length ('-2') must be a non-negative value. (Parameter 'length')
+Actual value was -2. <s:BioWings.WebAPI.Exceptions.GlobalExceptionHandler>
+System.ArgumentOutOfRangeException: length ('-2') must be a non-negative value. (Parameter 'length')
+Actual value was -2.
+   at System.ArgumentOutOfRangeException.ThrowNegative[T](T value, String paramName)
+   at System.ArgumentOutOfRangeException.ThrowIfNegative[T](T value, String paramName)
+   at System.String.ThrowSubstringArgumentOutOfRange(Int32 startIndex, Int32 length)
+   at System.String.Substring(Int32 startIndex, Int32 length)
+   at OfficeOpenXml.ExcelAddressBase.SetWbWs(String address)
+   at OfficeOpenXml.ExcelAddressBase.SetAddress(String address, ExcelWorkbook wb, String wsName)
+   at OfficeOpenXml.ExcelAddress..ctor(String address)
+   at OfficeOpenXml.DataValidation.ExcelDataValidation.CheckAndFixRangeAddress(String address)
+   at OfficeOpenXml.DataValidation.ExcelDataValidation..ctor(String uid, String address, ExcelWorksheet ws)
+   at OfficeOpenXml.DataValidation.ExcelDataValidationWithFormula`1..ctor(String uid, String address, ExcelWorksheet ws)
+   at OfficeOpenXml.DataValidation.ExcelDataValidationList..ctor(String uid, String address, ExcelWorksheet ws)
+   at OfficeOpenXml.DataValidation.ExcelDataValidationCollection.AddListValidation(String address)
+   at BioWings.Infrastructure.Services.ExcelTemplate.ExcelTemplateService.CreateImportTemplate() in C:\Users\cagat\VisualStudio2022\BioWings\BioWings\BioWings.Infrastructure\Services\ExcelTemplate\ExcelTemplateService.cs:line 82
+   at BioWings.WebAPI.Controllers.ExcelTemplateController.DownloadTemplate() in C:\Users\cagat\VisualStudio2022\BioWings\BioWings\BioWings.WebAPI\Controllers\ExcelTemplateController.cs:line 10
+   at lambda_method2(Closure, Object, Object[])
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+[17:18:58 ERR] HTTP GET /api/ExcelTemplate/download responded 500 in 40.8093 ms <s:Serilog.AspNetCore.RequestLoggingMiddleware>
+[17:18:58 INF] Request finished HTTP/1.1 GET http://localhost:5054/api/ExcelTemplate/download - 500 null application/json; charset=utf-8 42.7358ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>

@@ -182,6 +182,18 @@
         }
       }
     },
+    "/api/ExcelTemplate/download": {
+      "get": {
+        "tags": [
+          "ExcelTemplate"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Families": {
       "get": {
         "tags": [
@@ -764,6 +776,38 @@
             "application/*+json": {
               "schema": {
                 "$ref": "#/components/schemas/ObservationCreateRangeCommand"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Observations/Import": {
+      "post": {
+        "tags": [
+          "Observations"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "File": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              },
+              "encoding": {
+                "File": {
+                  "style": "form"
+                }
               }
             }
           }
@@ -2356,14 +2400,6 @@
       "ObservationCreateCommand": {
         "type": "object",
         "properties": {
-          "speciesId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "authorityId": {
-            "type": "integer",
-            "format": "int32"
-          },
           "authorityName": {
             "type": "string",
             "nullable": true
@@ -2372,25 +2408,13 @@
             "type": "integer",
             "format": "int32"
           },
-          "genusId": {
-            "type": "integer",
-            "format": "int32"
-          },
           "genusName": {
             "type": "string",
             "nullable": true
           },
-          "familyId": {
-            "type": "integer",
-            "format": "int32"
-          },
           "familyName": {
             "type": "string",
             "nullable": true
-          },
-          "speciesTypeId": {
-            "type": "integer",
-            "format": "int32"
           },
           "speciesTypeName": {
             "type": "string",
@@ -2439,22 +2463,6 @@
           "hesselbarthName": {
             "type": "string",
             "nullable": true
-          },
-          "formFiles": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "format": "binary"
-            },
-            "nullable": true
-          },
-          "locationId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "provinceId": {
-            "type": "integer",
-            "format": "int32"
           },
           "provinceName": {
             "type": "string",
@@ -2522,10 +2530,6 @@
           },
           "coordinatePrecisionLevel": {
             "$ref": "#/components/schemas/CoordinatePrecisionLevel"
-          },
-          "observerId": {
-            "type": "integer",
-            "format": "int32"
           },
           "observerName": {
             "type": "string",
@@ -2573,14 +2577,6 @@
       "ObservationCreateDto": {
         "type": "object",
         "properties": {
-          "speciesId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "authorityId": {
-            "type": "integer",
-            "format": "int32"
-          },
           "authorityName": {
             "type": "string",
             "nullable": true
@@ -2589,25 +2585,13 @@
             "type": "integer",
             "format": "int32"
           },
-          "genusId": {
-            "type": "integer",
-            "format": "int32"
-          },
           "genusName": {
             "type": "string",
             "nullable": true
           },
-          "familyId": {
-            "type": "integer",
-            "format": "int32"
-          },
           "familyName": {
             "type": "string",
             "nullable": true
-          },
-          "speciesTypeId": {
-            "type": "integer",
-            "format": "int32"
           },
           "speciesTypeName": {
             "type": "string",
@@ -2657,22 +2641,6 @@
             "type": "string",
             "nullable": true
           },
-          "formFiles": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "format": "binary"
-            },
-            "nullable": true
-          },
-          "locationId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "provinceId": {
-            "type": "integer",
-            "format": "int32"
-          },
           "provinceName": {
             "type": "string",
             "nullable": true
@@ -2680,10 +2648,6 @@
           "provinceCode": {
             "type": "integer",
             "format": "int32"
-          },
-          "locationName": {
-            "type": "string",
-            "nullable": true
           },
           "squareRef": {
             "type": "string",
@@ -2743,10 +2707,6 @@
           },
           "coordinatePrecisionLevel": {
             "$ref": "#/components/schemas/CoordinatePrecisionLevel"
-          },
-          "observerId": {
-            "type": "integer",
-            "format": "int32"
           },
           "observerName": {
             "type": "string",

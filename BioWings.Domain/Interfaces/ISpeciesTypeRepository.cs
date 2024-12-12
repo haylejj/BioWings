@@ -4,7 +4,7 @@ namespace BioWings.Domain.Interfaces;
 
 public interface ISpeciesTypeRepository : IGenericRepository<SpeciesType>
 {
-    Task<SpeciesType?> GetByNameAsync(string name, CancellationToken cancellationToken = default);
+    Task<SpeciesType?> GetByNameAndDescriptionAsync(string name, string description, CancellationToken cancellationToken = default);
 }
 
 

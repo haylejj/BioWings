@@ -3,8 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{7079A309-DF1B-4492-B636-DC681C55BEE0}|BioWings.WebAPI\\BioWings.WebAPI.csproj|c:\\users\\cagat\\visualstudio2022\\biowings\\biowings\\biowings.webapi\\controllers\\observationscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7079A309-DF1B-4492-B636-DC681C55BEE0}|BioWings.WebAPI\\BioWings.WebAPI.csproj|solutionrelative:biowings.webapi\\controllers\\observationscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{91F18D67-BCC0-4A77-9B08-BE9133A4BDAE}|BioWings.Application\\BioWings.Application.csproj|c:\\users\\cagat\\visualstudio2022\\biowings\\biowings\\biowings.application\\features\\handlers\\observationhandlers\\write\\observationcreaterangecommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{91F18D67-BCC0-4A77-9B08-BE9133A4BDAE}|BioWings.Application\\BioWings.Application.csproj|solutionrelative:biowings.application\\features\\handlers\\observationhandlers\\write\\observationcreaterangecommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{91F18D67-BCC0-4A77-9B08-BE9133A4BDAE}|BioWings.Application\\BioWings.Application.csproj|c:\\users\\cagat\\visualstudio2022\\biowings\\biowings\\biowings.application\\features\\handlers\\observationhandlers\\write\\observationcreatecommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{91F18D67-BCC0-4A77-9B08-BE9133A4BDAE}|BioWings.Application\\BioWings.Application.csproj|solutionrelative:biowings.application\\features\\handlers\\observationhandlers\\write\\observationcreatecommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7079A309-DF1B-4492-B636-DC681C55BEE0}|BioWings.WebAPI\\BioWings.WebAPI.csproj|c:\\users\\cagat\\visualstudio2022\\biowings\\biowings\\biowings.webapi\\controllers\\exceltemplatecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7079A309-DF1B-4492-B636-DC681C55BEE0}|BioWings.WebAPI\\BioWings.WebAPI.csproj|solutionrelative:biowings.webapi\\controllers\\exceltemplatecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A258499D-CDFE-47AB-A628-5CB1102364B1}|BioWings.Infrastructure\\BioWings.Infrastructure.csproj|c:\\users\\cagat\\visualstudio2022\\biowings\\biowings\\biowings.infrastructure\\services\\exceltemplate\\exceltemplateservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A258499D-CDFE-47AB-A628-5CB1102364B1}|BioWings.Infrastructure\\BioWings.Infrastructure.csproj|solutionrelative:biowings.infrastructure\\services\\exceltemplate\\exceltemplateservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,19 +26,59 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ObservationsController.cs",
-              "DocumentMoniker": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.WebAPI\\Controllers\\ObservationsController.cs",
-              "RelativeDocumentMoniker": "BioWings.WebAPI\\Controllers\\ObservationsController.cs",
-              "ToolTip": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.WebAPI\\Controllers\\ObservationsController.cs",
-              "RelativeToolTip": "BioWings.WebAPI\\Controllers\\ObservationsController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAiAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "ExcelTemplateController.cs",
+              "DocumentMoniker": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.WebAPI\\Controllers\\ExcelTemplateController.cs",
+              "RelativeDocumentMoniker": "BioWings.WebAPI\\Controllers\\ExcelTemplateController.cs",
+              "ToolTip": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.WebAPI\\Controllers\\ExcelTemplateController.cs",
+              "RelativeToolTip": "BioWings.WebAPI\\Controllers\\ExcelTemplateController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-10T20:06:56.831Z",
+              "WhenOpened": "2024-12-12T15:25:26.42Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ObservationCreateRangeCommandHandler.cs",
+              "DocumentMoniker": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.Application\\Features\\Handlers\\ObservationHandlers\\Write\\ObservationCreateRangeCommandHandler.cs",
+              "RelativeDocumentMoniker": "BioWings.Application\\Features\\Handlers\\ObservationHandlers\\Write\\ObservationCreateRangeCommandHandler.cs",
+              "ToolTip": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.Application\\Features\\Handlers\\ObservationHandlers\\Write\\ObservationCreateRangeCommandHandler.cs",
+              "RelativeToolTip": "BioWings.Application\\Features\\Handlers\\ObservationHandlers\\Write\\ObservationCreateRangeCommandHandler.cs",
+              "ViewState": "AgIAAJUAAAAAAAAAAAAAAJcAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-12T18:08:18.003Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ObservationCreateCommandHandler.cs",
+              "DocumentMoniker": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.Application\\Features\\Handlers\\ObservationHandlers\\Write\\ObservationCreateCommandHandler.cs",
+              "RelativeDocumentMoniker": "BioWings.Application\\Features\\Handlers\\ObservationHandlers\\Write\\ObservationCreateCommandHandler.cs",
+              "ToolTip": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.Application\\Features\\Handlers\\ObservationHandlers\\Write\\ObservationCreateCommandHandler.cs",
+              "RelativeToolTip": "BioWings.Application\\Features\\Handlers\\ObservationHandlers\\Write\\ObservationCreateCommandHandler.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAHEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-12T17:54:45.886Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ExcelTemplateService.cs",
+              "DocumentMoniker": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.Infrastructure\\Services\\ExcelTemplate\\ExcelTemplateService.cs",
+              "RelativeDocumentMoniker": "BioWings.Infrastructure\\Services\\ExcelTemplate\\ExcelTemplateService.cs",
+              "ToolTip": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.Infrastructure\\Services\\ExcelTemplate\\ExcelTemplateService.cs",
+              "RelativeToolTip": "BioWings.Infrastructure\\Services\\ExcelTemplate\\ExcelTemplateService.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAAAIEAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-12T17:45:30.167Z",
               "EditorCaption": ""
             },
             {

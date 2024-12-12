@@ -111,6 +111,16 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "BioWings.WebAPI.Controllers.ExcelTemplateController",
+    "Method": "DownloadTemplate",
+    "RelativePath": "api/ExcelTemplate/download",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "BioWings.WebAPI.Controllers.FamiliesController",
     "Method": "GetAll",
     "RelativePath": "api/Families",
@@ -455,6 +465,22 @@
         "Name": "command",
         "Type": "BioWings.Application.Features.Commands.ObservationCommands.ObservationCreateCommand",
         "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BioWings.WebAPI.Controllers.ObservationsController",
+    "Method": "Import",
+    "RelativePath": "api/Observations/Import",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "File",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []

@@ -1,0 +1,1127 @@
+[20:41:43 INF] Executed DbCommand (24ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='Db_BioWings' AND TABLE_NAME='__EFMigrationsHistory'; <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:41:43 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='Db_BioWings' AND TABLE_NAME='__EFMigrationsHistory'; <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:41:44 INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `MigrationId`, `ProductVersion`
+FROM `__EFMigrationsHistory`
+ORDER BY `MigrationId`; <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:41:44 INF] Applying migration '20241212174130_mig_add_observerupdate'. <s:Microsoft.EntityFrameworkCore.Migrations>
+[20:41:44 INF] Executed DbCommand (64ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE `Observers` MODIFY COLUMN `Phone` varchar(20) CHARACTER SET utf8mb4 NULL; <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:41:44 INF] Executed DbCommand (33ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE `Observers` MODIFY COLUMN `PasswordHash` varchar(70) CHARACTER SET utf8mb4 NULL; <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:41:44 INF] Executed DbCommand (25ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE `Observers` MODIFY COLUMN `FullName` longtext CHARACTER SET utf8mb4 NULL; <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:41:44 INF] Executed DbCommand (24ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE `Observers` MODIFY COLUMN `Email` varchar(40) CHARACTER SET utf8mb4 NULL; <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:41:44 INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `__EFMigrationsHistory` (`MigrationId`, `ProductVersion`)
+VALUES ('20241212174130_mig_add_observerupdate', '8.0.11'); <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:42:37 INF] Now listening on: https://localhost:7128 <s:Microsoft.Hosting.Lifetime>
+[20:42:37 INF] Now listening on: http://localhost:5054 <s:Microsoft.Hosting.Lifetime>
+[20:42:37 INF] Application started. Press Ctrl+C to shut down. <s:Microsoft.Hosting.Lifetime>
+[20:42:37 INF] Hosting environment: Development <s:Microsoft.Hosting.Lifetime>
+[20:42:37 INF] Content root path: C:\Users\cagat\VisualStudio2022\BioWings\BioWings\BioWings.WebAPI <s:Microsoft.Hosting.Lifetime>
+[20:42:38 INF] Request starting HTTP/2 GET https://localhost:7128/swagger/index.html - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[20:42:38 INF] Request finished HTTP/2 GET https://localhost:7128/swagger/index.html - 200 null text/html;charset=utf-8 323.1633ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[20:42:39 INF] Request starting HTTP/2 GET https://localhost:7128/_vs/browserLink - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[20:42:39 INF] Request starting HTTP/2 GET https://localhost:7128/_framework/aspnetcore-browser-refresh.js - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[20:42:39 INF] Request finished HTTP/2 GET https://localhost:7128/_framework/aspnetcore-browser-refresh.js - 200 13782 application/javascript; charset=utf-8 4.49ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[20:42:39 INF] Request finished HTTP/2 GET https://localhost:7128/_vs/browserLink - 200 null text/javascript; charset=UTF-8 30.591ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[20:42:40 INF] Request starting HTTP/2 GET https://localhost:7128/swagger/v1/swagger.json - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[20:42:40 INF] Request finished HTTP/2 GET https://localhost:7128/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 33.6412ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[20:44:35 INF] Request starting HTTP/2 POST https://localhost:7128/api/Observations/Import - multipart/form-data; boundary=----WebKitFormBoundarybZvFGxZzueINMRp1 6827 <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[20:44:35 INF] CORS policy execution successful. <s:Microsoft.AspNetCore.Cors.Infrastructure.CorsService>
+[20:44:35 INF] Executing endpoint 'BioWings.WebAPI.Controllers.ObservationsController.Import (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[20:44:35 INF] Route matched with {action = "Import", controller = "Observations"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Import(BioWings.Application.Features.Commands.ObservationCommands.ObservationImportCreateCommand) on controller BioWings.WebAPI.Controllers.ObservationsController (BioWings.WebAPI). <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[20:44:35 INF] Parsed 3 observations from Excel file <s:BioWings.Application.Features.Handlers.ObservationHandlers.Write.ObservationImportCreateCommandHandler>
+[20:44:36 INF] Starting bulk creation of 3 observations <s:BioWings.Application.Features.Handlers.ObservationHandlers.Write.ObservationCreateRangeCommandHandler>
+[20:44:36 INF] Executed DbCommand (26ms) [Parameters=[@__name_0='?' (Size = 50), @__year_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `a`.`Id`, `a`.`CreatedDateTime`, `a`.`Name`, `a`.`UpdatedDateTime`, `a`.`Year`
+FROM `Authorities` AS `a`
+WHERE (`a`.`Name` = @__name_0) AND (`a`.`Year` = @__year_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:44:36 INF] Executed DbCommand (3ms) [Parameters=[@__name_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `f`.`Id`, `f`.`CreatedDateTime`, `f`.`Name`, `f`.`UpdatedDateTime`
+FROM `Families` AS `f`
+WHERE `f`.`Name` = @__name_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:44:36 INF] Executed DbCommand (1ms) [Parameters=[@__name_0='?' (Size = 50), @__familyId_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `g`.`Id`, `g`.`CreatedDateTime`, `g`.`FamilyId`, `g`.`Name`, `g`.`UpdatedDateTime`
+FROM `Genera` AS `g`
+WHERE (`g`.`Name` = @__name_0) AND (`g`.`FamilyId` = @__familyId_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:44:36 INF] Executed DbCommand (1ms) [Parameters=[@__name_0='?' (Size = 70)], CommandType='"Text"', CommandTimeout='30']
+SELECT `s`.`Id`, `s`.`CreatedDateTime`, `s`.`Description`, `s`.`Name`, `s`.`UpdatedDateTime`
+FROM `SpeciesTypes` AS `s`
+WHERE `s`.`Name` = @__name_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:44:36 INF] Executed DbCommand (1ms) [Parameters=[@__scientificName_0='?' (Size = 200)], CommandType='"Text"', CommandTimeout='30']
+SELECT `s`.`Id`, `s`.`AuthorityId`, `s`.`CreatedDateTime`, `s`.`EUName`, `s`.`EnglishName`, `s`.`FullName`, `s`.`GenusId`, `s`.`HesselbarthName`, `s`.`KocakName`, `s`.`Name`, `s`.`ScientificName`, `s`.`SpeciesTypeId`, `s`.`Trakel`, `s`.`TurkishName`, `s`.`TurkishNamesTrakel`, `s`.`UpdatedDateTime`
+FROM `Species` AS `s`
+WHERE `s`.`ScientificName` = @__scientificName_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:44:36 INF] Executed DbCommand (1ms) [Parameters=[@__name_0='?' (Size = 70)], CommandType='"Text"', CommandTimeout='30']
+SELECT `p`.`Id`, `p`.`CreatedDateTime`, `p`.`Name`, `p`.`ProvinceCode`, `p`.`UpdatedDateTime`
+FROM `Provinces` AS `p`
+WHERE `p`.`Name` = @__name_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:44:36 INF] Executed DbCommand (0ms) [Parameters=[@__request_SquareRef_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `l`.`Id`, `l`.`Altitude1`, `l`.`Altitude2`, `l`.`CoordinatePrecisionLevel`, `l`.`CreatedDateTime`, `l`.`DecimalDegrees`, `l`.`DecimalMinutes`, `l`.`DegreesMinutesSeconds`, `l`.`Description`, `l`.`Latitude`, `l`.`Longitude`, `l`.`MgrsCoordinates`, `l`.`ProvinceId`, `l`.`SquareLatitude`, `l`.`SquareLongitude`, `l`.`SquareRef`, `l`.`UpdatedDateTime`, `l`.`UtmCoordinates`, `l`.`UtmReference`
+FROM `Locations` AS `l`
+WHERE `l`.`SquareRef` = @__request_SquareRef_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:44:36 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 40), @__surname_1='?' (Size = 20)], CommandType='"Text"', CommandTimeout='30']
+SELECT `o`.`Id`, `o`.`CreatedDateTime`, `o`.`Email`, `o`.`FullName`, `o`.`Name`, `o`.`PasswordHash`, `o`.`Phone`, `o`.`Surname`, `o`.`UpdatedDateTime`
+FROM `Observers` AS `o`
+WHERE (`o`.`Name` = @__name_0) AND (`o`.`Surname` = @__surname_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:44:36 INF] Executed DbCommand (2ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (Size = 40), @p2='?' (Size = 4000), @p3='?' (Size = 40), @p4='?' (Size = 70), @p5='?' (Size = 20), @p6='?' (Size = 20), @p7='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `Observers` (`CreatedDateTime`, `Email`, `FullName`, `Name`, `PasswordHash`, `Phone`, `Surname`, `UpdatedDateTime`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7);
+SELECT `Id`
+FROM `Observers`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID(); <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:44:36 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 50), @__year_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `a`.`Id`, `a`.`CreatedDateTime`, `a`.`Name`, `a`.`UpdatedDateTime`, `a`.`Year`
+FROM `Authorities` AS `a`
+WHERE (`a`.`Name` = @__name_0) AND (`a`.`Year` = @__year_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:44:36 INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (Size = 50), @p2='?' (DbType = DateTime), @p3='?' (DbType = Int32), @p4='?' (DbType = DateTime), @p5='?' (Size = 50), @p6='?' (DbType = Int32), @p7='?' (Size = 4000), @p8='?' (Size = 1000), @p9='?' (DbType = Int32), @p10='?' (DbType = DateTime), @p11='?' (DbType = Int32), @p12='?' (Size = 15), @p13='?' (Size = 200), @p14='?' (DbType = Int32), @p15='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `Authorities` (`CreatedDateTime`, `Name`, `UpdatedDateTime`, `Year`)
+VALUES (@p0, @p1, @p2, @p3);
+SELECT `Id`
+FROM `Authorities`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+
+INSERT INTO `Observations` (`CreatedDateTime`, `LifeStage`, `LocationId`, `LocationInfo`, `Notes`, `NumberSeen`, `ObservationDate`, `ObserverId`, `Sex`, `Source`, `SpeciesId`, `UpdatedDateTime`)
+VALUES (@p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15);
+SELECT `Id`
+FROM `Observations`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID(); <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:44:36 INF] Authority created that has id : 4 <s:BioWings.Application.Features.Handlers.ObservationHandlers.Write.ObservationCreateRangeCommandHandler>
+[20:44:36 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `f`.`Id`, `f`.`CreatedDateTime`, `f`.`Name`, `f`.`UpdatedDateTime`
+FROM `Families` AS `f`
+WHERE `f`.`Name` = @__name_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:44:36 INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (Size = 50), @p2='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `Families` (`CreatedDateTime`, `Name`, `UpdatedDateTime`)
+VALUES (@p0, @p1, @p2);
+SELECT `Id`
+FROM `Families`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID(); <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:44:36 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 50), @__familyId_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `g`.`Id`, `g`.`CreatedDateTime`, `g`.`FamilyId`, `g`.`Name`, `g`.`UpdatedDateTime`
+FROM `Genera` AS `g`
+WHERE (`g`.`Name` = @__name_0) AND (`g`.`FamilyId` = @__familyId_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:44:36 INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (DbType = Int32), @p2='?' (Size = 50), @p3='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `Genera` (`CreatedDateTime`, `FamilyId`, `Name`, `UpdatedDateTime`)
+VALUES (@p0, @p1, @p2, @p3);
+SELECT `Id`
+FROM `Genera`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID(); <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:44:36 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 70)], CommandType='"Text"', CommandTimeout='30']
+SELECT `s`.`Id`, `s`.`CreatedDateTime`, `s`.`Description`, `s`.`Name`, `s`.`UpdatedDateTime`
+FROM `SpeciesTypes` AS `s`
+WHERE `s`.`Name` = @__name_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:44:36 INF] Executed DbCommand (0ms) [Parameters=[@__scientificName_0='?' (Size = 200)], CommandType='"Text"', CommandTimeout='30']
+SELECT `s`.`Id`, `s`.`AuthorityId`, `s`.`CreatedDateTime`, `s`.`EUName`, `s`.`EnglishName`, `s`.`FullName`, `s`.`GenusId`, `s`.`HesselbarthName`, `s`.`KocakName`, `s`.`Name`, `s`.`ScientificName`, `s`.`SpeciesTypeId`, `s`.`Trakel`, `s`.`TurkishName`, `s`.`TurkishNamesTrakel`, `s`.`UpdatedDateTime`
+FROM `Species` AS `s`
+WHERE `s`.`ScientificName` = @__scientificName_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:44:36 INF] Executed DbCommand (0ms) [Parameters=[@__kocakName_0='?' (Size = 70)], CommandType='"Text"', CommandTimeout='30']
+SELECT `s`.`Id`, `s`.`AuthorityId`, `s`.`CreatedDateTime`, `s`.`EUName`, `s`.`EnglishName`, `s`.`FullName`, `s`.`GenusId`, `s`.`HesselbarthName`, `s`.`KocakName`, `s`.`Name`, `s`.`ScientificName`, `s`.`SpeciesTypeId`, `s`.`Trakel`, `s`.`TurkishName`, `s`.`TurkishNamesTrakel`, `s`.`UpdatedDateTime`
+FROM `Species` AS `s`
+WHERE `s`.`KocakName` = @__kocakName_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:44:36 INF] Executed DbCommand (0ms) [Parameters=[@__hesselbarthName_0='?' (Size = 70)], CommandType='"Text"', CommandTimeout='30']
+SELECT `s`.`Id`, `s`.`AuthorityId`, `s`.`CreatedDateTime`, `s`.`EUName`, `s`.`EnglishName`, `s`.`FullName`, `s`.`GenusId`, `s`.`HesselbarthName`, `s`.`KocakName`, `s`.`Name`, `s`.`ScientificName`, `s`.`SpeciesTypeId`, `s`.`Trakel`, `s`.`TurkishName`, `s`.`TurkishNamesTrakel`, `s`.`UpdatedDateTime`
+FROM `Species` AS `s`
+WHERE `s`.`HesselbarthName` = @__hesselbarthName_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:44:36 INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = DateTime), @p2='?' (Size = 70), @p3='?' (Size = 70), @p4='?' (Size = 100), @p5='?' (DbType = Int32), @p6='?' (Size = 70), @p7='?' (Size = 70), @p8='?' (Size = 70), @p9='?' (Size = 200), @p10='?' (DbType = Int32), @p11='?' (Size = 70), @p12='?' (Size = 70), @p13='?' (Size = 70), @p14='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `Species` (`AuthorityId`, `CreatedDateTime`, `EUName`, `EnglishName`, `FullName`, `GenusId`, `HesselbarthName`, `KocakName`, `Name`, `ScientificName`, `SpeciesTypeId`, `Trakel`, `TurkishName`, `TurkishNamesTrakel`, `UpdatedDateTime`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14);
+SELECT `Id`
+FROM `Species`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID(); <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:44:36 INF] New species created: Vanessa cardui <s:BioWings.Application.Features.Handlers.ObservationHandlers.Write.ObservationCreateRangeCommandHandler>
+[20:44:36 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 70)], CommandType='"Text"', CommandTimeout='30']
+SELECT `p`.`Id`, `p`.`CreatedDateTime`, `p`.`Name`, `p`.`ProvinceCode`, `p`.`UpdatedDateTime`
+FROM `Provinces` AS `p`
+WHERE `p`.`Name` = @__name_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:44:36 INF] Executed DbCommand (0ms) [Parameters=[@__request_SquareRef_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `l`.`Id`, `l`.`Altitude1`, `l`.`Altitude2`, `l`.`CoordinatePrecisionLevel`, `l`.`CreatedDateTime`, `l`.`DecimalDegrees`, `l`.`DecimalMinutes`, `l`.`DegreesMinutesSeconds`, `l`.`Description`, `l`.`Latitude`, `l`.`Longitude`, `l`.`MgrsCoordinates`, `l`.`ProvinceId`, `l`.`SquareLatitude`, `l`.`SquareLongitude`, `l`.`SquareRef`, `l`.`UpdatedDateTime`, `l`.`UtmCoordinates`, `l`.`UtmReference`
+FROM `Locations` AS `l`
+WHERE `l`.`SquareRef` = @__request_SquareRef_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:44:36 INF] Executed DbCommand (0ms) [Parameters=[@__request_Latitude_0='?' (DbType = Decimal), @__request_Longitude_1='?' (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT `l`.`Id`, `l`.`Altitude1`, `l`.`Altitude2`, `l`.`CoordinatePrecisionLevel`, `l`.`CreatedDateTime`, `l`.`DecimalDegrees`, `l`.`DecimalMinutes`, `l`.`DegreesMinutesSeconds`, `l`.`Description`, `l`.`Latitude`, `l`.`Longitude`, `l`.`MgrsCoordinates`, `l`.`ProvinceId`, `l`.`SquareLatitude`, `l`.`SquareLongitude`, `l`.`SquareRef`, `l`.`UpdatedDateTime`, `l`.`UtmCoordinates`, `l`.`UtmReference`
+FROM `Locations` AS `l`
+WHERE (`l`.`Latitude` = @__request_Latitude_0) AND (`l`.`Longitude` = @__request_Longitude_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:44:36 INF] Executed DbCommand (0ms) [Parameters=[@__request_SquareLatitude_0='?' (DbType = Decimal), @__request_SquareLongitude_1='?' (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT `l`.`Id`, `l`.`Altitude1`, `l`.`Altitude2`, `l`.`CoordinatePrecisionLevel`, `l`.`CreatedDateTime`, `l`.`DecimalDegrees`, `l`.`DecimalMinutes`, `l`.`DegreesMinutesSeconds`, `l`.`Description`, `l`.`Latitude`, `l`.`Longitude`, `l`.`MgrsCoordinates`, `l`.`ProvinceId`, `l`.`SquareLatitude`, `l`.`SquareLongitude`, `l`.`SquareRef`, `l`.`UpdatedDateTime`, `l`.`UtmCoordinates`, `l`.`UtmReference`
+FROM `Locations` AS `l`
+WHERE (`l`.`SquareLatitude` = @__request_SquareLatitude_0) AND (`l`.`SquareLongitude` = @__request_SquareLongitude_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:44:36 INF] Executed DbCommand (0ms) [Parameters=[@__request_Latitude_0='?' (DbType = Decimal), @__request_Longitude_1='?' (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT `l`.`Id`, `l`.`Altitude1`, `l`.`Altitude2`, `l`.`CoordinatePrecisionLevel`, `l`.`CreatedDateTime`, `l`.`DecimalDegrees`, `l`.`DecimalMinutes`, `l`.`DegreesMinutesSeconds`, `l`.`Description`, `l`.`Latitude`, `l`.`Longitude`, `l`.`MgrsCoordinates`, `l`.`ProvinceId`, `l`.`SquareLatitude`, `l`.`SquareLongitude`, `l`.`SquareRef`, `l`.`UpdatedDateTime`, `l`.`UtmCoordinates`, `l`.`UtmReference`
+FROM `Locations` AS `l`
+WHERE (ABS(`l`.`Latitude` - @__request_Latitude_0) <= 0.0001) AND (ABS(`l`.`Longitude` - @__request_Longitude_1) <= 0.0001)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:44:36 INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = Decimal), @p1='?' (DbType = Decimal), @p2='?' (DbType = Int32), @p3='?' (DbType = DateTime), @p4='?' (Size = 50), @p5='?' (Size = 50), @p6='?' (Size = 50), @p7='?' (Size = 500), @p8='?' (DbType = Decimal), @p9='?' (DbType = Decimal), @p10='?' (Size = 50), @p11='?' (DbType = Int32), @p12='?' (DbType = Decimal), @p13='?' (DbType = Decimal), @p14='?' (Size = 50), @p15='?' (DbType = DateTime), @p16='?' (Size = 50), @p17='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `Locations` (`Altitude1`, `Altitude2`, `CoordinatePrecisionLevel`, `CreatedDateTime`, `DecimalDegrees`, `DecimalMinutes`, `DegreesMinutesSeconds`, `Description`, `Latitude`, `Longitude`, `MgrsCoordinates`, `ProvinceId`, `SquareLatitude`, `SquareLongitude`, `SquareRef`, `UpdatedDateTime`, `UtmCoordinates`, `UtmReference`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15, @p16, @p17);
+SELECT `Id`
+FROM `Locations`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID(); <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:44:36 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 40), @__surname_1='?' (Size = 20)], CommandType='"Text"', CommandTimeout='30']
+SELECT `o`.`Id`, `o`.`CreatedDateTime`, `o`.`Email`, `o`.`FullName`, `o`.`Name`, `o`.`PasswordHash`, `o`.`Phone`, `o`.`Surname`, `o`.`UpdatedDateTime`
+FROM `Observers` AS `o`
+WHERE (`o`.`Name` = @__name_0) AND (`o`.`Surname` = @__surname_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:44:36 INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (Size = 40), @p2='?' (Size = 4000), @p3='?' (Size = 40), @p4='?' (Size = 70), @p5='?' (Size = 20), @p6='?' (Size = 20), @p7='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `Observers` (`CreatedDateTime`, `Email`, `FullName`, `Name`, `PasswordHash`, `Phone`, `Surname`, `UpdatedDateTime`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7);
+SELECT `Id`
+FROM `Observers`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID(); <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:44:36 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 50), @__year_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `a`.`Id`, `a`.`CreatedDateTime`, `a`.`Name`, `a`.`UpdatedDateTime`, `a`.`Year`
+FROM `Authorities` AS `a`
+WHERE (`a`.`Name` = @__name_0) AND (`a`.`Year` = @__year_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:44:36 INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (Size = 50), @p2='?' (DbType = DateTime), @p3='?' (DbType = Int32), @p4='?' (DbType = DateTime), @p5='?' (Size = 50), @p6='?' (DbType = Int32), @p7='?' (Size = 4000), @p8='?' (Size = 1000), @p9='?' (DbType = Int32), @p10='?' (DbType = DateTime), @p11='?' (DbType = Int32), @p12='?' (Size = 15), @p13='?' (Size = 200), @p14='?' (DbType = Int32), @p15='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `Authorities` (`CreatedDateTime`, `Name`, `UpdatedDateTime`, `Year`)
+VALUES (@p0, @p1, @p2, @p3);
+SELECT `Id`
+FROM `Authorities`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+
+INSERT INTO `Observations` (`CreatedDateTime`, `LifeStage`, `LocationId`, `LocationInfo`, `Notes`, `NumberSeen`, `ObservationDate`, `ObserverId`, `Sex`, `Source`, `SpeciesId`, `UpdatedDateTime`)
+VALUES (@p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15);
+SELECT `Id`
+FROM `Observations`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID(); <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:44:36 INF] Authority created that has id : 5 <s:BioWings.Application.Features.Handlers.ObservationHandlers.Write.ObservationCreateRangeCommandHandler>
+[20:44:36 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `f`.`Id`, `f`.`CreatedDateTime`, `f`.`Name`, `f`.`UpdatedDateTime`
+FROM `Families` AS `f`
+WHERE `f`.`Name` = @__name_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:44:36 INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (Size = 50), @p2='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `Families` (`CreatedDateTime`, `Name`, `UpdatedDateTime`)
+VALUES (@p0, @p1, @p2);
+SELECT `Id`
+FROM `Families`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID(); <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:44:36 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 50), @__familyId_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `g`.`Id`, `g`.`CreatedDateTime`, `g`.`FamilyId`, `g`.`Name`, `g`.`UpdatedDateTime`
+FROM `Genera` AS `g`
+WHERE (`g`.`Name` = @__name_0) AND (`g`.`FamilyId` = @__familyId_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:44:36 INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (DbType = Int32), @p2='?' (Size = 50), @p3='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `Genera` (`CreatedDateTime`, `FamilyId`, `Name`, `UpdatedDateTime`)
+VALUES (@p0, @p1, @p2, @p3);
+SELECT `Id`
+FROM `Genera`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID(); <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:44:36 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 70)], CommandType='"Text"', CommandTimeout='30']
+SELECT `s`.`Id`, `s`.`CreatedDateTime`, `s`.`Description`, `s`.`Name`, `s`.`UpdatedDateTime`
+FROM `SpeciesTypes` AS `s`
+WHERE `s`.`Name` = @__name_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:44:36 INF] Executed DbCommand (0ms) [Parameters=[@__scientificName_0='?' (Size = 200)], CommandType='"Text"', CommandTimeout='30']
+SELECT `s`.`Id`, `s`.`AuthorityId`, `s`.`CreatedDateTime`, `s`.`EUName`, `s`.`EnglishName`, `s`.`FullName`, `s`.`GenusId`, `s`.`HesselbarthName`, `s`.`KocakName`, `s`.`Name`, `s`.`ScientificName`, `s`.`SpeciesTypeId`, `s`.`Trakel`, `s`.`TurkishName`, `s`.`TurkishNamesTrakel`, `s`.`UpdatedDateTime`
+FROM `Species` AS `s`
+WHERE `s`.`ScientificName` = @__scientificName_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:44:36 INF] Executed DbCommand (0ms) [Parameters=[@__kocakName_0='?' (Size = 70)], CommandType='"Text"', CommandTimeout='30']
+SELECT `s`.`Id`, `s`.`AuthorityId`, `s`.`CreatedDateTime`, `s`.`EUName`, `s`.`EnglishName`, `s`.`FullName`, `s`.`GenusId`, `s`.`HesselbarthName`, `s`.`KocakName`, `s`.`Name`, `s`.`ScientificName`, `s`.`SpeciesTypeId`, `s`.`Trakel`, `s`.`TurkishName`, `s`.`TurkishNamesTrakel`, `s`.`UpdatedDateTime`
+FROM `Species` AS `s`
+WHERE `s`.`KocakName` = @__kocakName_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:44:36 INF] Executed DbCommand (0ms) [Parameters=[@__hesselbarthName_0='?' (Size = 70)], CommandType='"Text"', CommandTimeout='30']
+SELECT `s`.`Id`, `s`.`AuthorityId`, `s`.`CreatedDateTime`, `s`.`EUName`, `s`.`EnglishName`, `s`.`FullName`, `s`.`GenusId`, `s`.`HesselbarthName`, `s`.`KocakName`, `s`.`Name`, `s`.`ScientificName`, `s`.`SpeciesTypeId`, `s`.`Trakel`, `s`.`TurkishName`, `s`.`TurkishNamesTrakel`, `s`.`UpdatedDateTime`
+FROM `Species` AS `s`
+WHERE `s`.`HesselbarthName` = @__hesselbarthName_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:44:36 INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = DateTime), @p2='?' (Size = 70), @p3='?' (Size = 70), @p4='?' (Size = 100), @p5='?' (DbType = Int32), @p6='?' (Size = 70), @p7='?' (Size = 70), @p8='?' (Size = 70), @p9='?' (Size = 200), @p10='?' (DbType = Int32), @p11='?' (Size = 70), @p12='?' (Size = 70), @p13='?' (Size = 70), @p14='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `Species` (`AuthorityId`, `CreatedDateTime`, `EUName`, `EnglishName`, `FullName`, `GenusId`, `HesselbarthName`, `KocakName`, `Name`, `ScientificName`, `SpeciesTypeId`, `Trakel`, `TurkishName`, `TurkishNamesTrakel`, `UpdatedDateTime`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14);
+SELECT `Id`
+FROM `Species`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID(); <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:44:36 INF] New species created: Lycaena phlaeas <s:BioWings.Application.Features.Handlers.ObservationHandlers.Write.ObservationCreateRangeCommandHandler>
+[20:44:36 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 70)], CommandType='"Text"', CommandTimeout='30']
+SELECT `p`.`Id`, `p`.`CreatedDateTime`, `p`.`Name`, `p`.`ProvinceCode`, `p`.`UpdatedDateTime`
+FROM `Provinces` AS `p`
+WHERE `p`.`Name` = @__name_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:44:36 INF] Executed DbCommand (0ms) [Parameters=[@__request_SquareRef_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `l`.`Id`, `l`.`Altitude1`, `l`.`Altitude2`, `l`.`CoordinatePrecisionLevel`, `l`.`CreatedDateTime`, `l`.`DecimalDegrees`, `l`.`DecimalMinutes`, `l`.`DegreesMinutesSeconds`, `l`.`Description`, `l`.`Latitude`, `l`.`Longitude`, `l`.`MgrsCoordinates`, `l`.`ProvinceId`, `l`.`SquareLatitude`, `l`.`SquareLongitude`, `l`.`SquareRef`, `l`.`UpdatedDateTime`, `l`.`UtmCoordinates`, `l`.`UtmReference`
+FROM `Locations` AS `l`
+WHERE `l`.`SquareRef` = @__request_SquareRef_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:44:36 INF] Executed DbCommand (0ms) [Parameters=[@__request_Latitude_0='?' (DbType = Decimal), @__request_Longitude_1='?' (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT `l`.`Id`, `l`.`Altitude1`, `l`.`Altitude2`, `l`.`CoordinatePrecisionLevel`, `l`.`CreatedDateTime`, `l`.`DecimalDegrees`, `l`.`DecimalMinutes`, `l`.`DegreesMinutesSeconds`, `l`.`Description`, `l`.`Latitude`, `l`.`Longitude`, `l`.`MgrsCoordinates`, `l`.`ProvinceId`, `l`.`SquareLatitude`, `l`.`SquareLongitude`, `l`.`SquareRef`, `l`.`UpdatedDateTime`, `l`.`UtmCoordinates`, `l`.`UtmReference`
+FROM `Locations` AS `l`
+WHERE (`l`.`Latitude` = @__request_Latitude_0) AND (`l`.`Longitude` = @__request_Longitude_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:44:36 INF] Executed DbCommand (0ms) [Parameters=[@__request_SquareLatitude_0='?' (DbType = Decimal), @__request_SquareLongitude_1='?' (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT `l`.`Id`, `l`.`Altitude1`, `l`.`Altitude2`, `l`.`CoordinatePrecisionLevel`, `l`.`CreatedDateTime`, `l`.`DecimalDegrees`, `l`.`DecimalMinutes`, `l`.`DegreesMinutesSeconds`, `l`.`Description`, `l`.`Latitude`, `l`.`Longitude`, `l`.`MgrsCoordinates`, `l`.`ProvinceId`, `l`.`SquareLatitude`, `l`.`SquareLongitude`, `l`.`SquareRef`, `l`.`UpdatedDateTime`, `l`.`UtmCoordinates`, `l`.`UtmReference`
+FROM `Locations` AS `l`
+WHERE (`l`.`SquareLatitude` = @__request_SquareLatitude_0) AND (`l`.`SquareLongitude` = @__request_SquareLongitude_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:44:36 INF] Executed DbCommand (0ms) [Parameters=[@__request_Latitude_0='?' (DbType = Decimal), @__request_Longitude_1='?' (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT `l`.`Id`, `l`.`Altitude1`, `l`.`Altitude2`, `l`.`CoordinatePrecisionLevel`, `l`.`CreatedDateTime`, `l`.`DecimalDegrees`, `l`.`DecimalMinutes`, `l`.`DegreesMinutesSeconds`, `l`.`Description`, `l`.`Latitude`, `l`.`Longitude`, `l`.`MgrsCoordinates`, `l`.`ProvinceId`, `l`.`SquareLatitude`, `l`.`SquareLongitude`, `l`.`SquareRef`, `l`.`UpdatedDateTime`, `l`.`UtmCoordinates`, `l`.`UtmReference`
+FROM `Locations` AS `l`
+WHERE (ABS(`l`.`Latitude` - @__request_Latitude_0) <= 0.0001) AND (ABS(`l`.`Longitude` - @__request_Longitude_1) <= 0.0001)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:44:36 INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Decimal), @p1='?' (DbType = Decimal), @p2='?' (DbType = Int32), @p3='?' (DbType = DateTime), @p4='?' (Size = 50), @p5='?' (Size = 50), @p6='?' (Size = 50), @p7='?' (Size = 500), @p8='?' (DbType = Decimal), @p9='?' (DbType = Decimal), @p10='?' (Size = 50), @p11='?' (DbType = Int32), @p12='?' (DbType = Decimal), @p13='?' (DbType = Decimal), @p14='?' (Size = 50), @p15='?' (DbType = DateTime), @p16='?' (Size = 50), @p17='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `Locations` (`Altitude1`, `Altitude2`, `CoordinatePrecisionLevel`, `CreatedDateTime`, `DecimalDegrees`, `DecimalMinutes`, `DegreesMinutesSeconds`, `Description`, `Latitude`, `Longitude`, `MgrsCoordinates`, `ProvinceId`, `SquareLatitude`, `SquareLongitude`, `SquareRef`, `UpdatedDateTime`, `UtmCoordinates`, `UtmReference`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15, @p16, @p17);
+SELECT `Id`
+FROM `Locations`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID(); <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:44:36 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 40), @__surname_1='?' (Size = 20)], CommandType='"Text"', CommandTimeout='30']
+SELECT `o`.`Id`, `o`.`CreatedDateTime`, `o`.`Email`, `o`.`FullName`, `o`.`Name`, `o`.`PasswordHash`, `o`.`Phone`, `o`.`Surname`, `o`.`UpdatedDateTime`
+FROM `Observers` AS `o`
+WHERE (`o`.`Name` = @__name_0) AND (`o`.`Surname` = @__surname_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:44:36 INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (Size = 40), @p2='?' (Size = 4000), @p3='?' (Size = 40), @p4='?' (Size = 70), @p5='?' (Size = 20), @p6='?' (Size = 20), @p7='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `Observers` (`CreatedDateTime`, `Email`, `FullName`, `Name`, `PasswordHash`, `Phone`, `Surname`, `UpdatedDateTime`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7);
+SELECT `Id`
+FROM `Observers`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID(); <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:44:36 INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (Size = 50), @p2='?' (DbType = Int32), @p3='?' (Size = 4000), @p4='?' (Size = 1000), @p5='?' (DbType = Int32), @p6='?' (DbType = DateTime), @p7='?' (DbType = Int32), @p8='?' (Size = 15), @p9='?' (Size = 200), @p10='?' (DbType = Int32), @p11='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `Observations` (`CreatedDateTime`, `LifeStage`, `LocationId`, `LocationInfo`, `Notes`, `NumberSeen`, `ObservationDate`, `ObserverId`, `Sex`, `Source`, `SpeciesId`, `UpdatedDateTime`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11);
+SELECT `Id`
+FROM `Observations`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID(); <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:44:36 INF] Completed bulk creation. Successfully created: 3 observations. Errors: 0 <s:BioWings.Application.Features.Handlers.ObservationHandlers.Write.ObservationCreateRangeCommandHandler>
+[20:44:36 INF] Executing ObjectResult, writing value of type 'BioWings.Application.Results.ServiceResult'. <s:Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor>
+[20:44:36 INF] Executed action BioWings.WebAPI.Controllers.ObservationsController.Import (BioWings.WebAPI) in 1564.9442ms <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[20:44:36 INF] Executed endpoint 'BioWings.WebAPI.Controllers.ObservationsController.Import (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[20:44:36 INF] HTTP POST /api/Observations/Import responded 201 in 1586.9297 ms <s:Serilog.AspNetCore.RequestLoggingMiddleware>
+[20:44:36 INF] Request finished HTTP/2 POST https://localhost:7128/api/Observations/Import - 201 null application/json; charset=utf-8 1597.667ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[20:55:14 INF] Now listening on: https://localhost:7128 <s:Microsoft.Hosting.Lifetime>
+[20:55:14 INF] Now listening on: http://localhost:5054 <s:Microsoft.Hosting.Lifetime>
+[20:55:14 INF] Application started. Press Ctrl+C to shut down. <s:Microsoft.Hosting.Lifetime>
+[20:55:14 INF] Hosting environment: Development <s:Microsoft.Hosting.Lifetime>
+[20:55:14 INF] Content root path: C:\Users\cagat\VisualStudio2022\BioWings\BioWings\BioWings.WebAPI <s:Microsoft.Hosting.Lifetime>
+[20:55:16 INF] Request starting HTTP/2 GET https://localhost:7128/swagger/index.html - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[20:55:16 INF] Request finished HTTP/2 GET https://localhost:7128/swagger/index.html - 200 null text/html;charset=utf-8 284.7915ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[20:55:17 INF] Request starting HTTP/2 GET https://localhost:7128/_framework/aspnetcore-browser-refresh.js - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[20:55:17 INF] Request starting HTTP/2 GET https://localhost:7128/_vs/browserLink - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[20:55:17 INF] Request finished HTTP/2 GET https://localhost:7128/_framework/aspnetcore-browser-refresh.js - 200 13782 application/javascript; charset=utf-8 3.2045ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[20:55:17 INF] Request finished HTTP/2 GET https://localhost:7128/_vs/browserLink - 200 null text/javascript; charset=UTF-8 26.1856ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[20:55:17 INF] Request starting HTTP/2 GET https://localhost:7128/swagger/v1/swagger.json - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[20:55:17 INF] Request finished HTTP/2 GET https://localhost:7128/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 40.9982ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[20:56:57 INF] Request starting HTTP/2 POST https://localhost:7128/api/Observations/Import - multipart/form-data; boundary=----WebKitFormBoundaryGFu1j19ezZLJjoUQ 6827 <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[20:56:57 INF] CORS policy execution successful. <s:Microsoft.AspNetCore.Cors.Infrastructure.CorsService>
+[20:56:57 INF] Executing endpoint 'BioWings.WebAPI.Controllers.ObservationsController.Import (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[20:56:57 INF] Route matched with {action = "Import", controller = "Observations"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Import(BioWings.Application.Features.Commands.ObservationCommands.ObservationImportCreateCommand) on controller BioWings.WebAPI.Controllers.ObservationsController (BioWings.WebAPI). <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[20:56:57 INF] Parsed 3 observations from Excel file <s:BioWings.Application.Features.Handlers.ObservationHandlers.Write.ObservationImportCreateCommandHandler>
+[20:56:58 INF] Starting bulk creation of 3 observations <s:BioWings.Application.Features.Handlers.ObservationHandlers.Write.ObservationCreateRangeCommandHandler>
+[20:56:58 INF] Executed DbCommand (28ms) [Parameters=[@__name_0='?' (Size = 50), @__year_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `a`.`Id`, `a`.`CreatedDateTime`, `a`.`Name`, `a`.`UpdatedDateTime`, `a`.`Year`
+FROM `Authorities` AS `a`
+WHERE (`a`.`Name` = @__name_0) AND (`a`.`Year` = @__year_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:56:58 INF] Executed DbCommand (3ms) [Parameters=[@__name_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `f`.`Id`, `f`.`CreatedDateTime`, `f`.`Name`, `f`.`UpdatedDateTime`
+FROM `Families` AS `f`
+WHERE `f`.`Name` = @__name_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:56:58 INF] Executed DbCommand (1ms) [Parameters=[@__name_0='?' (Size = 50), @__familyId_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `g`.`Id`, `g`.`CreatedDateTime`, `g`.`FamilyId`, `g`.`Name`, `g`.`UpdatedDateTime`
+FROM `Genera` AS `g`
+WHERE (`g`.`Name` = @__name_0) AND (`g`.`FamilyId` = @__familyId_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:56:58 INF] Executed DbCommand (1ms) [Parameters=[@__name_0='?' (Size = 70), @__description_1='?' (Size = 500)], CommandType='"Text"', CommandTimeout='30']
+SELECT `s`.`Id`, `s`.`CreatedDateTime`, `s`.`Description`, `s`.`Name`, `s`.`UpdatedDateTime`
+FROM `SpeciesTypes` AS `s`
+WHERE (`s`.`Name` = @__name_0) AND (`s`.`Description` = @__description_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:56:58 INF] Executed DbCommand (1ms) [Parameters=[@__scientificName_0='?' (Size = 200)], CommandType='"Text"', CommandTimeout='30']
+SELECT `s`.`Id`, `s`.`AuthorityId`, `s`.`CreatedDateTime`, `s`.`EUName`, `s`.`EnglishName`, `s`.`FullName`, `s`.`GenusId`, `s`.`HesselbarthName`, `s`.`KocakName`, `s`.`Name`, `s`.`ScientificName`, `s`.`SpeciesTypeId`, `s`.`Trakel`, `s`.`TurkishName`, `s`.`TurkishNamesTrakel`, `s`.`UpdatedDateTime`
+FROM `Species` AS `s`
+WHERE `s`.`ScientificName` = @__scientificName_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:56:58 INF] Executed DbCommand (1ms) [Parameters=[@__name_0='?' (Size = 70)], CommandType='"Text"', CommandTimeout='30']
+SELECT `p`.`Id`, `p`.`CreatedDateTime`, `p`.`Name`, `p`.`ProvinceCode`, `p`.`UpdatedDateTime`
+FROM `Provinces` AS `p`
+WHERE `p`.`Name` = @__name_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:56:58 INF] Executed DbCommand (1ms) [Parameters=[@__request_SquareRef_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `l`.`Id`, `l`.`Altitude1`, `l`.`Altitude2`, `l`.`CoordinatePrecisionLevel`, `l`.`CreatedDateTime`, `l`.`DecimalDegrees`, `l`.`DecimalMinutes`, `l`.`DegreesMinutesSeconds`, `l`.`Description`, `l`.`Latitude`, `l`.`Longitude`, `l`.`MgrsCoordinates`, `l`.`ProvinceId`, `l`.`SquareLatitude`, `l`.`SquareLongitude`, `l`.`SquareRef`, `l`.`UpdatedDateTime`, `l`.`UtmCoordinates`, `l`.`UtmReference`
+FROM `Locations` AS `l`
+WHERE `l`.`SquareRef` = @__request_SquareRef_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:56:58 INF] Executed DbCommand (1ms) [Parameters=[@__name_0='?' (Size = 40), @__surname_1='?' (Size = 20)], CommandType='"Text"', CommandTimeout='30']
+SELECT `o`.`Id`, `o`.`CreatedDateTime`, `o`.`Email`, `o`.`FullName`, `o`.`Name`, `o`.`PasswordHash`, `o`.`Phone`, `o`.`Surname`, `o`.`UpdatedDateTime`
+FROM `Observers` AS `o`
+WHERE (`o`.`Name` = @__name_0) AND (`o`.`Surname` = @__surname_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:56:58 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 50), @__year_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `a`.`Id`, `a`.`CreatedDateTime`, `a`.`Name`, `a`.`UpdatedDateTime`, `a`.`Year`
+FROM `Authorities` AS `a`
+WHERE (`a`.`Name` = @__name_0) AND (`a`.`Year` = @__year_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:56:58 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `f`.`Id`, `f`.`CreatedDateTime`, `f`.`Name`, `f`.`UpdatedDateTime`
+FROM `Families` AS `f`
+WHERE `f`.`Name` = @__name_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:56:58 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 50), @__familyId_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `g`.`Id`, `g`.`CreatedDateTime`, `g`.`FamilyId`, `g`.`Name`, `g`.`UpdatedDateTime`
+FROM `Genera` AS `g`
+WHERE (`g`.`Name` = @__name_0) AND (`g`.`FamilyId` = @__familyId_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:56:58 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 70), @__description_1='?' (Size = 500)], CommandType='"Text"', CommandTimeout='30']
+SELECT `s`.`Id`, `s`.`CreatedDateTime`, `s`.`Description`, `s`.`Name`, `s`.`UpdatedDateTime`
+FROM `SpeciesTypes` AS `s`
+WHERE (`s`.`Name` = @__name_0) AND (`s`.`Description` = @__description_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:56:58 INF] Executed DbCommand (2ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (Size = 50), @p2='?' (DbType = Int32), @p3='?' (Size = 4000), @p4='?' (Size = 1000), @p5='?' (DbType = Int32), @p6='?' (DbType = DateTime), @p7='?' (DbType = Int32), @p8='?' (Size = 15), @p9='?' (Size = 200), @p10='?' (DbType = Int32), @p11='?' (DbType = DateTime), @p12='?' (DbType = DateTime), @p13='?' (Size = 500), @p14='?' (Size = 70), @p15='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `Observations` (`CreatedDateTime`, `LifeStage`, `LocationId`, `LocationInfo`, `Notes`, `NumberSeen`, `ObservationDate`, `ObserverId`, `Sex`, `Source`, `SpeciesId`, `UpdatedDateTime`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11);
+SELECT `Id`
+FROM `Observations`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+
+INSERT INTO `SpeciesTypes` (`CreatedDateTime`, `Description`, `Name`, `UpdatedDateTime`)
+VALUES (@p12, @p13, @p14, @p15);
+SELECT `Id`
+FROM `SpeciesTypes`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID(); <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:56:58 INF] New species type created: Butterfly with description: Painted lady butterfly <s:BioWings.Application.Features.Handlers.ObservationHandlers.Write.ObservationCreateRangeCommandHandler>
+[20:56:58 INF] Executed DbCommand (1ms) [Parameters=[@__scientificName_0='?' (Size = 200)], CommandType='"Text"', CommandTimeout='30']
+SELECT `s`.`Id`, `s`.`AuthorityId`, `s`.`CreatedDateTime`, `s`.`EUName`, `s`.`EnglishName`, `s`.`FullName`, `s`.`GenusId`, `s`.`HesselbarthName`, `s`.`KocakName`, `s`.`Name`, `s`.`ScientificName`, `s`.`SpeciesTypeId`, `s`.`Trakel`, `s`.`TurkishName`, `s`.`TurkishNamesTrakel`, `s`.`UpdatedDateTime`
+FROM `Species` AS `s`
+WHERE `s`.`ScientificName` = @__scientificName_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:56:58 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 70)], CommandType='"Text"', CommandTimeout='30']
+SELECT `p`.`Id`, `p`.`CreatedDateTime`, `p`.`Name`, `p`.`ProvinceCode`, `p`.`UpdatedDateTime`
+FROM `Provinces` AS `p`
+WHERE `p`.`Name` = @__name_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:56:58 INF] Executed DbCommand (0ms) [Parameters=[@__request_SquareRef_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `l`.`Id`, `l`.`Altitude1`, `l`.`Altitude2`, `l`.`CoordinatePrecisionLevel`, `l`.`CreatedDateTime`, `l`.`DecimalDegrees`, `l`.`DecimalMinutes`, `l`.`DegreesMinutesSeconds`, `l`.`Description`, `l`.`Latitude`, `l`.`Longitude`, `l`.`MgrsCoordinates`, `l`.`ProvinceId`, `l`.`SquareLatitude`, `l`.`SquareLongitude`, `l`.`SquareRef`, `l`.`UpdatedDateTime`, `l`.`UtmCoordinates`, `l`.`UtmReference`
+FROM `Locations` AS `l`
+WHERE `l`.`SquareRef` = @__request_SquareRef_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:56:58 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 40), @__surname_1='?' (Size = 20)], CommandType='"Text"', CommandTimeout='30']
+SELECT `o`.`Id`, `o`.`CreatedDateTime`, `o`.`Email`, `o`.`FullName`, `o`.`Name`, `o`.`PasswordHash`, `o`.`Phone`, `o`.`Surname`, `o`.`UpdatedDateTime`
+FROM `Observers` AS `o`
+WHERE (`o`.`Name` = @__name_0) AND (`o`.`Surname` = @__surname_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:56:58 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 50), @__year_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `a`.`Id`, `a`.`CreatedDateTime`, `a`.`Name`, `a`.`UpdatedDateTime`, `a`.`Year`
+FROM `Authorities` AS `a`
+WHERE (`a`.`Name` = @__name_0) AND (`a`.`Year` = @__year_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:56:58 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `f`.`Id`, `f`.`CreatedDateTime`, `f`.`Name`, `f`.`UpdatedDateTime`
+FROM `Families` AS `f`
+WHERE `f`.`Name` = @__name_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:56:58 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 50), @__familyId_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `g`.`Id`, `g`.`CreatedDateTime`, `g`.`FamilyId`, `g`.`Name`, `g`.`UpdatedDateTime`
+FROM `Genera` AS `g`
+WHERE (`g`.`Name` = @__name_0) AND (`g`.`FamilyId` = @__familyId_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:56:58 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 70), @__description_1='?' (Size = 500)], CommandType='"Text"', CommandTimeout='30']
+SELECT `s`.`Id`, `s`.`CreatedDateTime`, `s`.`Description`, `s`.`Name`, `s`.`UpdatedDateTime`
+FROM `SpeciesTypes` AS `s`
+WHERE (`s`.`Name` = @__name_0) AND (`s`.`Description` = @__description_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:56:58 INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (Size = 50), @p2='?' (DbType = Int32), @p3='?' (Size = 4000), @p4='?' (Size = 1000), @p5='?' (DbType = Int32), @p6='?' (DbType = DateTime), @p7='?' (DbType = Int32), @p8='?' (Size = 15), @p9='?' (Size = 200), @p10='?' (DbType = Int32), @p11='?' (DbType = DateTime), @p12='?' (DbType = DateTime), @p13='?' (Size = 500), @p14='?' (Size = 70), @p15='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `Observations` (`CreatedDateTime`, `LifeStage`, `LocationId`, `LocationInfo`, `Notes`, `NumberSeen`, `ObservationDate`, `ObserverId`, `Sex`, `Source`, `SpeciesId`, `UpdatedDateTime`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11);
+SELECT `Id`
+FROM `Observations`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+
+INSERT INTO `SpeciesTypes` (`CreatedDateTime`, `Description`, `Name`, `UpdatedDateTime`)
+VALUES (@p12, @p13, @p14, @p15);
+SELECT `Id`
+FROM `SpeciesTypes`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID(); <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:56:58 INF] New species type created: Butterfly with description: Copper butterfly <s:BioWings.Application.Features.Handlers.ObservationHandlers.Write.ObservationCreateRangeCommandHandler>
+[20:56:58 INF] Executed DbCommand (0ms) [Parameters=[@__scientificName_0='?' (Size = 200)], CommandType='"Text"', CommandTimeout='30']
+SELECT `s`.`Id`, `s`.`AuthorityId`, `s`.`CreatedDateTime`, `s`.`EUName`, `s`.`EnglishName`, `s`.`FullName`, `s`.`GenusId`, `s`.`HesselbarthName`, `s`.`KocakName`, `s`.`Name`, `s`.`ScientificName`, `s`.`SpeciesTypeId`, `s`.`Trakel`, `s`.`TurkishName`, `s`.`TurkishNamesTrakel`, `s`.`UpdatedDateTime`
+FROM `Species` AS `s`
+WHERE `s`.`ScientificName` = @__scientificName_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:56:58 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 70)], CommandType='"Text"', CommandTimeout='30']
+SELECT `p`.`Id`, `p`.`CreatedDateTime`, `p`.`Name`, `p`.`ProvinceCode`, `p`.`UpdatedDateTime`
+FROM `Provinces` AS `p`
+WHERE `p`.`Name` = @__name_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:56:58 INF] Executed DbCommand (0ms) [Parameters=[@__request_SquareRef_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `l`.`Id`, `l`.`Altitude1`, `l`.`Altitude2`, `l`.`CoordinatePrecisionLevel`, `l`.`CreatedDateTime`, `l`.`DecimalDegrees`, `l`.`DecimalMinutes`, `l`.`DegreesMinutesSeconds`, `l`.`Description`, `l`.`Latitude`, `l`.`Longitude`, `l`.`MgrsCoordinates`, `l`.`ProvinceId`, `l`.`SquareLatitude`, `l`.`SquareLongitude`, `l`.`SquareRef`, `l`.`UpdatedDateTime`, `l`.`UtmCoordinates`, `l`.`UtmReference`
+FROM `Locations` AS `l`
+WHERE `l`.`SquareRef` = @__request_SquareRef_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:56:58 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 40), @__surname_1='?' (Size = 20)], CommandType='"Text"', CommandTimeout='30']
+SELECT `o`.`Id`, `o`.`CreatedDateTime`, `o`.`Email`, `o`.`FullName`, `o`.`Name`, `o`.`PasswordHash`, `o`.`Phone`, `o`.`Surname`, `o`.`UpdatedDateTime`
+FROM `Observers` AS `o`
+WHERE (`o`.`Name` = @__name_0) AND (`o`.`Surname` = @__surname_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:56:58 INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (Size = 50), @p2='?' (DbType = Int32), @p3='?' (Size = 4000), @p4='?' (Size = 1000), @p5='?' (DbType = Int32), @p6='?' (DbType = DateTime), @p7='?' (DbType = Int32), @p8='?' (Size = 15), @p9='?' (Size = 200), @p10='?' (DbType = Int32), @p11='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `Observations` (`CreatedDateTime`, `LifeStage`, `LocationId`, `LocationInfo`, `Notes`, `NumberSeen`, `ObservationDate`, `ObserverId`, `Sex`, `Source`, `SpeciesId`, `UpdatedDateTime`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11);
+SELECT `Id`
+FROM `Observations`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID(); <s:Microsoft.EntityFrameworkCore.Database.Command>
+[20:56:58 INF] Completed bulk creation. Successfully created: 3 observations. Errors: 0 <s:BioWings.Application.Features.Handlers.ObservationHandlers.Write.ObservationCreateRangeCommandHandler>
+[20:56:58 INF] Executing ObjectResult, writing value of type 'BioWings.Application.Results.ServiceResult'. <s:Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor>
+[20:56:59 INF] Executed action BioWings.WebAPI.Controllers.ObservationsController.Import (BioWings.WebAPI) in 1459.0936ms <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[20:56:59 INF] Executed endpoint 'BioWings.WebAPI.Controllers.ObservationsController.Import (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[20:56:59 INF] HTTP POST /api/Observations/Import responded 201 in 1482.2308 ms <s:Serilog.AspNetCore.RequestLoggingMiddleware>
+[20:56:59 INF] Request finished HTTP/2 POST https://localhost:7128/api/Observations/Import - 201 null application/json; charset=utf-8 1495.6506ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[21:13:44 INF] Now listening on: https://localhost:7128 <s:Microsoft.Hosting.Lifetime>
+[21:13:44 INF] Now listening on: http://localhost:5054 <s:Microsoft.Hosting.Lifetime>
+[21:13:44 INF] Application started. Press Ctrl+C to shut down. <s:Microsoft.Hosting.Lifetime>
+[21:13:44 INF] Hosting environment: Development <s:Microsoft.Hosting.Lifetime>
+[21:13:44 INF] Content root path: C:\Users\cagat\VisualStudio2022\BioWings\BioWings\BioWings.WebAPI <s:Microsoft.Hosting.Lifetime>
+[21:13:46 INF] Request starting HTTP/2 GET https://localhost:7128/swagger/index.html - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[21:13:46 INF] Request finished HTTP/2 GET https://localhost:7128/swagger/index.html - 200 null text/html;charset=utf-8 563.1123ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[21:13:46 INF] Request starting HTTP/2 GET https://localhost:7128/_framework/aspnetcore-browser-refresh.js - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[21:13:46 INF] Request finished HTTP/2 GET https://localhost:7128/_framework/aspnetcore-browser-refresh.js - 200 13782 application/javascript; charset=utf-8 4.6884ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[21:13:47 INF] Request starting HTTP/2 GET https://localhost:7128/_vs/browserLink - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[21:13:47 INF] Request finished HTTP/2 GET https://localhost:7128/_vs/browserLink - 200 null text/javascript; charset=UTF-8 30.9447ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[21:13:48 INF] Request starting HTTP/2 GET https://localhost:7128/swagger/v1/swagger.json - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[21:13:48 INF] Request finished HTTP/2 GET https://localhost:7128/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 200.1432ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[21:14:11 INF] Request starting HTTP/2 POST https://localhost:7128/api/Observations/Import - multipart/form-data; boundary=----WebKitFormBoundaryPW68C2ABLy4NTqo0 6827 <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[21:14:11 INF] CORS policy execution successful. <s:Microsoft.AspNetCore.Cors.Infrastructure.CorsService>
+[21:14:11 INF] Executing endpoint 'BioWings.WebAPI.Controllers.ObservationsController.Import (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[21:14:12 INF] Route matched with {action = "Import", controller = "Observations"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Import(BioWings.Application.Features.Commands.ObservationCommands.ObservationImportCreateCommand) on controller BioWings.WebAPI.Controllers.ObservationsController (BioWings.WebAPI). <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[21:14:12 INF] Parsed 3 observations from Excel file <s:BioWings.Application.Features.Handlers.ObservationHandlers.Write.ObservationImportCreateCommandHandler>
+[21:14:12 INF] Starting bulk creation of 3 observations <s:BioWings.Application.Features.Handlers.ObservationHandlers.Write.ObservationCreateRangeCommandHandler>
+[21:14:13 INF] Executed DbCommand (28ms) [Parameters=[@__name_0='?' (Size = 50), @__year_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `a`.`Id`, `a`.`CreatedDateTime`, `a`.`Name`, `a`.`UpdatedDateTime`, `a`.`Year`
+FROM `Authorities` AS `a`
+WHERE (`a`.`Name` = @__name_0) AND (`a`.`Year` = @__year_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:14:13 INF] Executed DbCommand (3ms) [Parameters=[@__name_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `f`.`Id`, `f`.`CreatedDateTime`, `f`.`Name`, `f`.`UpdatedDateTime`
+FROM `Families` AS `f`
+WHERE `f`.`Name` = @__name_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:14:13 INF] Executed DbCommand (1ms) [Parameters=[@__name_0='?' (Size = 50), @__familyId_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `g`.`Id`, `g`.`CreatedDateTime`, `g`.`FamilyId`, `g`.`Name`, `g`.`UpdatedDateTime`
+FROM `Genera` AS `g`
+WHERE (`g`.`Name` = @__name_0) AND (`g`.`FamilyId` = @__familyId_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:14:13 INF] Executed DbCommand (1ms) [Parameters=[@__name_0='?' (Size = 70), @__description_1='?' (Size = 500)], CommandType='"Text"', CommandTimeout='30']
+SELECT `s`.`Id`, `s`.`CreatedDateTime`, `s`.`Description`, `s`.`Name`, `s`.`UpdatedDateTime`
+FROM `SpeciesTypes` AS `s`
+WHERE (`s`.`Name` = @__name_0) AND (`s`.`Description` = @__description_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:14:13 INF] Executed DbCommand (1ms) [Parameters=[@__scientificName_0='?' (Size = 200)], CommandType='"Text"', CommandTimeout='30']
+SELECT `s`.`Id`, `s`.`AuthorityId`, `s`.`CreatedDateTime`, `s`.`EUName`, `s`.`EnglishName`, `s`.`FullName`, `s`.`GenusId`, `s`.`HesselbarthName`, `s`.`KocakName`, `s`.`Name`, `s`.`ScientificName`, `s`.`SpeciesTypeId`, `s`.`Trakel`, `s`.`TurkishName`, `s`.`TurkishNamesTrakel`, `s`.`UpdatedDateTime`
+FROM `Species` AS `s`
+WHERE `s`.`ScientificName` = @__scientificName_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:14:13 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 70)], CommandType='"Text"', CommandTimeout='30']
+SELECT `p`.`Id`, `p`.`CreatedDateTime`, `p`.`Name`, `p`.`ProvinceCode`, `p`.`UpdatedDateTime`
+FROM `Provinces` AS `p`
+WHERE `p`.`Name` = @__name_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:14:13 INF] Executed DbCommand (1ms) [Parameters=[@__request_SquareRef_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `l`.`Id`, `l`.`Altitude1`, `l`.`Altitude2`, `l`.`CoordinatePrecisionLevel`, `l`.`CreatedDateTime`, `l`.`DecimalDegrees`, `l`.`DecimalMinutes`, `l`.`DegreesMinutesSeconds`, `l`.`Description`, `l`.`Latitude`, `l`.`Longitude`, `l`.`MgrsCoordinates`, `l`.`ProvinceId`, `l`.`SquareLatitude`, `l`.`SquareLongitude`, `l`.`SquareRef`, `l`.`UpdatedDateTime`, `l`.`UtmCoordinates`, `l`.`UtmReference`
+FROM `Locations` AS `l`
+WHERE `l`.`SquareRef` = @__request_SquareRef_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:14:13 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 40), @__surname_1='?' (Size = 20)], CommandType='"Text"', CommandTimeout='30']
+SELECT `o`.`Id`, `o`.`CreatedDateTime`, `o`.`Email`, `o`.`FullName`, `o`.`Name`, `o`.`PasswordHash`, `o`.`Phone`, `o`.`Surname`, `o`.`UpdatedDateTime`
+FROM `Observers` AS `o`
+WHERE (`o`.`Name` = @__name_0) AND (`o`.`Surname` = @__surname_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:14:13 INF] Executed DbCommand (3ms) [Parameters=[@__speciesResult_Data_Id_0='?' (DbType = Int32), @__locationResult_Data_Id_1='?' (DbType = Int32), @__observerResult_Data_Id_2='?' (DbType = Int32), @__8__locals1_observationCommand_Sex_3='?' (Size = 15), @__8__locals1_observationCommand_ObservationDate_4='?' (DbType = DateTime), @__8__locals1_observationCommand_LifeStage_5='?' (Size = 50), @__8__locals1_observationCommand_NumberSeen_6='?' (DbType = Int32), @__8__locals1_observationCommand_Notes_7='?' (Size = 1000), @__8__locals1_observationCommand_Source_8='?' (Size = 200), @__8__locals1_observationCommand_LocationInfo_9='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT `o`.`Id`, `o`.`CreatedDateTime`, `o`.`LifeStage`, `o`.`LocationId`, `o`.`LocationInfo`, `o`.`Notes`, `o`.`NumberSeen`, `o`.`ObservationDate`, `o`.`ObserverId`, `o`.`Sex`, `o`.`Source`, `o`.`SpeciesId`, `o`.`UpdatedDateTime`
+FROM `Observations` AS `o`
+WHERE (((((((((`o`.`SpeciesId` = @__speciesResult_Data_Id_0) AND (`o`.`LocationId` = @__locationResult_Data_Id_1)) AND (`o`.`ObserverId` = @__observerResult_Data_Id_2)) AND (`o`.`Sex` = @__8__locals1_observationCommand_Sex_3)) AND (`o`.`ObservationDate` = @__8__locals1_observationCommand_ObservationDate_4)) AND (`o`.`LifeStage` = @__8__locals1_observationCommand_LifeStage_5)) AND (`o`.`NumberSeen` = @__8__locals1_observationCommand_NumberSeen_6)) AND (`o`.`Notes` = @__8__locals1_observationCommand_Notes_7)) AND (`o`.`Source` = @__8__locals1_observationCommand_Source_8)) AND (`o`.`LocationInfo` = @__8__locals1_observationCommand_LocationInfo_9)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:14:13 INF] Duplicate observation found and skipped - Species:1, Location:1, Observer:1, Date:"2024-03-20T00:00:00.0000000" <s:BioWings.Application.Features.Handlers.ObservationHandlers.Write.ObservationCreateRangeCommandHandler>
+[21:14:13 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 50), @__year_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `a`.`Id`, `a`.`CreatedDateTime`, `a`.`Name`, `a`.`UpdatedDateTime`, `a`.`Year`
+FROM `Authorities` AS `a`
+WHERE (`a`.`Name` = @__name_0) AND (`a`.`Year` = @__year_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:14:13 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `f`.`Id`, `f`.`CreatedDateTime`, `f`.`Name`, `f`.`UpdatedDateTime`
+FROM `Families` AS `f`
+WHERE `f`.`Name` = @__name_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:14:13 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 50), @__familyId_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `g`.`Id`, `g`.`CreatedDateTime`, `g`.`FamilyId`, `g`.`Name`, `g`.`UpdatedDateTime`
+FROM `Genera` AS `g`
+WHERE (`g`.`Name` = @__name_0) AND (`g`.`FamilyId` = @__familyId_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:14:13 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 70), @__description_1='?' (Size = 500)], CommandType='"Text"', CommandTimeout='30']
+SELECT `s`.`Id`, `s`.`CreatedDateTime`, `s`.`Description`, `s`.`Name`, `s`.`UpdatedDateTime`
+FROM `SpeciesTypes` AS `s`
+WHERE (`s`.`Name` = @__name_0) AND (`s`.`Description` = @__description_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:14:13 INF] Executed DbCommand (0ms) [Parameters=[@__scientificName_0='?' (Size = 200)], CommandType='"Text"', CommandTimeout='30']
+SELECT `s`.`Id`, `s`.`AuthorityId`, `s`.`CreatedDateTime`, `s`.`EUName`, `s`.`EnglishName`, `s`.`FullName`, `s`.`GenusId`, `s`.`HesselbarthName`, `s`.`KocakName`, `s`.`Name`, `s`.`ScientificName`, `s`.`SpeciesTypeId`, `s`.`Trakel`, `s`.`TurkishName`, `s`.`TurkishNamesTrakel`, `s`.`UpdatedDateTime`
+FROM `Species` AS `s`
+WHERE `s`.`ScientificName` = @__scientificName_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:14:13 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 70)], CommandType='"Text"', CommandTimeout='30']
+SELECT `p`.`Id`, `p`.`CreatedDateTime`, `p`.`Name`, `p`.`ProvinceCode`, `p`.`UpdatedDateTime`
+FROM `Provinces` AS `p`
+WHERE `p`.`Name` = @__name_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:14:13 INF] Executed DbCommand (0ms) [Parameters=[@__request_SquareRef_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `l`.`Id`, `l`.`Altitude1`, `l`.`Altitude2`, `l`.`CoordinatePrecisionLevel`, `l`.`CreatedDateTime`, `l`.`DecimalDegrees`, `l`.`DecimalMinutes`, `l`.`DegreesMinutesSeconds`, `l`.`Description`, `l`.`Latitude`, `l`.`Longitude`, `l`.`MgrsCoordinates`, `l`.`ProvinceId`, `l`.`SquareLatitude`, `l`.`SquareLongitude`, `l`.`SquareRef`, `l`.`UpdatedDateTime`, `l`.`UtmCoordinates`, `l`.`UtmReference`
+FROM `Locations` AS `l`
+WHERE `l`.`SquareRef` = @__request_SquareRef_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:14:13 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 40), @__surname_1='?' (Size = 20)], CommandType='"Text"', CommandTimeout='30']
+SELECT `o`.`Id`, `o`.`CreatedDateTime`, `o`.`Email`, `o`.`FullName`, `o`.`Name`, `o`.`PasswordHash`, `o`.`Phone`, `o`.`Surname`, `o`.`UpdatedDateTime`
+FROM `Observers` AS `o`
+WHERE (`o`.`Name` = @__name_0) AND (`o`.`Surname` = @__surname_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:14:13 INF] Executed DbCommand (0ms) [Parameters=[@__speciesResult_Data_Id_0='?' (DbType = Int32), @__locationResult_Data_Id_1='?' (DbType = Int32), @__observerResult_Data_Id_2='?' (DbType = Int32), @__8__locals1_observationCommand_Sex_3='?' (Size = 15), @__8__locals1_observationCommand_ObservationDate_4='?' (DbType = DateTime), @__8__locals1_observationCommand_LifeStage_5='?' (Size = 50), @__8__locals1_observationCommand_NumberSeen_6='?' (DbType = Int32), @__8__locals1_observationCommand_Notes_7='?' (Size = 1000), @__8__locals1_observationCommand_Source_8='?' (Size = 200), @__8__locals1_observationCommand_LocationInfo_9='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT `o`.`Id`, `o`.`CreatedDateTime`, `o`.`LifeStage`, `o`.`LocationId`, `o`.`LocationInfo`, `o`.`Notes`, `o`.`NumberSeen`, `o`.`ObservationDate`, `o`.`ObserverId`, `o`.`Sex`, `o`.`Source`, `o`.`SpeciesId`, `o`.`UpdatedDateTime`
+FROM `Observations` AS `o`
+WHERE (((((((((`o`.`SpeciesId` = @__speciesResult_Data_Id_0) AND (`o`.`LocationId` = @__locationResult_Data_Id_1)) AND (`o`.`ObserverId` = @__observerResult_Data_Id_2)) AND (`o`.`Sex` = @__8__locals1_observationCommand_Sex_3)) AND (`o`.`ObservationDate` = @__8__locals1_observationCommand_ObservationDate_4)) AND (`o`.`LifeStage` = @__8__locals1_observationCommand_LifeStage_5)) AND (`o`.`NumberSeen` = @__8__locals1_observationCommand_NumberSeen_6)) AND (`o`.`Notes` = @__8__locals1_observationCommand_Notes_7)) AND (`o`.`Source` = @__8__locals1_observationCommand_Source_8)) AND (`o`.`LocationInfo` = @__8__locals1_observationCommand_LocationInfo_9)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:14:13 INF] Duplicate observation found and skipped - Species:2, Location:2, Observer:2, Date:"2024-03-21T00:00:00.0000000" <s:BioWings.Application.Features.Handlers.ObservationHandlers.Write.ObservationCreateRangeCommandHandler>
+[21:14:13 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 50), @__year_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `a`.`Id`, `a`.`CreatedDateTime`, `a`.`Name`, `a`.`UpdatedDateTime`, `a`.`Year`
+FROM `Authorities` AS `a`
+WHERE (`a`.`Name` = @__name_0) AND (`a`.`Year` = @__year_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:14:13 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `f`.`Id`, `f`.`CreatedDateTime`, `f`.`Name`, `f`.`UpdatedDateTime`
+FROM `Families` AS `f`
+WHERE `f`.`Name` = @__name_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:14:13 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 50), @__familyId_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `g`.`Id`, `g`.`CreatedDateTime`, `g`.`FamilyId`, `g`.`Name`, `g`.`UpdatedDateTime`
+FROM `Genera` AS `g`
+WHERE (`g`.`Name` = @__name_0) AND (`g`.`FamilyId` = @__familyId_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:14:13 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 70), @__description_1='?' (Size = 500)], CommandType='"Text"', CommandTimeout='30']
+SELECT `s`.`Id`, `s`.`CreatedDateTime`, `s`.`Description`, `s`.`Name`, `s`.`UpdatedDateTime`
+FROM `SpeciesTypes` AS `s`
+WHERE (`s`.`Name` = @__name_0) AND (`s`.`Description` = @__description_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:14:13 INF] Executed DbCommand (0ms) [Parameters=[@__scientificName_0='?' (Size = 200)], CommandType='"Text"', CommandTimeout='30']
+SELECT `s`.`Id`, `s`.`AuthorityId`, `s`.`CreatedDateTime`, `s`.`EUName`, `s`.`EnglishName`, `s`.`FullName`, `s`.`GenusId`, `s`.`HesselbarthName`, `s`.`KocakName`, `s`.`Name`, `s`.`ScientificName`, `s`.`SpeciesTypeId`, `s`.`Trakel`, `s`.`TurkishName`, `s`.`TurkishNamesTrakel`, `s`.`UpdatedDateTime`
+FROM `Species` AS `s`
+WHERE `s`.`ScientificName` = @__scientificName_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:14:13 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 70)], CommandType='"Text"', CommandTimeout='30']
+SELECT `p`.`Id`, `p`.`CreatedDateTime`, `p`.`Name`, `p`.`ProvinceCode`, `p`.`UpdatedDateTime`
+FROM `Provinces` AS `p`
+WHERE `p`.`Name` = @__name_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:14:13 INF] Executed DbCommand (0ms) [Parameters=[@__request_SquareRef_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `l`.`Id`, `l`.`Altitude1`, `l`.`Altitude2`, `l`.`CoordinatePrecisionLevel`, `l`.`CreatedDateTime`, `l`.`DecimalDegrees`, `l`.`DecimalMinutes`, `l`.`DegreesMinutesSeconds`, `l`.`Description`, `l`.`Latitude`, `l`.`Longitude`, `l`.`MgrsCoordinates`, `l`.`ProvinceId`, `l`.`SquareLatitude`, `l`.`SquareLongitude`, `l`.`SquareRef`, `l`.`UpdatedDateTime`, `l`.`UtmCoordinates`, `l`.`UtmReference`
+FROM `Locations` AS `l`
+WHERE `l`.`SquareRef` = @__request_SquareRef_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:14:13 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 40), @__surname_1='?' (Size = 20)], CommandType='"Text"', CommandTimeout='30']
+SELECT `o`.`Id`, `o`.`CreatedDateTime`, `o`.`Email`, `o`.`FullName`, `o`.`Name`, `o`.`PasswordHash`, `o`.`Phone`, `o`.`Surname`, `o`.`UpdatedDateTime`
+FROM `Observers` AS `o`
+WHERE (`o`.`Name` = @__name_0) AND (`o`.`Surname` = @__surname_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:14:13 INF] Executed DbCommand (0ms) [Parameters=[@__speciesResult_Data_Id_0='?' (DbType = Int32), @__locationResult_Data_Id_1='?' (DbType = Int32), @__observerResult_Data_Id_2='?' (DbType = Int32), @__8__locals1_observationCommand_Sex_3='?' (Size = 15), @__8__locals1_observationCommand_ObservationDate_4='?' (DbType = DateTime), @__8__locals1_observationCommand_LifeStage_5='?' (Size = 50), @__8__locals1_observationCommand_NumberSeen_6='?' (DbType = Int32), @__8__locals1_observationCommand_Notes_7='?' (Size = 1000), @__8__locals1_observationCommand_Source_8='?' (Size = 200), @__8__locals1_observationCommand_LocationInfo_9='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT `o`.`Id`, `o`.`CreatedDateTime`, `o`.`LifeStage`, `o`.`LocationId`, `o`.`LocationInfo`, `o`.`Notes`, `o`.`NumberSeen`, `o`.`ObservationDate`, `o`.`ObserverId`, `o`.`Sex`, `o`.`Source`, `o`.`SpeciesId`, `o`.`UpdatedDateTime`
+FROM `Observations` AS `o`
+WHERE (((((((((`o`.`SpeciesId` = @__speciesResult_Data_Id_0) AND (`o`.`LocationId` = @__locationResult_Data_Id_1)) AND (`o`.`ObserverId` = @__observerResult_Data_Id_2)) AND (`o`.`Sex` = @__8__locals1_observationCommand_Sex_3)) AND (`o`.`ObservationDate` = @__8__locals1_observationCommand_ObservationDate_4)) AND (`o`.`LifeStage` = @__8__locals1_observationCommand_LifeStage_5)) AND (`o`.`NumberSeen` = @__8__locals1_observationCommand_NumberSeen_6)) AND (`o`.`Notes` = @__8__locals1_observationCommand_Notes_7)) AND (`o`.`Source` = @__8__locals1_observationCommand_Source_8)) AND (`o`.`LocationInfo` = @__8__locals1_observationCommand_LocationInfo_9)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:14:13 INF] Duplicate observation found and skipped - Species:3, Location:3, Observer:3, Date:"2024-03-22T00:00:00.0000000" <s:BioWings.Application.Features.Handlers.ObservationHandlers.Write.ObservationCreateRangeCommandHandler>
+[21:14:13 INF] Import completed. Created: 0, Duplicates skipped: 3, Errors: 0 <s:BioWings.Application.Features.Handlers.ObservationHandlers.Write.ObservationCreateRangeCommandHandler>
+[21:14:13 INF] Executing ObjectResult, writing value of type 'BioWings.Application.Results.ServiceResult'. <s:Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor>
+[21:14:13 INF] Executed action BioWings.WebAPI.Controllers.ObservationsController.Import (BioWings.WebAPI) in 1381.3738ms <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[21:14:13 INF] Executed endpoint 'BioWings.WebAPI.Controllers.ObservationsController.Import (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[21:14:13 INF] HTTP POST /api/Observations/Import responded 201 in 1405.2217 ms <s:Serilog.AspNetCore.RequestLoggingMiddleware>
+[21:14:13 INF] Request finished HTTP/2 POST https://localhost:7128/api/Observations/Import - 201 null application/json; charset=utf-8 1415.8745ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[21:15:53 INF] Request starting HTTP/2 POST https://localhost:7128/api/Observations/Import - multipart/form-data; boundary=----WebKitFormBoundaryzoyu12LIu4ALzw5Y 6827 <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[21:15:53 INF] CORS policy execution successful. <s:Microsoft.AspNetCore.Cors.Infrastructure.CorsService>
+[21:15:53 INF] Executing endpoint 'BioWings.WebAPI.Controllers.ObservationsController.Import (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[21:15:53 INF] Route matched with {action = "Import", controller = "Observations"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Import(BioWings.Application.Features.Commands.ObservationCommands.ObservationImportCreateCommand) on controller BioWings.WebAPI.Controllers.ObservationsController (BioWings.WebAPI). <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[21:15:53 INF] Parsed 3 observations from Excel file <s:BioWings.Application.Features.Handlers.ObservationHandlers.Write.ObservationImportCreateCommandHandler>
+[21:15:53 INF] Starting bulk creation of 3 observations <s:BioWings.Application.Features.Handlers.ObservationHandlers.Write.ObservationCreateRangeCommandHandler>
+[21:15:53 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 50), @__year_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `a`.`Id`, `a`.`CreatedDateTime`, `a`.`Name`, `a`.`UpdatedDateTime`, `a`.`Year`
+FROM `Authorities` AS `a`
+WHERE (`a`.`Name` = @__name_0) AND (`a`.`Year` = @__year_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:15:53 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `f`.`Id`, `f`.`CreatedDateTime`, `f`.`Name`, `f`.`UpdatedDateTime`
+FROM `Families` AS `f`
+WHERE `f`.`Name` = @__name_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:15:53 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 50), @__familyId_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `g`.`Id`, `g`.`CreatedDateTime`, `g`.`FamilyId`, `g`.`Name`, `g`.`UpdatedDateTime`
+FROM `Genera` AS `g`
+WHERE (`g`.`Name` = @__name_0) AND (`g`.`FamilyId` = @__familyId_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:15:53 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 70), @__description_1='?' (Size = 500)], CommandType='"Text"', CommandTimeout='30']
+SELECT `s`.`Id`, `s`.`CreatedDateTime`, `s`.`Description`, `s`.`Name`, `s`.`UpdatedDateTime`
+FROM `SpeciesTypes` AS `s`
+WHERE (`s`.`Name` = @__name_0) AND (`s`.`Description` = @__description_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:15:53 INF] Executed DbCommand (0ms) [Parameters=[@__scientificName_0='?' (Size = 200)], CommandType='"Text"', CommandTimeout='30']
+SELECT `s`.`Id`, `s`.`AuthorityId`, `s`.`CreatedDateTime`, `s`.`EUName`, `s`.`EnglishName`, `s`.`FullName`, `s`.`GenusId`, `s`.`HesselbarthName`, `s`.`KocakName`, `s`.`Name`, `s`.`ScientificName`, `s`.`SpeciesTypeId`, `s`.`Trakel`, `s`.`TurkishName`, `s`.`TurkishNamesTrakel`, `s`.`UpdatedDateTime`
+FROM `Species` AS `s`
+WHERE `s`.`ScientificName` = @__scientificName_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:15:53 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 70)], CommandType='"Text"', CommandTimeout='30']
+SELECT `p`.`Id`, `p`.`CreatedDateTime`, `p`.`Name`, `p`.`ProvinceCode`, `p`.`UpdatedDateTime`
+FROM `Provinces` AS `p`
+WHERE `p`.`Name` = @__name_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:15:53 INF] Executed DbCommand (0ms) [Parameters=[@__request_SquareRef_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `l`.`Id`, `l`.`Altitude1`, `l`.`Altitude2`, `l`.`CoordinatePrecisionLevel`, `l`.`CreatedDateTime`, `l`.`DecimalDegrees`, `l`.`DecimalMinutes`, `l`.`DegreesMinutesSeconds`, `l`.`Description`, `l`.`Latitude`, `l`.`Longitude`, `l`.`MgrsCoordinates`, `l`.`ProvinceId`, `l`.`SquareLatitude`, `l`.`SquareLongitude`, `l`.`SquareRef`, `l`.`UpdatedDateTime`, `l`.`UtmCoordinates`, `l`.`UtmReference`
+FROM `Locations` AS `l`
+WHERE `l`.`SquareRef` = @__request_SquareRef_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:15:53 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 40), @__surname_1='?' (Size = 20)], CommandType='"Text"', CommandTimeout='30']
+SELECT `o`.`Id`, `o`.`CreatedDateTime`, `o`.`Email`, `o`.`FullName`, `o`.`Name`, `o`.`PasswordHash`, `o`.`Phone`, `o`.`Surname`, `o`.`UpdatedDateTime`
+FROM `Observers` AS `o`
+WHERE (`o`.`Name` = @__name_0) AND (`o`.`Surname` = @__surname_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:15:53 INF] Executed DbCommand (0ms) [Parameters=[@__speciesResult_Data_Id_0='?' (DbType = Int32), @__locationResult_Data_Id_1='?' (DbType = Int32), @__observerResult_Data_Id_2='?' (DbType = Int32), @__8__locals1_observationCommand_Sex_3='?' (Size = 15), @__8__locals1_observationCommand_ObservationDate_4='?' (DbType = DateTime), @__8__locals1_observationCommand_LifeStage_5='?' (Size = 50), @__8__locals1_observationCommand_NumberSeen_6='?' (DbType = Int32), @__8__locals1_observationCommand_Notes_7='?' (Size = 1000), @__8__locals1_observationCommand_Source_8='?' (Size = 200), @__8__locals1_observationCommand_LocationInfo_9='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT `o`.`Id`, `o`.`CreatedDateTime`, `o`.`LifeStage`, `o`.`LocationId`, `o`.`LocationInfo`, `o`.`Notes`, `o`.`NumberSeen`, `o`.`ObservationDate`, `o`.`ObserverId`, `o`.`Sex`, `o`.`Source`, `o`.`SpeciesId`, `o`.`UpdatedDateTime`
+FROM `Observations` AS `o`
+WHERE (((((((((`o`.`SpeciesId` = @__speciesResult_Data_Id_0) AND (`o`.`LocationId` = @__locationResult_Data_Id_1)) AND (`o`.`ObserverId` = @__observerResult_Data_Id_2)) AND (`o`.`Sex` = @__8__locals1_observationCommand_Sex_3)) AND (`o`.`ObservationDate` = @__8__locals1_observationCommand_ObservationDate_4)) AND (`o`.`LifeStage` = @__8__locals1_observationCommand_LifeStage_5)) AND (`o`.`NumberSeen` = @__8__locals1_observationCommand_NumberSeen_6)) AND (`o`.`Notes` = @__8__locals1_observationCommand_Notes_7)) AND (`o`.`Source` = @__8__locals1_observationCommand_Source_8)) AND (`o`.`LocationInfo` = @__8__locals1_observationCommand_LocationInfo_9)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:15:53 INF] Duplicate observation found and skipped - Species:1, Location:1, Observer:1, Date:"2024-03-20T00:00:00.0000000" <s:BioWings.Application.Features.Handlers.ObservationHandlers.Write.ObservationCreateRangeCommandHandler>
+[21:15:53 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 50), @__year_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `a`.`Id`, `a`.`CreatedDateTime`, `a`.`Name`, `a`.`UpdatedDateTime`, `a`.`Year`
+FROM `Authorities` AS `a`
+WHERE (`a`.`Name` = @__name_0) AND (`a`.`Year` = @__year_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:15:53 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `f`.`Id`, `f`.`CreatedDateTime`, `f`.`Name`, `f`.`UpdatedDateTime`
+FROM `Families` AS `f`
+WHERE `f`.`Name` = @__name_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:15:53 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 50), @__familyId_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `g`.`Id`, `g`.`CreatedDateTime`, `g`.`FamilyId`, `g`.`Name`, `g`.`UpdatedDateTime`
+FROM `Genera` AS `g`
+WHERE (`g`.`Name` = @__name_0) AND (`g`.`FamilyId` = @__familyId_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:15:53 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 70), @__description_1='?' (Size = 500)], CommandType='"Text"', CommandTimeout='30']
+SELECT `s`.`Id`, `s`.`CreatedDateTime`, `s`.`Description`, `s`.`Name`, `s`.`UpdatedDateTime`
+FROM `SpeciesTypes` AS `s`
+WHERE (`s`.`Name` = @__name_0) AND (`s`.`Description` = @__description_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:15:53 INF] Executed DbCommand (0ms) [Parameters=[@__scientificName_0='?' (Size = 200)], CommandType='"Text"', CommandTimeout='30']
+SELECT `s`.`Id`, `s`.`AuthorityId`, `s`.`CreatedDateTime`, `s`.`EUName`, `s`.`EnglishName`, `s`.`FullName`, `s`.`GenusId`, `s`.`HesselbarthName`, `s`.`KocakName`, `s`.`Name`, `s`.`ScientificName`, `s`.`SpeciesTypeId`, `s`.`Trakel`, `s`.`TurkishName`, `s`.`TurkishNamesTrakel`, `s`.`UpdatedDateTime`
+FROM `Species` AS `s`
+WHERE `s`.`ScientificName` = @__scientificName_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:15:53 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 70)], CommandType='"Text"', CommandTimeout='30']
+SELECT `p`.`Id`, `p`.`CreatedDateTime`, `p`.`Name`, `p`.`ProvinceCode`, `p`.`UpdatedDateTime`
+FROM `Provinces` AS `p`
+WHERE `p`.`Name` = @__name_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:15:53 INF] Executed DbCommand (0ms) [Parameters=[@__request_SquareRef_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `l`.`Id`, `l`.`Altitude1`, `l`.`Altitude2`, `l`.`CoordinatePrecisionLevel`, `l`.`CreatedDateTime`, `l`.`DecimalDegrees`, `l`.`DecimalMinutes`, `l`.`DegreesMinutesSeconds`, `l`.`Description`, `l`.`Latitude`, `l`.`Longitude`, `l`.`MgrsCoordinates`, `l`.`ProvinceId`, `l`.`SquareLatitude`, `l`.`SquareLongitude`, `l`.`SquareRef`, `l`.`UpdatedDateTime`, `l`.`UtmCoordinates`, `l`.`UtmReference`
+FROM `Locations` AS `l`
+WHERE `l`.`SquareRef` = @__request_SquareRef_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:15:53 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 40), @__surname_1='?' (Size = 20)], CommandType='"Text"', CommandTimeout='30']
+SELECT `o`.`Id`, `o`.`CreatedDateTime`, `o`.`Email`, `o`.`FullName`, `o`.`Name`, `o`.`PasswordHash`, `o`.`Phone`, `o`.`Surname`, `o`.`UpdatedDateTime`
+FROM `Observers` AS `o`
+WHERE (`o`.`Name` = @__name_0) AND (`o`.`Surname` = @__surname_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:15:53 INF] Executed DbCommand (0ms) [Parameters=[@__speciesResult_Data_Id_0='?' (DbType = Int32), @__locationResult_Data_Id_1='?' (DbType = Int32), @__observerResult_Data_Id_2='?' (DbType = Int32), @__8__locals1_observationCommand_Sex_3='?' (Size = 15), @__8__locals1_observationCommand_ObservationDate_4='?' (DbType = DateTime), @__8__locals1_observationCommand_LifeStage_5='?' (Size = 50), @__8__locals1_observationCommand_NumberSeen_6='?' (DbType = Int32), @__8__locals1_observationCommand_Notes_7='?' (Size = 1000), @__8__locals1_observationCommand_Source_8='?' (Size = 200), @__8__locals1_observationCommand_LocationInfo_9='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT `o`.`Id`, `o`.`CreatedDateTime`, `o`.`LifeStage`, `o`.`LocationId`, `o`.`LocationInfo`, `o`.`Notes`, `o`.`NumberSeen`, `o`.`ObservationDate`, `o`.`ObserverId`, `o`.`Sex`, `o`.`Source`, `o`.`SpeciesId`, `o`.`UpdatedDateTime`
+FROM `Observations` AS `o`
+WHERE (((((((((`o`.`SpeciesId` = @__speciesResult_Data_Id_0) AND (`o`.`LocationId` = @__locationResult_Data_Id_1)) AND (`o`.`ObserverId` = @__observerResult_Data_Id_2)) AND (`o`.`Sex` = @__8__locals1_observationCommand_Sex_3)) AND (`o`.`ObservationDate` = @__8__locals1_observationCommand_ObservationDate_4)) AND (`o`.`LifeStage` = @__8__locals1_observationCommand_LifeStage_5)) AND (`o`.`NumberSeen` = @__8__locals1_observationCommand_NumberSeen_6)) AND (`o`.`Notes` = @__8__locals1_observationCommand_Notes_7)) AND (`o`.`Source` = @__8__locals1_observationCommand_Source_8)) AND (`o`.`LocationInfo` = @__8__locals1_observationCommand_LocationInfo_9)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:15:53 INF] Duplicate observation found and skipped - Species:2, Location:2, Observer:2, Date:"2024-03-21T00:00:00.0000000" <s:BioWings.Application.Features.Handlers.ObservationHandlers.Write.ObservationCreateRangeCommandHandler>
+[21:15:53 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 50), @__year_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `a`.`Id`, `a`.`CreatedDateTime`, `a`.`Name`, `a`.`UpdatedDateTime`, `a`.`Year`
+FROM `Authorities` AS `a`
+WHERE (`a`.`Name` = @__name_0) AND (`a`.`Year` = @__year_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:15:53 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `f`.`Id`, `f`.`CreatedDateTime`, `f`.`Name`, `f`.`UpdatedDateTime`
+FROM `Families` AS `f`
+WHERE `f`.`Name` = @__name_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:15:53 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 50), @__familyId_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `g`.`Id`, `g`.`CreatedDateTime`, `g`.`FamilyId`, `g`.`Name`, `g`.`UpdatedDateTime`
+FROM `Genera` AS `g`
+WHERE (`g`.`Name` = @__name_0) AND (`g`.`FamilyId` = @__familyId_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:15:53 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 70), @__description_1='?' (Size = 500)], CommandType='"Text"', CommandTimeout='30']
+SELECT `s`.`Id`, `s`.`CreatedDateTime`, `s`.`Description`, `s`.`Name`, `s`.`UpdatedDateTime`
+FROM `SpeciesTypes` AS `s`
+WHERE (`s`.`Name` = @__name_0) AND (`s`.`Description` = @__description_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:15:53 INF] Executed DbCommand (0ms) [Parameters=[@__scientificName_0='?' (Size = 200)], CommandType='"Text"', CommandTimeout='30']
+SELECT `s`.`Id`, `s`.`AuthorityId`, `s`.`CreatedDateTime`, `s`.`EUName`, `s`.`EnglishName`, `s`.`FullName`, `s`.`GenusId`, `s`.`HesselbarthName`, `s`.`KocakName`, `s`.`Name`, `s`.`ScientificName`, `s`.`SpeciesTypeId`, `s`.`Trakel`, `s`.`TurkishName`, `s`.`TurkishNamesTrakel`, `s`.`UpdatedDateTime`
+FROM `Species` AS `s`
+WHERE `s`.`ScientificName` = @__scientificName_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:15:53 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 70)], CommandType='"Text"', CommandTimeout='30']
+SELECT `p`.`Id`, `p`.`CreatedDateTime`, `p`.`Name`, `p`.`ProvinceCode`, `p`.`UpdatedDateTime`
+FROM `Provinces` AS `p`
+WHERE `p`.`Name` = @__name_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:15:53 INF] Executed DbCommand (0ms) [Parameters=[@__request_SquareRef_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `l`.`Id`, `l`.`Altitude1`, `l`.`Altitude2`, `l`.`CoordinatePrecisionLevel`, `l`.`CreatedDateTime`, `l`.`DecimalDegrees`, `l`.`DecimalMinutes`, `l`.`DegreesMinutesSeconds`, `l`.`Description`, `l`.`Latitude`, `l`.`Longitude`, `l`.`MgrsCoordinates`, `l`.`ProvinceId`, `l`.`SquareLatitude`, `l`.`SquareLongitude`, `l`.`SquareRef`, `l`.`UpdatedDateTime`, `l`.`UtmCoordinates`, `l`.`UtmReference`
+FROM `Locations` AS `l`
+WHERE `l`.`SquareRef` = @__request_SquareRef_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:15:53 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 40), @__surname_1='?' (Size = 20)], CommandType='"Text"', CommandTimeout='30']
+SELECT `o`.`Id`, `o`.`CreatedDateTime`, `o`.`Email`, `o`.`FullName`, `o`.`Name`, `o`.`PasswordHash`, `o`.`Phone`, `o`.`Surname`, `o`.`UpdatedDateTime`
+FROM `Observers` AS `o`
+WHERE (`o`.`Name` = @__name_0) AND (`o`.`Surname` = @__surname_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:15:53 INF] Executed DbCommand (1ms) [Parameters=[@__speciesResult_Data_Id_0='?' (DbType = Int32), @__locationResult_Data_Id_1='?' (DbType = Int32), @__observerResult_Data_Id_2='?' (DbType = Int32), @__8__locals1_observationCommand_Sex_3='?' (Size = 15), @__8__locals1_observationCommand_ObservationDate_4='?' (DbType = DateTime), @__8__locals1_observationCommand_LifeStage_5='?' (Size = 50), @__8__locals1_observationCommand_NumberSeen_6='?' (DbType = Int32), @__8__locals1_observationCommand_Notes_7='?' (Size = 1000), @__8__locals1_observationCommand_Source_8='?' (Size = 200), @__8__locals1_observationCommand_LocationInfo_9='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT `o`.`Id`, `o`.`CreatedDateTime`, `o`.`LifeStage`, `o`.`LocationId`, `o`.`LocationInfo`, `o`.`Notes`, `o`.`NumberSeen`, `o`.`ObservationDate`, `o`.`ObserverId`, `o`.`Sex`, `o`.`Source`, `o`.`SpeciesId`, `o`.`UpdatedDateTime`
+FROM `Observations` AS `o`
+WHERE (((((((((`o`.`SpeciesId` = @__speciesResult_Data_Id_0) AND (`o`.`LocationId` = @__locationResult_Data_Id_1)) AND (`o`.`ObserverId` = @__observerResult_Data_Id_2)) AND (`o`.`Sex` = @__8__locals1_observationCommand_Sex_3)) AND (`o`.`ObservationDate` = @__8__locals1_observationCommand_ObservationDate_4)) AND (`o`.`LifeStage` = @__8__locals1_observationCommand_LifeStage_5)) AND (`o`.`NumberSeen` = @__8__locals1_observationCommand_NumberSeen_6)) AND (`o`.`Notes` = @__8__locals1_observationCommand_Notes_7)) AND (`o`.`Source` = @__8__locals1_observationCommand_Source_8)) AND (`o`.`LocationInfo` = @__8__locals1_observationCommand_LocationInfo_9)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:15:53 INF] Duplicate observation found and skipped - Species:3, Location:3, Observer:3, Date:"2024-03-22T00:00:00.0000000" <s:BioWings.Application.Features.Handlers.ObservationHandlers.Write.ObservationCreateRangeCommandHandler>
+[21:15:53 INF] Import completed. Created: 0, Duplicates skipped: 3, Errors: 0 <s:BioWings.Application.Features.Handlers.ObservationHandlers.Write.ObservationCreateRangeCommandHandler>
+[21:15:53 INF] Executing ObjectResult, writing value of type 'BioWings.Application.Results.ServiceResult'. <s:Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor>
+[21:15:53 INF] Executed action BioWings.WebAPI.Controllers.ObservationsController.Import (BioWings.WebAPI) in 118.7187ms <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[21:15:53 INF] Executed endpoint 'BioWings.WebAPI.Controllers.ObservationsController.Import (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[21:15:53 INF] HTTP POST /api/Observations/Import responded 201 in 121.1200 ms <s:Serilog.AspNetCore.RequestLoggingMiddleware>
+[21:15:53 INF] Request finished HTTP/2 POST https://localhost:7128/api/Observations/Import - 201 null application/json; charset=utf-8 125.5756ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[21:16:04 INF] Request starting HTTP/2 POST https://localhost:7128/api/Observations/Import - multipart/form-data; boundary=----WebKitFormBoundarylmikMwzX7WuSgQ61 6827 <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[21:16:04 INF] CORS policy execution successful. <s:Microsoft.AspNetCore.Cors.Infrastructure.CorsService>
+[21:16:04 INF] Executing endpoint 'BioWings.WebAPI.Controllers.ObservationsController.Import (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[21:16:04 INF] Route matched with {action = "Import", controller = "Observations"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Import(BioWings.Application.Features.Commands.ObservationCommands.ObservationImportCreateCommand) on controller BioWings.WebAPI.Controllers.ObservationsController (BioWings.WebAPI). <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[21:16:04 INF] Parsed 3 observations from Excel file <s:BioWings.Application.Features.Handlers.ObservationHandlers.Write.ObservationImportCreateCommandHandler>
+[21:16:04 INF] Starting bulk creation of 3 observations <s:BioWings.Application.Features.Handlers.ObservationHandlers.Write.ObservationCreateRangeCommandHandler>
+[21:16:04 INF] Executed DbCommand (1ms) [Parameters=[@__name_0='?' (Size = 50), @__year_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `a`.`Id`, `a`.`CreatedDateTime`, `a`.`Name`, `a`.`UpdatedDateTime`, `a`.`Year`
+FROM `Authorities` AS `a`
+WHERE (`a`.`Name` = @__name_0) AND (`a`.`Year` = @__year_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:16:04 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `f`.`Id`, `f`.`CreatedDateTime`, `f`.`Name`, `f`.`UpdatedDateTime`
+FROM `Families` AS `f`
+WHERE `f`.`Name` = @__name_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:16:04 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 50), @__familyId_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `g`.`Id`, `g`.`CreatedDateTime`, `g`.`FamilyId`, `g`.`Name`, `g`.`UpdatedDateTime`
+FROM `Genera` AS `g`
+WHERE (`g`.`Name` = @__name_0) AND (`g`.`FamilyId` = @__familyId_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:16:04 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 70), @__description_1='?' (Size = 500)], CommandType='"Text"', CommandTimeout='30']
+SELECT `s`.`Id`, `s`.`CreatedDateTime`, `s`.`Description`, `s`.`Name`, `s`.`UpdatedDateTime`
+FROM `SpeciesTypes` AS `s`
+WHERE (`s`.`Name` = @__name_0) AND (`s`.`Description` = @__description_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:16:04 INF] Executed DbCommand (0ms) [Parameters=[@__scientificName_0='?' (Size = 200)], CommandType='"Text"', CommandTimeout='30']
+SELECT `s`.`Id`, `s`.`AuthorityId`, `s`.`CreatedDateTime`, `s`.`EUName`, `s`.`EnglishName`, `s`.`FullName`, `s`.`GenusId`, `s`.`HesselbarthName`, `s`.`KocakName`, `s`.`Name`, `s`.`ScientificName`, `s`.`SpeciesTypeId`, `s`.`Trakel`, `s`.`TurkishName`, `s`.`TurkishNamesTrakel`, `s`.`UpdatedDateTime`
+FROM `Species` AS `s`
+WHERE `s`.`ScientificName` = @__scientificName_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:16:04 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 70)], CommandType='"Text"', CommandTimeout='30']
+SELECT `p`.`Id`, `p`.`CreatedDateTime`, `p`.`Name`, `p`.`ProvinceCode`, `p`.`UpdatedDateTime`
+FROM `Provinces` AS `p`
+WHERE `p`.`Name` = @__name_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:16:04 INF] Executed DbCommand (0ms) [Parameters=[@__request_SquareRef_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `l`.`Id`, `l`.`Altitude1`, `l`.`Altitude2`, `l`.`CoordinatePrecisionLevel`, `l`.`CreatedDateTime`, `l`.`DecimalDegrees`, `l`.`DecimalMinutes`, `l`.`DegreesMinutesSeconds`, `l`.`Description`, `l`.`Latitude`, `l`.`Longitude`, `l`.`MgrsCoordinates`, `l`.`ProvinceId`, `l`.`SquareLatitude`, `l`.`SquareLongitude`, `l`.`SquareRef`, `l`.`UpdatedDateTime`, `l`.`UtmCoordinates`, `l`.`UtmReference`
+FROM `Locations` AS `l`
+WHERE `l`.`SquareRef` = @__request_SquareRef_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:16:04 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 40), @__surname_1='?' (Size = 20)], CommandType='"Text"', CommandTimeout='30']
+SELECT `o`.`Id`, `o`.`CreatedDateTime`, `o`.`Email`, `o`.`FullName`, `o`.`Name`, `o`.`PasswordHash`, `o`.`Phone`, `o`.`Surname`, `o`.`UpdatedDateTime`
+FROM `Observers` AS `o`
+WHERE (`o`.`Name` = @__name_0) AND (`o`.`Surname` = @__surname_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:16:04 INF] Executed DbCommand (0ms) [Parameters=[@__speciesResult_Data_Id_0='?' (DbType = Int32), @__locationResult_Data_Id_1='?' (DbType = Int32), @__observerResult_Data_Id_2='?' (DbType = Int32), @__8__locals1_observationCommand_Sex_3='?' (Size = 15), @__8__locals1_observationCommand_ObservationDate_4='?' (DbType = DateTime), @__8__locals1_observationCommand_LifeStage_5='?' (Size = 50), @__8__locals1_observationCommand_NumberSeen_6='?' (DbType = Int32), @__8__locals1_observationCommand_Notes_7='?' (Size = 1000), @__8__locals1_observationCommand_Source_8='?' (Size = 200), @__8__locals1_observationCommand_LocationInfo_9='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT `o`.`Id`, `o`.`CreatedDateTime`, `o`.`LifeStage`, `o`.`LocationId`, `o`.`LocationInfo`, `o`.`Notes`, `o`.`NumberSeen`, `o`.`ObservationDate`, `o`.`ObserverId`, `o`.`Sex`, `o`.`Source`, `o`.`SpeciesId`, `o`.`UpdatedDateTime`
+FROM `Observations` AS `o`
+WHERE (((((((((`o`.`SpeciesId` = @__speciesResult_Data_Id_0) AND (`o`.`LocationId` = @__locationResult_Data_Id_1)) AND (`o`.`ObserverId` = @__observerResult_Data_Id_2)) AND (`o`.`Sex` = @__8__locals1_observationCommand_Sex_3)) AND (`o`.`ObservationDate` = @__8__locals1_observationCommand_ObservationDate_4)) AND (`o`.`LifeStage` = @__8__locals1_observationCommand_LifeStage_5)) AND (`o`.`NumberSeen` = @__8__locals1_observationCommand_NumberSeen_6)) AND (`o`.`Notes` = @__8__locals1_observationCommand_Notes_7)) AND (`o`.`Source` = @__8__locals1_observationCommand_Source_8)) AND (`o`.`LocationInfo` = @__8__locals1_observationCommand_LocationInfo_9)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:16:04 INF] Duplicate observation found and skipped - Species:1, Location:1, Observer:1, Date:"2024-03-20T00:00:00.0000000" <s:BioWings.Application.Features.Handlers.ObservationHandlers.Write.ObservationCreateRangeCommandHandler>
+[21:16:04 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 50), @__year_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `a`.`Id`, `a`.`CreatedDateTime`, `a`.`Name`, `a`.`UpdatedDateTime`, `a`.`Year`
+FROM `Authorities` AS `a`
+WHERE (`a`.`Name` = @__name_0) AND (`a`.`Year` = @__year_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:16:04 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `f`.`Id`, `f`.`CreatedDateTime`, `f`.`Name`, `f`.`UpdatedDateTime`
+FROM `Families` AS `f`
+WHERE `f`.`Name` = @__name_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:16:04 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 50), @__familyId_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `g`.`Id`, `g`.`CreatedDateTime`, `g`.`FamilyId`, `g`.`Name`, `g`.`UpdatedDateTime`
+FROM `Genera` AS `g`
+WHERE (`g`.`Name` = @__name_0) AND (`g`.`FamilyId` = @__familyId_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:16:04 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 70), @__description_1='?' (Size = 500)], CommandType='"Text"', CommandTimeout='30']
+SELECT `s`.`Id`, `s`.`CreatedDateTime`, `s`.`Description`, `s`.`Name`, `s`.`UpdatedDateTime`
+FROM `SpeciesTypes` AS `s`
+WHERE (`s`.`Name` = @__name_0) AND (`s`.`Description` = @__description_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:16:04 INF] Executed DbCommand (0ms) [Parameters=[@__scientificName_0='?' (Size = 200)], CommandType='"Text"', CommandTimeout='30']
+SELECT `s`.`Id`, `s`.`AuthorityId`, `s`.`CreatedDateTime`, `s`.`EUName`, `s`.`EnglishName`, `s`.`FullName`, `s`.`GenusId`, `s`.`HesselbarthName`, `s`.`KocakName`, `s`.`Name`, `s`.`ScientificName`, `s`.`SpeciesTypeId`, `s`.`Trakel`, `s`.`TurkishName`, `s`.`TurkishNamesTrakel`, `s`.`UpdatedDateTime`
+FROM `Species` AS `s`
+WHERE `s`.`ScientificName` = @__scientificName_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:16:04 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 70)], CommandType='"Text"', CommandTimeout='30']
+SELECT `p`.`Id`, `p`.`CreatedDateTime`, `p`.`Name`, `p`.`ProvinceCode`, `p`.`UpdatedDateTime`
+FROM `Provinces` AS `p`
+WHERE `p`.`Name` = @__name_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:16:04 INF] Executed DbCommand (0ms) [Parameters=[@__request_SquareRef_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `l`.`Id`, `l`.`Altitude1`, `l`.`Altitude2`, `l`.`CoordinatePrecisionLevel`, `l`.`CreatedDateTime`, `l`.`DecimalDegrees`, `l`.`DecimalMinutes`, `l`.`DegreesMinutesSeconds`, `l`.`Description`, `l`.`Latitude`, `l`.`Longitude`, `l`.`MgrsCoordinates`, `l`.`ProvinceId`, `l`.`SquareLatitude`, `l`.`SquareLongitude`, `l`.`SquareRef`, `l`.`UpdatedDateTime`, `l`.`UtmCoordinates`, `l`.`UtmReference`
+FROM `Locations` AS `l`
+WHERE `l`.`SquareRef` = @__request_SquareRef_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:16:04 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 40), @__surname_1='?' (Size = 20)], CommandType='"Text"', CommandTimeout='30']
+SELECT `o`.`Id`, `o`.`CreatedDateTime`, `o`.`Email`, `o`.`FullName`, `o`.`Name`, `o`.`PasswordHash`, `o`.`Phone`, `o`.`Surname`, `o`.`UpdatedDateTime`
+FROM `Observers` AS `o`
+WHERE (`o`.`Name` = @__name_0) AND (`o`.`Surname` = @__surname_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:16:04 INF] Executed DbCommand (0ms) [Parameters=[@__speciesResult_Data_Id_0='?' (DbType = Int32), @__locationResult_Data_Id_1='?' (DbType = Int32), @__observerResult_Data_Id_2='?' (DbType = Int32), @__8__locals1_observationCommand_Sex_3='?' (Size = 15), @__8__locals1_observationCommand_ObservationDate_4='?' (DbType = DateTime), @__8__locals1_observationCommand_LifeStage_5='?' (Size = 50), @__8__locals1_observationCommand_NumberSeen_6='?' (DbType = Int32), @__8__locals1_observationCommand_Notes_7='?' (Size = 1000), @__8__locals1_observationCommand_Source_8='?' (Size = 200), @__8__locals1_observationCommand_LocationInfo_9='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT `o`.`Id`, `o`.`CreatedDateTime`, `o`.`LifeStage`, `o`.`LocationId`, `o`.`LocationInfo`, `o`.`Notes`, `o`.`NumberSeen`, `o`.`ObservationDate`, `o`.`ObserverId`, `o`.`Sex`, `o`.`Source`, `o`.`SpeciesId`, `o`.`UpdatedDateTime`
+FROM `Observations` AS `o`
+WHERE (((((((((`o`.`SpeciesId` = @__speciesResult_Data_Id_0) AND (`o`.`LocationId` = @__locationResult_Data_Id_1)) AND (`o`.`ObserverId` = @__observerResult_Data_Id_2)) AND (`o`.`Sex` = @__8__locals1_observationCommand_Sex_3)) AND (`o`.`ObservationDate` = @__8__locals1_observationCommand_ObservationDate_4)) AND (`o`.`LifeStage` = @__8__locals1_observationCommand_LifeStage_5)) AND (`o`.`NumberSeen` = @__8__locals1_observationCommand_NumberSeen_6)) AND (`o`.`Notes` = @__8__locals1_observationCommand_Notes_7)) AND (`o`.`Source` = @__8__locals1_observationCommand_Source_8)) AND (`o`.`LocationInfo` = @__8__locals1_observationCommand_LocationInfo_9)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:16:04 INF] Duplicate observation found and skipped - Species:2, Location:2, Observer:2, Date:"2024-03-21T00:00:00.0000000" <s:BioWings.Application.Features.Handlers.ObservationHandlers.Write.ObservationCreateRangeCommandHandler>
+[21:16:04 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 50), @__year_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `a`.`Id`, `a`.`CreatedDateTime`, `a`.`Name`, `a`.`UpdatedDateTime`, `a`.`Year`
+FROM `Authorities` AS `a`
+WHERE (`a`.`Name` = @__name_0) AND (`a`.`Year` = @__year_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:16:04 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `f`.`Id`, `f`.`CreatedDateTime`, `f`.`Name`, `f`.`UpdatedDateTime`
+FROM `Families` AS `f`
+WHERE `f`.`Name` = @__name_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:16:04 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 50), @__familyId_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `g`.`Id`, `g`.`CreatedDateTime`, `g`.`FamilyId`, `g`.`Name`, `g`.`UpdatedDateTime`
+FROM `Genera` AS `g`
+WHERE (`g`.`Name` = @__name_0) AND (`g`.`FamilyId` = @__familyId_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:16:04 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 70), @__description_1='?' (Size = 500)], CommandType='"Text"', CommandTimeout='30']
+SELECT `s`.`Id`, `s`.`CreatedDateTime`, `s`.`Description`, `s`.`Name`, `s`.`UpdatedDateTime`
+FROM `SpeciesTypes` AS `s`
+WHERE (`s`.`Name` = @__name_0) AND (`s`.`Description` = @__description_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:16:04 INF] Executed DbCommand (0ms) [Parameters=[@__scientificName_0='?' (Size = 200)], CommandType='"Text"', CommandTimeout='30']
+SELECT `s`.`Id`, `s`.`AuthorityId`, `s`.`CreatedDateTime`, `s`.`EUName`, `s`.`EnglishName`, `s`.`FullName`, `s`.`GenusId`, `s`.`HesselbarthName`, `s`.`KocakName`, `s`.`Name`, `s`.`ScientificName`, `s`.`SpeciesTypeId`, `s`.`Trakel`, `s`.`TurkishName`, `s`.`TurkishNamesTrakel`, `s`.`UpdatedDateTime`
+FROM `Species` AS `s`
+WHERE `s`.`ScientificName` = @__scientificName_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:16:04 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 70)], CommandType='"Text"', CommandTimeout='30']
+SELECT `p`.`Id`, `p`.`CreatedDateTime`, `p`.`Name`, `p`.`ProvinceCode`, `p`.`UpdatedDateTime`
+FROM `Provinces` AS `p`
+WHERE `p`.`Name` = @__name_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:16:04 INF] Executed DbCommand (0ms) [Parameters=[@__request_SquareRef_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `l`.`Id`, `l`.`Altitude1`, `l`.`Altitude2`, `l`.`CoordinatePrecisionLevel`, `l`.`CreatedDateTime`, `l`.`DecimalDegrees`, `l`.`DecimalMinutes`, `l`.`DegreesMinutesSeconds`, `l`.`Description`, `l`.`Latitude`, `l`.`Longitude`, `l`.`MgrsCoordinates`, `l`.`ProvinceId`, `l`.`SquareLatitude`, `l`.`SquareLongitude`, `l`.`SquareRef`, `l`.`UpdatedDateTime`, `l`.`UtmCoordinates`, `l`.`UtmReference`
+FROM `Locations` AS `l`
+WHERE `l`.`SquareRef` = @__request_SquareRef_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:16:04 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 40), @__surname_1='?' (Size = 20)], CommandType='"Text"', CommandTimeout='30']
+SELECT `o`.`Id`, `o`.`CreatedDateTime`, `o`.`Email`, `o`.`FullName`, `o`.`Name`, `o`.`PasswordHash`, `o`.`Phone`, `o`.`Surname`, `o`.`UpdatedDateTime`
+FROM `Observers` AS `o`
+WHERE (`o`.`Name` = @__name_0) AND (`o`.`Surname` = @__surname_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:16:04 INF] Executed DbCommand (0ms) [Parameters=[@__speciesResult_Data_Id_0='?' (DbType = Int32), @__locationResult_Data_Id_1='?' (DbType = Int32), @__observerResult_Data_Id_2='?' (DbType = Int32), @__8__locals1_observationCommand_Sex_3='?' (Size = 15), @__8__locals1_observationCommand_ObservationDate_4='?' (DbType = DateTime), @__8__locals1_observationCommand_LifeStage_5='?' (Size = 50), @__8__locals1_observationCommand_NumberSeen_6='?' (DbType = Int32), @__8__locals1_observationCommand_Notes_7='?' (Size = 1000), @__8__locals1_observationCommand_Source_8='?' (Size = 200), @__8__locals1_observationCommand_LocationInfo_9='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT `o`.`Id`, `o`.`CreatedDateTime`, `o`.`LifeStage`, `o`.`LocationId`, `o`.`LocationInfo`, `o`.`Notes`, `o`.`NumberSeen`, `o`.`ObservationDate`, `o`.`ObserverId`, `o`.`Sex`, `o`.`Source`, `o`.`SpeciesId`, `o`.`UpdatedDateTime`
+FROM `Observations` AS `o`
+WHERE (((((((((`o`.`SpeciesId` = @__speciesResult_Data_Id_0) AND (`o`.`LocationId` = @__locationResult_Data_Id_1)) AND (`o`.`ObserverId` = @__observerResult_Data_Id_2)) AND (`o`.`Sex` = @__8__locals1_observationCommand_Sex_3)) AND (`o`.`ObservationDate` = @__8__locals1_observationCommand_ObservationDate_4)) AND (`o`.`LifeStage` = @__8__locals1_observationCommand_LifeStage_5)) AND (`o`.`NumberSeen` = @__8__locals1_observationCommand_NumberSeen_6)) AND (`o`.`Notes` = @__8__locals1_observationCommand_Notes_7)) AND (`o`.`Source` = @__8__locals1_observationCommand_Source_8)) AND (`o`.`LocationInfo` = @__8__locals1_observationCommand_LocationInfo_9)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:16:04 INF] Duplicate observation found and skipped - Species:3, Location:3, Observer:3, Date:"2024-03-22T00:00:00.0000000" <s:BioWings.Application.Features.Handlers.ObservationHandlers.Write.ObservationCreateRangeCommandHandler>
+[21:16:04 INF] Import completed. Created: 0, Duplicates skipped: 3, Errors: 0 <s:BioWings.Application.Features.Handlers.ObservationHandlers.Write.ObservationCreateRangeCommandHandler>
+[21:16:04 INF] Executing ObjectResult, writing value of type 'BioWings.Application.Results.ServiceResult'. <s:Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor>
+[21:16:04 INF] Executed action BioWings.WebAPI.Controllers.ObservationsController.Import (BioWings.WebAPI) in 77.1478ms <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[21:16:04 INF] Executed endpoint 'BioWings.WebAPI.Controllers.ObservationsController.Import (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[21:16:04 INF] HTTP POST /api/Observations/Import responded 201 in 78.7534 ms <s:Serilog.AspNetCore.RequestLoggingMiddleware>
+[21:16:04 INF] Request finished HTTP/2 POST https://localhost:7128/api/Observations/Import - 201 null application/json; charset=utf-8 81.2012ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[21:18:53 INF] Request starting HTTP/2 GET https://localhost:7128/api/ExcelTemplate/download - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[21:18:53 INF] CORS policy execution successful. <s:Microsoft.AspNetCore.Cors.Infrastructure.CorsService>
+[21:18:53 INF] Executing endpoint 'BioWings.WebAPI.Controllers.ExcelTemplateController.DownloadTemplate (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[21:18:53 INF] Route matched with {action = "DownloadTemplate", controller = "ExcelTemplate"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult DownloadTemplate() on controller BioWings.WebAPI.Controllers.ExcelTemplateController (BioWings.WebAPI). <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[21:18:53 INF] Executing FileContentResult, sending file with download name 'observation_import_template.xlsx' ... <s:Microsoft.AspNetCore.Mvc.Infrastructure.FileContentResultExecutor>
+[21:18:53 INF] Executed action BioWings.WebAPI.Controllers.ExcelTemplateController.DownloadTemplate (BioWings.WebAPI) in 289.8834ms <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[21:18:53 INF] Executed endpoint 'BioWings.WebAPI.Controllers.ExcelTemplateController.DownloadTemplate (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[21:18:53 INF] HTTP GET /api/ExcelTemplate/download responded 200 in 298.6773 ms <s:Serilog.AspNetCore.RequestLoggingMiddleware>
+[21:18:53 INF] Request finished HTTP/2 GET https://localhost:7128/api/ExcelTemplate/download - 200 6558 application/vnd.openxmlformats-officedocument.spreadsheetml.sheet 301.712ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[21:26:09 INF] Request starting HTTP/2 POST https://localhost:7128/api/Observations/Import - multipart/form-data; boundary=----WebKitFormBoundary56QiG7EWNxargaHf 6823 <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[21:26:10 INF] CORS policy execution successful. <s:Microsoft.AspNetCore.Cors.Infrastructure.CorsService>
+[21:26:10 INF] Executing endpoint 'BioWings.WebAPI.Controllers.ObservationsController.Import (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[21:26:10 INF] Route matched with {action = "Import", controller = "Observations"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Import(BioWings.Application.Features.Commands.ObservationCommands.ObservationImportCreateCommand) on controller BioWings.WebAPI.Controllers.ObservationsController (BioWings.WebAPI). <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[21:26:10 INF] Parsed 3 observations from Excel file <s:BioWings.Application.Features.Handlers.ObservationHandlers.Write.ObservationImportCreateCommandHandler>
+[21:26:10 INF] Starting bulk creation of 3 observations <s:BioWings.Application.Features.Handlers.ObservationHandlers.Write.ObservationCreateRangeCommandHandler>
+[21:26:10 INF] Executed DbCommand (5ms) [Parameters=[@__name_0='?' (Size = 50), @__year_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `a`.`Id`, `a`.`CreatedDateTime`, `a`.`Name`, `a`.`UpdatedDateTime`, `a`.`Year`
+FROM `Authorities` AS `a`
+WHERE (`a`.`Name` = @__name_0) AND (`a`.`Year` = @__year_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:26:10 INF] Executed DbCommand (1ms) [Parameters=[@__name_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `f`.`Id`, `f`.`CreatedDateTime`, `f`.`Name`, `f`.`UpdatedDateTime`
+FROM `Families` AS `f`
+WHERE `f`.`Name` = @__name_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:26:10 INF] Executed DbCommand (1ms) [Parameters=[@__name_0='?' (Size = 50), @__familyId_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `g`.`Id`, `g`.`CreatedDateTime`, `g`.`FamilyId`, `g`.`Name`, `g`.`UpdatedDateTime`
+FROM `Genera` AS `g`
+WHERE (`g`.`Name` = @__name_0) AND (`g`.`FamilyId` = @__familyId_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:26:10 INF] Executed DbCommand (1ms) [Parameters=[@__name_0='?' (Size = 70), @__description_1='?' (Size = 500)], CommandType='"Text"', CommandTimeout='30']
+SELECT `s`.`Id`, `s`.`CreatedDateTime`, `s`.`Description`, `s`.`Name`, `s`.`UpdatedDateTime`
+FROM `SpeciesTypes` AS `s`
+WHERE (`s`.`Name` = @__name_0) AND (`s`.`Description` = @__description_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:26:10 INF] Executed DbCommand (1ms) [Parameters=[@__scientificName_0='?' (Size = 200)], CommandType='"Text"', CommandTimeout='30']
+SELECT `s`.`Id`, `s`.`AuthorityId`, `s`.`CreatedDateTime`, `s`.`EUName`, `s`.`EnglishName`, `s`.`FullName`, `s`.`GenusId`, `s`.`HesselbarthName`, `s`.`KocakName`, `s`.`Name`, `s`.`ScientificName`, `s`.`SpeciesTypeId`, `s`.`Trakel`, `s`.`TurkishName`, `s`.`TurkishNamesTrakel`, `s`.`UpdatedDateTime`
+FROM `Species` AS `s`
+WHERE `s`.`ScientificName` = @__scientificName_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:26:10 INF] Executed DbCommand (1ms) [Parameters=[@__name_0='?' (Size = 70)], CommandType='"Text"', CommandTimeout='30']
+SELECT `p`.`Id`, `p`.`CreatedDateTime`, `p`.`Name`, `p`.`ProvinceCode`, `p`.`UpdatedDateTime`
+FROM `Provinces` AS `p`
+WHERE `p`.`Name` = @__name_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:26:10 INF] Executed DbCommand (1ms) [Parameters=[@__request_SquareRef_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `l`.`Id`, `l`.`Altitude1`, `l`.`Altitude2`, `l`.`CoordinatePrecisionLevel`, `l`.`CreatedDateTime`, `l`.`DecimalDegrees`, `l`.`DecimalMinutes`, `l`.`DegreesMinutesSeconds`, `l`.`Description`, `l`.`Latitude`, `l`.`Longitude`, `l`.`MgrsCoordinates`, `l`.`ProvinceId`, `l`.`SquareLatitude`, `l`.`SquareLongitude`, `l`.`SquareRef`, `l`.`UpdatedDateTime`, `l`.`UtmCoordinates`, `l`.`UtmReference`
+FROM `Locations` AS `l`
+WHERE `l`.`SquareRef` = @__request_SquareRef_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:26:10 INF] Executed DbCommand (1ms) [Parameters=[@__name_0='?' (Size = 40), @__surname_1='?' (Size = 20)], CommandType='"Text"', CommandTimeout='30']
+SELECT `o`.`Id`, `o`.`CreatedDateTime`, `o`.`Email`, `o`.`FullName`, `o`.`Name`, `o`.`PasswordHash`, `o`.`Phone`, `o`.`Surname`, `o`.`UpdatedDateTime`
+FROM `Observers` AS `o`
+WHERE (`o`.`Name` = @__name_0) AND (`o`.`Surname` = @__surname_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:26:10 INF] Executed DbCommand (1ms) [Parameters=[@__speciesResult_Data_Id_0='?' (DbType = Int32), @__locationResult_Data_Id_1='?' (DbType = Int32), @__observerResult_Data_Id_2='?' (DbType = Int32), @__8__locals1_observationCommand_Sex_3='?' (Size = 15), @__8__locals1_observationCommand_ObservationDate_4='?' (DbType = DateTime), @__8__locals1_observationCommand_LifeStage_5='?' (Size = 50), @__8__locals1_observationCommand_NumberSeen_6='?' (DbType = Int32), @__8__locals1_observationCommand_Notes_7='?' (Size = 1000), @__8__locals1_observationCommand_Source_8='?' (Size = 200), @__8__locals1_observationCommand_LocationInfo_9='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT `o`.`Id`, `o`.`CreatedDateTime`, `o`.`LifeStage`, `o`.`LocationId`, `o`.`LocationInfo`, `o`.`Notes`, `o`.`NumberSeen`, `o`.`ObservationDate`, `o`.`ObserverId`, `o`.`Sex`, `o`.`Source`, `o`.`SpeciesId`, `o`.`UpdatedDateTime`
+FROM `Observations` AS `o`
+WHERE (((((((((`o`.`SpeciesId` = @__speciesResult_Data_Id_0) AND (`o`.`LocationId` = @__locationResult_Data_Id_1)) AND (`o`.`ObserverId` = @__observerResult_Data_Id_2)) AND (`o`.`Sex` = @__8__locals1_observationCommand_Sex_3)) AND (`o`.`ObservationDate` = @__8__locals1_observationCommand_ObservationDate_4)) AND (`o`.`LifeStage` = @__8__locals1_observationCommand_LifeStage_5)) AND (`o`.`NumberSeen` = @__8__locals1_observationCommand_NumberSeen_6)) AND (`o`.`Notes` = @__8__locals1_observationCommand_Notes_7)) AND (`o`.`Source` = @__8__locals1_observationCommand_Source_8)) AND (`o`.`LocationInfo` = @__8__locals1_observationCommand_LocationInfo_9)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:26:10 INF] Duplicate observation found and skipped - Species:1, Location:1, Observer:1, Date:"2024-03-20T00:00:00.0000000" <s:BioWings.Application.Features.Handlers.ObservationHandlers.Write.ObservationCreateRangeCommandHandler>
+[21:26:10 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 50), @__year_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `a`.`Id`, `a`.`CreatedDateTime`, `a`.`Name`, `a`.`UpdatedDateTime`, `a`.`Year`
+FROM `Authorities` AS `a`
+WHERE (`a`.`Name` = @__name_0) AND (`a`.`Year` = @__year_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:26:10 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `f`.`Id`, `f`.`CreatedDateTime`, `f`.`Name`, `f`.`UpdatedDateTime`
+FROM `Families` AS `f`
+WHERE `f`.`Name` = @__name_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:26:10 INF] Executed DbCommand (1ms) [Parameters=[@__name_0='?' (Size = 50), @__familyId_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `g`.`Id`, `g`.`CreatedDateTime`, `g`.`FamilyId`, `g`.`Name`, `g`.`UpdatedDateTime`
+FROM `Genera` AS `g`
+WHERE (`g`.`Name` = @__name_0) AND (`g`.`FamilyId` = @__familyId_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:26:10 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 70), @__description_1='?' (Size = 500)], CommandType='"Text"', CommandTimeout='30']
+SELECT `s`.`Id`, `s`.`CreatedDateTime`, `s`.`Description`, `s`.`Name`, `s`.`UpdatedDateTime`
+FROM `SpeciesTypes` AS `s`
+WHERE (`s`.`Name` = @__name_0) AND (`s`.`Description` = @__description_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:26:10 INF] Executed DbCommand (0ms) [Parameters=[@__scientificName_0='?' (Size = 200)], CommandType='"Text"', CommandTimeout='30']
+SELECT `s`.`Id`, `s`.`AuthorityId`, `s`.`CreatedDateTime`, `s`.`EUName`, `s`.`EnglishName`, `s`.`FullName`, `s`.`GenusId`, `s`.`HesselbarthName`, `s`.`KocakName`, `s`.`Name`, `s`.`ScientificName`, `s`.`SpeciesTypeId`, `s`.`Trakel`, `s`.`TurkishName`, `s`.`TurkishNamesTrakel`, `s`.`UpdatedDateTime`
+FROM `Species` AS `s`
+WHERE `s`.`ScientificName` = @__scientificName_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:26:10 INF] Executed DbCommand (1ms) [Parameters=[@__name_0='?' (Size = 70)], CommandType='"Text"', CommandTimeout='30']
+SELECT `p`.`Id`, `p`.`CreatedDateTime`, `p`.`Name`, `p`.`ProvinceCode`, `p`.`UpdatedDateTime`
+FROM `Provinces` AS `p`
+WHERE `p`.`Name` = @__name_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:26:10 INF] Executed DbCommand (1ms) [Parameters=[@__request_SquareRef_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `l`.`Id`, `l`.`Altitude1`, `l`.`Altitude2`, `l`.`CoordinatePrecisionLevel`, `l`.`CreatedDateTime`, `l`.`DecimalDegrees`, `l`.`DecimalMinutes`, `l`.`DegreesMinutesSeconds`, `l`.`Description`, `l`.`Latitude`, `l`.`Longitude`, `l`.`MgrsCoordinates`, `l`.`ProvinceId`, `l`.`SquareLatitude`, `l`.`SquareLongitude`, `l`.`SquareRef`, `l`.`UpdatedDateTime`, `l`.`UtmCoordinates`, `l`.`UtmReference`
+FROM `Locations` AS `l`
+WHERE `l`.`SquareRef` = @__request_SquareRef_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:26:10 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 40), @__surname_1='?' (Size = 20)], CommandType='"Text"', CommandTimeout='30']
+SELECT `o`.`Id`, `o`.`CreatedDateTime`, `o`.`Email`, `o`.`FullName`, `o`.`Name`, `o`.`PasswordHash`, `o`.`Phone`, `o`.`Surname`, `o`.`UpdatedDateTime`
+FROM `Observers` AS `o`
+WHERE (`o`.`Name` = @__name_0) AND (`o`.`Surname` = @__surname_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:26:10 INF] Executed DbCommand (1ms) [Parameters=[@__speciesResult_Data_Id_0='?' (DbType = Int32), @__locationResult_Data_Id_1='?' (DbType = Int32), @__observerResult_Data_Id_2='?' (DbType = Int32), @__8__locals1_observationCommand_Sex_3='?' (Size = 15), @__8__locals1_observationCommand_ObservationDate_4='?' (DbType = DateTime), @__8__locals1_observationCommand_LifeStage_5='?' (Size = 50), @__8__locals1_observationCommand_NumberSeen_6='?' (DbType = Int32), @__8__locals1_observationCommand_Notes_7='?' (Size = 1000), @__8__locals1_observationCommand_Source_8='?' (Size = 200), @__8__locals1_observationCommand_LocationInfo_9='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT `o`.`Id`, `o`.`CreatedDateTime`, `o`.`LifeStage`, `o`.`LocationId`, `o`.`LocationInfo`, `o`.`Notes`, `o`.`NumberSeen`, `o`.`ObservationDate`, `o`.`ObserverId`, `o`.`Sex`, `o`.`Source`, `o`.`SpeciesId`, `o`.`UpdatedDateTime`
+FROM `Observations` AS `o`
+WHERE (((((((((`o`.`SpeciesId` = @__speciesResult_Data_Id_0) AND (`o`.`LocationId` = @__locationResult_Data_Id_1)) AND (`o`.`ObserverId` = @__observerResult_Data_Id_2)) AND (`o`.`Sex` = @__8__locals1_observationCommand_Sex_3)) AND (`o`.`ObservationDate` = @__8__locals1_observationCommand_ObservationDate_4)) AND (`o`.`LifeStage` = @__8__locals1_observationCommand_LifeStage_5)) AND (`o`.`NumberSeen` = @__8__locals1_observationCommand_NumberSeen_6)) AND (`o`.`Notes` = @__8__locals1_observationCommand_Notes_7)) AND (`o`.`Source` = @__8__locals1_observationCommand_Source_8)) AND (`o`.`LocationInfo` = @__8__locals1_observationCommand_LocationInfo_9)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:26:10 INF] Duplicate observation found and skipped - Species:2, Location:2, Observer:2, Date:"2024-03-21T00:00:00.0000000" <s:BioWings.Application.Features.Handlers.ObservationHandlers.Write.ObservationCreateRangeCommandHandler>
+[21:26:10 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 50), @__year_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `a`.`Id`, `a`.`CreatedDateTime`, `a`.`Name`, `a`.`UpdatedDateTime`, `a`.`Year`
+FROM `Authorities` AS `a`
+WHERE (`a`.`Name` = @__name_0) AND (`a`.`Year` = @__year_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:26:10 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `f`.`Id`, `f`.`CreatedDateTime`, `f`.`Name`, `f`.`UpdatedDateTime`
+FROM `Families` AS `f`
+WHERE `f`.`Name` = @__name_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:26:10 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 50), @__familyId_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `g`.`Id`, `g`.`CreatedDateTime`, `g`.`FamilyId`, `g`.`Name`, `g`.`UpdatedDateTime`
+FROM `Genera` AS `g`
+WHERE (`g`.`Name` = @__name_0) AND (`g`.`FamilyId` = @__familyId_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:26:10 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 70), @__description_1='?' (Size = 500)], CommandType='"Text"', CommandTimeout='30']
+SELECT `s`.`Id`, `s`.`CreatedDateTime`, `s`.`Description`, `s`.`Name`, `s`.`UpdatedDateTime`
+FROM `SpeciesTypes` AS `s`
+WHERE (`s`.`Name` = @__name_0) AND (`s`.`Description` = @__description_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:26:10 INF] Executed DbCommand (1ms) [Parameters=[@__scientificName_0='?' (Size = 200)], CommandType='"Text"', CommandTimeout='30']
+SELECT `s`.`Id`, `s`.`AuthorityId`, `s`.`CreatedDateTime`, `s`.`EUName`, `s`.`EnglishName`, `s`.`FullName`, `s`.`GenusId`, `s`.`HesselbarthName`, `s`.`KocakName`, `s`.`Name`, `s`.`ScientificName`, `s`.`SpeciesTypeId`, `s`.`Trakel`, `s`.`TurkishName`, `s`.`TurkishNamesTrakel`, `s`.`UpdatedDateTime`
+FROM `Species` AS `s`
+WHERE `s`.`ScientificName` = @__scientificName_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:26:10 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 70)], CommandType='"Text"', CommandTimeout='30']
+SELECT `p`.`Id`, `p`.`CreatedDateTime`, `p`.`Name`, `p`.`ProvinceCode`, `p`.`UpdatedDateTime`
+FROM `Provinces` AS `p`
+WHERE `p`.`Name` = @__name_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:26:10 INF] Executed DbCommand (0ms) [Parameters=[@__request_SquareRef_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `l`.`Id`, `l`.`Altitude1`, `l`.`Altitude2`, `l`.`CoordinatePrecisionLevel`, `l`.`CreatedDateTime`, `l`.`DecimalDegrees`, `l`.`DecimalMinutes`, `l`.`DegreesMinutesSeconds`, `l`.`Description`, `l`.`Latitude`, `l`.`Longitude`, `l`.`MgrsCoordinates`, `l`.`ProvinceId`, `l`.`SquareLatitude`, `l`.`SquareLongitude`, `l`.`SquareRef`, `l`.`UpdatedDateTime`, `l`.`UtmCoordinates`, `l`.`UtmReference`
+FROM `Locations` AS `l`
+WHERE `l`.`SquareRef` = @__request_SquareRef_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:26:10 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 40), @__surname_1='?' (Size = 20)], CommandType='"Text"', CommandTimeout='30']
+SELECT `o`.`Id`, `o`.`CreatedDateTime`, `o`.`Email`, `o`.`FullName`, `o`.`Name`, `o`.`PasswordHash`, `o`.`Phone`, `o`.`Surname`, `o`.`UpdatedDateTime`
+FROM `Observers` AS `o`
+WHERE (`o`.`Name` = @__name_0) AND (`o`.`Surname` = @__surname_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:26:10 INF] Executed DbCommand (1ms) [Parameters=[@__speciesResult_Data_Id_0='?' (DbType = Int32), @__locationResult_Data_Id_1='?' (DbType = Int32), @__observerResult_Data_Id_2='?' (DbType = Int32), @__8__locals1_observationCommand_Sex_3='?' (Size = 15), @__8__locals1_observationCommand_ObservationDate_4='?' (DbType = DateTime), @__8__locals1_observationCommand_LifeStage_5='?' (Size = 50), @__8__locals1_observationCommand_NumberSeen_6='?' (DbType = Int32), @__8__locals1_observationCommand_Notes_7='?' (Size = 1000), @__8__locals1_observationCommand_Source_8='?' (Size = 200), @__8__locals1_observationCommand_LocationInfo_9='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT `o`.`Id`, `o`.`CreatedDateTime`, `o`.`LifeStage`, `o`.`LocationId`, `o`.`LocationInfo`, `o`.`Notes`, `o`.`NumberSeen`, `o`.`ObservationDate`, `o`.`ObserverId`, `o`.`Sex`, `o`.`Source`, `o`.`SpeciesId`, `o`.`UpdatedDateTime`
+FROM `Observations` AS `o`
+WHERE (((((((((`o`.`SpeciesId` = @__speciesResult_Data_Id_0) AND (`o`.`LocationId` = @__locationResult_Data_Id_1)) AND (`o`.`ObserverId` = @__observerResult_Data_Id_2)) AND (`o`.`Sex` = @__8__locals1_observationCommand_Sex_3)) AND (`o`.`ObservationDate` = @__8__locals1_observationCommand_ObservationDate_4)) AND (`o`.`LifeStage` = @__8__locals1_observationCommand_LifeStage_5)) AND (`o`.`NumberSeen` = @__8__locals1_observationCommand_NumberSeen_6)) AND (`o`.`Notes` = @__8__locals1_observationCommand_Notes_7)) AND (`o`.`Source` = @__8__locals1_observationCommand_Source_8)) AND (`o`.`LocationInfo` = @__8__locals1_observationCommand_LocationInfo_9)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[21:26:10 INF] Duplicate observation found and skipped - Species:3, Location:3, Observer:3, Date:"2024-03-22T00:00:00.0000000" <s:BioWings.Application.Features.Handlers.ObservationHandlers.Write.ObservationCreateRangeCommandHandler>
+[21:26:10 INF] Import completed. Created: 0, Duplicates skipped: 3, Errors: 0 <s:BioWings.Application.Features.Handlers.ObservationHandlers.Write.ObservationCreateRangeCommandHandler>
+[21:26:10 INF] Executing ObjectResult, writing value of type 'BioWings.Application.Results.ServiceResult'. <s:Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor>
+[21:26:10 INF] Executed action BioWings.WebAPI.Controllers.ObservationsController.Import (BioWings.WebAPI) in 141.1144ms <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[21:26:10 INF] Executed endpoint 'BioWings.WebAPI.Controllers.ObservationsController.Import (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[21:26:10 INF] HTTP POST /api/Observations/Import responded 201 in 144.3222 ms <s:Serilog.AspNetCore.RequestLoggingMiddleware>
+[21:26:10 INF] Request finished HTTP/2 POST https://localhost:7128/api/Observations/Import - 201 null application/json; charset=utf-8 146.9645ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[21:28:38 INF] Now listening on: https://localhost:7128 <s:Microsoft.Hosting.Lifetime>
+[21:28:38 INF] Now listening on: http://localhost:5054 <s:Microsoft.Hosting.Lifetime>
+[21:28:38 INF] Application started. Press Ctrl+C to shut down. <s:Microsoft.Hosting.Lifetime>
+[21:28:38 INF] Hosting environment: Development <s:Microsoft.Hosting.Lifetime>
+[21:28:38 INF] Content root path: C:\Users\cagat\VisualStudio2022\BioWings\BioWings\BioWings.WebAPI <s:Microsoft.Hosting.Lifetime>
+[21:28:38 INF] Request starting HTTP/2 GET https://localhost:7128/swagger/index.html - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[21:28:38 INF] Request finished HTTP/2 GET https://localhost:7128/swagger/index.html - 200 null text/html;charset=utf-8 140.3079ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[21:28:38 INF] Request starting HTTP/2 GET https://localhost:7128/_framework/aspnetcore-browser-refresh.js - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[21:28:38 INF] Request starting HTTP/2 GET https://localhost:7128/_vs/browserLink - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[21:28:38 INF] Request finished HTTP/2 GET https://localhost:7128/_framework/aspnetcore-browser-refresh.js - 200 13782 application/javascript; charset=utf-8 6.3731ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[21:28:38 INF] Request finished HTTP/2 GET https://localhost:7128/_vs/browserLink - 200 null text/javascript; charset=UTF-8 28.2887ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[21:28:39 INF] Request starting HTTP/2 GET https://localhost:7128/swagger/v1/swagger.json - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[21:28:39 INF] Request finished HTTP/2 GET https://localhost:7128/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 48.1856ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>

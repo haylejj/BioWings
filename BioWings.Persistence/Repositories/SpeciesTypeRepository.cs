@@ -7,6 +7,6 @@ namespace BioWings.Persistence.Repositories;
 
 public class SpeciesTypeRepository(AppDbContext dbContext) : GenericRepository<SpeciesType>(dbContext), ISpeciesTypeRepository
 {
-    public async Task<SpeciesType?> GetByNameAsync(string name, CancellationToken cancellationToken = default) => await _dbSet.FirstOrDefaultAsync(x => x.Name == name, cancellationToken);
+    public async Task<SpeciesType?> GetByNameAndDescriptionAsync(string name, string description, CancellationToken cancellationToken = default) => await _dbSet.FirstOrDefaultAsync(x => x.Name == name && x.Description == description, cancellationToken);
 }
 

@@ -5,11 +5,6 @@ using BioWings.Domain.Entities;
 using BioWings.Domain.Interfaces;
 using MediatR;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BioWings.Application.Features.Handlers.ObservationHandlers.Write;
 public class ObservationCreateRangeCommandHandler(IObservationRepository observationRepository, ISpeciesRepository speciesRepository, ILocationRepository locationRepository, IProvinceRepository provinceRepository, IObserverRepository observerRepository, IAuthorityRepository authorityRepository, ISpeciesTypeRepository speciesTypeRepository, IFamilyRepository familyRepository, IGenusRepository genusRepository, IUnitOfWork unitOfWork, ILogger<ObservationCreateRangeCommandHandler> logger) : IRequestHandler<ObservationCreateRangeCommand, ServiceResult>
@@ -20,6 +15,7 @@ public class ObservationCreateRangeCommandHandler(IObservationRepository observa
 
         var successCount = 0;
         var errors = new List<string>();
+        var duplicateCount = 0;
 
         foreach (var observationCommand in request.ObservationCreateDtos)
         {
@@ -92,47 +88,74 @@ public class ObservationCreateRangeCommandHandler(IObservationRepository observa
                 continue;
             }
 
-            // Create Observation
-            var observation = new Observation
-            {
-                SpeciesId = speciesResult.Data.Id,
-                LocationId = locationResult.Data.Id,
-                ObserverId = observerResult.Data.Id,
-                Sex = observationCommand.Sex,
-                ObservationDate = observationCommand.ObservationDate,
-                LifeStage = observationCommand.LifeStage,
-                NumberSeen = observationCommand.NumberSeen,
-                Notes = observationCommand.Notes,
-                Source = observationCommand.Source,
-                LocationInfo = observationCommand.LocationInfo
-            };
+            // Check for duplicate observation
+            var existingObservation = await observationRepository.FirstOrDefaultAsync(o =>
+                o.SpeciesId == speciesResult.Data.Id &&
+                o.LocationId == locationResult.Data.Id &&
+                o.ObserverId == observerResult.Data.Id &&
+                o.Sex == observationCommand.Sex &&
+                o.ObservationDate == observationCommand.ObservationDate &&
+                o.LifeStage == observationCommand.LifeStage &&
+                o.NumberSeen == observationCommand.NumberSeen &&
+                o.Notes == observationCommand.Notes &&
+                o.Source == observationCommand.Source &&
+                o.LocationInfo == observationCommand.LocationInfo,
+                cancellationToken);
 
-            await  observationRepository.AddAsync(observation, cancellationToken);
-            successCount++;
-
-            // Her 100 kayıtta bir SaveChanges yapalım
-            if (successCount % 100 == 0)
+            if (existingObservation == null)
             {
-                await  unitOfWork.SaveChangesAsync(cancellationToken);
-                 logger.LogInformation("Saved batch of 100 observations. Total success count: {SuccessCount}", successCount);
+                // Create new Observation
+                var observation = new Observation
+                {
+                    SpeciesId = speciesResult.Data.Id,
+                    LocationId = locationResult.Data.Id,
+                    ObserverId = observerResult.Data.Id,
+                    Sex = observationCommand.Sex,
+                    ObservationDate = observationCommand.ObservationDate,
+                    LifeStage = observationCommand.LifeStage,
+                    NumberSeen = observationCommand.NumberSeen,
+                    Notes = observationCommand.Notes,
+                    Source = observationCommand.Source,
+                    LocationInfo = observationCommand.LocationInfo
+                };
+
+                await observationRepository.AddAsync(observation, cancellationToken);
+                successCount++;
+
+                // Save changes every 100 records
+                if (successCount % 100 == 0)
+                {
+                    await unitOfWork.SaveChangesAsync(cancellationToken);
+                    logger.LogInformation("Saved batch of 100 observations. Total success count: {SuccessCount}", successCount);
+                }
+            }
+            else
+            {
+                duplicateCount++;
+                logger.LogInformation(
+                    "Duplicate observation found and skipped - Species:{SpeciesId}, Location:{LocationId}, Observer:{ObserverId}, Date:{Date}",
+                    speciesResult.Data.Id,
+                    locationResult.Data.Id,
+                    observerResult.Data.Id,
+                    observationCommand.ObservationDate);
             }
         }
 
-        // Kalan kayıtları kaydedelim
+        // Save any remaining records
         if (successCount % 100 != 0)
         {
-            await  unitOfWork.SaveChangesAsync(cancellationToken);
+            await unitOfWork.SaveChangesAsync(cancellationToken);
         }
 
-         logger.LogInformation("Completed bulk creation. Successfully created: {SuccessCount} observations. Errors: {ErrorCount}",
-            successCount, errors.Count);
+        logger.LogInformation(
+            "Import completed. Created: {SuccessCount}, Duplicates skipped: {DuplicateCount}, Errors: {ErrorCount}",
+            successCount,
+            duplicateCount,
+            errors.Count);
 
-        if (errors.Any())
-        {
-            return ServiceResult.Error($"Completed with {errors.Count} errors. First error: {errors.First()}");
-        }
-
-        return ServiceResult.SuccessAsCreated("api/Observations/Range");
+        return errors.Any()
+            ? ServiceResult.Error($"Completed with {errors.Count} errors. First error: {errors.First()}")
+            : ServiceResult.SuccessAsCreated("api/Observations/Range");
     }
     private async Task<ServiceResult<Authority>> GetOrCreateAuthority(ObservationCreateDto request, CancellationToken cancellationToken)
     {
@@ -191,7 +214,7 @@ public class ObservationCreateRangeCommandHandler(IObservationRepository observa
     private async Task<ServiceResult<SpeciesType>> GetOrCreateSpeciesType(ObservationCreateDto request, CancellationToken cancellationToken)
     {
 
-        var speciesType = await speciesTypeRepository.GetByNameAsync(request.SpeciesTypeName, cancellationToken);
+        var speciesType = await speciesTypeRepository.GetByNameAndDescriptionAsync(request.SpeciesTypeName, request.SpeciesTypeDescription, cancellationToken);
         if (speciesType == null && !string.IsNullOrEmpty(request.SpeciesTypeName))
         {
             speciesType = new SpeciesType
@@ -201,6 +224,8 @@ public class ObservationCreateRangeCommandHandler(IObservationRepository observa
             };
             await speciesTypeRepository.AddAsync(speciesType, cancellationToken);
             await unitOfWork.SaveChangesAsync(cancellationToken);
+            logger.LogInformation("New species type created: {SpeciesTypeName} with description: {Description}", request.SpeciesTypeName, request.SpeciesTypeDescription);
+
         }
         return speciesType != null ?
             ServiceResult<SpeciesType>.Success(speciesType) :
@@ -255,9 +280,9 @@ public class ObservationCreateRangeCommandHandler(IObservationRepository observa
 
             logger.LogInformation("New species created: {ScientificName}", request.ScientificName);
         }
-        if (species == null)
-            return ServiceResult<Species>.Error("Species could not be found or created");
-        return ServiceResult<Species>.Success(species);
+        return species == null
+            ? ServiceResult<Species>.Error("Species could not be found or created")
+            : ServiceResult<Species>.Success(species);
     }
 
     private async Task<ServiceResult<Province>> GetOrCreateProvince(ObservationCreateDto request, CancellationToken cancellationToken)

@@ -305,12 +305,10 @@ namespace BioWings.Persistence.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasMaxLength(40)
                         .HasColumnType("varchar(40)");
 
                     b.Property<string>("FullName")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Name")
@@ -319,12 +317,10 @@ namespace BioWings.Persistence.Migrations
                         .HasColumnType("varchar(40)");
 
                     b.Property<string>("PasswordHash")
-                        .IsRequired()
                         .HasMaxLength(70)
                         .HasColumnType("varchar(70)");
 
                     b.Property<string>("Phone")
-                        .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("varchar(20)");
 

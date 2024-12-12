@@ -1,12 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{7079A309-DF1B-4492-B636-DC681C55BEE0}|BioWings.WebAPI\\BioWings.WebAPI.csproj|c:\\users\\cagat\\visualstudio2022\\biowings\\biowings\\biowings.webapi\\controllers\\observationscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7079A309-DF1B-4492-B636-DC681C55BEE0}|BioWings.WebAPI\\BioWings.WebAPI.csproj|solutionrelative:biowings.webapi\\controllers\\observationscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -14,21 +9,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": -1,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ObservationsController.cs",
-              "DocumentMoniker": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.WebAPI\\Controllers\\ObservationsController.cs",
-              "RelativeDocumentMoniker": "BioWings.WebAPI\\Controllers\\ObservationsController.cs",
-              "ToolTip": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.WebAPI\\Controllers\\ObservationsController.cs",
-              "RelativeToolTip": "BioWings.WebAPI\\Controllers\\ObservationsController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAyAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-10T20:06:56.831Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
