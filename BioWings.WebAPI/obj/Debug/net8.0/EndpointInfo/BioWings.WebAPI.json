@@ -2464,6 +2464,10 @@
             "type": "string",
             "nullable": true
           },
+          "subspeciesName": {
+            "type": "string",
+            "nullable": true
+          },
           "provinceName": {
             "type": "string",
             "nullable": true
@@ -2638,6 +2642,10 @@
             "nullable": true
           },
           "hesselbarthName": {
+            "type": "string",
+            "nullable": true
+          },
+          "subspeciesName": {
             "type": "string",
             "nullable": true
           },

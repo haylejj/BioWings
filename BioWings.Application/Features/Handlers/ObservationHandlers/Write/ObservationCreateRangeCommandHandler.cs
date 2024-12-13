@@ -7,7 +7,7 @@ using MediatR;
 using Microsoft.Extensions.Logging;
 
 namespace BioWings.Application.Features.Handlers.ObservationHandlers.Write;
-public class ObservationCreateRangeCommandHandler(IObservationRepository observationRepository, ISpeciesRepository speciesRepository, ILocationRepository locationRepository, IProvinceRepository provinceRepository, IObserverRepository observerRepository, IAuthorityRepository authorityRepository, ISpeciesTypeRepository speciesTypeRepository, IFamilyRepository familyRepository, IGenusRepository genusRepository, IUnitOfWork unitOfWork, ILogger<ObservationCreateRangeCommandHandler> logger) : IRequestHandler<ObservationCreateRangeCommand, ServiceResult>
+public class ObservationCreateRangeCommandHandler(IObservationRepository observationRepository, ISubspeciesRepository subspeciesRepository, ISpeciesRepository speciesRepository, ILocationRepository locationRepository, IProvinceRepository provinceRepository, IObserverRepository observerRepository, IAuthorityRepository authorityRepository, ISpeciesTypeRepository speciesTypeRepository, IFamilyRepository familyRepository, IGenusRepository genusRepository, IUnitOfWork unitOfWork, ILogger<ObservationCreateRangeCommandHandler> logger) : IRequestHandler<ObservationCreateRangeCommand, ServiceResult>
 {
     public async Task<ServiceResult> Handle(ObservationCreateRangeCommand request, CancellationToken cancellationToken)
     {
@@ -86,6 +86,21 @@ public class ObservationCreateRangeCommandHandler(IObservationRepository observa
             {
                 errors.Add($"Error with Observer for observation {successCount + 1}: {observerResult.ErrorList}");
                 continue;
+            }
+
+            // Subspecies
+            if (speciesResult.IsSuccess)
+            {
+                var subspeciesResult = await GetOrCreateSubspecies(
+                    observationCommand,
+                    speciesResult.Data.Id,
+                    cancellationToken);
+
+                if (!subspeciesResult.IsSuccess)
+                {
+                    errors.Add($"Error with Subspecies for observation {successCount + 1}: {subspeciesResult.ErrorList}");
+                    continue;
+                }
             }
 
             // Check for duplicate observation
@@ -191,7 +206,6 @@ public class ObservationCreateRangeCommandHandler(IObservationRepository observa
             ServiceResult<Family>.Error("Failed to create family");
 
     }
-
     private async Task<ServiceResult<Genus>> GetOrCreateGenus(ObservationCreateDto request, int familyId, CancellationToken cancellationToken)
     {
 
@@ -210,7 +224,6 @@ public class ObservationCreateRangeCommandHandler(IObservationRepository observa
             ServiceResult<Genus>.Success(genus) :
             ServiceResult<Genus>.Error("Failed to create genus");
     }
-
     private async Task<ServiceResult<SpeciesType>> GetOrCreateSpeciesType(ObservationCreateDto request, CancellationToken cancellationToken)
     {
 
@@ -232,7 +245,6 @@ public class ObservationCreateRangeCommandHandler(IObservationRepository observa
             ServiceResult<SpeciesType>.Error("Failed to create species type");
 
     }
-
     private async Task<ServiceResult<Species>> GetOrCreateSpecies(ObservationCreateDto request, int authorityId, int genusId, int speciesTypeId, CancellationToken cancellationToken)
     {
 
@@ -284,7 +296,6 @@ public class ObservationCreateRangeCommandHandler(IObservationRepository observa
             ? ServiceResult<Species>.Error("Species could not be found or created")
             : ServiceResult<Species>.Success(species);
     }
-
     private async Task<ServiceResult<Province>> GetOrCreateProvince(ObservationCreateDto request, CancellationToken cancellationToken)
     {
 
@@ -390,5 +401,36 @@ public class ObservationCreateRangeCommandHandler(IObservationRepository observa
             ServiceResult<Observer>.Success(observer) :
             ServiceResult<Observer>.Error("Failed to create observer");
 
+    }
+    private async Task<ServiceResult<Subspecies>> GetOrCreateSubspecies(ObservationCreateDto request, int speciesId, CancellationToken cancellationToken)
+    {
+        if (string.IsNullOrEmpty(request.SubspeciesName))
+        {
+            return ServiceResult<Subspecies>.Success(null); // Subspecies zorunlu değilse
+        }
+
+        var subspecies = await subspeciesRepository.GetByNameAndSpeciesIdAsync(
+            request.SubspeciesName,
+            speciesId,
+            cancellationToken);
+
+        if (subspecies == null)
+        {
+            subspecies = new Subspecies
+            {
+                Name = request.SubspeciesName,
+                SpeciesId = speciesId
+            };
+
+            await subspeciesRepository.AddAsync(subspecies, cancellationToken);
+            await unitOfWork.SaveChangesAsync(cancellationToken);
+
+            logger.LogInformation(
+                "New subspecies created: {SubspeciesName} for species ID: {SpeciesId}",
+                request.SubspeciesName,
+                speciesId);
+        }
+
+        return ServiceResult<Subspecies>.Success(subspecies);
     }
 }

@@ -14,7 +14,7 @@ public class ExcelTemplateService(ILogger<ExcelTemplateService> logger) : IExcel
         var headers = new string[]
         {
         // Authority & Taxonomy
-        "Authority Name", "Year", "Family Name", "Genus Name", "Species Type Name",
+        "Authority Name", "Year", "Family Name", "Genus Name","Subspecies Name", "Species Type Name",
         "Species Type Description", "Scientific Name", "Name", "EU Name", "Full Name",
         "Turkish Name", "English Name", "Turkish Names Trakel", "Trakel", "Kocak Name",
         "Hesselbarth Name",
@@ -135,7 +135,7 @@ public class ExcelTemplateService(ILogger<ExcelTemplateService> logger) : IExcel
         var headers = new string[]
         {
         // Authority & Taxonomy
-        "Authority Name", "Year", "Family Name", "Genus Name", "Species Type Name",
+        "Authority Name", "Year", "Family Name", "Genus Name","Subspecies Name", "Species Type Name",
         "Species Type Description", "Scientific Name", "Name", "EU Name", "Full Name",
         "Turkish Name", "English Name", "Turkish Names Trakel", "Trakel", "Kocak Name",
         "Hesselbarth Name",
@@ -169,7 +169,7 @@ public class ExcelTemplateService(ILogger<ExcelTemplateService> logger) : IExcel
         {
             new object[] {
                 // Authority & Taxonomy
-                "Linnaeus", 1758, "Pieridae", "Pieris", "Butterfly",
+                "Linnaeus", 1758, "Pieridae", "Pieris","brassicae major", "Butterfly",
                 "White butterfly species", "Pieris brassicae", "Large White", "Large White", "Pieris brassicae (Linnaeus, 1758)",
                 "Lahana Kelebeği", "Large White", "Lahana Kelebeği", "Common species", "Alternative name",
                 "Historical name",
@@ -185,7 +185,7 @@ public class ExcelTemplateService(ILogger<ExcelTemplateService> logger) : IExcel
             },
             new object[] {
                 // Authority & Taxonomy
-                "Fabricius", 1775, "Nymphalidae", "Vanessa", "Butterfly",
+                "Fabricius", 1775, "Nymphalidae", "Vanessa","cardui indica", "Butterfly",
                 "Painted lady butterfly", "Vanessa cardui", "Painted Lady", "Painted Lady", "Vanessa cardui (Fabricius, 1775)",
                 "Diken Kelebeği", "Painted Lady", "Diken Kelebeği", "Migratory species", "Second name",
                 "Old reference",
@@ -201,7 +201,7 @@ public class ExcelTemplateService(ILogger<ExcelTemplateService> logger) : IExcel
             },
             new object[] {
                 // Authority & Taxonomy
-                "Staudinger", 1871, "Lycaenidae", "Lycaena", "Butterfly",
+                "Staudinger", 1871, "Lycaenidae", "Lycaena","phlaeas eleus", "Butterfly",
                 "Copper butterfly", "Lycaena phlaeas", "Small Copper", "Small Copper", "Lycaena phlaeas (Linnaeus, 1761)",
                 "Benekli Bakır", "Small Copper", "Benekli Bakır", "Common copper", "Third name",
                 "Traditional name",

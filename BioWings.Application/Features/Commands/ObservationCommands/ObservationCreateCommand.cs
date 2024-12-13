@@ -27,6 +27,8 @@ public class ObservationCreateCommand : IRequest<ServiceResult<int>>
     public string? KocakName { get; set; }
     public string? HesselbarthName { get; set; }
     //public List<IFormFile>? FormFiles { get; set; } = new List<IFormFile>();//IFormFile is used to upload files . its equivalent to Media 
+    //Subspecies
+    public string? SubspeciesName { get; set; }
     //Location
     //Province
     public string? ProvinceName { get; set; }

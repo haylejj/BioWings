@@ -24,6 +24,8 @@ public class ObservationCreateDto
     public string? Trakel { get; set; }
     public string? KocakName { get; set; }
     public string? HesselbarthName { get; set; }
+    //Subspecies
+    public string? SubspeciesName { get; set; }
     //Location
     //Province
     public string? ProvinceName { get; set; }

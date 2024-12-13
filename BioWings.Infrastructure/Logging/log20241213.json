@@ -1,0 +1,326 @@
+[14:03:38 INF] Now listening on: https://localhost:7128 <s:Microsoft.Hosting.Lifetime>
+[14:03:39 INF] Now listening on: http://localhost:5054 <s:Microsoft.Hosting.Lifetime>
+[14:03:39 INF] Application started. Press Ctrl+C to shut down. <s:Microsoft.Hosting.Lifetime>
+[14:03:39 INF] Hosting environment: Development <s:Microsoft.Hosting.Lifetime>
+[14:03:39 INF] Content root path: C:\Users\cagat\VisualStudio2022\BioWings\BioWings\BioWings.WebAPI <s:Microsoft.Hosting.Lifetime>
+[14:03:39 INF] Request starting HTTP/2 GET https://localhost:7128/swagger/index.html - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[14:03:39 INF] Request finished HTTP/2 GET https://localhost:7128/swagger/index.html - 200 null text/html;charset=utf-8 287.0803ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[14:03:39 INF] Request starting HTTP/2 GET https://localhost:7128/_framework/aspnetcore-browser-refresh.js - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[14:03:39 INF] Request finished HTTP/2 GET https://localhost:7128/_framework/aspnetcore-browser-refresh.js - 200 13782 application/javascript; charset=utf-8 6.4886ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[14:03:40 INF] Request starting HTTP/2 GET https://localhost:7128/_vs/browserLink - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[14:03:40 INF] Request finished HTTP/2 GET https://localhost:7128/_vs/browserLink - 200 null text/javascript; charset=UTF-8 54.2706ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[14:03:41 INF] Request starting HTTP/2 GET https://localhost:7128/swagger/v1/swagger.json - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[14:03:41 INF] Request finished HTTP/2 GET https://localhost:7128/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 66.3314ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[14:26:15 INF] Now listening on: https://localhost:7128 <s:Microsoft.Hosting.Lifetime>
+[14:26:15 INF] Now listening on: http://localhost:5054 <s:Microsoft.Hosting.Lifetime>
+[14:26:15 INF] Application started. Press Ctrl+C to shut down. <s:Microsoft.Hosting.Lifetime>
+[14:26:15 INF] Hosting environment: Development <s:Microsoft.Hosting.Lifetime>
+[14:26:15 INF] Content root path: C:\Users\cagat\VisualStudio2022\BioWings\BioWings\BioWings.WebAPI <s:Microsoft.Hosting.Lifetime>
+[14:26:16 INF] Request starting HTTP/2 GET https://localhost:7128/swagger/index.html - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[14:26:17 INF] Request finished HTTP/2 GET https://localhost:7128/swagger/index.html - 200 null text/html;charset=utf-8 283.0429ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[14:26:18 INF] Request starting HTTP/2 GET https://localhost:7128/_framework/aspnetcore-browser-refresh.js - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[14:26:18 INF] Request starting HTTP/2 GET https://localhost:7128/_vs/browserLink - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[14:26:18 INF] Request finished HTTP/2 GET https://localhost:7128/_framework/aspnetcore-browser-refresh.js - 200 13782 application/javascript; charset=utf-8 4.282ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[14:26:18 INF] Request finished HTTP/2 GET https://localhost:7128/_vs/browserLink - 200 null text/javascript; charset=UTF-8 32.1577ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[14:26:19 INF] Request starting HTTP/2 GET https://localhost:7128/swagger/v1/swagger.json - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[14:26:19 INF] Request finished HTTP/2 GET https://localhost:7128/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 61.7853ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[14:26:42 INF] Request starting HTTP/2 GET https://localhost:7128/api/ExcelTemplate/download - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[14:26:42 INF] CORS policy execution successful. <s:Microsoft.AspNetCore.Cors.Infrastructure.CorsService>
+[14:26:42 INF] Executing endpoint 'BioWings.WebAPI.Controllers.ExcelTemplateController.DownloadTemplate (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[14:26:42 INF] Route matched with {action = "DownloadTemplate", controller = "ExcelTemplate"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult DownloadTemplate() on controller BioWings.WebAPI.Controllers.ExcelTemplateController (BioWings.WebAPI). <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[14:26:42 INF] Executing FileContentResult, sending file with download name 'observation_import_template.xlsx' ... <s:Microsoft.AspNetCore.Mvc.Infrastructure.FileContentResultExecutor>
+[14:26:42 INF] Executed action BioWings.WebAPI.Controllers.ExcelTemplateController.DownloadTemplate (BioWings.WebAPI) in 419.6761ms <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[14:26:42 INF] Executed endpoint 'BioWings.WebAPI.Controllers.ExcelTemplateController.DownloadTemplate (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[14:26:42 INF] HTTP GET /api/ExcelTemplate/download responded 200 in 437.7551 ms <s:Serilog.AspNetCore.RequestLoggingMiddleware>
+[14:26:42 INF] Request finished HTTP/2 GET https://localhost:7128/api/ExcelTemplate/download - 200 6616 application/vnd.openxmlformats-officedocument.spreadsheetml.sheet 448.6427ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[14:26:56 INF] Request starting HTTP/2 POST https://localhost:7128/api/Observations/Import - multipart/form-data; boundary=----WebKitFormBoundaryyAEMRIKZUMXIGvLW 6881 <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[14:26:56 INF] CORS policy execution successful. <s:Microsoft.AspNetCore.Cors.Infrastructure.CorsService>
+[14:26:56 INF] Executing endpoint 'BioWings.WebAPI.Controllers.ObservationsController.Import (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[14:26:56 INF] Route matched with {action = "Import", controller = "Observations"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Import(BioWings.Application.Features.Commands.ObservationCommands.ObservationImportCreateCommand) on controller BioWings.WebAPI.Controllers.ObservationsController (BioWings.WebAPI). <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[14:26:57 INF] Executed action BioWings.WebAPI.Controllers.ObservationsController.Import (BioWings.WebAPI) in 46.5104ms <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[14:26:57 INF] Executed endpoint 'BioWings.WebAPI.Controllers.ObservationsController.Import (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[14:26:57 ERR] An unhandled exception has occurred while executing the request. <s:Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware>
+System.FormatException: The input string 'Ankara' was not in a correct format.
+   at System.Number.ThrowFormatException[TChar](ReadOnlySpan`1 value)
+   at System.Int32.Parse(String s)
+   at BioWings.Application.Features.Handlers.ObservationHandlers.Write.ObservationImportCreateCommandHandler.Handle(ObservationImportCreateCommand request, CancellationToken cancellationToken) in C:\Users\cagat\VisualStudio2022\BioWings\BioWings\BioWings.Application\Features\Handlers\ObservationHandlers\Write\ObservationImportCreateCommandHandler.cs:line 33
+   at BioWings.WebAPI.Controllers.ObservationsController.Import(ObservationImportCreateCommand command) in C:\Users\cagat\VisualStudio2022\BioWings\BioWings\BioWings.WebAPI\Controllers\ObservationsController.cs:line 28
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+[14:26:57 ERR] An unhandled exception occurred: FormatException - The input string 'Ankara' was not in a correct format. <s:BioWings.WebAPI.Exceptions.GlobalExceptionHandler>
+System.FormatException: The input string 'Ankara' was not in a correct format.
+   at System.Number.ThrowFormatException[TChar](ReadOnlySpan`1 value)
+   at System.Int32.Parse(String s)
+   at BioWings.Application.Features.Handlers.ObservationHandlers.Write.ObservationImportCreateCommandHandler.Handle(ObservationImportCreateCommand request, CancellationToken cancellationToken) in C:\Users\cagat\VisualStudio2022\BioWings\BioWings\BioWings.Application\Features\Handlers\ObservationHandlers\Write\ObservationImportCreateCommandHandler.cs:line 33
+   at BioWings.WebAPI.Controllers.ObservationsController.Import(ObservationImportCreateCommand command) in C:\Users\cagat\VisualStudio2022\BioWings\BioWings\BioWings.WebAPI\Controllers\ObservationsController.cs:line 28
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+[14:26:57 ERR] HTTP POST /api/Observations/Import responded 500 in 102.9249 ms <s:Serilog.AspNetCore.RequestLoggingMiddleware>
+[14:26:57 INF] Request finished HTTP/2 POST https://localhost:7128/api/Observations/Import - 500 null application/json; charset=utf-8 107.087ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[14:26:58 INF] Request starting HTTP/2 POST https://localhost:7128/api/Observations/Import - multipart/form-data; boundary=----WebKitFormBoundaryipqA2kVM8YpPBsJ4 6881 <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[14:26:58 INF] CORS policy execution successful. <s:Microsoft.AspNetCore.Cors.Infrastructure.CorsService>
+[14:26:58 INF] Executing endpoint 'BioWings.WebAPI.Controllers.ObservationsController.Import (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[14:26:58 INF] Route matched with {action = "Import", controller = "Observations"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Import(BioWings.Application.Features.Commands.ObservationCommands.ObservationImportCreateCommand) on controller BioWings.WebAPI.Controllers.ObservationsController (BioWings.WebAPI). <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[14:26:58 INF] Executed action BioWings.WebAPI.Controllers.ObservationsController.Import (BioWings.WebAPI) in 11.0544ms <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[14:26:58 INF] Executed endpoint 'BioWings.WebAPI.Controllers.ObservationsController.Import (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[14:26:58 ERR] An unhandled exception has occurred while executing the request. <s:Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware>
+System.FormatException: The input string 'Ankara' was not in a correct format.
+   at System.Number.ThrowFormatException[TChar](ReadOnlySpan`1 value)
+   at System.Int32.Parse(String s)
+   at BioWings.Application.Features.Handlers.ObservationHandlers.Write.ObservationImportCreateCommandHandler.Handle(ObservationImportCreateCommand request, CancellationToken cancellationToken) in C:\Users\cagat\VisualStudio2022\BioWings\BioWings\BioWings.Application\Features\Handlers\ObservationHandlers\Write\ObservationImportCreateCommandHandler.cs:line 33
+   at BioWings.WebAPI.Controllers.ObservationsController.Import(ObservationImportCreateCommand command) in C:\Users\cagat\VisualStudio2022\BioWings\BioWings\BioWings.WebAPI\Controllers\ObservationsController.cs:line 28
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+[14:26:58 ERR] An unhandled exception occurred: FormatException - The input string 'Ankara' was not in a correct format. <s:BioWings.WebAPI.Exceptions.GlobalExceptionHandler>
+System.FormatException: The input string 'Ankara' was not in a correct format.
+   at System.Number.ThrowFormatException[TChar](ReadOnlySpan`1 value)
+   at System.Int32.Parse(String s)
+   at BioWings.Application.Features.Handlers.ObservationHandlers.Write.ObservationImportCreateCommandHandler.Handle(ObservationImportCreateCommand request, CancellationToken cancellationToken) in C:\Users\cagat\VisualStudio2022\BioWings\BioWings\BioWings.Application\Features\Handlers\ObservationHandlers\Write\ObservationImportCreateCommandHandler.cs:line 33
+   at BioWings.WebAPI.Controllers.ObservationsController.Import(ObservationImportCreateCommand command) in C:\Users\cagat\VisualStudio2022\BioWings\BioWings\BioWings.WebAPI\Controllers\ObservationsController.cs:line 28
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+[14:26:58 ERR] HTTP POST /api/Observations/Import responded 500 in 21.1769 ms <s:Serilog.AspNetCore.RequestLoggingMiddleware>
+[14:26:58 INF] Request finished HTTP/2 POST https://localhost:7128/api/Observations/Import - 500 null application/json; charset=utf-8 23.3287ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[14:32:22 INF] Now listening on: https://localhost:7128 <s:Microsoft.Hosting.Lifetime>
+[14:32:22 INF] Now listening on: http://localhost:5054 <s:Microsoft.Hosting.Lifetime>
+[14:32:22 INF] Application started. Press Ctrl+C to shut down. <s:Microsoft.Hosting.Lifetime>
+[14:32:22 INF] Hosting environment: Development <s:Microsoft.Hosting.Lifetime>
+[14:32:22 INF] Content root path: C:\Users\cagat\VisualStudio2022\BioWings\BioWings\BioWings.WebAPI <s:Microsoft.Hosting.Lifetime>
+[14:32:23 INF] Request starting HTTP/2 GET https://localhost:7128/swagger/index.html - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[14:32:23 INF] Request finished HTTP/2 GET https://localhost:7128/swagger/index.html - 200 null text/html;charset=utf-8 304.8746ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[14:32:25 INF] Request starting HTTP/2 GET https://localhost:7128/_vs/browserLink - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[14:32:25 INF] Request starting HTTP/2 GET https://localhost:7128/_framework/aspnetcore-browser-refresh.js - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[14:32:25 INF] Request finished HTTP/2 GET https://localhost:7128/_framework/aspnetcore-browser-refresh.js - 200 13782 application/javascript; charset=utf-8 9.2511ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[14:32:25 INF] Request finished HTTP/2 GET https://localhost:7128/_vs/browserLink - 200 null text/javascript; charset=UTF-8 58.3853ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[14:32:26 INF] Request starting HTTP/2 GET https://localhost:7128/swagger/v1/swagger.json - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[14:32:26 INF] Request finished HTTP/2 GET https://localhost:7128/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 60.2032ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[14:33:14 INF] Request starting HTTP/2 POST https://localhost:7128/api/Observations/Import - multipart/form-data; boundary=----WebKitFormBoundaryHEnl5FwifIw7ozaM 6881 <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[14:33:14 INF] CORS policy execution successful. <s:Microsoft.AspNetCore.Cors.Infrastructure.CorsService>
+[14:33:14 INF] Executing endpoint 'BioWings.WebAPI.Controllers.ObservationsController.Import (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[14:33:14 INF] Route matched with {action = "Import", controller = "Observations"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Import(BioWings.Application.Features.Commands.ObservationCommands.ObservationImportCreateCommand) on controller BioWings.WebAPI.Controllers.ObservationsController (BioWings.WebAPI). <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[14:33:14 INF] Parsed 3 observations from Excel file <s:BioWings.Application.Features.Handlers.ObservationHandlers.Write.ObservationImportCreateCommandHandler>
+[14:33:15 INF] Starting bulk creation of 3 observations <s:BioWings.Application.Features.Handlers.ObservationHandlers.Write.ObservationCreateRangeCommandHandler>
+[14:33:15 INF] Executed DbCommand (28ms) [Parameters=[@__name_0='?' (Size = 50), @__year_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `a`.`Id`, `a`.`CreatedDateTime`, `a`.`Name`, `a`.`UpdatedDateTime`, `a`.`Year`
+FROM `Authorities` AS `a`
+WHERE (`a`.`Name` = @__name_0) AND (`a`.`Year` = @__year_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[14:33:16 INF] Executed DbCommand (3ms) [Parameters=[@__name_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `f`.`Id`, `f`.`CreatedDateTime`, `f`.`Name`, `f`.`UpdatedDateTime`
+FROM `Families` AS `f`
+WHERE `f`.`Name` = @__name_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[14:33:16 INF] Executed DbCommand (1ms) [Parameters=[@__name_0='?' (Size = 50), @__familyId_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `g`.`Id`, `g`.`CreatedDateTime`, `g`.`FamilyId`, `g`.`Name`, `g`.`UpdatedDateTime`
+FROM `Genera` AS `g`
+WHERE (`g`.`Name` = @__name_0) AND (`g`.`FamilyId` = @__familyId_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[14:33:16 INF] Executed DbCommand (1ms) [Parameters=[@__name_0='?' (Size = 70), @__description_1='?' (Size = 500)], CommandType='"Text"', CommandTimeout='30']
+SELECT `s`.`Id`, `s`.`CreatedDateTime`, `s`.`Description`, `s`.`Name`, `s`.`UpdatedDateTime`
+FROM `SpeciesTypes` AS `s`
+WHERE (`s`.`Name` = @__name_0) AND (`s`.`Description` = @__description_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[14:33:16 INF] Executed DbCommand (1ms) [Parameters=[@__scientificName_0='?' (Size = 200)], CommandType='"Text"', CommandTimeout='30']
+SELECT `s`.`Id`, `s`.`AuthorityId`, `s`.`CreatedDateTime`, `s`.`EUName`, `s`.`EnglishName`, `s`.`FullName`, `s`.`GenusId`, `s`.`HesselbarthName`, `s`.`KocakName`, `s`.`Name`, `s`.`ScientificName`, `s`.`SpeciesTypeId`, `s`.`Trakel`, `s`.`TurkishName`, `s`.`TurkishNamesTrakel`, `s`.`UpdatedDateTime`
+FROM `Species` AS `s`
+WHERE `s`.`ScientificName` = @__scientificName_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[14:33:16 INF] Executed DbCommand (1ms) [Parameters=[@__name_0='?' (Size = 70)], CommandType='"Text"', CommandTimeout='30']
+SELECT `p`.`Id`, `p`.`CreatedDateTime`, `p`.`Name`, `p`.`ProvinceCode`, `p`.`UpdatedDateTime`
+FROM `Provinces` AS `p`
+WHERE `p`.`Name` = @__name_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[14:33:16 INF] Executed DbCommand (1ms) [Parameters=[@__request_SquareRef_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `l`.`Id`, `l`.`Altitude1`, `l`.`Altitude2`, `l`.`CoordinatePrecisionLevel`, `l`.`CreatedDateTime`, `l`.`DecimalDegrees`, `l`.`DecimalMinutes`, `l`.`DegreesMinutesSeconds`, `l`.`Description`, `l`.`Latitude`, `l`.`Longitude`, `l`.`MgrsCoordinates`, `l`.`ProvinceId`, `l`.`SquareLatitude`, `l`.`SquareLongitude`, `l`.`SquareRef`, `l`.`UpdatedDateTime`, `l`.`UtmCoordinates`, `l`.`UtmReference`
+FROM `Locations` AS `l`
+WHERE `l`.`SquareRef` = @__request_SquareRef_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[14:33:16 INF] Executed DbCommand (1ms) [Parameters=[@__name_0='?' (Size = 40), @__surname_1='?' (Size = 20)], CommandType='"Text"', CommandTimeout='30']
+SELECT `o`.`Id`, `o`.`CreatedDateTime`, `o`.`Email`, `o`.`FullName`, `o`.`Name`, `o`.`PasswordHash`, `o`.`Phone`, `o`.`Surname`, `o`.`UpdatedDateTime`
+FROM `Observers` AS `o`
+WHERE (`o`.`Name` = @__name_0) AND (`o`.`Surname` = @__surname_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[14:33:16 INF] Executed DbCommand (1ms) [Parameters=[@__name_0='?' (Size = 70), @__speciesId_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `s`.`Id`, `s`.`CreatedDateTime`, `s`.`Name`, `s`.`SpeciesId`, `s`.`UpdatedDateTime`
+FROM `Subspecies` AS `s`
+WHERE (`s`.`Name` = @__name_0) AND (`s`.`SpeciesId` = @__speciesId_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[14:33:16 INF] Executed DbCommand (2ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (Size = 70), @p2='?' (DbType = Int32), @p3='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `Subspecies` (`CreatedDateTime`, `Name`, `SpeciesId`, `UpdatedDateTime`)
+VALUES (@p0, @p1, @p2, @p3);
+SELECT `Id`
+FROM `Subspecies`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID(); <s:Microsoft.EntityFrameworkCore.Database.Command>
+[14:33:16 INF] New subspecies created: brassicae major for species ID: 1 <s:BioWings.Application.Features.Handlers.ObservationHandlers.Write.ObservationCreateRangeCommandHandler>
+[14:33:16 INF] Executed DbCommand (1ms) [Parameters=[@__speciesResult_Data_Id_0='?' (DbType = Int32), @__locationResult_Data_Id_1='?' (DbType = Int32), @__observerResult_Data_Id_2='?' (DbType = Int32), @__8__locals1_observationCommand_Sex_3='?' (Size = 15), @__8__locals1_observationCommand_ObservationDate_4='?' (DbType = DateTime), @__8__locals1_observationCommand_LifeStage_5='?' (Size = 50), @__8__locals1_observationCommand_NumberSeen_6='?' (DbType = Int32), @__8__locals1_observationCommand_Notes_7='?' (Size = 1000), @__8__locals1_observationCommand_Source_8='?' (Size = 200), @__8__locals1_observationCommand_LocationInfo_9='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT `o`.`Id`, `o`.`CreatedDateTime`, `o`.`LifeStage`, `o`.`LocationId`, `o`.`LocationInfo`, `o`.`Notes`, `o`.`NumberSeen`, `o`.`ObservationDate`, `o`.`ObserverId`, `o`.`Sex`, `o`.`Source`, `o`.`SpeciesId`, `o`.`UpdatedDateTime`
+FROM `Observations` AS `o`
+WHERE (((((((((`o`.`SpeciesId` = @__speciesResult_Data_Id_0) AND (`o`.`LocationId` = @__locationResult_Data_Id_1)) AND (`o`.`ObserverId` = @__observerResult_Data_Id_2)) AND (`o`.`Sex` = @__8__locals1_observationCommand_Sex_3)) AND (`o`.`ObservationDate` = @__8__locals1_observationCommand_ObservationDate_4)) AND (`o`.`LifeStage` = @__8__locals1_observationCommand_LifeStage_5)) AND (`o`.`NumberSeen` = @__8__locals1_observationCommand_NumberSeen_6)) AND (`o`.`Notes` = @__8__locals1_observationCommand_Notes_7)) AND (`o`.`Source` = @__8__locals1_observationCommand_Source_8)) AND (`o`.`LocationInfo` = @__8__locals1_observationCommand_LocationInfo_9)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[14:33:16 INF] Duplicate observation found and skipped - Species:1, Location:1, Observer:1, Date:"2024-03-20T00:00:00.0000000" <s:BioWings.Application.Features.Handlers.ObservationHandlers.Write.ObservationCreateRangeCommandHandler>
+[14:33:16 INF] Executed DbCommand (1ms) [Parameters=[@__name_0='?' (Size = 50), @__year_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `a`.`Id`, `a`.`CreatedDateTime`, `a`.`Name`, `a`.`UpdatedDateTime`, `a`.`Year`
+FROM `Authorities` AS `a`
+WHERE (`a`.`Name` = @__name_0) AND (`a`.`Year` = @__year_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[14:33:16 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `f`.`Id`, `f`.`CreatedDateTime`, `f`.`Name`, `f`.`UpdatedDateTime`
+FROM `Families` AS `f`
+WHERE `f`.`Name` = @__name_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[14:33:16 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 50), @__familyId_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `g`.`Id`, `g`.`CreatedDateTime`, `g`.`FamilyId`, `g`.`Name`, `g`.`UpdatedDateTime`
+FROM `Genera` AS `g`
+WHERE (`g`.`Name` = @__name_0) AND (`g`.`FamilyId` = @__familyId_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[14:33:16 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 70), @__description_1='?' (Size = 500)], CommandType='"Text"', CommandTimeout='30']
+SELECT `s`.`Id`, `s`.`CreatedDateTime`, `s`.`Description`, `s`.`Name`, `s`.`UpdatedDateTime`
+FROM `SpeciesTypes` AS `s`
+WHERE (`s`.`Name` = @__name_0) AND (`s`.`Description` = @__description_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[14:33:16 INF] Executed DbCommand (0ms) [Parameters=[@__scientificName_0='?' (Size = 200)], CommandType='"Text"', CommandTimeout='30']
+SELECT `s`.`Id`, `s`.`AuthorityId`, `s`.`CreatedDateTime`, `s`.`EUName`, `s`.`EnglishName`, `s`.`FullName`, `s`.`GenusId`, `s`.`HesselbarthName`, `s`.`KocakName`, `s`.`Name`, `s`.`ScientificName`, `s`.`SpeciesTypeId`, `s`.`Trakel`, `s`.`TurkishName`, `s`.`TurkishNamesTrakel`, `s`.`UpdatedDateTime`
+FROM `Species` AS `s`
+WHERE `s`.`ScientificName` = @__scientificName_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[14:33:16 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 70)], CommandType='"Text"', CommandTimeout='30']
+SELECT `p`.`Id`, `p`.`CreatedDateTime`, `p`.`Name`, `p`.`ProvinceCode`, `p`.`UpdatedDateTime`
+FROM `Provinces` AS `p`
+WHERE `p`.`Name` = @__name_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[14:33:16 INF] Executed DbCommand (0ms) [Parameters=[@__request_SquareRef_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `l`.`Id`, `l`.`Altitude1`, `l`.`Altitude2`, `l`.`CoordinatePrecisionLevel`, `l`.`CreatedDateTime`, `l`.`DecimalDegrees`, `l`.`DecimalMinutes`, `l`.`DegreesMinutesSeconds`, `l`.`Description`, `l`.`Latitude`, `l`.`Longitude`, `l`.`MgrsCoordinates`, `l`.`ProvinceId`, `l`.`SquareLatitude`, `l`.`SquareLongitude`, `l`.`SquareRef`, `l`.`UpdatedDateTime`, `l`.`UtmCoordinates`, `l`.`UtmReference`
+FROM `Locations` AS `l`
+WHERE `l`.`SquareRef` = @__request_SquareRef_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[14:33:16 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 40), @__surname_1='?' (Size = 20)], CommandType='"Text"', CommandTimeout='30']
+SELECT `o`.`Id`, `o`.`CreatedDateTime`, `o`.`Email`, `o`.`FullName`, `o`.`Name`, `o`.`PasswordHash`, `o`.`Phone`, `o`.`Surname`, `o`.`UpdatedDateTime`
+FROM `Observers` AS `o`
+WHERE (`o`.`Name` = @__name_0) AND (`o`.`Surname` = @__surname_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[14:33:16 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 70), @__speciesId_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `s`.`Id`, `s`.`CreatedDateTime`, `s`.`Name`, `s`.`SpeciesId`, `s`.`UpdatedDateTime`
+FROM `Subspecies` AS `s`
+WHERE (`s`.`Name` = @__name_0) AND (`s`.`SpeciesId` = @__speciesId_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[14:33:16 INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (Size = 70), @p2='?' (DbType = Int32), @p3='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `Subspecies` (`CreatedDateTime`, `Name`, `SpeciesId`, `UpdatedDateTime`)
+VALUES (@p0, @p1, @p2, @p3);
+SELECT `Id`
+FROM `Subspecies`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID(); <s:Microsoft.EntityFrameworkCore.Database.Command>
+[14:33:16 INF] New subspecies created: cardui indica for species ID: 2 <s:BioWings.Application.Features.Handlers.ObservationHandlers.Write.ObservationCreateRangeCommandHandler>
+[14:33:16 INF] Executed DbCommand (1ms) [Parameters=[@__speciesResult_Data_Id_0='?' (DbType = Int32), @__locationResult_Data_Id_1='?' (DbType = Int32), @__observerResult_Data_Id_2='?' (DbType = Int32), @__8__locals1_observationCommand_Sex_3='?' (Size = 15), @__8__locals1_observationCommand_ObservationDate_4='?' (DbType = DateTime), @__8__locals1_observationCommand_LifeStage_5='?' (Size = 50), @__8__locals1_observationCommand_NumberSeen_6='?' (DbType = Int32), @__8__locals1_observationCommand_Notes_7='?' (Size = 1000), @__8__locals1_observationCommand_Source_8='?' (Size = 200), @__8__locals1_observationCommand_LocationInfo_9='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT `o`.`Id`, `o`.`CreatedDateTime`, `o`.`LifeStage`, `o`.`LocationId`, `o`.`LocationInfo`, `o`.`Notes`, `o`.`NumberSeen`, `o`.`ObservationDate`, `o`.`ObserverId`, `o`.`Sex`, `o`.`Source`, `o`.`SpeciesId`, `o`.`UpdatedDateTime`
+FROM `Observations` AS `o`
+WHERE (((((((((`o`.`SpeciesId` = @__speciesResult_Data_Id_0) AND (`o`.`LocationId` = @__locationResult_Data_Id_1)) AND (`o`.`ObserverId` = @__observerResult_Data_Id_2)) AND (`o`.`Sex` = @__8__locals1_observationCommand_Sex_3)) AND (`o`.`ObservationDate` = @__8__locals1_observationCommand_ObservationDate_4)) AND (`o`.`LifeStage` = @__8__locals1_observationCommand_LifeStage_5)) AND (`o`.`NumberSeen` = @__8__locals1_observationCommand_NumberSeen_6)) AND (`o`.`Notes` = @__8__locals1_observationCommand_Notes_7)) AND (`o`.`Source` = @__8__locals1_observationCommand_Source_8)) AND (`o`.`LocationInfo` = @__8__locals1_observationCommand_LocationInfo_9)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[14:33:16 INF] Duplicate observation found and skipped - Species:2, Location:2, Observer:2, Date:"2024-03-21T00:00:00.0000000" <s:BioWings.Application.Features.Handlers.ObservationHandlers.Write.ObservationCreateRangeCommandHandler>
+[14:33:16 INF] Executed DbCommand (1ms) [Parameters=[@__name_0='?' (Size = 50), @__year_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `a`.`Id`, `a`.`CreatedDateTime`, `a`.`Name`, `a`.`UpdatedDateTime`, `a`.`Year`
+FROM `Authorities` AS `a`
+WHERE (`a`.`Name` = @__name_0) AND (`a`.`Year` = @__year_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[14:33:16 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `f`.`Id`, `f`.`CreatedDateTime`, `f`.`Name`, `f`.`UpdatedDateTime`
+FROM `Families` AS `f`
+WHERE `f`.`Name` = @__name_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[14:33:16 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 50), @__familyId_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `g`.`Id`, `g`.`CreatedDateTime`, `g`.`FamilyId`, `g`.`Name`, `g`.`UpdatedDateTime`
+FROM `Genera` AS `g`
+WHERE (`g`.`Name` = @__name_0) AND (`g`.`FamilyId` = @__familyId_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[14:33:16 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 70), @__description_1='?' (Size = 500)], CommandType='"Text"', CommandTimeout='30']
+SELECT `s`.`Id`, `s`.`CreatedDateTime`, `s`.`Description`, `s`.`Name`, `s`.`UpdatedDateTime`
+FROM `SpeciesTypes` AS `s`
+WHERE (`s`.`Name` = @__name_0) AND (`s`.`Description` = @__description_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[14:33:16 INF] Executed DbCommand (0ms) [Parameters=[@__scientificName_0='?' (Size = 200)], CommandType='"Text"', CommandTimeout='30']
+SELECT `s`.`Id`, `s`.`AuthorityId`, `s`.`CreatedDateTime`, `s`.`EUName`, `s`.`EnglishName`, `s`.`FullName`, `s`.`GenusId`, `s`.`HesselbarthName`, `s`.`KocakName`, `s`.`Name`, `s`.`ScientificName`, `s`.`SpeciesTypeId`, `s`.`Trakel`, `s`.`TurkishName`, `s`.`TurkishNamesTrakel`, `s`.`UpdatedDateTime`
+FROM `Species` AS `s`
+WHERE `s`.`ScientificName` = @__scientificName_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[14:33:16 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 70)], CommandType='"Text"', CommandTimeout='30']
+SELECT `p`.`Id`, `p`.`CreatedDateTime`, `p`.`Name`, `p`.`ProvinceCode`, `p`.`UpdatedDateTime`
+FROM `Provinces` AS `p`
+WHERE `p`.`Name` = @__name_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[14:33:16 INF] Executed DbCommand (0ms) [Parameters=[@__request_SquareRef_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `l`.`Id`, `l`.`Altitude1`, `l`.`Altitude2`, `l`.`CoordinatePrecisionLevel`, `l`.`CreatedDateTime`, `l`.`DecimalDegrees`, `l`.`DecimalMinutes`, `l`.`DegreesMinutesSeconds`, `l`.`Description`, `l`.`Latitude`, `l`.`Longitude`, `l`.`MgrsCoordinates`, `l`.`ProvinceId`, `l`.`SquareLatitude`, `l`.`SquareLongitude`, `l`.`SquareRef`, `l`.`UpdatedDateTime`, `l`.`UtmCoordinates`, `l`.`UtmReference`
+FROM `Locations` AS `l`
+WHERE `l`.`SquareRef` = @__request_SquareRef_0
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[14:33:16 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 40), @__surname_1='?' (Size = 20)], CommandType='"Text"', CommandTimeout='30']
+SELECT `o`.`Id`, `o`.`CreatedDateTime`, `o`.`Email`, `o`.`FullName`, `o`.`Name`, `o`.`PasswordHash`, `o`.`Phone`, `o`.`Surname`, `o`.`UpdatedDateTime`
+FROM `Observers` AS `o`
+WHERE (`o`.`Name` = @__name_0) AND (`o`.`Surname` = @__surname_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[14:33:16 INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 70), @__speciesId_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `s`.`Id`, `s`.`CreatedDateTime`, `s`.`Name`, `s`.`SpeciesId`, `s`.`UpdatedDateTime`
+FROM `Subspecies` AS `s`
+WHERE (`s`.`Name` = @__name_0) AND (`s`.`SpeciesId` = @__speciesId_1)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[14:33:16 INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (Size = 70), @p2='?' (DbType = Int32), @p3='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `Subspecies` (`CreatedDateTime`, `Name`, `SpeciesId`, `UpdatedDateTime`)
+VALUES (@p0, @p1, @p2, @p3);
+SELECT `Id`
+FROM `Subspecies`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID(); <s:Microsoft.EntityFrameworkCore.Database.Command>
+[14:33:16 INF] New subspecies created: phlaeas eleus for species ID: 3 <s:BioWings.Application.Features.Handlers.ObservationHandlers.Write.ObservationCreateRangeCommandHandler>
+[14:33:16 INF] Executed DbCommand (0ms) [Parameters=[@__speciesResult_Data_Id_0='?' (DbType = Int32), @__locationResult_Data_Id_1='?' (DbType = Int32), @__observerResult_Data_Id_2='?' (DbType = Int32), @__8__locals1_observationCommand_Sex_3='?' (Size = 15), @__8__locals1_observationCommand_ObservationDate_4='?' (DbType = DateTime), @__8__locals1_observationCommand_LifeStage_5='?' (Size = 50), @__8__locals1_observationCommand_NumberSeen_6='?' (DbType = Int32), @__8__locals1_observationCommand_Notes_7='?' (Size = 1000), @__8__locals1_observationCommand_Source_8='?' (Size = 200), @__8__locals1_observationCommand_LocationInfo_9='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT `o`.`Id`, `o`.`CreatedDateTime`, `o`.`LifeStage`, `o`.`LocationId`, `o`.`LocationInfo`, `o`.`Notes`, `o`.`NumberSeen`, `o`.`ObservationDate`, `o`.`ObserverId`, `o`.`Sex`, `o`.`Source`, `o`.`SpeciesId`, `o`.`UpdatedDateTime`
+FROM `Observations` AS `o`
+WHERE (((((((((`o`.`SpeciesId` = @__speciesResult_Data_Id_0) AND (`o`.`LocationId` = @__locationResult_Data_Id_1)) AND (`o`.`ObserverId` = @__observerResult_Data_Id_2)) AND (`o`.`Sex` = @__8__locals1_observationCommand_Sex_3)) AND (`o`.`ObservationDate` = @__8__locals1_observationCommand_ObservationDate_4)) AND (`o`.`LifeStage` = @__8__locals1_observationCommand_LifeStage_5)) AND (`o`.`NumberSeen` = @__8__locals1_observationCommand_NumberSeen_6)) AND (`o`.`Notes` = @__8__locals1_observationCommand_Notes_7)) AND (`o`.`Source` = @__8__locals1_observationCommand_Source_8)) AND (`o`.`LocationInfo` = @__8__locals1_observationCommand_LocationInfo_9)
+LIMIT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[14:33:16 INF] Duplicate observation found and skipped - Species:3, Location:3, Observer:3, Date:"2024-03-22T00:00:00.0000000" <s:BioWings.Application.Features.Handlers.ObservationHandlers.Write.ObservationCreateRangeCommandHandler>
+[14:33:16 INF] Import completed. Created: 0, Duplicates skipped: 3, Errors: 0 <s:BioWings.Application.Features.Handlers.ObservationHandlers.Write.ObservationCreateRangeCommandHandler>
+[14:33:16 INF] Executing ObjectResult, writing value of type 'BioWings.Application.Results.ServiceResult'. <s:Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor>
+[14:33:16 INF] Executed action BioWings.WebAPI.Controllers.ObservationsController.Import (BioWings.WebAPI) in 1855.1553ms <s:Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker>
+[14:33:16 INF] Executed endpoint 'BioWings.WebAPI.Controllers.ObservationsController.Import (BioWings.WebAPI)' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[14:33:16 INF] HTTP POST /api/Observations/Import responded 201 in 1879.6961 ms <s:Serilog.AspNetCore.RequestLoggingMiddleware>
+[14:33:16 INF] Request finished HTTP/2 POST https://localhost:7128/api/Observations/Import - 201 null application/json; charset=utf-8 1891.9874ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
