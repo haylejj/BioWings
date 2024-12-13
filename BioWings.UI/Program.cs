@@ -1,7 +1,11 @@
+using BioWings.WebAPI.Exceptions;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+//global exception handler
+builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 
 var app = builder.Build();
 
@@ -15,7 +19,7 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
+app.UseExceptionHandler(opt => { });
 app.UseRouting();
 
 app.UseAuthorization();

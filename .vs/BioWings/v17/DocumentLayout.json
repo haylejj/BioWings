@@ -3,16 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{91F18D67-BCC0-4A77-9B08-BE9133A4BDAE}|BioWings.Application\\BioWings.Application.csproj|c:\\users\\cagat\\visualstudio2022\\biowings\\biowings\\biowings.application\\features\\handlers\\observationhandlers\\write\\observationimportcreatecommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{91F18D67-BCC0-4A77-9B08-BE9133A4BDAE}|BioWings.Application\\BioWings.Application.csproj|solutionrelative:biowings.application\\features\\handlers\\observationhandlers\\write\\observationimportcreatecommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{91F18D67-BCC0-4A77-9B08-BE9133A4BDAE}|BioWings.Application\\BioWings.Application.csproj|c:\\users\\cagat\\visualstudio2022\\biowings\\biowings\\biowings.application\\features\\handlers\\specieshandlers\\read\\speciesgetpagedqueryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{91F18D67-BCC0-4A77-9B08-BE9133A4BDAE}|BioWings.Application\\BioWings.Application.csproj|solutionrelative:biowings.application\\features\\handlers\\specieshandlers\\read\\speciesgetpagedqueryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{91F18D67-BCC0-4A77-9B08-BE9133A4BDAE}|BioWings.Application\\BioWings.Application.csproj|c:\\users\\cagat\\visualstudio2022\\biowings\\biowings\\biowings.application\\features\\commands\\observationcommands\\observationimportcreatecommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{91F18D67-BCC0-4A77-9B08-BE9133A4BDAE}|BioWings.Application\\BioWings.Application.csproj|solutionrelative:biowings.application\\features\\commands\\observationcommands\\observationimportcreatecommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{91F18D67-BCC0-4A77-9B08-BE9133A4BDAE}|BioWings.Application\\BioWings.Application.csproj|c:\\users\\cagat\\visualstudio2022\\biowings\\biowings\\biowings.application\\features\\handlers\\observationhandlers\\write\\observationcreaterangecommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{91F18D67-BCC0-4A77-9B08-BE9133A4BDAE}|BioWings.Application\\BioWings.Application.csproj|solutionrelative:biowings.application\\features\\handlers\\observationhandlers\\write\\observationcreaterangecommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{91F18D67-BCC0-4A77-9B08-BE9133A4BDAE}|BioWings.Application\\BioWings.Application.csproj|c:\\users\\cagat\\visualstudio2022\\biowings\\biowings\\biowings.application\\results\\serviceresult.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{91F18D67-BCC0-4A77-9B08-BE9133A4BDAE}|BioWings.Application\\BioWings.Application.csproj|solutionrelative:biowings.application\\results\\serviceresult.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,8 +18,36 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 1,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ServiceResult.cs",
+              "DocumentMoniker": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.Application\\Results\\ServiceResult.cs",
+              "RelativeDocumentMoniker": "BioWings.Application\\Results\\ServiceResult.cs",
+              "ToolTip": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.Application\\Results\\ServiceResult.cs",
+              "RelativeToolTip": "BioWings.Application\\Results\\ServiceResult.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-13T12:39:23.438Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "SpeciesGetPagedQueryHandler.cs",
+              "DocumentMoniker": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.Application\\Features\\Handlers\\SpeciesHandlers\\Read\\SpeciesGetPagedQueryHandler.cs",
+              "RelativeDocumentMoniker": "BioWings.Application\\Features\\Handlers\\SpeciesHandlers\\Read\\SpeciesGetPagedQueryHandler.cs",
+              "ToolTip": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.Application\\Features\\Handlers\\SpeciesHandlers\\Read\\SpeciesGetPagedQueryHandler.cs",
+              "RelativeToolTip": "BioWings.Application\\Features\\Handlers\\SpeciesHandlers\\Read\\SpeciesGetPagedQueryHandler.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAADwvxsAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-13T15:50:46.448Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
@@ -39,45 +63,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ObservationImportCreateCommandHandler.cs",
-              "DocumentMoniker": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.Application\\Features\\Handlers\\ObservationHandlers\\Write\\ObservationImportCreateCommandHandler.cs",
-              "RelativeDocumentMoniker": "BioWings.Application\\Features\\Handlers\\ObservationHandlers\\Write\\ObservationImportCreateCommandHandler.cs",
-              "ToolTip": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.Application\\Features\\Handlers\\ObservationHandlers\\Write\\ObservationImportCreateCommandHandler.cs",
-              "RelativeToolTip": "BioWings.Application\\Features\\Handlers\\ObservationHandlers\\Write\\ObservationImportCreateCommandHandler.cs",
-              "ViewState": "AgIAAAoAAAAAAAAAAAAYwFMAAAA/AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-13T11:29:02.822Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ObservationImportCreateCommand.cs",
-              "DocumentMoniker": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.Application\\Features\\Commands\\ObservationCommands\\ObservationImportCreateCommand.cs",
-              "RelativeDocumentMoniker": "BioWings.Application\\Features\\Commands\\ObservationCommands\\ObservationImportCreateCommand.cs",
-              "ToolTip": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.Application\\Features\\Commands\\ObservationCommands\\ObservationImportCreateCommand.cs",
-              "RelativeToolTip": "BioWings.Application\\Features\\Commands\\ObservationCommands\\ObservationImportCreateCommand.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-13T11:28:57.184Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ObservationCreateRangeCommandHandler.cs",
-              "DocumentMoniker": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.Application\\Features\\Handlers\\ObservationHandlers\\Write\\ObservationCreateRangeCommandHandler.cs",
-              "RelativeDocumentMoniker": "BioWings.Application\\Features\\Handlers\\ObservationHandlers\\Write\\ObservationCreateRangeCommandHandler.cs",
-              "ToolTip": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.Application\\Features\\Handlers\\ObservationHandlers\\Write\\ObservationCreateRangeCommandHandler.cs",
-              "RelativeToolTip": "BioWings.Application\\Features\\Handlers\\ObservationHandlers\\Write\\ObservationCreateRangeCommandHandler.cs",
-              "ViewState": "AgIAAAQAAAAAAAAAAAAAAAsAAAA0AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-13T11:10:43.349Z",
-              "EditorCaption": ""
             }
           ]
         }

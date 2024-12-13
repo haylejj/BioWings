@@ -3,6 +3,7 @@ using BioWings.Application.Features.Results.SpeciesResults;
 using BioWings.Application.Results;
 using BioWings.Domain.Interfaces;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace BioWings.Application.Features.Handlers.SpeciesHandlers.Read;
@@ -14,7 +15,7 @@ public class SpeciesGetPagedQueryHandler(ISpeciesRepository speciesRepository, I
         request.PageSize = request.PageSize <= 0 ? 25 : Math.Min(request.PageSize, 50);
         var totalCount = await speciesRepository.GetTotalCountAsync(cancellationToken);
 
-        var species = await speciesRepository.GetPagedAsync(request.PageNumber, request.PageSize, cancellationToken);
+        var species = await speciesRepository.GetPagedAsQueryable(request.PageNumber, request.PageSize).Include(x=> x.Genus).Include(x=> x.Authority).Include(x=> x.SpeciesType).ToListAsync();
         var result = species.Select(s => new SpeciesGetPagedQueryResult
         {
             Id = s.Id,

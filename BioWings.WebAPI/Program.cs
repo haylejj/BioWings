@@ -16,8 +16,8 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowMvcApp", builder =>
     {
-        builder.WithOrigins("https://localhost:7269")
-               .AllowAnyHeader()
+        builder.WithOrigins("https://localhost:7269") // mvc https port
+               .AllowAnyHeader() 
                .AllowAnyMethod()
                .AllowCredentials();
     });
@@ -27,10 +27,13 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Add services from the Persistence project
+// Add services from the Application project
 builder.Services.AddApplicationExtensions(builder.Configuration);
+// Add services from the Persistence project
 builder.Services.AddPersistenceExtensions(builder.Configuration);
+// Add services from the Infrastructure project
 builder.Services.AddInfrastructureExtensions(builder.Configuration);
+// global exception handler
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 
 var app = builder.Build();
