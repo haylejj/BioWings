@@ -1,7 +1,8 @@
 using BioWings.WebAPI.Exceptions;
 
 var builder = WebApplication.CreateBuilder(args);
-
+//For Api consume 
+builder.Services.AddHttpClient();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 //global exception handler
@@ -23,6 +24,10 @@ app.UseExceptionHandler(opt => { });
 app.UseRouting();
 
 app.UseAuthorization();
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Observation}/{action=Index}/{id?}");
 
 app.MapControllerRoute(
     name: "default",

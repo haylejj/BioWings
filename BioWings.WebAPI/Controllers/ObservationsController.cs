@@ -47,11 +47,27 @@ public class ObservationsController(IMediator mediator) : BaseController
         var result = await mediator.Send(command);
         return CreateResult(result);
     }
+    // DELETE: api/Observations/{id}
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> Remove(int id)
+    {
+        var command = new ObservationRemoveCommand(id);
+        var result = await mediator.Send(command);
+        return CreateResult(result);
+    }
     // POST: api/Observations/Import
     [HttpPost("Import")]
     public async Task<IActionResult> Import([FromForm] ObservationImportCreateCommand command)
     {
         var reuslt = await mediator.Send(command);
         return CreateResult(reuslt);
+    }
+    // GET: api/Observations/Search
+    [HttpGet("Search")]
+    public async Task<IActionResult> Search([FromQuery] string searchTerm, int pageNumber = 1, [FromQuery] int pageSize = 25)
+    {
+        var searchQuery = new ObservationSearchQuery { PageNumber=pageNumber,PageSize=pageSize,SearchTerm=searchTerm};
+        var result = await mediator.Send(searchQuery);
+        return CreateResult(result);
     }
 }

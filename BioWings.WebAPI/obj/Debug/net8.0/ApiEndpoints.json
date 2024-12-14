@@ -497,6 +497,22 @@
   },
   {
     "ContainingType": "BioWings.WebAPI.Controllers.ObservationsController",
+    "Method": "Remove",
+    "RelativePath": "api/Observations/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BioWings.WebAPI.Controllers.ObservationsController",
     "Method": "Import",
     "RelativePath": "api/Observations/Import",
     "HttpMethod": "POST",
@@ -544,6 +560,32 @@
         "Name": "command",
         "Type": "BioWings.Application.Features.Commands.ObservationCommands.ObservationCreateRangeCommand",
         "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BioWings.WebAPI.Controllers.ObservationsController",
+    "Method": "Search",
+    "RelativePath": "api/Observations/Search",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "searchTerm",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []

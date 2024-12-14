@@ -12,11 +12,23 @@ public class ObservationGetByIdQueryHandler(IObservationRepository observationRe
     public async Task<ServiceResult<ObservationGetByIdQueryResult>> Handle(ObservationGetByIdQuery request, CancellationToken cancellationToken)
     {
         var observation = await observationRepository.GetByIdWithAllNavigationsAsync(request.Id, cancellationToken);
-        if (observation == null)
-        {
-            logger.LogWarning("Observation not found that has id : {0}", request.Id);
-            return ServiceResult<ObservationGetByIdQueryResult>.Error($"Observation not found that has id : {request.Id}", HttpStatusCode.NotFound);
-        }
+        //if (observation == null)
+        //{
+        //    logger.LogWarning("Observation not found that has id : {0}", request.Id);
+        //    return ServiceResult<ObservationGetByIdQueryResult>.Error($"Observation not found that has id : {request.Id}", HttpStatusCode.NotFound);
+        //}
+
+        //if (observation.Species == null)
+        //{
+        //    logger.LogWarning("Species data is missing for observation id : {0}", request.Id);
+        //    return ServiceResult<ObservationGetByIdQueryResult>.Error($"Species data is missing for observation id : {request.Id}", HttpStatusCode.NotFound);
+        //}
+
+        //if (observation.Location == null)
+        //{
+        //    logger.LogWarning("Location data is missing for observation id : {0}", request.Id);
+        //    return ServiceResult<ObservationGetByIdQueryResult>.Error($"Location data is missing for observation id : {request.Id}", HttpStatusCode.NotFound);
+        //}
         return ServiceResult<ObservationGetByIdQueryResult>.Success(new ObservationGetByIdQueryResult
         {
             Id = observation.Id,
