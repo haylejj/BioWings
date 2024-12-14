@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BioWings.WebAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+251fbac9ca0776cb646cf0005476578de12fb03f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0f550be5d5c1f0db51fb67fddb501706832e1700")]
 [assembly: System.Reflection.AssemblyProductAttribute("BioWings.WebAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BioWings.WebAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

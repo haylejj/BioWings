@@ -455,6 +455,16 @@
   },
   {
     "ContainingType": "BioWings.WebAPI.Controllers.ObservationsController",
+    "Method": "GetAll",
+    "RelativePath": "api/Observations",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BioWings.WebAPI.Controllers.ObservationsController",
     "Method": "Create",
     "RelativePath": "api/Observations",
     "HttpMethod": "POST",
@@ -471,6 +481,22 @@
   },
   {
     "ContainingType": "BioWings.WebAPI.Controllers.ObservationsController",
+    "Method": "GetById",
+    "RelativePath": "api/Observations/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BioWings.WebAPI.Controllers.ObservationsController",
     "Method": "Import",
     "RelativePath": "api/Observations/Import",
     "HttpMethod": "POST",
@@ -480,6 +506,27 @@
       {
         "Name": "File",
         "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BioWings.WebAPI.Controllers.ObservationsController",
+    "Method": "GetPaged",
+    "RelativePath": "api/Observations/Paged",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pageNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
         "IsRequired": false
       }
     ],

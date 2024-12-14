@@ -3,12 +3,44 @@
   "WorkspaceRootPath": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{91F18D67-BCC0-4A77-9B08-BE9133A4BDAE}|BioWings.Application\\BioWings.Application.csproj|c:\\users\\cagat\\visualstudio2022\\biowings\\biowings\\biowings.application\\features\\handlers\\specieshandlers\\read\\speciesgetpagedqueryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{91F18D67-BCC0-4A77-9B08-BE9133A4BDAE}|BioWings.Application\\BioWings.Application.csproj|solutionrelative:biowings.application\\features\\handlers\\specieshandlers\\read\\speciesgetpagedqueryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7079A309-DF1B-4492-B636-DC681C55BEE0}|BioWings.WebAPI\\BioWings.WebAPI.csproj|c:\\users\\cagat\\visualstudio2022\\biowings\\biowings\\biowings.webapi\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{7079A309-DF1B-4492-B636-DC681C55BEE0}|BioWings.WebAPI\\BioWings.WebAPI.csproj|solutionrelative:biowings.webapi\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{91F18D67-BCC0-4A77-9B08-BE9133A4BDAE}|BioWings.Application\\BioWings.Application.csproj|c:\\users\\cagat\\visualstudio2022\\biowings\\biowings\\biowings.application\\results\\serviceresult.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{91F18D67-BCC0-4A77-9B08-BE9133A4BDAE}|BioWings.Application\\BioWings.Application.csproj|solutionrelative:biowings.application\\results\\serviceresult.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B58743F9-585E-41A6-BD49-9E7924F29F94}|BioWings.Persistence\\BioWings.Persistence.csproj|c:\\users\\cagat\\visualstudio2022\\biowings\\biowings\\biowings.persistence\\extensions\\persistenceextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B58743F9-585E-41A6-BD49-9E7924F29F94}|BioWings.Persistence\\BioWings.Persistence.csproj|solutionrelative:biowings.persistence\\extensions\\persistenceextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B58743F9-585E-41A6-BD49-9E7924F29F94}|BioWings.Persistence\\BioWings.Persistence.csproj|c:\\users\\cagat\\visualstudio2022\\biowings\\biowings\\biowings.persistence\\context\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B58743F9-585E-41A6-BD49-9E7924F29F94}|BioWings.Persistence\\BioWings.Persistence.csproj|solutionrelative:biowings.persistence\\context\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7079A309-DF1B-4492-B636-DC681C55BEE0}|BioWings.WebAPI\\BioWings.WebAPI.csproj|c:\\users\\cagat\\visualstudio2022\\biowings\\biowings\\biowings.webapi\\controllers\\observationscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7079A309-DF1B-4492-B636-DC681C55BEE0}|BioWings.WebAPI\\BioWings.WebAPI.csproj|solutionrelative:biowings.webapi\\controllers\\observationscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{91F18D67-BCC0-4A77-9B08-BE9133A4BDAE}|BioWings.Application\\BioWings.Application.csproj|c:\\users\\cagat\\visualstudio2022\\biowings\\biowings\\biowings.application\\features\\handlers\\observationhandlers\\read\\observationgetpagedqueryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{91F18D67-BCC0-4A77-9B08-BE9133A4BDAE}|BioWings.Application\\BioWings.Application.csproj|solutionrelative:biowings.application\\features\\handlers\\observationhandlers\\read\\observationgetpagedqueryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{91F18D67-BCC0-4A77-9B08-BE9133A4BDAE}|BioWings.Application\\BioWings.Application.csproj|c:\\users\\cagat\\visualstudio2022\\biowings\\biowings\\biowings.application\\features\\handlers\\observationhandlers\\read\\observationgetqueryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{91F18D67-BCC0-4A77-9B08-BE9133A4BDAE}|BioWings.Application\\BioWings.Application.csproj|solutionrelative:biowings.application\\features\\handlers\\observationhandlers\\read\\observationgetqueryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E61E0297-D79A-4DE9-B7DB-377C902F7137}|BioWings.Domain\\BioWings.Domain.csproj|c:\\users\\cagat\\visualstudio2022\\biowings\\biowings\\biowings.domain\\entities\\observation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E61E0297-D79A-4DE9-B7DB-377C902F7137}|BioWings.Domain\\BioWings.Domain.csproj|solutionrelative:biowings.domain\\entities\\observation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E61E0297-D79A-4DE9-B7DB-377C902F7137}|BioWings.Domain\\BioWings.Domain.csproj|c:\\users\\cagat\\visualstudio2022\\biowings\\biowings\\biowings.domain\\entities\\observer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E61E0297-D79A-4DE9-B7DB-377C902F7137}|BioWings.Domain\\BioWings.Domain.csproj|solutionrelative:biowings.domain\\entities\\observer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E61E0297-D79A-4DE9-B7DB-377C902F7137}|BioWings.Domain\\BioWings.Domain.csproj|c:\\users\\cagat\\visualstudio2022\\biowings\\biowings\\biowings.domain\\entities\\province.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E61E0297-D79A-4DE9-B7DB-377C902F7137}|BioWings.Domain\\BioWings.Domain.csproj|solutionrelative:biowings.domain\\entities\\province.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E61E0297-D79A-4DE9-B7DB-377C902F7137}|BioWings.Domain\\BioWings.Domain.csproj|c:\\users\\cagat\\visualstudio2022\\biowings\\biowings\\biowings.domain\\entities\\location.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E61E0297-D79A-4DE9-B7DB-377C902F7137}|BioWings.Domain\\BioWings.Domain.csproj|solutionrelative:biowings.domain\\entities\\location.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,34 +50,142 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ServiceResult.cs",
-              "DocumentMoniker": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.Application\\Results\\ServiceResult.cs",
-              "RelativeDocumentMoniker": "BioWings.Application\\Results\\ServiceResult.cs",
-              "ToolTip": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.Application\\Results\\ServiceResult.cs",
-              "RelativeToolTip": "BioWings.Application\\Results\\ServiceResult.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 6,
+              "Title": "Observation.cs",
+              "DocumentMoniker": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.Domain\\Entities\\Observation.cs",
+              "RelativeDocumentMoniker": "BioWings.Domain\\Entities\\Observation.cs",
+              "ToolTip": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.Domain\\Entities\\Observation.cs",
+              "RelativeToolTip": "BioWings.Domain\\Entities\\Observation.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-13T12:39:23.438Z",
+              "WhenOpened": "2024-12-13T16:17:20.716Z",
               "IsPinned": true,
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "SpeciesGetPagedQueryHandler.cs",
-              "DocumentMoniker": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.Application\\Features\\Handlers\\SpeciesHandlers\\Read\\SpeciesGetPagedQueryHandler.cs",
-              "RelativeDocumentMoniker": "BioWings.Application\\Features\\Handlers\\SpeciesHandlers\\Read\\SpeciesGetPagedQueryHandler.cs",
-              "ToolTip": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.Application\\Features\\Handlers\\SpeciesHandlers\\Read\\SpeciesGetPagedQueryHandler.cs",
-              "RelativeToolTip": "BioWings.Application\\Features\\Handlers\\SpeciesHandlers\\Read\\SpeciesGetPagedQueryHandler.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAA2wBcAAAAoAAAAAAAAAA==",
+              "DocumentIndex": 9,
+              "Title": "Location.cs",
+              "DocumentMoniker": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.Domain\\Entities\\Location.cs",
+              "RelativeDocumentMoniker": "BioWings.Domain\\Entities\\Location.cs",
+              "ToolTip": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.Domain\\Entities\\Location.cs",
+              "RelativeToolTip": "BioWings.Domain\\Entities\\Location.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-13T15:50:46.448Z",
+              "WhenOpened": "2024-12-13T16:17:44.122Z",
               "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Province.cs",
+              "DocumentMoniker": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.Domain\\Entities\\Province.cs",
+              "RelativeDocumentMoniker": "BioWings.Domain\\Entities\\Province.cs",
+              "ToolTip": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.Domain\\Entities\\Province.cs",
+              "RelativeToolTip": "BioWings.Domain\\Entities\\Province.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-13T16:17:47.68Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Observer.cs",
+              "DocumentMoniker": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.Domain\\Entities\\Observer.cs",
+              "RelativeDocumentMoniker": "BioWings.Domain\\Entities\\Observer.cs",
+              "ToolTip": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.Domain\\Entities\\Observer.cs",
+              "RelativeToolTip": "BioWings.Domain\\Entities\\Observer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-13T16:17:55.4Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ObservationGetQueryHandler.cs",
+              "DocumentMoniker": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.Application\\Features\\Handlers\\ObservationHandlers\\Read\\ObservationGetQueryHandler.cs",
+              "RelativeDocumentMoniker": "BioWings.Application\\Features\\Handlers\\ObservationHandlers\\Read\\ObservationGetQueryHandler.cs",
+              "ToolTip": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.Application\\Features\\Handlers\\ObservationHandlers\\Read\\ObservationGetQueryHandler.cs",
+              "RelativeToolTip": "BioWings.Application\\Features\\Handlers\\ObservationHandlers\\Read\\ObservationGetQueryHandler.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABQAAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-13T17:00:59.035Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ObservationGetPagedQueryHandler.cs",
+              "DocumentMoniker": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.Application\\Features\\Handlers\\ObservationHandlers\\Read\\ObservationGetPagedQueryHandler.cs",
+              "RelativeDocumentMoniker": "BioWings.Application\\Features\\Handlers\\ObservationHandlers\\Read\\ObservationGetPagedQueryHandler.cs",
+              "ToolTip": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.Application\\Features\\Handlers\\ObservationHandlers\\Read\\ObservationGetPagedQueryHandler.cs",
+              "RelativeToolTip": "BioWings.Application\\Features\\Handlers\\ObservationHandlers\\Read\\ObservationGetPagedQueryHandler.cs",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAcwAwAAAChAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-13T16:52:59.229Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "PersistenceExtensions.cs",
+              "DocumentMoniker": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.Persistence\\Extensions\\PersistenceExtensions.cs",
+              "RelativeDocumentMoniker": "BioWings.Persistence\\Extensions\\PersistenceExtensions.cs",
+              "ToolTip": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.Persistence\\Extensions\\PersistenceExtensions.cs",
+              "RelativeToolTip": "BioWings.Persistence\\Extensions\\PersistenceExtensions.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-13T18:11:20.495Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "appsettings.Development.json",
+              "DocumentMoniker": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.WebAPI\\appsettings.Development.json",
+              "RelativeDocumentMoniker": "BioWings.WebAPI\\appsettings.Development.json",
+              "ToolTip": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.WebAPI\\appsettings.Development.json",
+              "RelativeToolTip": "BioWings.WebAPI\\appsettings.Development.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-12-13T17:50:28.573Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.Persistence\\Context\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "BioWings.Persistence\\Context\\AppDbContext.cs",
+              "ToolTip": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.Persistence\\Context\\AppDbContext.cs",
+              "RelativeToolTip": "BioWings.Persistence\\Context\\AppDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAB2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-13T17:49:34.64Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ObservationsController.cs",
+              "DocumentMoniker": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.WebAPI\\Controllers\\ObservationsController.cs",
+              "RelativeDocumentMoniker": "BioWings.WebAPI\\Controllers\\ObservationsController.cs",
+              "ToolTip": "C:\\Users\\cagat\\VisualStudio2022\\BioWings\\BioWings\\BioWings.WebAPI\\Controllers\\ObservationsController.cs",
+              "RelativeToolTip": "BioWings.WebAPI\\Controllers\\ObservationsController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-13T17:31:37.786Z",
               "EditorCaption": ""
             },
             {
