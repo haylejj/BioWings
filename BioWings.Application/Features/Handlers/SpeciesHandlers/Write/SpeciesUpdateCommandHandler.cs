@@ -17,7 +17,6 @@ public class SpeciesUpdateCommandHandler(ISpeciesRepository speciesRepository, I
         }
         species.AuthorityId = request.AuthorityId;
         species.GenusId = request.GenusId;
-        species.SpeciesTypeId = request.SpeciesTypeId;
         species.ScientificName = request.ScientificName;
         species.Name = request.Name;
         species.EUName = request.EUName;

@@ -7,14 +7,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace BioWings.Application.Features.Handlers.ObservationHandlers.Read;
-public class ObservationGetQueryHandler(IObservationRepository observationRepository,ILogger<ObservationGetQueryHandler> logger) : IRequestHandler<ObservationGetQuery, ServiceResult<IEnumerable<ObservationGetQueryResult>>>
+public class ObservationGetQueryHandler(IObservationRepository observationRepository, ILogger<ObservationGetQueryHandler> logger) : IRequestHandler<ObservationGetQuery, ServiceResult<IEnumerable<ObservationGetQueryResult>>>
 {
     public async Task<ServiceResult<IEnumerable<ObservationGetQueryResult>>> Handle(ObservationGetQuery request, CancellationToken cancellationToken)
     {
         var observations = await observationRepository.GetAllAsQueryable().Include(x => x.Observer)
             .Include(x => x.Location).ThenInclude(y => y.Province)
             .Include(x => x.Species).ThenInclude(y => y.Genus).ThenInclude(z => z.Family)
-            .Include(x => x.Species).ThenInclude(x => x.SpeciesType).Select(x => new ObservationGetQueryResult
+            .Select(x => new ObservationGetQueryResult
             {
                 Id = x.Id,
                 // Species related
@@ -22,7 +22,6 @@ public class ObservationGetQueryHandler(IObservationRepository observationReposi
                 Year = x.Species.Authority.Year,
                 GenusName = x.Species.Genus.Name,
                 FamilyName = x.Species.Genus.Family.Name,
-                SpeciesTypeName = x.Species.SpeciesType.Name,
                 ScientificName = x.Species.ScientificName,
                 Name = x.Species.Name,
                 EUName = x.Species.EUName,
@@ -49,7 +48,6 @@ public class ObservationGetQueryHandler(IObservationRepository observationReposi
                 Altitude1 = x.Location.Altitude1,
                 Altitude2 = x.Location.Altitude2,
                 UtmReference = x.Location.UtmReference,
-                Description = x.Location.Description,
                 CoordinatePrecisionLevel = x.Location.CoordinatePrecisionLevel,
 
                 // Observer and other fields

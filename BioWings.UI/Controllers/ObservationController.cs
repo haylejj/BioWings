@@ -4,9 +4,9 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
 namespace BioWings.UI.Controllers;
-public class ObservationController(IHttpClientFactory httpClientFactory,ILogger<ObservationController> logger) : Controller
+public class ObservationController(IHttpClientFactory httpClientFactory, ILogger<ObservationController> logger) : Controller
 {
-    public async Task<IActionResult> Index(string searchTerm,int pageNumber = 1, int pageSize = 25)
+    public async Task<IActionResult> Index(string searchTerm, int pageNumber = 1, int pageSize = 25)
     {
         var client = httpClientFactory.CreateClient();
         var url = string.IsNullOrEmpty(searchTerm)

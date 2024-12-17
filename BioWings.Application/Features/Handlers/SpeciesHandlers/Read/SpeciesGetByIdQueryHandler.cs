@@ -24,8 +24,6 @@ public class SpeciesGetByIdQueryHandler(ISpeciesRepository speciesRepository, IL
             AuthorityName = species.Authority.Name,
             GenusId = species.GenusId,
             GenusName = species.Genus.Name,
-            SpeciesTypeId = species.SpeciesTypeId,
-            SpeciesTypeName = species.SpeciesType.Name,
             ScientificName = species.ScientificName,
             Name = species.Name,
             EUName = species.EUName,

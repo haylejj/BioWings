@@ -1,6 +1,5 @@
 ﻿using BioWings.Application.Features.Queries.ObservationQueries;
 using BioWings.Application.Features.Results.ObservationResults;
-using BioWings.Application.Features.Results.SpeciesResults;
 using BioWings.Application.Results;
 using BioWings.Domain.Interfaces;
 using MediatR;
@@ -16,10 +15,10 @@ public class ObservationGetPagedQueryHandler(IObservationRepository observationR
         request.PageSize = request.PageSize <= 0 ? 25 : Math.Min(request.PageSize, 50);
         var totalCount = await observationRepository.GetTotalCountAsync(cancellationToken);
 
-        var observations = await observationRepository.GetPagedAsQueryable(request.PageNumber,request.PageSize).Include(x => x.Observer)
+        var observations = await observationRepository.GetPagedAsQueryable(request.PageNumber, request.PageSize).Include(x => x.Observer)
             .Include(x => x.Location).ThenInclude(y => y.Province)
             .Include(x => x.Species).ThenInclude(y => y.Genus).ThenInclude(z => z.Family)
-            .Include(x => x.Species).ThenInclude(x => x.SpeciesType).Select(x => new ObservationGetPagedQueryResult
+            .Select(x => new ObservationGetPagedQueryResult
             {
                 Id = x.Id,
                 // Species related
@@ -27,7 +26,6 @@ public class ObservationGetPagedQueryHandler(IObservationRepository observationR
                 Year = x.Species.Authority.Year,
                 GenusName = x.Species.Genus.Name,
                 FamilyName = x.Species.Genus.Family.Name,
-                SpeciesTypeName = x.Species.SpeciesType.Name,
                 ScientificName = x.Species.ScientificName,
                 Name = x.Species.Name,
                 EUName = x.Species.EUName,
@@ -54,7 +52,6 @@ public class ObservationGetPagedQueryHandler(IObservationRepository observationR
                 Altitude1 = x.Location.Altitude1,
                 Altitude2 = x.Location.Altitude2,
                 UtmReference = x.Location.UtmReference,
-                Description = x.Location.Description,
                 CoordinatePrecisionLevel = x.Location.CoordinatePrecisionLevel,
 
                 // Observer and other fields

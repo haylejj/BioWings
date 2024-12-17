@@ -14,8 +14,8 @@ public class ExcelTemplateService(ILogger<ExcelTemplateService> logger) : IExcel
         var headers = new string[]
         {
         // Authority & Taxonomy
-        "Authority Name", "Year", "Family Name", "Genus Name","Subspecies Name", "Species Type Name",
-        "Species Type Description", "Scientific Name", "Name", "EU Name", "Full Name",
+        "Authority Name", "Year", "Family Name", "Genus Name","Subspecies Name",
+        "Scientific Name", "Name", "EU Name", "Full Name",
         "Turkish Name", "English Name", "Turkish Names Trakel", "Trakel", "Kocak Name",
         "Hesselbarth Name",
 
@@ -135,8 +135,8 @@ public class ExcelTemplateService(ILogger<ExcelTemplateService> logger) : IExcel
         var headers = new string[]
         {
         // Authority & Taxonomy
-        "Authority Name", "Year", "Family Name", "Genus Name","Subspecies Name", "Species Type Name",
-        "Species Type Description", "Scientific Name", "Name", "EU Name", "Full Name",
+        "Authority Name", "Year", "Family Name", "Genus Name","Subspecies Name",
+        "Scientific Name", "Name", "EU Name", "Full Name",
         "Turkish Name", "English Name", "Turkish Names Trakel", "Trakel", "Kocak Name",
         "Hesselbarth Name",
 
@@ -169,8 +169,8 @@ public class ExcelTemplateService(ILogger<ExcelTemplateService> logger) : IExcel
         {
             new object[] {
                 // Authority & Taxonomy
-                "Linnaeus", 1758, "Pieridae", "Pieris","brassicae major", "Butterfly",
-                "White butterfly species", "Pieris brassicae", "Large White", "Large White", "Pieris brassicae (Linnaeus, 1758)",
+                "Linnaeus", 1758, "Pieridae", "Pieris","brassicae major",
+                "Pieris brassicae", "Large White", "Large White", "Pieris brassicae (Linnaeus, 1758)",
                 "Lahana Kelebeği", "Large White", "Lahana Kelebeği", "Common species", "Alternative name",
                 "Historical name",
                 // Location
@@ -185,8 +185,8 @@ public class ExcelTemplateService(ILogger<ExcelTemplateService> logger) : IExcel
             },
             new object[] {
                 // Authority & Taxonomy
-                "Fabricius", 1775, "Nymphalidae", "Vanessa","cardui indica", "Butterfly",
-                "Painted lady butterfly", "Vanessa cardui", "Painted Lady", "Painted Lady", "Vanessa cardui (Fabricius, 1775)",
+                "Fabricius", 1775, "Nymphalidae", "Vanessa","cardui indica",
+                "Vanessa cardui", "Painted Lady", "Painted Lady", "Vanessa cardui (Fabricius, 1775)",
                 "Diken Kelebeği", "Painted Lady", "Diken Kelebeği", "Migratory species", "Second name",
                 "Old reference",
                 // Location
@@ -201,8 +201,8 @@ public class ExcelTemplateService(ILogger<ExcelTemplateService> logger) : IExcel
             },
             new object[] {
                 // Authority & Taxonomy
-                "Staudinger", 1871, "Lycaenidae", "Lycaena","phlaeas eleus", "Butterfly",
-                "Copper butterfly", "Lycaena phlaeas", "Small Copper", "Small Copper", "Lycaena phlaeas (Linnaeus, 1761)",
+                "Staudinger", 1871, "Lycaenidae", "Lycaena","phlaeas eleus",
+                "Lycaena phlaeas", "Small Copper", "Small Copper", "Lycaena phlaeas (Linnaeus, 1761)",
                 "Benekli Bakır", "Small Copper", "Benekli Bakır", "Common copper", "Third name",
                 "Traditional name",
                 // Location
@@ -217,8 +217,8 @@ public class ExcelTemplateService(ILogger<ExcelTemplateService> logger) : IExcel
             },
             new object[] {
                 // Authority & Taxonomy
-                "Ochsenheimer", 1808, "Papilionidae", "Parnassius","apollo melliculus", "Butterfly",
-                "Apollo butterfly species", "Parnassius apollo", "Apollo", "Apollo", "Parnassius apollo (Linnaeus, 1758)",
+                "Ochsenheimer", 1808, "Papilionidae", "Parnassius","apollo melliculus",
+                "Parnassius apollo", "Apollo", "Apollo", "Parnassius apollo (Linnaeus, 1758)",
                 "Apollon Kelebeği", "Apollo", "Apollon", "Mountain species", "Fourth name",
                 "Mountain apollo",
                 // Location
@@ -233,8 +233,8 @@ public class ExcelTemplateService(ILogger<ExcelTemplateService> logger) : IExcel
             },
             new object[] {
                 // Authority & Taxonomy
-                "Freyer", 1831, "Sphingidae", "Acherontia","atropos syriaca", "Moth",
-                "Death's-head hawkmoth", "Acherontia atropos", "Death's-head Hawkmoth", "Death's-head Hawkmoth", "Acherontia atropos (Linnaeus, 1758)",
+                "Freyer", 1831, "Sphingidae", "Acherontia","atropos syriaca",
+                "Acherontia atropos", "Death's-head Hawkmoth", "Death's-head Hawkmoth", "Acherontia atropos (Linnaeus, 1758)",
                 "Kuru Kafa Güvesi", "Death's-head Hawkmoth", "Kuru Kafa", "Migrant moth", "Alternative name",
                 "Historical reference",
                 // Location
@@ -249,8 +249,8 @@ public class ExcelTemplateService(ILogger<ExcelTemplateService> logger) : IExcel
             },
             new object[] {
                 // Authority & Taxonomy
-                "Esper", 1777, "Saturniidae", "Saturnia","pavonia meridionalis", "Moth",
-                "Small Emperor Moth", "Saturnia pavonia", "Emperor Moth", "Emperor Moth", "Saturnia pavonia (Linnaeus, 1758)",
+                "Esper", 1777, "Saturniidae", "Saturnia","pavonia meridionalis",
+                "Saturnia pavonia", "Emperor Moth", "Emperor Moth", "Saturnia pavonia (Linnaeus, 1758)",
                 "Tavus Güvesi", "Small Emperor Moth", "Tavus Güvesi", "Common moth", "Local name",
                 "Traditional reference",
                 // Location
@@ -265,8 +265,8 @@ public class ExcelTemplateService(ILogger<ExcelTemplateService> logger) : IExcel
             },
             new object[] {
                 // Authority & Taxonomy
-                "Berge", 1842, "Nymphalidae", "Argynnis","paphia dives", "Butterfly",
-                "Silver-washed Fritillary", "Argynnis paphia", "Silver-washed Fritillary", "Silver-washed Fritillary", "Argynnis paphia (Linnaeus, 1758)",
+                "Berge", 1842, "Nymphalidae", "Argynnis","paphia dives",
+                "Argynnis paphia", "Silver-washed Fritillary", "Silver-washed Fritillary", "Argynnis paphia (Linnaeus, 1758)",
                 "Büyük İnci", "Silver-washed Fritillary", "Büyük İnci", "Forest species", "Local variant",
                 "Classical name",
                 // Location
@@ -281,8 +281,8 @@ public class ExcelTemplateService(ILogger<ExcelTemplateService> logger) : IExcel
             },
             new object[] {
                 // Authority & Taxonomy
-                "Schiffermüller", 1775, "Lycaenidae", "Polyommatus","icarus zelleri", "Butterfly",
-                "Common Blue", "Polyommatus icarus", "Common Blue", "Common Blue", "Polyommatus icarus (Rottemburg, 1775)",
+                "Schiffermüller", 1775, "Lycaenidae", "Polyommatus","icarus zelleri",
+                "Polyommatus icarus", "Common Blue", "Common Blue", "Polyommatus icarus (Rottemburg, 1775)",
                 "Çokgözlü Mavi", "Common Blue", "Çokgözlü Mavi", "Widespread species", "Regional name",
                 "Standard reference",
                 // Location
@@ -297,8 +297,8 @@ public class ExcelTemplateService(ILogger<ExcelTemplateService> logger) : IExcel
             },
             new object[] {
                 // Authority & Taxonomy
-                "Poda", 1761, "Pieridae", "Colias","crocea helice", "Butterfly",
-                "Clouded Yellow", "Colias crocea", "Clouded Yellow", "Clouded Yellow", "Colias crocea (Geoffroy, 1785)",
+                "Poda", 1761, "Pieridae", "Colias","crocea helice",
+                 "Colias crocea", "Clouded Yellow", "Clouded Yellow", "Colias crocea (Geoffroy, 1785)",
                 "Sarı Azamet", "Clouded Yellow", "Sarı Azamet", "Migrant species", "Southern form",
                 "Migration reference",
                 // Location
@@ -313,8 +313,8 @@ public class ExcelTemplateService(ILogger<ExcelTemplateService> logger) : IExcel
             },
             new object[] {
                 // Authority & Taxonomy
-                "Verity", 1905, "Hesperiidae", "Thymelicus","lineola centralasiae", "Butterfly",
-                "Essex Skipper", "Thymelicus lineola", "Essex Skipper", "Essex Skipper", "Thymelicus lineola (Ochsenheimer, 1808)",
+                "Verity", 1905, "Hesperiidae", "Thymelicus","lineola centralasiae",
+                "Thymelicus lineola", "Essex Skipper", "Essex Skipper", "Thymelicus lineola (Ochsenheimer, 1808)",
                 "Çizgili Zıpzıp", "Essex Skipper", "Çizgili Zıpzıp", "Grassland species", "Eastern form",
                 "Modern reference",
                 // Location
@@ -329,8 +329,8 @@ public class ExcelTemplateService(ILogger<ExcelTemplateService> logger) : IExcel
             },
             new object[] {
                 // Authority & Taxonomy
-                "Hübner", 1819, "Nymphalidae", "Nymphalis", "polychloros fervida", "Butterfly",
-                "Large Tortoiseshell", "Nymphalis polychloros", "Large Tortoiseshell", "Large Tortoiseshell", "Nymphalis polychloros (Linnaeus, 1758)",
+                "Hübner", 1819, "Nymphalidae", "Nymphalis", "polychloros fervida",
+                "Nymphalis polychloros", "Large Tortoiseshell", "Large Tortoiseshell", "Nymphalis polychloros (Linnaeus, 1758)",
                 "Büyük Sırçalı", "Large Tortoiseshell", "Büyük Sırçalı", "Forest species", "Regional variant",
                 "Classical form",
                 // Location
@@ -345,8 +345,8 @@ public class ExcelTemplateService(ILogger<ExcelTemplateService> logger) : IExcel
             },
             new object[] {
                 // Authority & Taxonomy
-                "Latreille", 1809, "Sphingidae", "Hyles", "euphorbiae tithymali", "Moth",
-                "Spurge Hawk-moth", "Hyles euphorbiae", "Spurge Hawk-moth", "Spurge Hawk-moth", "Hyles euphorbiae (Linnaeus, 1758)",
+                "Latreille", 1809, "Sphingidae", "Hyles", "euphorbiae tithymali",
+                 "Hyles euphorbiae", "Spurge Hawk-moth", "Spurge Hawk-moth", "Hyles euphorbiae (Linnaeus, 1758)",
                 "Sütleğen Kartalkuyruğu", "Spurge Hawk-moth", "Sütleğen Kartalkuyruğu", "Night flyer", "Southern type",
                 "Mediterranean form",
                 // Location
@@ -361,8 +361,8 @@ public class ExcelTemplateService(ILogger<ExcelTemplateService> logger) : IExcel
             },
             new object[] {
                 // Authority & Taxonomy
-                "Bergsträsser", 1779, "Lycaenidae", "Lysandra", "bellargus coridon", "Butterfly",
-                "Adonis Blue", "Lysandra bellargus", "Adonis Blue", "Adonis Blue", "Lysandra bellargus (Rottemburg, 1775)",
+                "Bergsträsser", 1779, "Lycaenidae", "Lysandra", "bellargus coridon",
+                "Lysandra bellargus", "Adonis Blue", "Adonis Blue", "Lysandra bellargus (Rottemburg, 1775)",
                 "Gökyakut Mavisi", "Adonis Blue", "Gökyakut Mavisi", "Chalk grassland species", "Local race",
                 "Western form",
                 // Location
@@ -377,8 +377,8 @@ public class ExcelTemplateService(ILogger<ExcelTemplateService> logger) : IExcel
             },
             new object[] {
                 // Authority & Taxonomy
-                "Denis", 1775, "Papilionidae", "Zerynthia", "polyxena cassandra", "Butterfly",
-                "Southern Festoon", "Zerynthia polyxena", "Southern Festoon", "Southern Festoon", "Zerynthia polyxena (Denis & Schiffermüller, 1775)",
+                "Denis", 1775, "Papilionidae", "Zerynthia", "polyxena cassandra",
+                "Zerynthia polyxena", "Southern Festoon", "Southern Festoon", "Zerynthia polyxena (Denis & Schiffermüller, 1775)",
                 "Güzel Kurt", "Southern Festoon", "Güzel Kurt", "Spring species", "Eastern race",
                 "Spring form",
                 // Location
@@ -393,8 +393,8 @@ public class ExcelTemplateService(ILogger<ExcelTemplateService> logger) : IExcel
             },
             new object[] {
                 // Authority & Taxonomy
-                "Butler", 1869, "Geometridae", "Archiearis", "parthenias lucida", "Moth",
-                "Orange Underwing", "Archiearis parthenias", "Orange Underwing", "Orange Underwing", "Archiearis parthenias (Linnaeus, 1761)",
+                "Butler", 1869, "Geometridae", "Archiearis", "parthenias lucida",
+                 "Archiearis parthenias", "Orange Underwing", "Orange Underwing", "Archiearis parthenias (Linnaeus, 1761)",
                 "Turuncu Altkanat", "Orange Underwing", "Turuncu Altkanat", "Early spring moth", "Northern variant",
                 "Spring variant",
                 // Location
@@ -409,8 +409,8 @@ public class ExcelTemplateService(ILogger<ExcelTemplateService> logger) : IExcel
             },
             new object[] {
                 // Authority & Taxonomy
-                "Pallas", 1771, "Papilionidae", "Iphiclides", "podalirius feisthamelii", "Butterfly",
-                "Scarce Swallowtail", "Iphiclides podalirius", "Scarce Swallowtail", "Scarce Swallowtail", "Iphiclides podalirius (Linnaeus, 1758)",
+                "Pallas", 1771, "Papilionidae", "Iphiclides", "podalirius feisthamelii",
+                 "Iphiclides podalirius", "Scarce Swallowtail", "Scarce Swallowtail", "Iphiclides podalirius (Linnaeus, 1758)",
                 "Erik Kırlangıçkuyruğu", "Scarce Swallowtail", "Erik Kırlangıçkuyruğu", "Fruit tree associate", "Southern population",
                 "Mediterranean type",
                 // Location
@@ -425,8 +425,8 @@ public class ExcelTemplateService(ILogger<ExcelTemplateService> logger) : IExcel
             },
             new object[] {
                 // Authority & Taxonomy
-                "Stoll", 1782, "Lasiocampidae", "Eriogaster", "lanestris arbusculae", "Moth",
-                "Small Eggar", "Eriogaster lanestris", "Small Eggar", "Small Eggar", "Eriogaster lanestris (Linnaeus, 1758)",
+                "Stoll", 1782, "Lasiocampidae", "Eriogaster", "lanestris arbusculae",
+                "Eriogaster lanestris", "Small Eggar", "Small Eggar", "Eriogaster lanestris (Linnaeus, 1758)",
                 "Küçük İplikçi", "Small Eggar", "Küçük İplikçi", "Early spring species", "Mountain form",
                 "Alpine variant",
                 // Location
@@ -441,8 +441,8 @@ public class ExcelTemplateService(ILogger<ExcelTemplateService> logger) : IExcel
             },
             new object[] {
                 // Authority & Taxonomy
-                "Rambur", 1839, "Sphingidae", "Proserpinus", "proserpina schmidti", "Moth",
-                "Willowherb Hawkmoth", "Proserpinus proserpina", "Willowherb Hawkmoth", "Willowherb Hawkmoth", "Proserpinus proserpina (Pallas, 1772)",
+                "Rambur", 1839, "Sphingidae", "Proserpinus", "proserpina schmidti",
+                "Proserpinus proserpina", "Willowherb Hawkmoth", "Willowherb Hawkmoth", "Proserpinus proserpina (Pallas, 1772)",
                 "Yakıotu Kartalkuyruğu", "Willowherb Hawkmoth", "Yakıotu Kartalkuyruğu", "Protected species", "Eastern population",
                 "Anatolian form",
                 // Location
@@ -457,8 +457,8 @@ public class ExcelTemplateService(ILogger<ExcelTemplateService> logger) : IExcel
             },
             new object[] {
                 // Authority & Taxonomy
-                "Zeller", 1847, "Zygaenidae", "Zygaena", "filipendulae anatolica", "Moth",
-                "Six-spot Burnet", "Zygaena filipendulae", "Six-spot Burnet", "Six-spot Burnet", "Zygaena filipendulae (Linnaeus, 1758)",
+                "Zeller", 1847, "Zygaenidae", "Zygaena", "filipendulae anatolica",
+                "Zygaena filipendulae", "Six-spot Burnet", "Six-spot Burnet", "Zygaena filipendulae (Linnaeus, 1758)",
                 "Altı Benekli Kızılkanat", "Six-spot Burnet", "Altı Benekli Kızılkanat", "Meadow species", "Turkish race",
                 "Local subspecies",
                 // Location
@@ -473,8 +473,8 @@ public class ExcelTemplateService(ILogger<ExcelTemplateService> logger) : IExcel
             },
             new object[] {
                 // Authority & Taxonomy
-                "Borkhausen", 1788, "Noctuidae", "Catocala", "nupta orientalis", "Moth",
-                "Red Underwing", "Catocala nupta", "Red Underwing", "Red Underwing", "Catocala nupta (Linnaeus, 1767)",
+                "Borkhausen", 1788, "Noctuidae", "Catocala", "nupta orientalis",
+                "Catocala nupta", "Red Underwing", "Red Underwing", "Catocala nupta (Linnaeus, 1767)",
                 "Kırmızı Altkanat", "Red Underwing", "Kırmızı Altkanat", "Night-flying moth", "Eastern subspecies",
                 "River valley form",
                 // Location
@@ -489,8 +489,8 @@ public class ExcelTemplateService(ILogger<ExcelTemplateService> logger) : IExcel
             },
             new object[] {
                // Authority & Taxonomy
-               "Geyer", 1832, "Nymphalidae", "Melitaea", "phoebe telona", "Butterfly",
-               "Knapweed Fritillary", "Melitaea phoebe", "Knapweed Fritillary", "Knapweed Fritillary", "Melitaea phoebe (Denis & Schiffermüller, 1775)",
+               "Geyer", 1832, "Nymphalidae", "Melitaea", "phoebe telona",
+               "Melitaea phoebe", "Knapweed Fritillary", "Knapweed Fritillary", "Melitaea phoebe (Denis & Schiffermüller, 1775)",
                "Büyük İparhan", "Knapweed Fritillary", "Büyük İparhan", "Mediterranean species", "Southern population",
                "Historical variant",
                // Location
@@ -505,8 +505,8 @@ public class ExcelTemplateService(ILogger<ExcelTemplateService> logger) : IExcel
             },
             new object[] {
                // Authority & Taxonomy
-               "Duponchel", 1835, "Saturniidae", "Actias", "selene artemis", "Moth",
-               "Moon Moth", "Actias selene", "Moon Moth", "Moon Moth", "Actias selene (Hübner, 1807)",
+               "Duponchel", 1835, "Saturniidae", "Actias", "selene artemis",
+               "Actias selene", "Moon Moth", "Moon Moth", "Actias selene (Hübner, 1807)",
                "Ay Güvesi", "Moon Moth", "Ay Güvesi", "Asian species", "Western population",
                "Anatolian race",
                // Location
@@ -521,8 +521,8 @@ public class ExcelTemplateService(ILogger<ExcelTemplateService> logger) : IExcel
             },
             new object[] {
                // Authority & Taxonomy
-               "Kollar", 1848, "Pieridae", "Anthocharis", "cardamines phoenissa", "Butterfly",
-               "Orange-tip", "Anthocharis cardamines", "Orange-tip", "Orange-tip", "Anthocharis cardamines (Linnaeus, 1758)",
+               "Kollar", 1848, "Pieridae", "Anthocharis", "cardamines phoenissa",
+               "Anthocharis cardamines", "Orange-tip", "Orange-tip", "Anthocharis cardamines (Linnaeus, 1758)",
                "Turuncu Süslü", "Orange-tip", "Turuncu Süslü", "Spring butterfly", "Eastern form",
                "Spring emergence",
                // Location
@@ -537,8 +537,8 @@ public class ExcelTemplateService(ILogger<ExcelTemplateService> logger) : IExcel
             },
             new object[] {
                // Authority & Taxonomy
-               "Ménétriés", 1832, "Lycaenidae", "Tomares", "callimachus hafiz", "Butterfly",
-               "Callimachus", "Tomares callimachus", "Callimachus", "Callimachus", "Tomares callimachus (Eversmann, 1848)",
+               "Ménétriés", 1832, "Lycaenidae", "Tomares", "callimachus hafiz",
+              "Tomares callimachus", "Callimachus", "Callimachus", "Tomares callimachus (Eversmann, 1848)",
                "Küçük Sevbeni", "Callimachus", "Küçük Sevbeni", "Early spring species", "Turkish endemic",
                "Local variant",
                // Location
@@ -553,8 +553,8 @@ public class ExcelTemplateService(ILogger<ExcelTemplateService> logger) : IExcel
             },
             new object[] {
                // Authority & Taxonomy
-               "Staudinger", 1892, "Noctuidae", "Cucullia", "calendulae orientalis", "Moth",
-               "Star-wort", "Cucullia calendulae", "Star-wort", "Star-wort", "Cucullia calendulae (Treitschke, 1835)",
+               "Staudinger", 1892, "Noctuidae", "Cucullia", "calendulae orientalis",
+               "Cucullia calendulae", "Star-wort", "Star-wort", "Cucullia calendulae (Treitschke, 1835)",
                "Doğu Kapüşonlusu", "Star-wort", "Doğu Kapüşonlusu", "Night-flying moth", "Eastern subspecies",
                "Anatolian type",
                // Location
@@ -569,8 +569,8 @@ public class ExcelTemplateService(ILogger<ExcelTemplateService> logger) : IExcel
             },
             new object[] {
                // Authority & Taxonomy
-               "Herrich-Schäffer", 1851, "Hesperiidae", "Carcharodus", "alceae swinhoei", "Butterfly",
-               "Mallow Skipper", "Carcharodus alceae", "Mallow Skipper", "Mallow Skipper", "Carcharodus alceae (Esper, 1780)",
+               "Herrich-Schäffer", 1851, "Hesperiidae", "Carcharodus", "alceae swinhoei",
+               "Carcharodus alceae", "Mallow Skipper", "Mallow Skipper", "Carcharodus alceae (Esper, 1780)",
                "Hatmi Zıpzıpı", "Mallow Skipper", "Hatmi Zıpzıpı", "Garden species", "Asian form",
                "Garden variant",
                // Location
@@ -585,8 +585,8 @@ public class ExcelTemplateService(ILogger<ExcelTemplateService> logger) : IExcel
             },
             new object[] {
                // Authority & Taxonomy
-               "Moore", 1865, "Sphingidae", "Deilephila", "elpenor szechuana", "Moth",
-               "Elephant Hawk-moth", "Deilephila elpenor", "Elephant Hawk-moth", "Elephant Hawk-moth", "Deilephila elpenor (Linnaeus, 1758)",
+               "Moore", 1865, "Sphingidae", "Deilephila", "elpenor szechuana",
+               "Deilephila elpenor", "Elephant Hawk-moth", "Elephant Hawk-moth", "Deilephila elpenor (Linnaeus, 1758)",
                "Büyük Fildişi", "Elephant Hawk-moth", "Büyük Fildişi", "Night-flying moth", "Eastern race",
                "Asian subspecies",
                // Location
@@ -601,8 +601,8 @@ public class ExcelTemplateService(ILogger<ExcelTemplateService> logger) : IExcel
             },
             new object[] {
                // Authority & Taxonomy
-               "Ochsenheimer", 1816, "Nymphalidae", "Limenitis", "reducta schiffermuelleri", "Butterfly",
-               "Southern White Admiral", "Limenitis reducta", "Southern White Admiral", "Southern White Admiral", "Limenitis reducta (Staudinger, 1901)",
+               "Ochsenheimer", 1816, "Nymphalidae", "Limenitis", "reducta schiffermuelleri",
+               "Limenitis reducta", "Southern White Admiral", "Southern White Admiral", "Limenitis reducta (Staudinger, 1901)",
                "Küçük İparhan", "Southern White Admiral", "Küçük İparhan", "Woodland species", "Southern form",
                "Mediterranean type",
                // Location
@@ -617,8 +617,8 @@ public class ExcelTemplateService(ILogger<ExcelTemplateService> logger) : IExcel
             },
             new object[] {
                // Authority & Taxonomy
-               "Staudinger", 1878, "Zygaenidae", "Jordanita", "graeca anatolica", "Moth",
-               "Forester Moth", "Jordanita graeca", "Forester Moth", "Forester Moth", "Jordanita graeca (Jordan, 1907)",
+               "Staudinger", 1878, "Zygaenidae", "Jordanita", "graeca anatolica",
+               "Jordanita graeca", "Forester Moth", "Forester Moth", "Jordanita graeca (Jordan, 1907)",
                "Yeşil Metal", "Forester Moth", "Yeşil Metal", "Day-flying moth", "Turkish endemic",
                "Endemic form",
                // Location
@@ -633,8 +633,8 @@ public class ExcelTemplateService(ILogger<ExcelTemplateService> logger) : IExcel
             },
             new object[] {
                // Authority & Taxonomy
-               "Draudt", 1931, "Geometridae", "Scopula", "ornata subornata", "Moth",
-               "Lace Border", "Scopula ornata", "Lace Border", "Lace Border", "Scopula ornata (Scopoli, 1763)",
+               "Draudt", 1931, "Geometridae", "Scopula", "ornata subornata",
+               "Scopula ornata", "Lace Border", "Lace Border", "Scopula ornata (Scopoli, 1763)",
                "Süslü Düzkanat", "Lace Border", "Süslü Düzkanat", "Chalk grassland species", "Eastern variant",
                "Grassland form",
                // Location
@@ -646,7 +646,7 @@ public class ExcelTemplateService(ILogger<ExcelTemplateService> logger) : IExcel
                "Julia", "Cooper", "Julia Cooper",
                // Observation Details
                "Female", "2024-06-05", "Adult", 5, "Day-flying activity", "Grassland monitoring", "Calcareous grassland"
-            } 
+            }
         };
 
         for (int row = 0; row < exampleData.Length; row++)

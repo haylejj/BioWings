@@ -6,11 +6,14 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace BioWings.Persistence.Migrations;
 
 /// <inheritdoc />
-public partial class mig_add_firstMig : Migration
+public partial class mig_init : Migration
 {
     /// <inheritdoc />
     protected override void Up(MigrationBuilder migrationBuilder)
     {
+        migrationBuilder.AlterDatabase()
+            .Annotation("MySql:CharSet", "utf8mb4");
+
         migrationBuilder.CreateTable(
             name: "Authorities",
             columns: table => new
@@ -56,13 +59,13 @@ public partial class mig_add_firstMig : Migration
                     .Annotation("MySql:CharSet", "utf8mb4"),
                 Surname = table.Column<string>(type: "varchar(20)", maxLength: 20, nullable: false)
                     .Annotation("MySql:CharSet", "utf8mb4"),
-                FullName = table.Column<string>(type: "longtext", nullable: false)
+                FullName = table.Column<string>(type: "longtext", nullable: true)
                     .Annotation("MySql:CharSet", "utf8mb4"),
-                Email = table.Column<string>(type: "varchar(40)", maxLength: 40, nullable: false)
+                Email = table.Column<string>(type: "varchar(40)", maxLength: 40, nullable: true)
                     .Annotation("MySql:CharSet", "utf8mb4"),
-                Phone = table.Column<string>(type: "varchar(20)", maxLength: 20, nullable: false)
+                Phone = table.Column<string>(type: "varchar(20)", maxLength: 20, nullable: true)
                     .Annotation("MySql:CharSet", "utf8mb4"),
-                PasswordHash = table.Column<string>(type: "varchar(70)", maxLength: 70, nullable: false)
+                PasswordHash = table.Column<string>(type: "varchar(70)", maxLength: 70, nullable: true)
                     .Annotation("MySql:CharSet", "utf8mb4"),
                 CreatedDateTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                 UpdatedDateTime = table.Column<DateTime>(type: "datetime(6)", nullable: false)
@@ -141,24 +144,29 @@ public partial class mig_add_firstMig : Migration
                 Id = table.Column<int>(type: "int", nullable: false)
                     .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                 ProvinceId = table.Column<int>(type: "int", nullable: false),
-                Name = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
+                SquareRef = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: true)
                     .Annotation("MySql:CharSet", "utf8mb4"),
-                SquareRef = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
+                SquareLatitude = table.Column<decimal>(type: "decimal(9,6)", precision: 9, scale: 6, nullable: false),
+                SquareLongitude = table.Column<decimal>(type: "decimal(10,6)", precision: 10, scale: 6, nullable: false),
+                Latitude = table.Column<decimal>(type: "decimal(9,6)", precision: 9, scale: 6, nullable: false),
+                Longitude = table.Column<decimal>(type: "decimal(10,6)", precision: 10, scale: 6, nullable: false),
+                DecimalDegrees = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: true)
                     .Annotation("MySql:CharSet", "utf8mb4"),
-                Latitude = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
+                DegreesMinutesSeconds = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: true)
                     .Annotation("MySql:CharSet", "utf8mb4"),
-                Longitude = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
+                DecimalMinutes = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: true)
                     .Annotation("MySql:CharSet", "utf8mb4"),
-                Altitude1 = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
+                UtmCoordinates = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: true)
                     .Annotation("MySql:CharSet", "utf8mb4"),
-                Altitude2 = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
+                MgrsCoordinates = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: true)
                     .Annotation("MySql:CharSet", "utf8mb4"),
-                XCoord = table.Column<decimal>(type: "decimal(65,30)", nullable: false),
-                YCoord = table.Column<decimal>(type: "decimal(65,30)", nullable: false),
-                UtmReference = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
+                Altitude1 = table.Column<decimal>(type: "decimal(8,2)", precision: 8, scale: 2, nullable: false),
+                Altitude2 = table.Column<decimal>(type: "decimal(8,2)", precision: 8, scale: 2, nullable: false),
+                UtmReference = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: true)
                     .Annotation("MySql:CharSet", "utf8mb4"),
-                Description = table.Column<string>(type: "varchar(500)", maxLength: 500, nullable: false)
+                Description = table.Column<string>(type: "varchar(500)", maxLength: 500, nullable: true)
                     .Annotation("MySql:CharSet", "utf8mb4"),
+                CoordinatePrecisionLevel = table.Column<int>(type: "int", nullable: false),
                 CreatedDateTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                 UpdatedDateTime = table.Column<DateTime>(type: "datetime(6)", nullable: false)
             },
@@ -182,22 +190,25 @@ public partial class mig_add_firstMig : Migration
                     .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                 AuthorityId = table.Column<int>(type: "int", nullable: false),
                 GenusId = table.Column<int>(type: "int", nullable: false),
-                SpeciesTypeId = table.Column<int>(type: "int", nullable: false),
                 ScientificName = table.Column<string>(type: "varchar(200)", maxLength: 200, nullable: false)
                     .Annotation("MySql:CharSet", "utf8mb4"),
-                Name = table.Column<string>(type: "varchar(70)", maxLength: 70, nullable: false)
+                Name = table.Column<string>(type: "varchar(70)", maxLength: 70, nullable: true)
                     .Annotation("MySql:CharSet", "utf8mb4"),
-                EUName = table.Column<string>(type: "varchar(70)", maxLength: 70, nullable: false)
+                EUName = table.Column<string>(type: "varchar(70)", maxLength: 70, nullable: true)
                     .Annotation("MySql:CharSet", "utf8mb4"),
-                FullName = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false)
+                FullName = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: true)
                     .Annotation("MySql:CharSet", "utf8mb4"),
-                TurkishName = table.Column<string>(type: "varchar(70)", maxLength: 70, nullable: false)
+                HesselbarthName = table.Column<string>(type: "varchar(70)", maxLength: 70, nullable: true)
                     .Annotation("MySql:CharSet", "utf8mb4"),
-                EnglishName = table.Column<string>(type: "varchar(70)", maxLength: 70, nullable: false)
+                TurkishName = table.Column<string>(type: "varchar(70)", maxLength: 70, nullable: true)
                     .Annotation("MySql:CharSet", "utf8mb4"),
-                TurkishNamesTrakel = table.Column<string>(type: "varchar(70)", maxLength: 70, nullable: false)
+                EnglishName = table.Column<string>(type: "varchar(70)", maxLength: 70, nullable: true)
                     .Annotation("MySql:CharSet", "utf8mb4"),
-                Trakel = table.Column<string>(type: "varchar(70)", maxLength: 70, nullable: false)
+                TurkishNamesTrakel = table.Column<string>(type: "varchar(70)", maxLength: 70, nullable: true)
+                    .Annotation("MySql:CharSet", "utf8mb4"),
+                Trakel = table.Column<string>(type: "varchar(70)", maxLength: 70, nullable: true)
+                    .Annotation("MySql:CharSet", "utf8mb4"),
+                KocakName = table.Column<string>(type: "varchar(70)", maxLength: 70, nullable: true)
                     .Annotation("MySql:CharSet", "utf8mb4"),
                 CreatedDateTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                 UpdatedDateTime = table.Column<DateTime>(type: "datetime(6)", nullable: false)
@@ -217,12 +228,6 @@ public partial class mig_add_firstMig : Migration
                     principalTable: "Genera",
                     principalColumn: "Id",
                     onDelete: ReferentialAction.Restrict);
-                table.ForeignKey(
-                    name: "FK_Species_SpeciesTypes_SpeciesTypeId",
-                    column: x => x.SpeciesTypeId,
-                    principalTable: "SpeciesTypes",
-                    principalColumn: "Id",
-                    onDelete: ReferentialAction.Restrict);
             })
             .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -232,28 +237,21 @@ public partial class mig_add_firstMig : Migration
             {
                 Id = table.Column<int>(type: "int", nullable: false)
                     .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                FullName = table.Column<string>(type: "varchar(200)", maxLength: 200, nullable: false)
-                    .Annotation("MySql:CharSet", "utf8mb4"),
+                SpeciesId = table.Column<int>(type: "int", nullable: false),
+                LocationId = table.Column<int>(type: "int", nullable: false),
+                ObserverId = table.Column<int>(type: "int", nullable: false),
                 Sex = table.Column<string>(type: "varchar(15)", maxLength: 15, nullable: false)
                     .Annotation("MySql:CharSet", "utf8mb4"),
                 ObservationDate = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                Method = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
-                    .Annotation("MySql:CharSet", "utf8mb4"),
-                Activity = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
-                    .Annotation("MySql:CharSet", "utf8mb4"),
                 LifeStage = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
                     .Annotation("MySql:CharSet", "utf8mb4"),
                 NumberSeen = table.Column<int>(type: "int", nullable: false),
-                Accuracy = table.Column<decimal>(type: "decimal(65,30)", nullable: false),
                 Notes = table.Column<string>(type: "varchar(1000)", maxLength: 1000, nullable: false)
                     .Annotation("MySql:CharSet", "utf8mb4"),
                 Source = table.Column<string>(type: "varchar(200)", maxLength: 200, nullable: false)
                     .Annotation("MySql:CharSet", "utf8mb4"),
-                Link = table.Column<string>(type: "varchar(500)", maxLength: 500, nullable: false)
+                LocationInfo = table.Column<string>(type: "longtext", nullable: false)
                     .Annotation("MySql:CharSet", "utf8mb4"),
-                SpeciesId = table.Column<int>(type: "int", nullable: false),
-                LocationId = table.Column<int>(type: "int", nullable: false),
-                ObserverId = table.Column<int>(type: "int", nullable: false),
                 CreatedDateTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                 UpdatedDateTime = table.Column<DateTime>(type: "datetime(6)", nullable: false)
             },
@@ -277,7 +275,7 @@ public partial class mig_add_firstMig : Migration
                     column: x => x.SpeciesId,
                     principalTable: "Species",
                     principalColumn: "Id",
-                    onDelete: ReferentialAction.Restrict);
+                    onDelete: ReferentialAction.Cascade);
             })
             .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -386,11 +384,6 @@ public partial class mig_add_firstMig : Migration
             column: "GenusId");
 
         migrationBuilder.CreateIndex(
-            name: "IX_Species_SpeciesTypeId",
-            table: "Species",
-            column: "SpeciesTypeId");
-
-        migrationBuilder.CreateIndex(
             name: "IX_Subspecies_SpeciesId",
             table: "Subspecies",
             column: "SpeciesId");
@@ -401,6 +394,9 @@ public partial class mig_add_firstMig : Migration
     {
         migrationBuilder.DropTable(
             name: "Media");
+
+        migrationBuilder.DropTable(
+            name: "SpeciesTypes");
 
         migrationBuilder.DropTable(
             name: "Subspecies");
@@ -425,9 +421,6 @@ public partial class mig_add_firstMig : Migration
 
         migrationBuilder.DropTable(
             name: "Genera");
-
-        migrationBuilder.DropTable(
-            name: "SpeciesTypes");
 
         migrationBuilder.DropTable(
             name: "Families");

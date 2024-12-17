@@ -11,7 +11,7 @@ public class SpeciesGetQueryHandler(ISpeciesRepository speciesRepository, ILogge
 {
     public async Task<ServiceResult<IEnumerable<SpeciesGetQueryResult>>> Handle(SpeciesGetQuery request, CancellationToken cancellationToken)
     {
-        var species = await speciesRepository.GetAllAsQueryable().Include(x => x.Authority).Include(x => x.Genus).Include(x => x.SpeciesType).ToListAsync(cancellationToken);
+        var species = await speciesRepository.GetAllAsQueryable().Include(x => x.Authority).Include(x => x.Genus).ToListAsync(cancellationToken);
         var speciesResult = species.Select(x => new SpeciesGetQueryResult
         {
             Id = x.Id,
@@ -19,8 +19,6 @@ public class SpeciesGetQueryHandler(ISpeciesRepository speciesRepository, ILogge
             AuthorityName = x.Authority.Name,
             GenusId = x.GenusId,
             GenusName = x.Genus.Name,
-            SpeciesTypeId = x.SpeciesTypeId,
-            SpeciesTypeName = x.SpeciesType.Name,
             ScientificName = x.ScientificName,
             Name = x.Name,
             EUName = x.EUName,

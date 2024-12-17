@@ -15,7 +15,7 @@ public class SpeciesGetPagedQueryHandler(ISpeciesRepository speciesRepository, I
         request.PageSize = request.PageSize <= 0 ? 25 : Math.Min(request.PageSize, 50);
         var totalCount = await speciesRepository.GetTotalCountAsync(cancellationToken);
 
-        var species = await speciesRepository.GetPagedAsQueryable(request.PageNumber, request.PageSize).Include(x=> x.Genus).Include(x=> x.Authority).Include(x=> x.SpeciesType).ToListAsync(cancellationToken);
+        var species = await speciesRepository.GetPagedAsQueryable(request.PageNumber, request.PageSize).Include(x => x.Genus).Include(x => x.Authority).ToListAsync(cancellationToken);
         var result = species.Select(s => new SpeciesGetPagedQueryResult
         {
             Id = s.Id,
@@ -23,8 +23,6 @@ public class SpeciesGetPagedQueryHandler(ISpeciesRepository speciesRepository, I
             GenusName = s.Genus.Name,
             AuthorityId = s.AuthorityId,
             AuthorityName = s.Authority.Name,
-            SpeciesTypeId = s.SpeciesTypeId,
-            SpeciesTypeName = s.SpeciesType.Name,
             FullName = s.FullName,
             EnglishName = s.EnglishName,
             EUName = s.EUName,

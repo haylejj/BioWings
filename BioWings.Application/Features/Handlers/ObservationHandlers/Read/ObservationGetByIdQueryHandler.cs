@@ -4,7 +4,6 @@ using BioWings.Application.Results;
 using BioWings.Domain.Interfaces;
 using MediatR;
 using Microsoft.Extensions.Logging;
-using System.Net;
 
 namespace BioWings.Application.Features.Handlers.ObservationHandlers.Read;
 public class ObservationGetByIdQueryHandler(IObservationRepository observationRepository, ILogger<ObservationGetByIdQueryHandler> logger) : IRequestHandler<ObservationGetByIdQuery, ServiceResult<ObservationGetByIdQueryResult>>
@@ -37,7 +36,6 @@ public class ObservationGetByIdQueryHandler(IObservationRepository observationRe
             Year = observation.Species.Authority.Year,
             GenusName = observation.Species.Genus.Name,
             FamilyName = observation.Species.Genus.Family.Name,
-            SpeciesTypeName = observation.Species.SpeciesType.Name,
             ScientificName = observation.Species.ScientificName,
             Name = observation.Species.Name,
             EUName = observation.Species.EUName,
@@ -50,7 +48,8 @@ public class ObservationGetByIdQueryHandler(IObservationRepository observationRe
             KocakName = observation.Species.KocakName,
 
             // Location related
-            ProvinceName = observation.Location.Province.Name,
+            ProvinceId = observation.Location.Province.Id,
+            ProvinceName= observation.Location.Province.Name,
             SquareRef = observation.Location.SquareRef,
             SquareLatitude = observation.Location.SquareLatitude,
             SquareLongitude = observation.Location.SquareLongitude,
@@ -64,7 +63,6 @@ public class ObservationGetByIdQueryHandler(IObservationRepository observationRe
             Altitude1 = observation.Location.Altitude1,
             Altitude2 = observation.Location.Altitude2,
             UtmReference = observation.Location.UtmReference,
-            Description = observation.Location.Description,
             CoordinatePrecisionLevel = observation.Location.CoordinatePrecisionLevel,
 
             // Observer and other fields

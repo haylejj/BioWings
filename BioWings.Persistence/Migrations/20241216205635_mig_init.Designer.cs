@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BioWings.Persistence.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241130130740_mig_add_firstMig")]
-    partial class mig_add_firstMig
+    [Migration("20241216205635_mig_init")]
+    partial class mig_init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -113,60 +113,73 @@ namespace BioWings.Persistence.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Altitude1")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("varchar(50)");
+                    b.Property<decimal>("Altitude1")
+                        .HasPrecision(8, 2)
+                        .HasColumnType("decimal(8,2)");
 
-                    b.Property<string>("Altitude2")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("varchar(50)");
+                    b.Property<decimal>("Altitude2")
+                        .HasPrecision(8, 2)
+                        .HasColumnType("decimal(8,2)");
+
+                    b.Property<int>("CoordinatePrecisionLevel")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDateTime")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<string>("DecimalDegrees")
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<string>("DecimalMinutes")
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<string>("DegreesMinutesSeconds")
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)");
+
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasMaxLength(500)
                         .HasColumnType("varchar(500)");
 
-                    b.Property<string>("Latitude")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("varchar(50)");
+                    b.Property<decimal>("Latitude")
+                        .HasPrecision(9, 6)
+                        .HasColumnType("decimal(9,6)");
 
-                    b.Property<string>("Longitude")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("varchar(50)");
+                    b.Property<decimal>("Longitude")
+                        .HasPrecision(10, 6)
+                        .HasColumnType("decimal(10,6)");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
+                    b.Property<string>("MgrsCoordinates")
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
 
                     b.Property<int>("ProvinceId")
                         .HasColumnType("int");
 
+                    b.Property<decimal>("SquareLatitude")
+                        .HasPrecision(9, 6)
+                        .HasColumnType("decimal(9,6)");
+
+                    b.Property<decimal>("SquareLongitude")
+                        .HasPrecision(10, 6)
+                        .HasColumnType("decimal(10,6)");
+
                     b.Property<string>("SquareRef")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
 
                     b.Property<DateTime>("UpdatedDateTime")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<string>("UtmReference")
-                        .IsRequired()
+                    b.Property<string>("UtmCoordinates")
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
 
-                    b.Property<decimal>("XCoord")
-                        .HasColumnType("decimal(65,30)");
-
-                    b.Property<decimal>("YCoord")
-                        .HasColumnType("decimal(65,30)");
+                    b.Property<string>("UtmReference")
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)");
 
                     b.HasKey("Id");
 
@@ -227,39 +240,20 @@ namespace BioWings.Persistence.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<decimal>("Accuracy")
-                        .HasColumnType("decimal(65,30)");
-
-                    b.Property<string>("Activity")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("varchar(50)");
-
                     b.Property<DateTime>("CreatedDateTime")
                         .HasColumnType("datetime(6)");
-
-                    b.Property<string>("FullName")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("varchar(200)");
 
                     b.Property<string>("LifeStage")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
 
-                    b.Property<string>("Link")
-                        .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("varchar(500)");
-
                     b.Property<int>("LocationId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Method")
+                    b.Property<string>("LocationInfo")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("varchar(50)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Notes")
                         .IsRequired()
@@ -314,12 +308,10 @@ namespace BioWings.Persistence.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasMaxLength(40)
                         .HasColumnType("varchar(40)");
 
                     b.Property<string>("FullName")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Name")
@@ -328,12 +320,10 @@ namespace BioWings.Persistence.Migrations
                         .HasColumnType("varchar(40)");
 
                     b.Property<string>("PasswordHash")
-                        .IsRequired()
                         .HasMaxLength(70)
                         .HasColumnType("varchar(70)");
 
                     b.Property<string>("Phone")
-                        .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("varchar(20)");
 
@@ -392,25 +382,29 @@ namespace BioWings.Persistence.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("EUName")
-                        .IsRequired()
                         .HasMaxLength(70)
                         .HasColumnType("varchar(70)");
 
                     b.Property<string>("EnglishName")
-                        .IsRequired()
                         .HasMaxLength(70)
                         .HasColumnType("varchar(70)");
 
                     b.Property<string>("FullName")
-                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("varchar(100)");
 
                     b.Property<int>("GenusId")
                         .HasColumnType("int");
 
+                    b.Property<string>("HesselbarthName")
+                        .HasMaxLength(70)
+                        .HasColumnType("varchar(70)");
+
+                    b.Property<string>("KocakName")
+                        .HasMaxLength(70)
+                        .HasColumnType("varchar(70)");
+
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasMaxLength(70)
                         .HasColumnType("varchar(70)");
 
@@ -419,21 +413,15 @@ namespace BioWings.Persistence.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("varchar(200)");
 
-                    b.Property<int>("SpeciesTypeId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Trakel")
-                        .IsRequired()
                         .HasMaxLength(70)
                         .HasColumnType("varchar(70)");
 
                     b.Property<string>("TurkishName")
-                        .IsRequired()
                         .HasMaxLength(70)
                         .HasColumnType("varchar(70)");
 
                     b.Property<string>("TurkishNamesTrakel")
-                        .IsRequired()
                         .HasMaxLength(70)
                         .HasColumnType("varchar(70)");
 
@@ -445,8 +433,6 @@ namespace BioWings.Persistence.Migrations
                     b.HasIndex("AuthorityId");
 
                     b.HasIndex("GenusId");
-
-                    b.HasIndex("SpeciesTypeId");
 
                     b.ToTable("Species");
                 });
@@ -567,7 +553,7 @@ namespace BioWings.Persistence.Migrations
                     b.HasOne("BioWings.Domain.Entities.Species", "Species")
                         .WithMany("Observations")
                         .HasForeignKey("SpeciesId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Location");
@@ -591,17 +577,9 @@ namespace BioWings.Persistence.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("BioWings.Domain.Entities.SpeciesType", "SpeciesType")
-                        .WithMany("Species")
-                        .HasForeignKey("SpeciesTypeId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.Navigation("Authority");
 
                     b.Navigation("Genus");
-
-                    b.Navigation("SpeciesType");
                 });
 
             modelBuilder.Entity("BioWings.Domain.Entities.Subspecies", b =>
@@ -657,11 +635,6 @@ namespace BioWings.Persistence.Migrations
                     b.Navigation("Observations");
 
                     b.Navigation("Subspecies");
-                });
-
-            modelBuilder.Entity("BioWings.Domain.Entities.SpeciesType", b =>
-                {
-                    b.Navigation("Species");
                 });
 #pragma warning restore 612, 618
         }

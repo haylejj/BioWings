@@ -17,10 +17,6 @@ public class SpeciesTypeConfiguration : IEntityTypeConfiguration<SpeciesType>
         builder.Property(x => x.Description)
             .HasMaxLength(500);
 
-        builder.HasMany(x => x.Species)
-            .WithOne(x => x.SpeciesType)
-            .HasForeignKey(x => x.SpeciesTypeId)
-            .OnDelete(DeleteBehavior.Restrict);
     }
 }
 

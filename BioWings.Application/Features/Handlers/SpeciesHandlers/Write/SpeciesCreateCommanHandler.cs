@@ -27,7 +27,6 @@ public class SpeciesCreateCommanHandler(ISpeciesRepository speciesRepository, IU
             TurkishNamesTrakel=request.TurkishNamesTrakel,
             Trakel=request.Trakel,
             GenusId=request.GenusId,
-            SpeciesTypeId=request.SpeciesTypeId,
             HesselbarthName=request.HesselbarthName,
             KocakName=request.KocakName
         };

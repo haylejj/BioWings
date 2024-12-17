@@ -17,7 +17,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowMvcApp", builder =>
     {
         builder.WithOrigins("https://localhost:7269") // mvc https port
-               .AllowAnyHeader() 
+               .AllowAnyHeader()
                .AllowAnyMethod()
                .AllowCredentials();
     });

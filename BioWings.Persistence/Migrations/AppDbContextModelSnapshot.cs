@@ -410,9 +410,6 @@ namespace BioWings.Persistence.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("varchar(200)");
 
-                    b.Property<int>("SpeciesTypeId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Trakel")
                         .HasMaxLength(70)
                         .HasColumnType("varchar(70)");
@@ -433,8 +430,6 @@ namespace BioWings.Persistence.Migrations
                     b.HasIndex("AuthorityId");
 
                     b.HasIndex("GenusId");
-
-                    b.HasIndex("SpeciesTypeId");
 
                     b.ToTable("Species");
                 });
@@ -555,7 +550,7 @@ namespace BioWings.Persistence.Migrations
                     b.HasOne("BioWings.Domain.Entities.Species", "Species")
                         .WithMany("Observations")
                         .HasForeignKey("SpeciesId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Location");
@@ -579,17 +574,9 @@ namespace BioWings.Persistence.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("BioWings.Domain.Entities.SpeciesType", "SpeciesType")
-                        .WithMany("Species")
-                        .HasForeignKey("SpeciesTypeId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.Navigation("Authority");
 
                     b.Navigation("Genus");
-
-                    b.Navigation("SpeciesType");
                 });
 
             modelBuilder.Entity("BioWings.Domain.Entities.Subspecies", b =>
@@ -645,11 +632,6 @@ namespace BioWings.Persistence.Migrations
                     b.Navigation("Observations");
 
                     b.Navigation("Subspecies");
-                });
-
-            modelBuilder.Entity("BioWings.Domain.Entities.SpeciesType", b =>
-                {
-                    b.Navigation("Species");
                 });
 #pragma warning restore 612, 618
         }

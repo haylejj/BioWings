@@ -11,5 +11,7 @@ public class LocationRepository(AppDbContext dbContext) : GenericRepository<Loca
     public async Task<Location?> FirstOrDefaultAsync(Expression<Func<Location, bool>> predicate, CancellationToken cancellationToken = default) => await _dbSet.FirstOrDefaultAsync(predicate, cancellationToken);
 
     public async Task<Location?> GetByIdWithProvinceAsync(int id, CancellationToken cancellationToken = default) => await _dbSet.Include(x => x.Province).FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
+
+    public IQueryable<Location?> GetUnusedLocationRecord() => _dbSet.Include(x => x.Observations).Where(loc => !loc.Observations.Any());
 }
 

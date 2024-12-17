@@ -42,7 +42,6 @@ public class ObservationSearchQueryHandler(IObservationRepository observationRep
                 Year = x.Species.Authority.Year,
                 GenusName = x.Species.Genus.Name,
                 FamilyName = x.Species.Genus.Family.Name,
-                SpeciesTypeName = x.Species.SpeciesType.Name,
                 ScientificName = x.Species.ScientificName,
                 Name = x.Species.Name,
                 EUName = x.Species.EUName,
@@ -69,7 +68,6 @@ public class ObservationSearchQueryHandler(IObservationRepository observationRep
                 Altitude1 = x.Location.Altitude1,
                 Altitude2 = x.Location.Altitude2,
                 UtmReference = x.Location.UtmReference,
-                Description = x.Location.Description,
                 CoordinatePrecisionLevel = x.Location.CoordinatePrecisionLevel,
 
                 // Observer and other fields

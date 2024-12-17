@@ -12,8 +12,6 @@ public class ObservationGetQueryResult
     public string GenusName { get; set; }
     //Family
     public string FamilyName { get; set; }
-    //SpeciesType
-    public string SpeciesTypeName { get; set; }
     //
     public string? ScientificName { get; set; }
     public string? Name { get; set; }
@@ -33,15 +31,14 @@ public class ObservationGetQueryResult
     public decimal SquareLongitude { get; set; }
     public decimal Latitude { get; set; }
     public decimal Longitude { get; set; }
-    public string? DecimalDegrees { get; set; } 
-    public string? DegreesMinutesSeconds { get; set; } 
-    public string? DecimalMinutes { get; set; }       
-    public string? UtmCoordinates { get; set; }        
-    public string? MgrsCoordinates { get; set; }       
+    public string? DecimalDegrees { get; set; }
+    public string? DegreesMinutesSeconds { get; set; }
+    public string? DecimalMinutes { get; set; }
+    public string? UtmCoordinates { get; set; }
+    public string? MgrsCoordinates { get; set; }
     public decimal Altitude1 { get; set; }
     public decimal Altitude2 { get; set; }
     public string? UtmReference { get; set; }
-    public string? Description { get; set; }
     public CoordinatePrecisionLevel CoordinatePrecisionLevel { get; set; }
     //Observer
     public string? ObserverFullName { get; set; }

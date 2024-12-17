@@ -47,6 +47,13 @@ public class ObservationsController(IMediator mediator) : BaseController
         var result = await mediator.Send(command);
         return CreateResult(result);
     }
+    // PUT: api/Observations
+    [HttpPut]
+    public async Task<IActionResult> Update([FromBody] ObservationUpdateCommand command)
+    {
+        var result = await mediator.Send(command);
+        return CreateResult(result);
+    }
     // DELETE: api/Observations/{id}
     [HttpDelete("{id}")]
     public async Task<IActionResult> Remove(int id)
@@ -66,7 +73,7 @@ public class ObservationsController(IMediator mediator) : BaseController
     [HttpGet("Search")]
     public async Task<IActionResult> Search([FromQuery] string searchTerm, int pageNumber = 1, [FromQuery] int pageSize = 25)
     {
-        var searchQuery = new ObservationSearchQuery { PageNumber=pageNumber,PageSize=pageSize,SearchTerm=searchTerm};
+        var searchQuery = new ObservationSearchQuery { PageNumber=pageNumber, PageSize=pageSize, SearchTerm=searchTerm };
         var result = await mediator.Send(searchQuery);
         return CreateResult(result);
     }

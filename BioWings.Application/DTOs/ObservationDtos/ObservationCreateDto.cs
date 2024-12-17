@@ -10,9 +10,6 @@ public class ObservationCreateDto
     public string? GenusName { get; set; }
     //Family
     public string? FamilyName { get; set; }
-    //SpeciesType
-    public string? SpeciesTypeName { get; set; }
-    public string? SpeciesTypeDescription { get; set; }
     //Species
     public string? ScientificName { get; set; }
     public string? Name { get; set; }

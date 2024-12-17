@@ -3,7 +3,7 @@ using BioWings.Domain.Enums;
 using MediatR;
 
 namespace BioWings.Application.Features.Commands.ObservationCommands;
-public class ObservationCreateCommand : IRequest<ServiceResult<int>>
+public class ObservationCreateCommand : IRequest<ServiceResult>
 {
     //Authority
     public string? AuthorityName { get; set; }
@@ -12,9 +12,6 @@ public class ObservationCreateCommand : IRequest<ServiceResult<int>>
     public string? GenusName { get; set; }
     //Family
     public string? FamilyName { get; set; }
-    //SpeciesType
-    public string? SpeciesTypeName { get; set; }
-    public string? SpeciesTypeDescription { get; set; }
     //Species
     public string? ScientificName { get; set; }
     public string? Name { get; set; }
@@ -26,13 +23,11 @@ public class ObservationCreateCommand : IRequest<ServiceResult<int>>
     public string? Trakel { get; set; }
     public string? KocakName { get; set; }
     public string? HesselbarthName { get; set; }
-    //public List<IFormFile>? FormFiles { get; set; } = new List<IFormFile>();//IFormFile is used to upload files . its equivalent to Media 
-    //Subspecies
-    public string? SubspeciesName { get; set; }
+    ////Subspecies
+    //public string? SubspeciesName { get; set; }
     //Location
     //Province
-    public string? ProvinceName { get; set; }
-    public int ProvinceCode { get; set; }
+    public int ProvinceId { get; set; }
     public string? SquareRef { get; set; }
     public decimal SquareLatitude { get; set; }
     public decimal SquareLongitude { get; set; }
@@ -46,7 +41,6 @@ public class ObservationCreateCommand : IRequest<ServiceResult<int>>
     public decimal Altitude1 { get; set; }
     public decimal Altitude2 { get; set; }
     public string? UtmReference { get; set; }
-    public string? Description { get; set; }
     public CoordinatePrecisionLevel CoordinatePrecisionLevel { get; set; }
     //Observer
     public string? ObserverName { get; set; }

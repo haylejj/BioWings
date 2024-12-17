@@ -13,7 +13,6 @@ public class ObservationGetPagedQueryResult
     //Family
     public string FamilyName { get; set; }
     //SpeciesType
-    public string SpeciesTypeName { get; set; }
     //
     public string? ScientificName { get; set; }
     public string? Name { get; set; }
@@ -41,7 +40,6 @@ public class ObservationGetPagedQueryResult
     public decimal Altitude1 { get; set; }
     public decimal Altitude2 { get; set; }
     public string? UtmReference { get; set; }
-    public string? Description { get; set; }
     public CoordinatePrecisionLevel CoordinatePrecisionLevel { get; set; }
     //Observer
     public string? ObserverFullName { get; set; }

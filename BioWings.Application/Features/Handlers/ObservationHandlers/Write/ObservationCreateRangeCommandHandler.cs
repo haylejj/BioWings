@@ -42,21 +42,11 @@ public class ObservationCreateRangeCommandHandler(IObservationRepository observa
                 errors.Add($"Error with Genus for observation {successCount + 1}: {genusResult.ErrorList}");
                 continue;
             }
-
-            // SpeciesType
-            var speciesTypeResult = await GetOrCreateSpeciesType(observationCommand, cancellationToken);
-            if (!speciesTypeResult.IsSuccess)
-            {
-                errors.Add($"Error with SpeciesType for observation {successCount + 1}: {speciesTypeResult.ErrorList}");
-                continue;
-            }
-
             // Species
             var speciesResult = await GetOrCreateSpecies(
                 observationCommand,
                 authorityResult.Data.Id,
                 genusResult.Data.Id,
-                speciesTypeResult.Data.Id,
                 cancellationToken);
             if (!speciesResult.IsSuccess)
             {
@@ -64,16 +54,8 @@ public class ObservationCreateRangeCommandHandler(IObservationRepository observa
                 continue;
             }
 
-            // Province
-            var provinceResult = await GetOrCreateProvince(observationCommand, cancellationToken);
-            if (!provinceResult.IsSuccess)
-            {
-                errors.Add($"Error with Province for observation {successCount + 1}: {provinceResult.ErrorList}");
-                continue;
-            }
-
             // Location
-            var locationResult = await GetOrCreateLocation(observationCommand, provinceResult.Data.Id, cancellationToken);
+            var locationResult = await GetOrCreateLocation(observationCommand, observationCommand.ProvinceCode, cancellationToken);
             if (!locationResult.IsSuccess)
             {
                 errors.Add($"Error with Location for observation {successCount + 1}: {locationResult.ErrorList}");
@@ -224,49 +206,47 @@ public class ObservationCreateRangeCommandHandler(IObservationRepository observa
             ServiceResult<Genus>.Success(genus) :
             ServiceResult<Genus>.Error("Failed to create genus");
     }
-    private async Task<ServiceResult<SpeciesType>> GetOrCreateSpeciesType(ObservationCreateDto request, CancellationToken cancellationToken)
-    {
-
-        var speciesType = await speciesTypeRepository.GetByNameAndDescriptionAsync(request.SpeciesTypeName, request.SpeciesTypeDescription, cancellationToken);
-        if (speciesType == null && !string.IsNullOrEmpty(request.SpeciesTypeName))
-        {
-            speciesType = new SpeciesType
-            {
-                Name = request.SpeciesTypeName,
-                Description = request.SpeciesTypeDescription
-            };
-            await speciesTypeRepository.AddAsync(speciesType, cancellationToken);
-            await unitOfWork.SaveChangesAsync(cancellationToken);
-            logger.LogInformation("New species type created: {SpeciesTypeName} with description: {Description}", request.SpeciesTypeName, request.SpeciesTypeDescription);
-
-        }
-        return speciesType != null ?
-            ServiceResult<SpeciesType>.Success(speciesType) :
-            ServiceResult<SpeciesType>.Error("Failed to create species type");
-
-    }
-    private async Task<ServiceResult<Species>> GetOrCreateSpecies(ObservationCreateDto request, int authorityId, int genusId, int speciesTypeId, CancellationToken cancellationToken)
+    private async Task<ServiceResult<Species>> GetOrCreateSpecies(ObservationCreateDto request, int authorityId, int genusId, CancellationToken cancellationToken)
     {
 
         // Önce mevcut türü bulmaya çalış
-        Species species = null;
+        //Species species = null;
 
         // Farklı isimlere göre sırayla arama yap
-        if (!string.IsNullOrEmpty(request.ScientificName))
-        {
-            species = await speciesRepository.GetByScientificNameAsync(request.ScientificName, cancellationToken);
-        }
+        //if (!string.IsNullOrEmpty(request.ScientificName))
+        //{
+        //    species = await speciesRepository.GetByScientificNameAsync(request.ScientificName, cancellationToken);
+        //}
 
-        if (species == null && !string.IsNullOrEmpty(request.KocakName))
-        {
-            species = await speciesRepository.GetByKocakNameAsync(request.KocakName, cancellationToken);
-        }
+        //if (species == null && !string.IsNullOrEmpty(request.KocakName))
+        //{
+        //    species = await speciesRepository.GetByKocakNameAsync(request.KocakName, cancellationToken);
+        //}
 
-        if (species == null && !string.IsNullOrEmpty(request.HesselbarthName))
-        {
-            species = await speciesRepository.GetByHesselbarthNameAsync(request.HesselbarthName, cancellationToken);
-        }
+        //if (species == null && !string.IsNullOrEmpty(request.HesselbarthName))
+        //{
+        //    species = await speciesRepository.GetByHesselbarthNameAsync(request.HesselbarthName, cancellationToken);
+        //}
+        var species = await speciesRepository.FirstOrDefaultAsync(s =>
+        s.ScientificName == request.ScientificName &&
+        s.GenusId == genusId &&
+        s.AuthorityId == authorityId &&
+        s.Name == request.Name &&
+        s.EUName == request.EUName &&
+        s.FullName == request.FullName &&
+        s.TurkishName == request.TurkishName &&
+        s.EnglishName == request.EnglishName &&
+        s.TurkishNamesTrakel == request.TurkishNamesTrakel &&
+        s.Trakel == request.Trakel &&
+        s.KocakName == request.KocakName &&
+        s.HesselbarthName == request.HesselbarthName,
+        cancellationToken);
 
+
+        if (species != null)
+        {
+            return ServiceResult<Species>.Success(species);
+        }
         // Eğer tür bulunamadıysa ve gerekli bilgiler varsa yeni tür oluştur
         if (species == null && !string.IsNullOrEmpty(request.ScientificName))
         {
@@ -274,7 +254,6 @@ public class ObservationCreateRangeCommandHandler(IObservationRepository observa
             {
                 AuthorityId = authorityId,
                 GenusId = genusId,
-                SpeciesTypeId = speciesTypeId,
                 ScientificName = request.ScientificName,
                 Name = request.Name,
                 EUName = request.EUName,
@@ -295,25 +274,6 @@ public class ObservationCreateRangeCommandHandler(IObservationRepository observa
         return species == null
             ? ServiceResult<Species>.Error("Species could not be found or created")
             : ServiceResult<Species>.Success(species);
-    }
-    private async Task<ServiceResult<Province>> GetOrCreateProvince(ObservationCreateDto request, CancellationToken cancellationToken)
-    {
-
-        var province = await provinceRepository.GetByNameAsync(request.ProvinceName, cancellationToken);
-        if (province == null && !string.IsNullOrEmpty(request.ProvinceName))
-        {
-            province = new Province
-            {
-                Name = request.ProvinceName,
-                ProvinceCode = request.ProvinceCode
-            };
-            await provinceRepository.AddAsync(province, cancellationToken);
-            await unitOfWork.SaveChangesAsync(cancellationToken);
-        }
-        return province != null ?
-            ServiceResult<Province>.Success(province) :
-            ServiceResult<Province>.Error("Failed to create province");
-
     }
     private async Task<ServiceResult<Location>> GetOrCreateLocation(ObservationCreateDto request, int provinceId, CancellationToken cancellationToken)
     {
@@ -354,33 +314,41 @@ public class ObservationCreateRangeCommandHandler(IObservationRepository observa
     }
     private async Task<Location> FindExistingLocation(ObservationCreateDto request)
     {
-        // 1. Önce SquareRef ile kontrol
-        if (!string.IsNullOrEmpty(request.SquareRef))
+        if (request.ProvinceCode == default)
+            return null;
+
+        // Tam eşleşme kontrolü yap
+        var exactMatch = await locationRepository.FirstOrDefaultAsync(l =>
+            l.ProvinceId == request.ProvinceCode &&
+            l.SquareRef == request.SquareRef &&
+            l.Latitude == request.Latitude &&
+            l.Longitude == request.Longitude &&
+            l.SquareLatitude == request.SquareLatitude &&
+            l.SquareLongitude == request.SquareLongitude &&
+            l.DecimalDegrees == request.DecimalDegrees &&
+            l.DegreesMinutesSeconds == request.DegreesMinutesSeconds &&
+            l.DecimalMinutes == request.DecimalMinutes &&
+            l.UtmCoordinates == request.UtmCoordinates &&
+            l.MgrsCoordinates == request.MgrsCoordinates &&
+            l.Altitude1 == request.Altitude1 &&
+            l.Altitude2 == request.Altitude2 &&
+            l.UtmReference == request.UtmReference &&
+            l.Description == request.Description &&
+            l.CoordinatePrecisionLevel == request.CoordinatePrecisionLevel);
+
+        // Tam eşleşme varsa onu döndür
+        if (exactMatch != null)
         {
-            var locationByRef = await locationRepository.FirstOrDefaultAsync(l =>
-                l.SquareRef == request.SquareRef);
-            if (locationByRef != null) return locationByRef;
+            logger.LogInformation(
+                "Found exact location match: ID={LocationId}, Province={ProvinceId}, SquareRef={SquareRef}",
+                exactMatch.Id,
+                exactMatch.ProvinceId,
+                exactMatch.SquareRef);
+            return exactMatch;
         }
 
-        // 2. Tam koordinat eşleşmesi
-        var locationByExactCoords = await locationRepository.FirstOrDefaultAsync(l =>
-            l.Latitude == request.Latitude &&
-            l.Longitude == request.Longitude);
-        if (locationByExactCoords != null) return locationByExactCoords;
-
-        // 3. Square koordinatları ile kontrol
-        var locationBySquare = await locationRepository.FirstOrDefaultAsync(l =>
-            l.SquareLatitude == request.SquareLatitude &&
-            l.SquareLongitude == request.SquareLongitude);
-        if (locationBySquare != null) return locationBySquare;
-
-        // 4. Yakın koordinatlar için toleranslı kontrol
-        const decimal TOLERANCE = 0.0001m;
-        var locationByTolerance = await locationRepository.FirstOrDefaultAsync(l =>
-            Math.Abs(l.Latitude - request.Latitude) <= TOLERANCE &&
-            Math.Abs(l.Longitude - request.Longitude) <= TOLERANCE);
-
-        return locationByTolerance;
+        // Tam eşleşme yoksa null döndür, çağıran metod yeni kayıt oluşturacak
+        return null;
     }
     private async Task<ServiceResult<Observer>> GetOrCreateObserver(ObservationCreateDto request, CancellationToken cancellationToken)
     {

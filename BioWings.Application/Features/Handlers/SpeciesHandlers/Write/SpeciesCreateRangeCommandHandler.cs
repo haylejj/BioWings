@@ -27,7 +27,6 @@ public class SpeciesCreateRangeCommandHandler(ISpeciesRepository speciesReposito
             TurkishNamesTrakel=x.TurkishNamesTrakel,
             Trakel=x.Trakel,
             GenusId=x.GenusId,
-            SpeciesTypeId=x.SpeciesTypeId,
             KocakName=x.KocakName,
             HesselbarthName=x.HesselbarthName
         });

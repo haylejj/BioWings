@@ -54,7 +54,7 @@ public class SpeciesConfiguration : IEntityTypeConfiguration<Species>
         builder.HasMany(x => x.Observations)
             .WithOne(x => x.Species)
             .HasForeignKey(x => x.SpeciesId)
-            .OnDelete(DeleteBehavior.Restrict);
+            .OnDelete(DeleteBehavior.Cascade);
     }
 }
 

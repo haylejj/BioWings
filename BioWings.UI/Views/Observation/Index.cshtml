@@ -6,7 +6,6 @@
 
 <!--begin::Card-->
 <div class="card">
-    <!--begin::Card header-->
     <div class="card-header border-0 pt-6">
         <!--begin::Card title-->
         <div class="card-title">
@@ -23,8 +22,24 @@
             <!--end::Search-->
         </div>
         <!--end::Card title-->
+        <!--begin::Card toolbar-->
+        <div class="card-toolbar">
+            <!--begin::Toolbar-->
+            <div class="d-flex justify-content-end">
+                <button type="button" class="btn btn-light-dark" data-bs-toggle="modal" data-bs-target="#kt_createmodal_observation">
+                    <span class="svg-icon svg-icon-2">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect opacity="0.5" x="11.364" y="20.364" width="16" height="2" rx="1" transform="rotate(-90 11.364 20.364)" fill="currentColor"></rect>
+                            <rect x="4.36396" y="11.364" width="16" height="2" rx="1" fill="currentColor"></rect>
+                        </svg>
+                    </span>
+                    New Observation
+                </button>
+            </div>
+            <!--end::Toolbar-->
+        </div>
+        <!--end::Card toolbar-->
     </div>
-    <!--end::Card header-->
     <!--begin::Card body-->
     <div class="card-body py-4">
         <!--begin::Table-->
@@ -68,7 +83,7 @@
                                    class="btn btn-icon btn-bg-light btn-active-color-danger btn-sm me-2">
                                     <i class="fas fa-trash text-danger"></i>
                                 </a>
-                                <a href="/Observation/Update/@item.Id"
+                                <a href="javascript:;" onclick="updateObservation(@item.Id)"
                                    class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm">
                                     <i class="fas fa-edit text-primary"></i>
                                 </a>
@@ -155,10 +170,6 @@
                                 <div class="field-container mb-5">
                                     <div class="fs-6 fw-semibold mb-2">Genus Name</div>
                                     <div class="fs-7 text-gray-800 bg-light p-3 rounded" id="modalGenusName"></div>
-                                </div>
-                                <div class="field-container mb-5">
-                                    <div class="fs-6 fw-semibold mb-2">Species Type</div>
-                                    <div class="fs-7 text-gray-800 bg-light p-3 rounded" id="modalSpeciesType"></div>
                                 </div>
                                 <div class="field-container mb-5">
                                     <div class="fs-6 fw-semibold mb-2">EU Name</div>
@@ -295,6 +306,471 @@
     </div>
 </div>
 <!--end::DetailModal-->
+<!--begin::UpdateModal-->
+<div class="modal fade" id="kt_updatemodal_observation" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content rounded">
+            <div class="modal-header pb-0 border-0 justify-content-end">
+                <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                    <i class="ki-duotone ki-cross fs-1">
+                        <span class="path1"></span>
+                        <span class="path2"></span>
+                    </i>
+                </div>
+            </div>
+
+            <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
+                <div class="mb-13 text-center">
+                    <h1 class="mb-3">Observation Update</h1>
+                </div>
+                <form id="update_observation_form">
+                    <!--begin::Classification Card-->
+                    <div class="card shadow-sm mb-8 modal-section">
+                        <div class="card-header">
+                            <h3 class="card-title align-items-start flex-column">
+                                <span class="card-label fw-bold text-dark">Classification Information</span>
+                            </h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="row g-5 g-xl-8">
+                                <div class="col-xl-6">
+                                    <input type="hidden" name="id" id="updateId" />
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Scientific Name</div>
+                                        <input class="form-control" name="scientificName" type="text" id="updateScientificName" />
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Family Name</div>
+                                        <input class="form-control" name="familyName" type="text" id="updateFamilyName" />
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Genus Name</div>
+                                        <input class="form-control" name="genusName" type="text" id="updateGenusName" />
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">EU Name</div>
+                                        <input class="form-control" name="euName" type="text" id="updateEUName" />
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Full Name</div>
+                                        <input class="form-control" name="fullName" type="text" id="updateFullName" />
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Kocak Name</div>
+                                        <input class="form-control" name="kocakName" type="text" id="updateKocakName" />
+                                    </div>
+                                </div>
+                                <div class="col-xl-6">
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Turkish Name</div>
+                                        <input class="form-control" name="turkishName" type="text" id="updateTurkishName" />
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">English Name</div>
+                                        <input class="form-control" name="englishName" type="text" id="updateEnglishName" />
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Authority</div>
+                                        <input class="form-control" name="authority" type="text" id="updateAuthority" />
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Name</div>
+                                        <input class="form-control" name="name" type="text" id="updateName" />
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Turkish Names Trakel</div>
+                                        <input class="form-control" name="turkishNamesTrakel" type="text" id="updateTurkishNamesTrakel" />
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Trakel</div>
+                                        <input class="form-control" name="trakel" type="text" id="updateTrakel" />
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Hesselbarth Name</div>
+                                        <input class="form-control" name="hesselbarthName" type="text" id="updateHesselbarthName" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end::Classification Card-->
+                    <!--begin::Location Card-->
+                    <div class="card shadow-sm mb-8 modal-section">
+                        <div class="card-header">
+                            <h3 class="card-title align-items-start flex-column">
+                                <span class="card-label fw-bold text-dark">Location Details</span>
+                            </h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="row g-5 g-xl-8">
+                                <div class="col-xl-6">
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Province</div>
+                                        <select class="form-select" name="provinceId" id="updateProvinceName">
+                                            <option value="">Select Province</option>
+                                        </select>
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Square Reference</div>
+                                        <input class="form-control" name="squareRef" type="text" id="updateSquareRef" />
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Square Latitude</div>
+                                        <input class="form-control" name="squareLatitude" type="number" step="0.000001" id="updateSquareLatitude" />
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Square Longitude</div>
+                                        <input class="form-control" name="squareLongitude" type="number" step="0.000001" id="updateSquareLongitude" />
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Latitude</div>
+                                        <input class="form-control" name="latitude" type="number" step="0.01" id="updateLatitude" />
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Decimal Degrees</div>
+                                        <input class="form-control" name="decimalDegrees" type="text" id="updateDecimalDegrees" />
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Degrees Minutes Seconds</div>
+                                        <input class="form-control" name="degreesMinutesSeconds" type="text" id="updateDegreesMinutesSeconds" />
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Decimal Minutes</div>
+                                        <input class="form-control" name="decimalMinutes" type="text" id="updateDecimalMinutes" />
+                                    </div>
+                                </div>
+                                <div class="col-xl-6">
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">UTM Coordinates</div>
+                                        <input class="form-control" name="utmCoordinates" type="text" id="updateUtmCoordinates" />
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">MGRS Coordinates</div>
+                                        <input class="form-control" name="mgrsCoordinates" type="text" id="updateMgrsCoordinates" />
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Altitude 1</div>
+                                        <input class="form-control" name="altitude1" type="number" step="0.01" id="updateAltitude1" />
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Altitude 2</div>
+                                        <input class="form-control" name="altitude2" type="number" step="0.01" id="updateAltitude2" />
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Longitude</div>
+                                        <input class="form-control" name="longitude" type="number" step="0.01" id="updateLongitude" />
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">UTM Reference</div>
+                                        <input class="form-control" name="utmReference" type="text" id="updateUtmReference" />
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Location Info</div>
+                                        <input class="form-control" name="locationInfo" type="text" id="updateLocationInfo" />
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Coordinate Precision Level</div>
+                                        <select class="form-select" name="coordinatePrecisionLevel" id="updateCoordinatePrecisionLevel">
+                                            <option value="0">Tam/Hassas Koordinat</option>
+                                            <option value="1">UTM Koordinatı</option>
+                                            <option value="2">İlçe Koordinatı</option>
+                                            <option value="3">Kare Koordinatı</option>
+                                            <option value="4">İl Koordinatı</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end::Location Card-->
+                    <!--begin::Observation Card-->
+                    <div class="card shadow-sm modal-section">
+                        <div class="card-header">
+                            <h3 class="card-title align-items-start flex-column">
+                                <span class="card-label fw-bold text-dark">Observation Details</span>
+                            </h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="row g-5 g-xl-8">
+                                <div class="col-xl-6">
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Observer</div>
+                                        <input class="form-control" name="observerFullName" type="text" id="updateObserverName" />
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Date</div>
+                                        <input class="form-control" name="observationDate" type="date" id="updateObservationDate" />
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Number Seen</div>
+                                        <input class="form-control" name="numberSeen" type="number" id="updateNumberSeen" />
+                                    </div>
+                                </div>
+                                <div class="col-xl-6">
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Sex</div>
+                                        <input class="form-control" name="sex" type="text" id="updateSex" />
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Life Stage</div>
+                                        <input class="form-control" name="lifeStage" type="text" id="updateLifeStage" />
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Notes</div>
+                                        <input class="form-control" name="notes" type="text" id="updateNotes" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field-container mb-5">
+                                <div class="fs-6 fw-semibold mb-2">Source</div>
+                                <input class="form-control" name="source" type="text" id="updateSource" />
+                            </div>
+                            <div class="text-center mt-15">
+                                <button type="button" class="btn btn-light-success" id="updateObservationButton">
+                                    <span class="indicator-label">Update</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end::Observation Card-->
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--end::UpdateModal-->
+<!--begin::CreateModal-->
+<div class="modal fade" id="kt_createmodal_observation" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content rounded">
+            <div class="modal-header pb-0 border-0 justify-content-end">
+                <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                    <i class="ki-duotone ki-cross fs-1">
+                        <span class="path1"></span>
+                        <span class="path2"></span>
+                    </i>
+                </div>
+            </div>
+
+            <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
+                <div class="mb-13 text-center">
+                    <h1 class="mb-3">Create Observation</h1>
+                </div>
+                <form id="create_observation_form">
+                    <!--begin::Classification Card-->
+                    <div class="card shadow-sm mb-8 modal-section">
+                        <div class="card-header">
+                            <h3 class="card-title align-items-start flex-column">
+                                <span class="card-label fw-bold text-dark">Classification Information</span>
+                            </h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="row g-5 g-xl-8">
+                                <div class="col-xl-6">
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Scientific Name</div>
+                                        <input class="form-control" name="scientificName" type="text" id="createScientificName" />
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Family Name</div>
+                                        <input class="form-control" name="familyName" type="text" id="createFamilyName" />
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Genus Name</div>
+                                        <input class="form-control" name="genusName" type="text" id="createGenusName" />
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">EU Name</div>
+                                        <input class="form-control" name="euName" type="text" id="createEUName" />
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Full Name</div>
+                                        <input class="form-control" name="fullName" type="text" id="createFullName" />
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Kocak Name</div>
+                                        <input class="form-control" name="kocakName" type="text" id="createKocakName" />
+                                    </div>
+                                </div>
+                                <div class="col-xl-6">
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Turkish Name</div>
+                                        <input class="form-control" name="turkishName" type="text" id="createTurkishName" />
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">English Name</div>
+                                        <input class="form-control" name="englishName" type="text" id="createEnglishName" />
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Authority</div>
+                                        <input class="form-control" name="authority" type="text" id="createAuthority" />
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Name</div>
+                                        <input class="form-control" name="name" type="text" id="createName" />
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Turkish Names Trakel</div>
+                                        <input class="form-control" name="turkishNamesTrakel" type="text" id="createTurkishNamesTrakel" />
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Trakel</div>
+                                        <input class="form-control" name="trakel" type="text" id="createTrakel" />
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Hesselbarth Name</div>
+                                        <input class="form-control" name="hesselbarthName" type="text" id="createHesselbarthName" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end::Classification Card-->
+                    <!--begin::Location Card-->
+                    <div class="card shadow-sm mb-8 modal-section">
+                        <div class="card-header">
+                            <h3 class="card-title align-items-start flex-column">
+                                <span class="card-label fw-bold text-dark">Location Details</span>
+                            </h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="row g-5 g-xl-8">
+                                <div class="col-xl-6">
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Province</div>
+                                        <select class="form-select" name="provinceId" id="createProvinceName">
+                                            <option value="">Select Province</option>
+                                        </select>
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Square Reference</div>
+                                        <input class="form-control" name="squareRef" type="text" id="createSquareRef" />
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Square Latitude</div>
+                                        <input class="form-control" name="squareLatitude" type="number" step="0.000001" id="createSquareLatitude" />
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Square Longitude</div>
+                                        <input class="form-control" name="squareLongitude" type="number" step="0.000001" id="createSquareLongitude" />
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Latitude</div>
+                                        <input class="form-control" name="latitude" type="number" step="0.01" id="createLatitude" />
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Decimal Degrees</div>
+                                        <input class="form-control" name="decimalDegrees" type="text" id="createDecimalDegrees" />
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Degrees Minutes Seconds</div>
+                                        <input class="form-control" name="degreesMinutesSeconds" type="text" id="createDegreesMinutesSeconds" />
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Decimal Minutes</div>
+                                        <input class="form-control" name="decimalMinutes" type="text" id="createDecimalMinutes" />
+                                    </div>
+                                </div>
+                                <div class="col-xl-6">
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">UTM Coordinates</div>
+                                        <input class="form-control" name="utmCoordinates" type="text" id="createUtmCoordinates" />
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">MGRS Coordinates</div>
+                                        <input class="form-control" name="mgrsCoordinates" type="text" id="createMgrsCoordinates" />
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Altitude 1</div>
+                                        <input class="form-control" name="altitude1" type="number" step="0.01" id="createAltitude1" />
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Altitude 2</div>
+                                        <input class="form-control" name="altitude2" type="number" step="0.01" id="createAltitude2" />
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Longitude</div>
+                                        <input class="form-control" name="longitude" type="number" step="0.01" id="createLongitude" />
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">UTM Reference</div>
+                                        <input class="form-control" name="utmReference" type="text" id="createUtmReference" />
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Location Info</div>
+                                        <input class="form-control" name="locationInfo" type="text" id="createLocationInfo" />
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Coordinate Precision Level</div>
+                                        <select class="form-select" name="coordinatePrecisionLevel" id="createCoordinatePrecisionLevel">
+                                            <option value="0">Tam/Hassas Koordinat</option>
+                                            <option value="1">UTM Koordinatı</option>
+                                            <option value="2">İlçe Koordinatı</option>
+                                            <option value="3">Kare Koordinatı</option>
+                                            <option value="4">İl Koordinatı</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end::Location Card-->
+                    <!--begin::Observation Card-->
+                    <div class="card shadow-sm modal-section">
+                        <div class="card-header">
+                            <h3 class="card-title align-items-start flex-column">
+                                <span class="card-label fw-bold text-dark">Observation Details</span>
+                            </h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="row g-5 g-xl-8">
+                                <div class="col-xl-6">
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Observer</div>
+                                        <input class="form-control" name="observerFullName" type="text" id="createObserverName" />
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Date</div>
+                                        <input class="form-control" name="observationDate" type="date" id="createObservationDate" />
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Number Seen</div>
+                                        <input class="form-control" name="numberSeen" type="number" id="createNumberSeen" />
+                                    </div>
+                                </div>
+                                <div class="col-xl-6">
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Sex</div>
+                                        <input class="form-control" name="sex" type="text" id="createSex" />
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Life Stage</div>
+                                        <input class="form-control" name="lifeStage" type="text" id="createLifeStage" />
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Notes</div>
+                                        <input class="form-control" name="notes" type="text" id="createNotes" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field-container mb-5">
+                                <div class="fs-6 fw-semibold mb-2">Source</div>
+                                <input class="form-control" name="source" type="text" id="createSource" />
+                            </div>
+                            <div class="text-center mt-15">
+                                <button type="button" class="btn btn-light-success" id="createObservationButton">
+                                    <span class="indicator-label">Create</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end::Observation Card-->
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--end::CreateModal-->
 @section Scripts {
     <script>
         // Debounce fonksiyonu
@@ -381,7 +857,6 @@
                 setValue('modalTurkishName', observation.turkishName);
                 setValue('modalEnglishName', observation.englishName);
                 setValue('modalAuthority', observation.authorityName ? `${observation.authorityName}, ${observation.year}` : null);
-                setValue('modalSpeciesType', observation.speciesTypeName);
                 setValue('modalName', observation.name);
                 setValue('modalEuName', observation.euName);
                 setValue('modalFullName', observation.fullName);
@@ -510,5 +985,380 @@
                 }
             });
         }
+    </script>
+    <script>
+        async function populateProvinceDropdown(selectElement, selectedProvinceId) {
+            try {
+                const response = await fetch('https://localhost:7128/api/Provinces');
+                if (!response.ok) {
+                    throw new Error('Failed to fetch provinces');
+                }
+
+                const result = await response.json();
+                const provinces = result.data;
+
+                // Clear existing options except the first one
+                selectElement.innerHTML = '<option value="">Select Province</option>';
+
+                // Sort provinces by name
+                provinces.sort((a, b) => a.name.localeCompare(b.name));
+
+                // Add provinces to dropdown
+                provinces.forEach(province => {
+                    const option = document.createElement('option');
+                    option.value = province.provinceCode;
+                    option.textContent = province.name.trim(); // Trim to remove any whitespace
+                    selectElement.appendChild(option);
+                });
+
+                // Set selected province if provided
+                if (selectedProvinceId) {
+                    selectElement.value = selectedProvinceId;
+                }
+            } catch (error) {
+                console.error('Error loading provinces:', error);
+                // Show error message to user
+                Swal.fire({
+                    text: 'Error loading provinces: ' + error.message,
+                    icon: 'error',
+                    buttonsStyling: false,
+                    confirmButtonText: 'OK',
+                    customClass: {
+                        confirmButton: 'btn btn-primary'
+                    }
+                });
+            }
+        }
+
+        async function updateObservation(id) {
+            try {
+
+                const observationResponse = await fetch(`https://localhost:7128/api/Observations/${id}`);
+                if (!observationResponse.ok) {
+                    throw new Error('Verileri alınırken bir hata oluştu.');
+                }
+                const item = await observationResponse.json();
+                const modalElement = document.getElementById('kt_updatemodal_observation');
+                const modal = new bootstrap.Modal(modalElement);
+
+                modal.show();
+
+                // Classification bilgileri
+                document.getElementById('updateId').value = item.data.id || '';
+                document.getElementById('updateScientificName').value = item.data.scientificName || '';
+                document.getElementById('updateFamilyName').value = item.data.familyName || '';
+                document.getElementById('updateGenusName').value = item.data.genusName || '';
+                document.getElementById('updateEUName').value = item.data.euName || '';
+                document.getElementById('updateFullName').value = item.data.fullName || '';
+                document.getElementById('updateTurkishName').value = item.data.turkishName || '';
+                document.getElementById('updateEnglishName').value = item.data.englishName || '';
+                document.getElementById('updateAuthority').value = item.data.authorityName && item.data.year ? `${item.data.authorityName},${item.data.year}` : '';
+                document.getElementById('updateName').value = item.data.name || '';
+                document.getElementById('updateTurkishNamesTrakel').value = item.data.turkishNamesTrakel || '';
+                document.getElementById('updateTrakel').value = item.data.trakel || '';
+                document.getElementById('updateKocakName').value = item.data.kocakName || '';
+                document.getElementById('updateHesselbarthName').value = item.data.hesselbarthName || '';
+
+                // Location bilgileri - Province ID'yi seç
+                const provinceSelect = document.getElementById('updateProvinceName');
+                await populateProvinceDropdown(provinceSelect, item.data.provinceId);
+                document.getElementById('updateSquareRef').value = item.data.squareRef || '';
+                document.getElementById('updateSquareLatitude').value = item.data.squareLatitude || '';
+                document.getElementById('updateSquareLongitude').value = item.data.squareLongitude || '';
+                document.getElementById('updateAltitude1').value = item.data.altitude1 || '';
+                document.getElementById('updateAltitude2').value = item.data.altitude2 || '';
+                document.getElementById('updateUtmReference').value = item.data.utmReference || '';
+                document.getElementById('updateLocationInfo').value = item.data.locationInfo || '';
+                document.getElementById('updateDecimalDegrees').value = item.data.decimalDegrees || '';
+                document.getElementById('updateDegreesMinutesSeconds').value = item.data.degreesMinutesSeconds || '';
+                document.getElementById('updateDecimalMinutes').value = item.data.decimalMinutes || '';
+                document.getElementById('updateUtmCoordinates').value = item.data.utmCoordinates || '';
+                document.getElementById('updateMgrsCoordinates').value = item.data.mgrsCoordinates || '';
+                document.getElementById('updateCoordinatePrecisionLevel').value = item.data.coordinatePrecisionLevel || '';
+                document.getElementById('updateLatitude').value = item.data.latitude || '';
+                document.getElementById('updateLongitude').value = item.data.longitude || '';
+
+                // Observation bilgileri
+                document.getElementById('updateObserverName').value = item.data.observerFullName || '';
+                document.getElementById('updateObservationDate').value = item.data.observationDate ? item.data.observationDate.split('T')[0] : '';
+                document.getElementById('updateNumberSeen').value = item.data.numberSeen || '';
+                document.getElementById('updateSex').value = item.data.sex || '';
+                document.getElementById('updateLifeStage').value = item.data.lifeStage || '';
+                document.getElementById('updateNotes').value = item.data.notes || '';
+                document.getElementById('updateSource').value = item.data.source || '';
+
+            } catch (error) {
+                console.error('Hata:', error);
+                Swal.fire({
+                    text: 'Veriler alınırken bir hata oluştu: ' + error.message,
+                    icon: 'error',
+                    buttonsStyling: false,
+                    confirmButtonText: 'Tamam',
+                    customClass: {
+                        confirmButton: 'btn btn-primary'
+                    }
+                });
+            }
+        }
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#updateObservationButton').on('click', function() {
+                 // Form verilerini obje olarak toplama
+            const authorityValue = $('#updateAuthority').val();
+            let authorityName = '';
+            let year = 0;
+            if (authorityValue) {
+                const parts = authorityValue.split(',').map(part => part.trim());
+                if (parts.length === 2) {
+                    authorityName = parts[0];
+                    year = parseInt(parts[1]) || 0;
+                }
+            }
+            const observerValue=$('#updateObserverName').val();
+            let observerName='';
+            let surname='';
+            if(observerValue){
+                const parts=observerValue.split(' ').map(part=>part.trim());
+                if(parts.length===2){
+                    observerName=parts[0];
+                    surname=parts[1];
+                }
+            }
+            const formData = {
+                // Hidden ID
+                id: $('#updateId').val(),
+                
+                // Classification bilgileri
+                scientificName: $('#updateScientificName').val(),
+                familyName: $('#updateFamilyName').val(),
+                genusName: $('#updateGenusName').val(),
+                euName: $('#updateEUName').val(),
+                fullName: $('#updateFullName').val(),
+                turkishName: $('#updateTurkishName').val(),
+                englishName: $('#updateEnglishName').val(),
+                authorityName: $('#updateAuthority').val(),
+                name: $('#updateName').val(),
+                turkishNamesTrakel: $('#updateTurkishNamesTrakel').val(),
+                trakel: $('#updateTrakel').val(),
+                kocakName: $('#updateKocakName').val(),
+                hesselbarthName: $('#updateHesselbarthName').val(),
+                authorityName: authorityName,
+                year: year,
+
+                provinceId: parseInt($('#updateProvinceName').val()) || 0,
+                squareRef: $('#updateSquareRef').val(),
+                squareLatitude: parseFloat($('#updateSquareLatitude').val()) || 0,
+                squareLongitude: parseFloat($('#updateSquareLongitude').val()) || 0,
+                latitude: parseFloat($('#updateLatitude').val()) || 0,
+                longitude: parseFloat($('#updateLongitude').val()) || 0,
+                decimalDegrees: $('#updateDecimalDegrees').val(),
+                degreesMinutesSeconds: $('#updateDegreesMinutesSeconds').val(),
+                decimalMinutes: $('#updateDecimalMinutes').val(),
+                utmCoordinates: $('#updateUtmCoordinates').val(),
+                mgrsCoordinates: $('#updateMgrsCoordinates').val(),
+                altitude1: parseFloat($('#updateAltitude1').val()) || 0,
+                altitude2: parseFloat($('#updateAltitude2').val()) || 0,
+                utmReference: $('#updateUtmReference').val(),
+                locationInfo: $('#updateLocationInfo').val(),
+                coordinatePrecisionLevel: parseInt($('#updateCoordinatePrecisionLevel').val()) || 0,
+
+                // Observation bilgileri
+                observerFullName: $('#updateObserverName').val(),
+                observerName: observerName,
+                surname: surname,
+                observationDate: $('#updateObservationDate').val(),
+                numberSeen: parseInt($('#updateNumberSeen').val()) || 0,
+                sex: $('#updateSex').val(),
+                lifeStage: $('#updateLifeStage').val(),
+                notes: $('#updateNotes').val(),
+                source: $('#updateSource').val()
+            };
+
+                console.log('Gönderilen veriler:', formData); // Kontrol için
+                $.ajax({
+                    url: `https://localhost:7128/api/Observations`,
+                    type: 'PUT',
+                    contentType: 'application/json',
+                    data: JSON.stringify(formData),
+                    success: function(response) {
+                        Swal.fire({
+                            title: 'Başarılı!',
+                            text: 'Gözlem başarıyla güncellendi.',
+                            icon: 'success',
+                            timer: 2000,
+                            showConfirmButton: true
+                        }).then(() => {
+                            window.location.reload();
+                        });
+                    },
+                    error: function(xhr, status, error) {
+                        Swal.fire({
+                            title: 'Hata!',
+                            text: 'Güncelleme işlemi sırasında bir hata oluştu.',
+                            icon: 'error'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+    <script>
+        async function populateProvinceDropdown2(selectElementId) {
+            try {
+                const response = await fetch('https://localhost:7128/api/Provinces');
+                if (!response.ok) {
+                    throw new Error('Failed to fetch provinces');
+                }
+
+                const result = await response.json();
+                if (!result.isSuccess) {
+                    throw new Error('API returned unsuccessful response');
+                }
+
+                const selectElement = document.getElementById(selectElementId);
+                selectElement.innerHTML = '<option value="">Select Province</option>';
+
+                const sortedProvinces = result.data.sort((a, b) => {
+                    return a.name.localeCompare(b.name, 'tr-TR');
+                });
+
+                sortedProvinces.forEach(province => {
+                    const option = document.createElement('option');
+                    option.value = province.id;
+                    option.textContent = province.name.trim();
+                    selectElement.appendChild(option);
+                });
+
+            } catch (error) {
+                console.error('Error loading provinces:', error);
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'Failed to load provinces: ' + error.message,
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });
+            }
+        }
+
+        document.getElementById('kt_createmodal_observation').addEventListener('show.bs.modal', function () {
+            populateProvinceDropdown2('createProvinceName');
+        });
+    $(document).ready(function() {
+            $('#createObservationButton').on('click', function() {
+                const authorityValue = $('#createAuthority').val();
+                let authorityName = '';
+                let year = 0;
+                    if (authorityValue) {
+                    const parts = authorityValue.split(/,(?=[^,]+$)/).map(part => part.trim());
+
+                    if (parts.length === 2) {
+                        authorityName = parts[0];
+                        year = parseInt(parts[1]) || 0; 
+                    }
+                }
+
+                const observerValue = $('#createObserverName').val();
+                let observerName = '';
+                let surname = '';
+                    if (observerValue) {
+                    const parts = observerValue.split(' ').map(part => part.trim()).filter(part => part);
+
+                    if (parts.length >= 2) {
+                        surname = parts[parts.length - 1];
+                        observerName = parts.slice(0, -1).join(' ');
+                    }
+                }
+
+                const formData = {
+                    // Classification bilgileri
+                    scientificName: $('#createScientificName').val(),
+                    familyName: $('#createFamilyName').val(),
+                    genusName: $('#createGenusName').val(),
+                    euName: $('#createEUName').val(),
+                    fullName: $('#createFullName').val(),
+                    turkishName: $('#createTurkishName').val(),
+                    englishName: $('#createEnglishName').val(),
+                    name: $('#createName').val(),
+                    turkishNamesTrakel: $('#createTurkishNamesTrakel').val(),
+                    trakel: $('#createTrakel').val(),
+                    kocakName: $('#createKocakName').val(),
+                    hesselbarthName: $('#createHesselbarthName').val(),
+                    authorityName: authorityName,
+                    year: year,
+
+                    // Location bilgileri
+                    provinceId: parseInt($('#createProvinceName').val()) || 0,
+                    squareRef: $('#createSquareRef').val(),
+                    squareLatitude: parseFloat($('#createSquareLatitude').val()) || 0,
+                    squareLongitude: parseFloat($('#createSquareLongitude').val()) || 0,
+                    latitude: parseFloat($('#createLatitude').val()) || 0,
+                    longitude: parseFloat($('#createLongitude').val()) || 0,
+                    decimalDegrees: $('#createDecimalDegrees').val(),
+                    degreesMinutesSeconds: $('#createDegreesMinutesSeconds').val(),
+                    decimalMinutes: $('#createDecimalMinutes').val(),
+                    utmCoordinates: $('#createUtmCoordinates').val(),
+                    mgrsCoordinates: $('#createMgrsCoordinates').val(),
+                    altitude1: parseFloat($('#createAltitude1').val()) || 0,
+                    altitude2: parseFloat($('#createAltitude2').val()) || 0,
+                    utmReference: $('#createUtmReference').val(),
+                    locationInfo: $('#createLocationInfo').val(),
+                    coordinatePrecisionLevel: parseInt($('#createCoordinatePrecisionLevel').val()) || 0,
+
+                    // Observation bilgileri
+                    observerFullName: observerValue,
+                    observerName: observerName,
+                    surname: surname,
+                    observationDate: $('#createObservationDate').val(),
+                    numberSeen: parseInt($('#createNumberSeen').val()) || 0,
+                    sex: $('#createSex').val(),
+                    lifeStage: $('#createLifeStage').val(),
+                    notes: $('#createNotes').val(),
+                    source: $('#createSource').val()
+                };
+
+                $.ajax({
+                    url: 'https://localhost:7128/api/Observations',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(formData),
+                    success: function(response) {
+                        if (response.isSuccess) {
+                            Swal.fire({
+                                title: 'Success!',
+                                text: 'Observation created successfully',
+                                icon: 'success',
+                                timer: 2000,
+                                showConfirmButton: true
+                            }).then(() => {
+                                $('#kt_createmodal_observation').modal('hide');
+                                window.location.reload();
+                            });
+                        } else {
+                            Swal.fire({
+                                title: 'Error!',
+                                text: response.errorList ? response.errorList.join(', ') : 'Failed to create observation',
+                                icon: 'error'
+                            });
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        let errorMessage = 'Failed to create observation';
+                        if (xhr.responseJSON && xhr.responseJSON.errorList) {
+                            errorMessage = xhr.responseJSON.errorList.join(', ');
+                        }
+                        Swal.fire({
+                            title: 'Error!',
+                            text: errorMessage,
+                            icon: 'error'
+                        });
+                    }
+                });
+            });
+
+            $('#kt_createmodal_observation').on('hidden.bs.modal', function () {
+                $('#create_observation_form')[0].reset();
+            });
+        });
     </script>
 }

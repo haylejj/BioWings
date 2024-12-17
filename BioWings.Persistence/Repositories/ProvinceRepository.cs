@@ -8,5 +8,6 @@ namespace BioWings.Persistence.Repositories;
 public class ProvinceRepository(AppDbContext dbContext) : GenericRepository<Province>(dbContext), IProvinceRepository
 {
     public async Task<Province?> GetByNameAsync(string name, CancellationToken cancellationToken = default) => await _dbSet.FirstOrDefaultAsync(x => x.Name == name, cancellationToken);
+    public async Task<Province?> GetByProvinceCodeAsync(int code, CancellationToken cancellationToken = default) => await _dbSet.FirstOrDefaultAsync(x => x.ProvinceCode==code, cancellationToken);
 }
 
