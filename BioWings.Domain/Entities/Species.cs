@@ -3,8 +3,8 @@
 public class Species : BaseEntity
 {
     public int Id { get; set; }
-    public int AuthorityId { get; set; }
-    public int GenusId { get; set; }
+    public int? AuthorityId { get; set; }
+    public int? GenusId { get; set; }
     public string? ScientificName { get; set; }
     public string? Name { get; set; }
     public string? EUName { get; set; }

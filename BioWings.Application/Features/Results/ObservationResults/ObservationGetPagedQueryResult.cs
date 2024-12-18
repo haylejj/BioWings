@@ -7,7 +7,7 @@ public class ObservationGetPagedQueryResult
     //Species
     //Authority
     public string AuthorityName { get; set; }
-    public int Year { get; set; }
+    public int? Year { get; set; }
     //Genus
     public string GenusName { get; set; }
     //Family

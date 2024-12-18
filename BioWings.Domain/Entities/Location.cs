@@ -5,7 +5,7 @@ namespace BioWings.Domain.Entities;
 public class Location : BaseEntity
 {
     public int Id { get; set; }
-    public int ProvinceId { get; set; }
+    public int? ProvinceId { get; set; }
     public string? SquareRef { get; set; }
     public decimal SquareLatitude { get; set; }
     public decimal SquareLongitude { get; set; }
@@ -21,6 +21,6 @@ public class Location : BaseEntity
     public string? UtmReference { get; set; }
     public string? Description { get; set; }
     public CoordinatePrecisionLevel CoordinatePrecisionLevel { get; set; }
-    public virtual Province Province { get; set; }
+    public virtual Province? Province { get; set; }
     public virtual ICollection<Observation> Observations { get; set; }
 }

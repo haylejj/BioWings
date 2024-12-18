@@ -4,7 +4,7 @@ namespace BioWings.Application.Features.Results.LocationResults;
 public class LocationGetQueryResult
 {
     public int Id { get; set; }
-    public int ProvinceId { get; set; }
+    public int? ProvinceId { get; set; }
     public string ProvinceName { get; set; }
     public string SquareRef { get; set; }
     public decimal SquareLatitude { get; set; }
