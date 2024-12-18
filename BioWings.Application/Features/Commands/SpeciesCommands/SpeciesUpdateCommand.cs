@@ -1,5 +1,4 @@
 ﻿using BioWings.Application.Results;
-using BioWings.Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 
@@ -23,5 +22,4 @@ public class SpeciesUpdateCommand : IRequest<ServiceResult>
     public string HesselbarthName { get; set; }
     public List<IFormFile> NewFiles { get; set; }//IFormFile is used to upload files . its equivalent to new file for Media
     public string DeletedFilesIds { get; set; }
-    public List<Media> Medias { get; set; }
 }

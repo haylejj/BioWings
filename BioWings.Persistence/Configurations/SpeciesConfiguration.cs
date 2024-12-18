@@ -46,11 +46,6 @@ public class SpeciesConfiguration : IEntityTypeConfiguration<Species>
             .HasForeignKey(x => x.SpeciesId)
             .OnDelete(DeleteBehavior.Restrict);
 
-        builder.HasMany(x => x.Media)
-            .WithOne(x => x.Species)
-            .HasForeignKey(x => x.SpeciesId)
-            .OnDelete(DeleteBehavior.Restrict);
-
         builder.HasMany(x => x.Observations)
             .WithOne(x => x.Species)
             .HasForeignKey(x => x.SpeciesId)

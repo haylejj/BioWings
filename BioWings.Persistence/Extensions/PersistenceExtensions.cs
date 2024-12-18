@@ -25,11 +25,9 @@ public static class PersistenceExtensions
         services.AddScoped<IGenusRepository, GenusRepository>();
         services.AddScoped<ISpeciesRepository, SpeciesRepository>();
         services.AddScoped<ILocationRepository, LocationRepository>();
-        services.AddScoped<IMediaRepository, MediaRepository>();
         services.AddScoped<IObservationRepository, ObservationRepository>();
         services.AddScoped<IObserverRepository, ObserverRepository>();
         services.AddScoped<IProvinceRepository, ProvinceRepository>();
-        services.AddScoped<ISpeciesTypeRepository, SpeciesTypeRepository>();
         services.AddScoped<ISubspeciesRepository, SubspeciesRepository>();
         return services;
     }

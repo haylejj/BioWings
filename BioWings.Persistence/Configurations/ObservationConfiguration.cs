@@ -27,11 +27,6 @@ public class ObservationConfiguration : IEntityTypeConfiguration<Observation>
         builder.Property(x => x.Source)
             .HasMaxLength(200);
 
-
-        builder.HasMany(x => x.Media)
-            .WithOne(x => x.Observation)
-            .HasForeignKey(x => x.ObservationId)
-            .OnDelete(DeleteBehavior.Restrict);
     }
 }
 

@@ -17,5 +17,4 @@ public class Observation : BaseEntity
     public virtual Species Species { get; set; }
     public virtual Location Location { get; set; }
     public virtual Observer Observer { get; set; }
-    public virtual ICollection<Media> Media { get; set; }
 }
