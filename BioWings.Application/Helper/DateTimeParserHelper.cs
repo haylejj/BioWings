@@ -50,6 +50,21 @@ public static class DateTimeParserHelper
                 return new DateTime(year, month, day);
             }
         }
+        // Observation Date sütunu varsa
+        if (columnMappings.ContainsKey("ObservationDate"))
+        {
+            var cell = worksheet.Cells[row, columnMappings["ObservationDate"]];
+
+            // Eğer hücre değeri DateTime ise direkt kullan
+            if (cell.Value is DateTime dateValue)
+                return dateValue;
+
+            var dateStr = cell.Text?.Trim();
+            if (!string.IsNullOrEmpty(dateStr) && DateTime.TryParse(dateStr, out var parsedDate))
+            {
+                return parsedDate;
+            }
+        }
         return DateTime.MinValue;
     }
 }

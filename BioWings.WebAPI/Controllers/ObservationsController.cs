@@ -69,6 +69,13 @@ public class ObservationsController(IMediator mediator) : BaseController
         var reuslt = await mediator.Send(command);
         return CreateResult(reuslt);
     }
+    // Post: api/Observations/ImportAllFormat
+    [HttpPost("ImportAllFormat")]
+    public async Task<IActionResult> ImportAllFormat([FromForm] ObservationImportAllFormatCreateCommand command)
+    {
+        var result = await mediator.Send(command);
+        return CreateResult(result);
+    }
     // GET: api/Observations/Search
     [HttpGet("Search")]
     public async Task<IActionResult> Search([FromQuery] string searchTerm, int pageNumber = 1, [FromQuery] int pageSize = 25)

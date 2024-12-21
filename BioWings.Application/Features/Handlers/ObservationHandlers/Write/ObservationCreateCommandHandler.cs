@@ -1,5 +1,6 @@
 ﻿using BioWings.Application.Features.Commands.ObservationCommands;
 using BioWings.Application.Results;
+using BioWings.Application.Services;
 using BioWings.Domain.Entities;
 using BioWings.Domain.Interfaces;
 using MediatR;
@@ -26,24 +27,14 @@ public class ObservationCreateCommandHandler(IObservationRepository observationR
             return ServiceResult.Error(family.ErrorList);
 
         // 3. Create or Get Genus
-        var genus = await GetOrCreateGenus(request, family.Data.Id, cancellationToken);
+        var genus = await GetOrCreateGenus(request, family.Data?.Id, cancellationToken);
         if (!genus.IsSuccess)
             return ServiceResult.Error(genus.ErrorList);
 
-        // 4. Create or Get SpeciesType
-        //var speciesType = await GetOrCreateSpeciesType(request, cancellationToken);
-        //if (!speciesType.IsSuccess)
-        //    return ServiceResult<int>.Error(speciesType.ErrorList);
-
         // 5. Create or Get Species
-        var species = await GetOrCreateSpecies(request, authority.Data.Id, genus.Data.Id, cancellationToken);
+        var species = await GetOrCreateSpecies(request, authority.Data?.Id, genus.Data?.Id, cancellationToken);
         if (!species.IsSuccess)
             return ServiceResult.Error(species.ErrorList);
-
-        // 6. Create or Get Province
-        //var province = await GetOrCreateProvince(request, cancellationToken);
-        //if (!province.IsSuccess)
-        //    return ServiceResult<int>.Error(province.ErrorList);
 
         // 7. Create or Get Location
         var location = await GetOrCreateLocation(request, request.ProvinceId, cancellationToken);
@@ -59,8 +50,8 @@ public class ObservationCreateCommandHandler(IObservationRepository observationR
         var observation = new Observation
         {
             SpeciesId = species.Data.Id,
-            LocationId = location.Data.Id,
-            ObserverId = observer.Data.Id,
+            LocationId = location.Data?.Id,
+            ObserverId = observer.Data?.Id,
             Sex = request.Sex,
             ObservationDate = request.ObservationDate,
             LifeStage = request.LifeStage,
@@ -79,9 +70,10 @@ public class ObservationCreateCommandHandler(IObservationRepository observationR
     }
     private async Task<ServiceResult<Authority>> GetOrCreateAuthority(ObservationCreateCommand request, CancellationToken cancellationToken)
     {
+        if (string.IsNullOrEmpty(request.AuthorityName)) return ServiceResult<Authority>.Success(null);
 
         var authority = await authorityRepository.GetByNameAndYearAsync(request.AuthorityName, request.Year, cancellationToken);
-        if (authority == null && !string.IsNullOrEmpty(request.AuthorityName))
+        if (authority == null)
         {
             authority = new Authority
             {
@@ -92,30 +84,29 @@ public class ObservationCreateCommandHandler(IObservationRepository observationR
             await unitOfWork.SaveChangesAsync(cancellationToken);
             logger.LogInformation("Authority created that has id : {0}", authority.Id);
         }
-        return authority != null ?
-            ServiceResult<Authority>.Success(authority) :
-            ServiceResult<Authority>.Error("Failed to create authority");
+        return ServiceResult<Authority>.Success(authority);
     }
+
     private async Task<ServiceResult<Family>> GetOrCreateFamily(ObservationCreateCommand request, CancellationToken cancellationToken)
     {
+        if (string.IsNullOrEmpty(request.FamilyName)) return ServiceResult<Family>.Success(null);
 
         var family = await familyRepository.GetByNameAsync(request.FamilyName, cancellationToken);
-        if (family == null && !string.IsNullOrEmpty(request.FamilyName))
+        if (family == null)
         {
             family = new Family { Name = request.FamilyName };
             await familyRepository.AddAsync(family, cancellationToken);
             await unitOfWork.SaveChangesAsync(cancellationToken);
         }
-        return family != null ?
-            ServiceResult<Family>.Success(family) :
-            ServiceResult<Family>.Error("Failed to create family");
-
+        return ServiceResult<Family>.Success(family);
     }
-    private async Task<ServiceResult<Genus>> GetOrCreateGenus(ObservationCreateCommand request, int familyId, CancellationToken cancellationToken)
-    {
 
-        var genus = await genusRepository.GetByNameAndFamilyIdAsync(request.GenusName, familyId, cancellationToken);
-        if (genus == null && !string.IsNullOrEmpty(request.GenusName))
+    private async Task<ServiceResult<Genus>> GetOrCreateGenus(ObservationCreateCommand request, int? familyId, CancellationToken cancellationToken)
+    {
+        if (string.IsNullOrEmpty(request.GenusName)) return ServiceResult<Genus>.Success(null);
+
+        var genus = await genusRepository.GetByNameAsync(request.GenusName, cancellationToken);
+        if (genus == null)
         {
             genus = new Genus
             {
@@ -125,171 +116,89 @@ public class ObservationCreateCommandHandler(IObservationRepository observationR
             await genusRepository.AddAsync(genus, cancellationToken);
             await unitOfWork.SaveChangesAsync(cancellationToken);
         }
-        return genus != null ?
-            ServiceResult<Genus>.Success(genus) :
-            ServiceResult<Genus>.Error("Failed to create genus");
+        return ServiceResult<Genus>.Success(genus);
     }
-    private async Task<ServiceResult<Species>> GetOrCreateSpecies(ObservationCreateCommand request, int authorityId, int genusId, CancellationToken cancellationToken)
+
+    private async Task<ServiceResult<Species>> GetOrCreateSpecies(ObservationCreateCommand request, int? genusId, int? authorityId, CancellationToken cancellationToken)
     {
-
-        // Önce mevcut türü bulmaya çalış
-        //Species species = null;
-
-        // Farklı isimlere göre sırayla arama yap
-        //if (!string.IsNullOrEmpty(request.ScientificName))
-        //{
-        //    species = await speciesRepository.GetByScientificNameAsync(request.ScientificName, cancellationToken);
-        //}
-
-        //if (species == null && !string.IsNullOrEmpty(request.KocakName))
-        //{
-        //    species = await speciesRepository.GetByKocakNameAsync(request.KocakName, cancellationToken);
-        //}
-
-        //if (species == null && !string.IsNullOrEmpty(request.HesselbarthName))
-        //{
-        //    species = await speciesRepository.GetByHesselbarthNameAsync(request.HesselbarthName, cancellationToken);
-        //}
-        var species = await speciesRepository.FirstOrDefaultAsync(s =>
-        s.ScientificName == request.ScientificName &&
-        s.GenusId == genusId &&
-        s.AuthorityId == authorityId &&
-        s.Name == request.Name &&
-        s.EUName == request.EUName &&
-        s.FullName == request.FullName &&
-        s.TurkishName == request.TurkishName &&
-        s.EnglishName == request.EnglishName &&
-        s.TurkishNamesTrakel == request.TurkishNamesTrakel &&
-        s.Trakel == request.Trakel &&
-        s.KocakName == request.KocakName &&
-        s.HesselbarthName == request.HesselbarthName,
-        cancellationToken);
-
-
-        if (species != null)
-        {
-            return ServiceResult<Species>.Success(species);
-        }
-        // Eğer tür bulunamadıysa ve gerekli bilgiler varsa yeni tür oluştur
-        if (species == null && !string.IsNullOrEmpty(request.ScientificName))
+        var species = await speciesRepository.GetByName_Authority_GenusAsync(request.Name, request.AuthorityName, request.GenusName, request.Year, cancellationToken);
+        if (species == null)
         {
             species = new Species
             {
-                AuthorityId = authorityId,
                 GenusId = genusId,
+                AuthorityId = authorityId,
                 ScientificName = request.ScientificName,
                 Name = request.Name,
                 EUName = request.EUName,
                 FullName = request.FullName,
+                HesselbarthName = request.HesselbarthName,
                 TurkishName = request.TurkishName,
                 EnglishName = request.EnglishName,
                 TurkishNamesTrakel = request.TurkishNamesTrakel,
                 Trakel = request.Trakel,
-                KocakName = request.KocakName,
-                HesselbarthName = request.HesselbarthName
+                KocakName = request.KocakName
             };
-
             await speciesRepository.AddAsync(species, cancellationToken);
             await unitOfWork.SaveChangesAsync(cancellationToken);
-
-            logger.LogInformation("New species created: {ScientificName}", request.ScientificName);
         }
-        return species == null
-            ? ServiceResult<Species>.Error("Species could not be found or created")
-            : ServiceResult<Species>.Success(species);
+        return ServiceResult<Species>.Success(species);
     }
-    private async Task<ServiceResult<Location>> GetOrCreateLocation(ObservationCreateCommand request, int provinceId, CancellationToken cancellationToken)
-    {
-        // Mevcut lokasyonu bul
-        var existingLocation = await FindExistingLocation(request);
 
-        if (existingLocation == null)
+    private async Task<ServiceResult<Location>> GetOrCreateLocation(ObservationCreateCommand request, int? provinceId, CancellationToken cancellationToken)
+    {
+        var location = await locationRepository.GetByCoordinatesAsync(
+            Math.Round(request.Latitude, 6),
+            Math.Round(request.Longitude, 6),
+            request.SquareRef,
+            cancellationToken);
+
+        if (location == null)
         {
-            // Yeni lokasyon oluştur
-            var location = new Location
+            location = new Location
             {
                 ProvinceId = provinceId,
                 SquareRef = request.SquareRef,
+                SquareLatitude = request.SquareLatitude,
+                SquareLongitude = request.SquareLongitude,
                 Latitude = request.Latitude,
                 Longitude = request.Longitude,
+                DecimalDegrees = request.DecimalDegrees,
+                DegreesMinutesSeconds = request.DegreesMinutesSeconds,
+                DecimalMinutes = request.DecimalMinutes,
+                UtmCoordinates = request.UtmCoordinates,
+                MgrsCoordinates = request.MgrsCoordinates,
                 Altitude1 = request.Altitude1,
                 Altitude2 = request.Altitude2,
                 UtmReference = request.UtmReference,
-                DecimalMinutes = request.DecimalMinutes,
-                DecimalDegrees = request.DecimalDegrees,
-                DegreesMinutesSeconds = request.DegreesMinutesSeconds,
-                CoordinatePrecisionLevel = request.CoordinatePrecisionLevel,
-                MgrsCoordinates = request.MgrsCoordinates,
-                SquareLatitude = request.SquareLatitude,
-                SquareLongitude = request.SquareLongitude,
-                UtmCoordinates = request.UtmCoordinates
+                CoordinatePrecisionLevel = request.CoordinatePrecisionLevel
             };
-
             await locationRepository.AddAsync(location, cancellationToken);
             await unitOfWork.SaveChangesAsync(cancellationToken);
-
-            return ServiceResult<Location>.Success(location);
         }
 
-        return ServiceResult<Location>.Success(existingLocation);
-
+        return ServiceResult<Location>.Success(location);
     }
-    private async Task<Location> FindExistingLocation(ObservationCreateCommand request)
-    {
-        if (request.ProvinceId == default)
-            return null;
 
-        // Tam eşleşme kontrolü yap
-        var exactMatch = await locationRepository.FirstOrDefaultAsync(l =>
-            l.ProvinceId == request.ProvinceId &&
-            l.SquareRef == request.SquareRef &&
-            l.Latitude == request.Latitude &&
-            l.Longitude == request.Longitude &&
-            l.SquareLatitude == request.SquareLatitude &&
-            l.SquareLongitude == request.SquareLongitude &&
-            l.DecimalDegrees == request.DecimalDegrees &&
-            l.DegreesMinutesSeconds == request.DegreesMinutesSeconds &&
-            l.DecimalMinutes == request.DecimalMinutes &&
-            l.UtmCoordinates == request.UtmCoordinates &&
-            l.MgrsCoordinates == request.MgrsCoordinates &&
-            l.Altitude1 == request.Altitude1 &&
-            l.Altitude2 == request.Altitude2 &&
-            l.UtmReference == request.UtmReference &&
-            l.CoordinatePrecisionLevel == request.CoordinatePrecisionLevel);
-
-        // Tam eşleşme varsa onu döndür
-        if (exactMatch != null)
-        {
-            logger.LogInformation(
-                "Found exact location match: ID={LocationId}, Province={ProvinceId}, SquareRef={SquareRef}",
-                exactMatch.Id,
-                exactMatch.ProvinceId,
-                exactMatch.SquareRef);
-            return exactMatch;
-        }
-
-        // Tam eşleşme yoksa null döndür, çağıran metod yeni kayıt oluşturacak
-        return null;
-    }
     private async Task<ServiceResult<Observer>> GetOrCreateObserver(ObservationCreateCommand request, CancellationToken cancellationToken)
     {
+        if (string.IsNullOrEmpty(request.ObserverFullName) && string.IsNullOrEmpty(request.ObserverName))
+            return ServiceResult<Observer>.Success(null);
 
-        var observer = await observerRepository.GetByNameAndSurnameAsync(request.ObserverName, request.Surname, cancellationToken);
-        if (observer == null && !string.IsNullOrEmpty(request.ObserverName))
+        var fullName = request.ObserverFullName ?? request.ObserverName;
+        var observer = await observerRepository.GetByFullNameAsync(fullName, cancellationToken);
+        if (observer == null)
         {
             observer = new Observer
             {
                 Name = request.ObserverName,
                 Surname = request.Surname,
-                FullName = request.ObserverFullName
+                FullName = fullName
             };
             await observerRepository.AddAsync(observer, cancellationToken);
             await unitOfWork.SaveChangesAsync(cancellationToken);
         }
-        return observer != null ?
-            ServiceResult<Observer>.Success(observer) :
-            ServiceResult<Observer>.Error("Failed to create observer");
-
+        return ServiceResult<Observer>.Success(observer);
     }
     //private async Task<ServiceResult<Subspecies>> GetOrCreateSubspecies(ObservationCreateCommand request, int speciesId, CancellationToken cancellationToken)
     //{

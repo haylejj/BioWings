@@ -9,5 +9,6 @@ public class ProvinceRepository(AppDbContext dbContext) : GenericRepository<Prov
 {
     public async Task<Province?> GetByNameAsync(string name, CancellationToken cancellationToken = default) => await _dbSet.FirstOrDefaultAsync(x => x.Name == name, cancellationToken);
     public async Task<Province?> GetByProvinceCodeAsync(int code, CancellationToken cancellationToken = default) => await _dbSet.FirstOrDefaultAsync(x => x.ProvinceCode==code, cancellationToken);
+    public async Task<Province?> GetByNameOrCodeAsync(string name, int? code, CancellationToken cancellationToken = default) => await _dbSet.FirstOrDefaultAsync(x => x.Name == name || x.ProvinceCode == code, cancellationToken);
 }
 

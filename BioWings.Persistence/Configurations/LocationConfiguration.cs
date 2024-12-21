@@ -60,7 +60,12 @@ public class LocationConfiguration : IEntityTypeConfiguration<Location>
         builder.HasMany(x => x.Observations)
             .WithOne(x => x.Location)
             .HasForeignKey(x => x.LocationId)
-            .OnDelete(DeleteBehavior.Restrict);
+            .OnDelete(DeleteBehavior.Cascade);
+
+        builder.HasIndex(x => x.ProvinceId);
+        builder.HasIndex(x => x.SquareRef);
+        builder.HasIndex(x => new { x.Latitude, x.Longitude });
+
     }
 }
 

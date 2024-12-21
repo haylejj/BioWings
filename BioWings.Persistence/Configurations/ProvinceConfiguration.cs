@@ -20,7 +20,7 @@ public class ProvinceConfiguration : IEntityTypeConfiguration<Province>
         builder.HasMany(x => x.Locations)
             .WithOne(x => x.Province)
             .HasForeignKey(x => x.ProvinceId)
-            .OnDelete(DeleteBehavior.Restrict);
+            .OnDelete(DeleteBehavior.Cascade);
     }
 }
 

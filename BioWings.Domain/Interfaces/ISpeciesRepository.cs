@@ -11,6 +11,8 @@ public interface ISpeciesRepository : IGenericRepository<Species>
     Task<Species?> GetByHesselbarthNameAsync(string hesselbarthName, CancellationToken cancellationToken = default);
     Task<Species?> FirstOrDefaultAsync(Expression<Func<Species, bool>> predicate, CancellationToken cancellationToken = default);
     IQueryable<Species?> GetUnusedSpeciesRecord();
+    Task<Species?> GetByNameOrScientificNameAsync(string name, CancellationToken cancellationToken = default);
+    Task<Species?> GetByName_Authority_GenusAsync(string name, string? authorityName, string? genusName, int? authorityYear, CancellationToken cancellationToken = default);
 }
 
 

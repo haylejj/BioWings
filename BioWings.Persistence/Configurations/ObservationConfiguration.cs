@@ -22,10 +22,14 @@ public class ObservationConfiguration : IEntityTypeConfiguration<Observation>
             .HasMaxLength(50);
 
         builder.Property(x => x.Notes)
-            .HasMaxLength(1000);
+            .HasMaxLength(200);
 
         builder.Property(x => x.Source)
-            .HasMaxLength(200);
+            .HasMaxLength(100);
+
+        builder.HasIndex(x => x.SpeciesId);
+        builder.HasIndex(x => x.LocationId);
+        builder.HasIndex(x => x.ObserverId);
 
     }
 }

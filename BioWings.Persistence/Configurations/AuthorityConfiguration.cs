@@ -21,6 +21,9 @@ public class AuthorityConfiguration : IEntityTypeConfiguration<Authority>
             .WithOne(x => x.Authority)
             .HasForeignKey(x => x.AuthorityId)
             .OnDelete(DeleteBehavior.Restrict);
+
+        builder.HasIndex(x => x.Name);
+        builder.HasIndex(x => new { x.Name, x.Year }).IsUnique();
     }
 }
 

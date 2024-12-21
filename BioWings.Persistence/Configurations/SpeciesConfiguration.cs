@@ -50,6 +50,16 @@ public class SpeciesConfiguration : IEntityTypeConfiguration<Species>
             .WithOne(x => x.Species)
             .HasForeignKey(x => x.SpeciesId)
             .OnDelete(DeleteBehavior.Cascade);
+
+        builder.HasIndex(x => new { x.ScientificName, x.GenusId, x.AuthorityId });
+
+        builder.HasIndex(x => x.Name);
+
+        builder.HasIndex(x => x.ScientificName);
+
+        builder.HasIndex(x => x.GenusId);
+
+        builder.HasIndex(x => x.AuthorityId);
     }
 }
 

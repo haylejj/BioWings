@@ -15,8 +15,13 @@ public class ObservationController(IHttpClientFactory httpClientFactory, ILogger
         var response = await client.GetAsync(url);
         if (response.IsSuccessStatusCode)
         {
+            var settings = new JsonSerializerSettings
+            {
+                NullValueHandling = NullValueHandling.Ignore,
+                MissingMemberHandling = MissingMemberHandling.Ignore
+            };
             var content = await response.Content.ReadAsStringAsync();
-            var observations = JsonConvert.DeserializeObject<ApiPaginatedResponse<ObservationGetViewModel>>(content);
+            var observations = JsonConvert.DeserializeObject<ApiPaginatedResponse<ObservationGetViewModel>>(content, settings);
             logger.LogInformation("Observations fetched successfully");
             ViewBag.SearchTerm = searchTerm;
             return View(observations.Data);

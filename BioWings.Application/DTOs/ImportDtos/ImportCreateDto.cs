@@ -33,11 +33,10 @@ public class ImportCreateDto
     public decimal Altitude1 { get; set; }
     public decimal Altitude2 { get; set; }
     public string? UtmReference { get; set; }
-    public string? Description { get; set; }
     public CoordinatePrecisionLevel CoordinatePrecisionLevel { get; set; }
     //Observer
     public string? ObserverName { get; set; }
-    public string? Surname { get; set; }
+    public string? ObserverSurname { get; set; }
     public string? ObserverFullName { get; set; }
     //Others
     public string? Sex { get; set; }

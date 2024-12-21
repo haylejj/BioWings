@@ -17,7 +17,11 @@ public class GenusConfiguration : IEntityTypeConfiguration<Genus>
         builder.HasMany(x => x.Species)
             .WithOne(x => x.Genus)
             .HasForeignKey(x => x.GenusId)
+            .IsRequired(false)
             .OnDelete(DeleteBehavior.Restrict);
+
+        builder.HasIndex(x => x.Name);
+        builder.HasIndex(x => new { x.Name, x.FamilyId });
     }
 }
 

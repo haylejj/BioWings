@@ -30,6 +30,8 @@ public class ObserverConfiguration : IEntityTypeConfiguration<Observer>
             .WithOne(x => x.Observer)
             .HasForeignKey(x => x.ObserverId)
             .OnDelete(DeleteBehavior.Restrict);
+
+        builder.HasIndex(x => x.FullName);
     }
 }
 

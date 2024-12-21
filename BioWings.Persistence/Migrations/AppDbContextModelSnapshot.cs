@@ -47,6 +47,11 @@ namespace BioWings.Persistence.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Name");
+
+                    b.HasIndex("Name", "Year")
+                        .IsUnique();
+
                     b.ToTable("Authorities");
                 });
 
@@ -70,6 +75,9 @@ namespace BioWings.Persistence.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
 
                     b.ToTable("Families");
                 });
@@ -99,6 +107,10 @@ namespace BioWings.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("FamilyId");
+
+                    b.HasIndex("Name");
+
+                    b.HasIndex("Name", "FamilyId");
 
                     b.ToTable("Genera");
                 });
@@ -183,6 +195,10 @@ namespace BioWings.Persistence.Migrations
 
                     b.HasIndex("ProvinceId");
 
+                    b.HasIndex("SquareRef");
+
+                    b.HasIndex("Latitude", "Longitude");
+
                     b.ToTable("Locations");
                 });
 
@@ -208,8 +224,8 @@ namespace BioWings.Persistence.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<string>("Notes")
-                        .HasMaxLength(1000)
-                        .HasColumnType("varchar(1000)");
+                        .HasMaxLength(200)
+                        .HasColumnType("varchar(200)");
 
                     b.Property<int>("NumberSeen")
                         .HasColumnType("int");
@@ -225,8 +241,8 @@ namespace BioWings.Persistence.Migrations
                         .HasColumnType("varchar(15)");
 
                     b.Property<string>("Source")
-                        .HasMaxLength(200)
-                        .HasColumnType("varchar(200)");
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
 
                     b.Property<int>("SpeciesId")
                         .HasColumnType("int");
@@ -261,7 +277,7 @@ namespace BioWings.Persistence.Migrations
                         .HasColumnType("varchar(40)");
 
                     b.Property<string>("FullName")
-                        .HasColumnType("longtext");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -285,6 +301,8 @@ namespace BioWings.Persistence.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("FullName");
 
                     b.ToTable("Observers");
                 });
@@ -383,6 +401,12 @@ namespace BioWings.Persistence.Migrations
 
                     b.HasIndex("GenusId");
 
+                    b.HasIndex("Name");
+
+                    b.HasIndex("ScientificName");
+
+                    b.HasIndex("ScientificName", "GenusId", "AuthorityId");
+
                     b.ToTable("Species");
                 });
 
@@ -430,7 +454,7 @@ namespace BioWings.Persistence.Migrations
                     b.HasOne("BioWings.Domain.Entities.Province", "Province")
                         .WithMany("Locations")
                         .HasForeignKey("ProvinceId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.Navigation("Province");
                 });
@@ -440,7 +464,7 @@ namespace BioWings.Persistence.Migrations
                     b.HasOne("BioWings.Domain.Entities.Location", "Location")
                         .WithMany("Observations")
                         .HasForeignKey("LocationId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("BioWings.Domain.Entities.Observer", "Observer")
                         .WithMany("Observations")

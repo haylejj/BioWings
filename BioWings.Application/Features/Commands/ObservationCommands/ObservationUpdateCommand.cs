@@ -9,7 +9,7 @@ public class ObservationUpdateCommand : IRequest<ServiceResult>
     public int Id { get; set; }
     //Authority
     public string? AuthorityName { get; set; }
-    public int Year { get; set; }
+    public int? Year { get; set; }
     //Genus
     public string? GenusName { get; set; }
     //Family
@@ -27,7 +27,7 @@ public class ObservationUpdateCommand : IRequest<ServiceResult>
     public string? HesselbarthName { get; set; }
     //Location
     //Province
-    public int ProvinceId { get; set; }
+    public int? ProvinceId { get; set; }
     public string? SquareRef { get; set; }
     public decimal SquareLatitude { get; set; }
     public decimal SquareLongitude { get; set; }

@@ -17,6 +17,8 @@ public class FamilyConfiguration : IEntityTypeConfiguration<Family>
             .WithOne(x => x.Family)
             .HasForeignKey(x => x.FamilyId)
             .OnDelete(DeleteBehavior.Restrict);
+
+        builder.HasIndex(x => x.Name).IsUnique();
     }
 }
 

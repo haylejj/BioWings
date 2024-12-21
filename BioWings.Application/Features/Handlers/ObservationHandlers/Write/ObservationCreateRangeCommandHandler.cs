@@ -1,6 +1,7 @@
 ﻿using BioWings.Application.DTOs.ObservationDtos;
 using BioWings.Application.Features.Commands.ObservationCommands;
 using BioWings.Application.Results;
+using BioWings.Application.Services;
 using BioWings.Domain.Entities;
 using BioWings.Domain.Interfaces;
 using MediatR;

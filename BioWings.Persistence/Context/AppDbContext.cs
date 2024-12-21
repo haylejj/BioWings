@@ -15,3 +15,4 @@ public class AppDbContext(DbContextOptions<AppDbContext> dbContextOptions) : DbC
     public DbSet<Observer> Observers { get; set; }
     public DbSet<Province> Provinces { get; set; }
 }
+
