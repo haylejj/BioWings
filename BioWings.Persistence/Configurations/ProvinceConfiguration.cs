@@ -21,6 +21,10 @@ public class ProvinceConfiguration : IEntityTypeConfiguration<Province>
             .WithOne(x => x.Province)
             .HasForeignKey(x => x.ProvinceId)
             .OnDelete(DeleteBehavior.Cascade);
+
+        builder.HasIndex(x => new { x.Name, x.ProvinceCode });
+        builder.HasIndex(x => x.ProvinceCode);
+        builder.HasIndex(x => x.Name);
     }
 }
 

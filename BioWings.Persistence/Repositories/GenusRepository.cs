@@ -9,6 +9,6 @@ public class GenusRepository(AppDbContext dbContext) : GenericRepository<Genus>(
 {
     public async Task<Genus?> GetByNameAndFamilyIdAsync(string name, int? familyId, CancellationToken cancellationToken = default) => await _dbSet.FirstOrDefaultAsync(g => g.Name == name && g.FamilyId == familyId, cancellationToken);
 
-    public async Task<Genus?> GetByNameAsync(string name, CancellationToken cancellationToken = default) => await _dbSet.FirstOrDefaultAsync(g => g.Name == name, cancellationToken);
+    public async Task<Genus?> GetByNameAsync(string name, CancellationToken cancellationToken = default) => await _dbSet.AsNoTracking().Where(g => g.Name == name).FirstOrDefaultAsync(cancellationToken);
 }
 

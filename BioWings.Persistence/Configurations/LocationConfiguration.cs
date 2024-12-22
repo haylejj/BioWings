@@ -64,7 +64,7 @@ public class LocationConfiguration : IEntityTypeConfiguration<Location>
 
         builder.HasIndex(x => x.ProvinceId);
         builder.HasIndex(x => x.SquareRef);
-        builder.HasIndex(x => new { x.Latitude, x.Longitude });
+        builder.HasIndex(x => new { x.Latitude, x.Longitude, x.SquareRef });
 
     }
 }

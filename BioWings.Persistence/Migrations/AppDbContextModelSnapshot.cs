@@ -197,7 +197,7 @@ namespace BioWings.Persistence.Migrations
 
                     b.HasIndex("SquareRef");
 
-                    b.HasIndex("Latitude", "Longitude");
+                    b.HasIndex("Latitude", "Longitude", "SquareRef");
 
                     b.ToTable("Locations");
                 });
@@ -331,6 +331,12 @@ namespace BioWings.Persistence.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Name");
+
+                    b.HasIndex("ProvinceCode");
+
+                    b.HasIndex("Name", "ProvinceCode");
+
                     b.ToTable("Provinces");
                 });
 
@@ -405,7 +411,7 @@ namespace BioWings.Persistence.Migrations
 
                     b.HasIndex("ScientificName");
 
-                    b.HasIndex("ScientificName", "GenusId", "AuthorityId");
+                    b.HasIndex("Name", "GenusId", "AuthorityId");
 
                     b.ToTable("Species");
                 });

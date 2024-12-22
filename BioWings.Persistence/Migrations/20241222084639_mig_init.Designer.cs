@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BioWings.Persistence.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241221195733_init_mig")]
-    partial class init_mig
+    [Migration("20241222084639_mig_init")]
+    partial class mig_init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -200,7 +200,7 @@ namespace BioWings.Persistence.Migrations
 
                     b.HasIndex("SquareRef");
 
-                    b.HasIndex("Latitude", "Longitude");
+                    b.HasIndex("Latitude", "Longitude", "SquareRef");
 
                     b.ToTable("Locations");
                 });
@@ -334,6 +334,12 @@ namespace BioWings.Persistence.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Name");
+
+                    b.HasIndex("ProvinceCode");
+
+                    b.HasIndex("Name", "ProvinceCode");
+
                     b.ToTable("Provinces");
                 });
 
@@ -408,7 +414,7 @@ namespace BioWings.Persistence.Migrations
 
                     b.HasIndex("ScientificName");
 
-                    b.HasIndex("ScientificName", "GenusId", "AuthorityId");
+                    b.HasIndex("Name", "GenusId", "AuthorityId");
 
                     b.ToTable("Species");
                 });

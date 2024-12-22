@@ -12,11 +12,16 @@ public class LocationRepository(AppDbContext dbContext) : GenericRepository<Loca
 
     public Task<Location?> GetByCoordinatesAsync(decimal latitude, decimal longitude, string squareRef, CancellationToken cancellationToken = default)
     {
-        return _dbSet.FirstOrDefaultAsync(l =>
-            Math.Abs(l.Latitude - latitude) < 0.000001m &&
-             Math.Abs(l.Longitude - longitude) < 0.000001m &&
-            (string.IsNullOrEmpty(squareRef) || l.SquareRef == squareRef),
-            cancellationToken);
+        latitude = Math.Round(latitude, 6);
+        longitude = Math.Round(longitude, 6);
+        var query = _dbSet.AsNoTracking();
+
+        if (!string.IsNullOrEmpty(squareRef))
+        {
+            query = query.Where(l => l.SquareRef == squareRef);
+        }
+        return query.Where(l => l.Latitude == latitude && l.Longitude == longitude)
+            .FirstOrDefaultAsync(cancellationToken);
     }
 
     public async Task<Location?> GetByIdWithProvinceAsync(int id, CancellationToken cancellationToken = default) => await _dbSet.Include(x => x.Province).FirstOrDefaultAsync(x => x.Id == id, cancellationToken);

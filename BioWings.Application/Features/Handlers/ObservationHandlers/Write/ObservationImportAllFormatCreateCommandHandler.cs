@@ -18,93 +18,64 @@ public class ObservationImportAllFormatCreateCommandHandler(ILogger<ObservationI
             var importDtos = excelImportService.ImportFromExcel(request.File);
             logger.LogInformation($"Excel'den {importDtos.Count} satır okundu.");
 
-            const int batchSize = 1000;
+            const int batchSize = 1500;
             var totalProcessed = 0;
-            ServiceResult result = null;
 
             await unitOfWork.GetContext().Database.CreateExecutionStrategy().ExecuteAsync(async () =>
             {
                 await using var transaction = await unitOfWork.GetContext().Database.BeginTransactionAsync(cancellationToken);
                 try
                 {
-                    for (int i = 0; i < importDtos.Count; i += batchSize)
+                    // Excel verilerini gruplama
+                    var groupedData = importDtos.GroupBy(x => new
                     {
-                        var batch = importDtos.Skip(i).Take(batchSize).ToList();
-                        var batchAuthorities = new List<Authority>();
-                        var batchFamilies = new List<Family>();
-                        var batchGenera = new List<Genus>();
-                        var batchSpecies = new List<Species>();
-                        var batchProvinces = new List<Province>();
-                        var batchLocations = new List<Location>();
-                        var batchObservers = new List<Observer>();
+                        x.AuthorityName,
+                        x.AuthorityYear,
+                        x.FamilyName,
+                        x.GenusName,
+                        x.ProvinceName,
+                        x.ProvinceCode,
+                        x.ObserverFullName
+                    }).ToList();
+
+                    foreach (var group in groupedData)
+                    {
+                        // Authority işlemi
+                        var authority = !string.IsNullOrEmpty(group.Key.AuthorityName)
+                            ? await GetOrCreateAuthorityAsync(group.Key.AuthorityName, group.Key.AuthorityYear, cancellationToken)
+                            : null;
+
+                        // Family işlemi
+                        var family = !string.IsNullOrEmpty(group.Key.FamilyName)
+                            ? await GetOrCreateFamilyAsync(group.Key.FamilyName, cancellationToken)
+                            : null;
+
+                        // Genus işlemi
+                        var genus = !string.IsNullOrEmpty(group.Key.GenusName)
+                            ? await GetOrCreateGenusAsync(group.Key.GenusName, family?.Id, cancellationToken)
+                            : null;
+
+                        // Province işlemi
+                        var province = (!string.IsNullOrEmpty(group.Key.ProvinceName) || group.Key.ProvinceCode.HasValue)
+                            ? await GetOrCreateProvinceAsync(group.Key.ProvinceName, group.Key.ProvinceCode, cancellationToken)
+                            : null;
+
+                        // Observer işlemi
+                        var observer = !string.IsNullOrEmpty(group.Key.ObserverFullName)
+                            ? await GetOrCreateObserverAsync(group.Key.ObserverFullName, cancellationToken)
+                            : null;
+
                         var batchObservations = new List<Observation>();
 
-                        foreach (var dto in batch)
+                        foreach (var dto in group)
                         {
                             try
                             {
-                                // Authority işlemi
-                                var authority = await GetOrCreateAuthorityWithBatch(dto, batchAuthorities, cancellationToken);
-                                if (batchAuthorities.Any())
-                                {
-                                    await authorityRepository.AddRangeAsync(batchAuthorities, cancellationToken);
-                                    await unitOfWork.SaveChangesAsync(cancellationToken);
-                                    batchAuthorities.Clear();
-                                }
-
-                                // Family işlemi
-                                var family = await GetOrCreateFamilyWithBatch(dto, batchFamilies, cancellationToken);
-                                if (batchFamilies.Any())
-                                {
-                                    await familyRepository.AddRangeAsync(batchFamilies, cancellationToken);
-                                    await unitOfWork.SaveChangesAsync(cancellationToken);
-                                    batchFamilies.Clear();
-                                }
-
-                                // Genus işlemi
-                                var genus = await GetOrCreateGenusWithBatch(dto, family?.Id, batchGenera, cancellationToken);
-                                if (batchGenera.Any())
-                                {
-                                    await genusRepository.AddRangeAsync(batchGenera, cancellationToken);
-                                    await unitOfWork.SaveChangesAsync(cancellationToken);
-                                    batchGenera.Clear();
-                                }
-
                                 // Species işlemi
-                                var species = await GetOrCreateSpeciesWithBatch(dto, genus?.Id, authority?.Id, batchSpecies, cancellationToken);
-                                if (batchSpecies.Any())
-                                {
-                                    await speciesRepository.AddRangeAsync(batchSpecies, cancellationToken);
-                                    await unitOfWork.SaveChangesAsync(cancellationToken);
-                                    batchSpecies.Clear();
-                                }
-
-                                // Province işlemi
-                                var province = await GetOrCreateProvinceWithBatch(dto, batchProvinces, cancellationToken);
-                                if (batchProvinces.Any())
-                                {
-                                    await provinceRepository.AddRangeAsync(batchProvinces, cancellationToken);
-                                    await unitOfWork.SaveChangesAsync(cancellationToken);
-                                    batchProvinces.Clear();
-                                }
+                                var species = await GetOrCreateSpeciesAsync(dto, genus?.Id, authority?.Id, cancellationToken);
 
                                 // Location işlemi
-                                var location = await GetOrCreateLocationWithBatch(dto, province?.Id, batchLocations, cancellationToken);
-                                if (batchLocations.Any())
-                                {
-                                    await locationRepository.AddRangeAsync(batchLocations, cancellationToken);
-                                    await unitOfWork.SaveChangesAsync(cancellationToken);
-                                    batchLocations.Clear();
-                                }
-
-                                // Observer işlemi
-                                var observer = await GetOrCreateObserverWithBatch(dto, batchObservers, cancellationToken);
-                                if (batchObservers.Any())
-                                {
-                                    await observerRepository.AddRangeAsync(batchObservers, cancellationToken);
-                                    await unitOfWork.SaveChangesAsync(cancellationToken);
-                                    batchObservers.Clear();
-                                }
+                                var location = await GetOrCreateLocationAsync(dto, province?.Id, cancellationToken);
 
                                 var observation = new Observation
                                 {
@@ -120,6 +91,16 @@ public class ObservationImportAllFormatCreateCommandHandler(ILogger<ObservationI
                                     LocationInfo = dto.LocationInfo
                                 };
                                 batchObservations.Add(observation);
+
+                                if (batchObservations.Count >= batchSize)
+                                {
+                                    await observationRepository.AddRangeAsync(batchObservations, cancellationToken);
+                                    await unitOfWork.SaveChangesAsync(cancellationToken);
+                                    totalProcessed += batchObservations.Count;
+                                    logger.LogInformation($"Batch processed: {totalProcessed}/{importDtos.Count}");
+                                    batchObservations.Clear();
+                                    unitOfWork.GetContext().ChangeTracker.Clear();
+                                }
                             }
                             catch (Exception ex)
                             {
@@ -128,21 +109,18 @@ public class ObservationImportAllFormatCreateCommandHandler(ILogger<ObservationI
                             }
                         }
 
+                        // Kalan observations varsa onları da ekle
                         if (batchObservations.Any())
                         {
                             await observationRepository.AddRangeAsync(batchObservations, cancellationToken);
                             await unitOfWork.SaveChangesAsync(cancellationToken);
+                            totalProcessed += batchObservations.Count;
+                            logger.LogInformation($"Batch processed: {totalProcessed}/{importDtos.Count}");
                         }
-
-                        totalProcessed += batch.Count;
-                        logger.LogInformation($"Batch processed: {totalProcessed}/{importDtos.Count}");
                     }
 
-                    // Duplicate kayıtların temizlenmesi
-                    await CleanDuplicateObservations(cancellationToken);
-                    // Transaction'ı commit et
                     await transaction.CommitAsync(cancellationToken);
-                    result = ServiceResult.Success();
+                    return ServiceResult.Success();
                 }
                 catch (Exception)
                 {
@@ -151,7 +129,10 @@ public class ObservationImportAllFormatCreateCommandHandler(ILogger<ObservationI
                 }
             });
 
-            return result ?? ServiceResult.Error("İşlem tamamlanamadı.");
+            // Duplicate temizleme işlemi
+            await CleanDuplicateObservations(cancellationToken);
+
+            return ServiceResult.Success();
         }
         catch (Exception ex)
         {
@@ -159,54 +140,44 @@ public class ObservationImportAllFormatCreateCommandHandler(ILogger<ObservationI
             return ServiceResult.Error($"Import işlemi sırasında hata oluştu: {ex.Message}");
         }
     }
-    private async Task<Authority> GetOrCreateAuthorityWithBatch(ImportCreateDto dto, List<Authority> batchList, CancellationToken cancellationToken)
-    {
-        if (string.IsNullOrEmpty(dto.AuthorityName)) return null;
 
-        var authority = await authorityRepository.GetByNameAndYearAsync(dto.AuthorityName, dto.AuthorityYear, cancellationToken);
+    private async Task<Authority> GetOrCreateAuthorityAsync(string name, int year, CancellationToken cancellationToken)
+    {
+        var authority = await authorityRepository.GetByNameAndYearAsync(name, year, cancellationToken);
         if (authority == null)
         {
-            authority = new Authority
-            {
-                Name = dto.AuthorityName,
-                Year = dto.AuthorityYear
-            };
-            batchList.Add(authority);
+            authority = new Authority { Name = name, Year = year };
+            await authorityRepository.AddAsync(authority, cancellationToken);
+            await unitOfWork.SaveChangesAsync(cancellationToken);
         }
         return authority;
     }
 
-    private async Task<Family> GetOrCreateFamilyWithBatch(ImportCreateDto dto, List<Family> batchList, CancellationToken cancellationToken)
+    private async Task<Family> GetOrCreateFamilyAsync(string name, CancellationToken cancellationToken)
     {
-        if (string.IsNullOrEmpty(dto.FamilyName)) return null;
-
-        var family = await familyRepository.GetByNameAsync(dto.FamilyName, cancellationToken);
+        var family = await familyRepository.GetByNameAsync(name, cancellationToken);
         if (family == null)
         {
-            family = new Family { Name = dto.FamilyName };
-            batchList.Add(family);
+            family = new Family { Name = name };
+            await familyRepository.AddAsync(family, cancellationToken);
+            await unitOfWork.SaveChangesAsync(cancellationToken);
         }
         return family;
     }
 
-    private async Task<Genus> GetOrCreateGenusWithBatch(ImportCreateDto dto, int? familyId, List<Genus> batchList, CancellationToken cancellationToken)
+    private async Task<Genus> GetOrCreateGenusAsync(string name, int? familyId, CancellationToken cancellationToken)
     {
-        if (string.IsNullOrEmpty(dto.GenusName)) return null;
-
-        var genus = await genusRepository.GetByNameAsync(dto.GenusName, cancellationToken);
+        var genus = await genusRepository.GetByNameAsync(name, cancellationToken);
         if (genus == null)
         {
-            genus = new Genus
-            {
-                Name = dto.GenusName,
-                FamilyId = familyId
-            };
-            batchList.Add(genus);
+            genus = new Genus { Name = name, FamilyId = familyId };
+            await genusRepository.AddAsync(genus, cancellationToken);
+            await unitOfWork.SaveChangesAsync(cancellationToken);
         }
         return genus;
     }
 
-    private async Task<Species> GetOrCreateSpeciesWithBatch(ImportCreateDto dto, int? genusId, int? authorityId, List<Species> batchList, CancellationToken cancellationToken)
+    private async Task<Species> GetOrCreateSpeciesAsync(ImportCreateDto dto, int? genusId, int? authorityId, CancellationToken cancellationToken)
     {
         var species = await speciesRepository.GetByName_Authority_GenusAsync(dto.SpeciesName, dto.AuthorityName, dto.GenusName, dto.AuthorityYear, cancellationToken);
         if (species == null)
@@ -226,29 +197,13 @@ public class ObservationImportAllFormatCreateCommandHandler(ILogger<ObservationI
                 Trakel = dto.Trakel,
                 KocakName = dto.KocakName
             };
-            batchList.Add(species);
+            await speciesRepository.AddAsync(species, cancellationToken);
+            await unitOfWork.SaveChangesAsync(cancellationToken);
         }
         return species;
     }
 
-    private async Task<Province> GetOrCreateProvinceWithBatch(ImportCreateDto dto, List<Province> batchList, CancellationToken cancellationToken)
-    {
-        if (string.IsNullOrEmpty(dto.ProvinceName) && !dto.ProvinceCode.HasValue) return null;
-
-        var province = await provinceRepository.GetByNameOrCodeAsync(dto.ProvinceName, dto.ProvinceCode, cancellationToken);
-        if (province == null)
-        {
-            province = new Province
-            {
-                Name = dto.ProvinceName,
-                ProvinceCode = dto.ProvinceCode ?? 0
-            };
-            batchList.Add(province);
-        }
-        return province;
-    }
-
-    private async Task<Location> GetOrCreateLocationWithBatch(ImportCreateDto dto, int? provinceId, List<Location> batchList, CancellationToken cancellationToken)
+    private async Task<Location> GetOrCreateLocationAsync(ImportCreateDto dto, int? provinceId, CancellationToken cancellationToken)
     {
         var location = await locationRepository.GetByCoordinatesAsync(Math.Round(dto.Latitude, 6), Math.Round(dto.Longitude, 6), dto.SquareRef, cancellationToken);
         if (location == null)
@@ -259,8 +214,8 @@ public class ObservationImportAllFormatCreateCommandHandler(ILogger<ObservationI
                 SquareRef = dto.SquareRef,
                 SquareLatitude = dto.SquareLatitude,
                 SquareLongitude = dto.SquareLongitude,
-                Latitude = dto.Latitude,
-                Longitude = dto.Longitude,
+                Latitude = Math.Round(dto.Latitude, 6),
+                Longitude = Math.Round(dto.Longitude, 6),
                 DecimalDegrees = dto.DecimalDegrees,
                 DegreesMinutesSeconds = dto.DegreesMinutesSeconds,
                 DecimalMinutes = dto.DecimalMinutes,
@@ -271,33 +226,54 @@ public class ObservationImportAllFormatCreateCommandHandler(ILogger<ObservationI
                 UtmReference = dto.UtmReference,
                 CoordinatePrecisionLevel = dto.CoordinatePrecisionLevel
             };
-            batchList.Add(location);
+            await locationRepository.AddAsync(location, cancellationToken);
+            await unitOfWork.SaveChangesAsync(cancellationToken);
         }
         return location;
     }
-
-    private async Task<Observer> GetOrCreateObserverWithBatch(ImportCreateDto dto, List<Observer> batchList, CancellationToken cancellationToken)
+    private async Task<Province> GetOrCreateProvinceAsync(string name, int? code, CancellationToken cancellationToken)
     {
-        if (string.IsNullOrEmpty(dto.ObserverFullName) && string.IsNullOrEmpty(dto.ObserverName)) return null;
+        var province = await provinceRepository.GetByNameOrCodeAsync(name, code, cancellationToken);
+        if (province == null)
+        {
+            province = new Province
+            {
+                Name = name,
+                ProvinceCode = code ?? 0
+            };
+            await provinceRepository.AddAsync(province, cancellationToken);
+            await unitOfWork.SaveChangesAsync(cancellationToken);
+        }
+        return province;
+    }
 
-        var fullName = dto.ObserverFullName ?? dto.ObserverName;
+    private async Task<Observer> GetOrCreateObserverAsync(string fullName, CancellationToken cancellationToken)
+    {
         var observer = await observerRepository.GetByFullNameAsync(fullName, cancellationToken);
         if (observer == null)
         {
+            // İsim ve soyisim ayırma işlemi
+            var nameParts = fullName.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+            var surname = nameParts.Length > 1 ? nameParts[^1] : string.Empty;
+            var name = nameParts.Length > 1 ? string.Join(" ", nameParts.Take(nameParts.Length - 1)) : fullName;
+
             observer = new Observer
             {
-                Name = dto.ObserverName,
-                Surname = dto.ObserverSurname,
+                Name = name,
+                Surname = surname,
                 FullName = fullName
             };
-            batchList.Add(observer);
+            await observerRepository.AddAsync(observer, cancellationToken);
+            await unitOfWork.SaveChangesAsync(cancellationToken);
         }
         return observer;
     }
+
     private async Task CleanDuplicateObservations(CancellationToken cancellationToken)
     {
-        int batchSize = 1000;
+        const int batchSize = 1500;
         var duplicateIds = await observationRepository.GetAllDuplicateObservationIdsAsync(cancellationToken);
+
         if (duplicateIds.Any())
         {
             for (int i = 0; i < duplicateIds.Count; i += batchSize)
@@ -309,12 +285,5 @@ public class ObservationImportAllFormatCreateCommandHandler(ILogger<ObservationI
             }
             logger.LogInformation($"Removed {duplicateIds.Count} duplicate observations");
         }
-    }
-    private Location NormalizeLocation(Location location)
-    {
-        // Koordinatları belirli bir hassasiyete yuvarlama
-        location.Latitude = Math.Round(location.Latitude, 6);
-        location.Longitude = Math.Round(location.Longitude, 6);
-        return location;
     }
 }
