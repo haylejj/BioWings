@@ -17,7 +17,10 @@
                         <path d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z" fill="currentColor"></path>
                     </svg>
                 </span>
-                <input type="text" id="searchInput" class="form-control form-control-solid w-250px ps-14" placeholder="Search Observations">
+                <input type="text" id="searchInput" class="form-control form-control-solid w-250px ps-14" placeholder="Gözlemlerde Ara">
+                <button type="button" class="btn btn-icon btn-primary ms-2" id="searchInfoBtn" data-bs-toggle="tooltip" data-bs-placement="top" title="Arama İpuçları">
+                    <i class="fas fa-info-circle"></i>
+                </button>
             </div>
             <!--end::Search-->
         </div>
@@ -1548,6 +1551,31 @@
                 $('#create_observation_form')[0].reset();
                 $('.is-invalid').removeClass('is-invalid');
                 $('.invalid-feedback').remove();
+            });
+        });
+    </script>
+    <script>
+        document.getElementById('searchInfoBtn').addEventListener('click', function() {
+            Swal.fire({
+                title: 'Arama İpuçları',
+                html: `
+                    <div class="text-start">
+                        <p>Arama yaparken aşağıdaki alanlar üzerinde arama yapılmaktadır:</p>
+                        <ul>
+                            <li>Bilimsel İsim (Scientific Name)</li>
+                            <li>Cins İsmi (Genus Name)</li>
+                            <li>Familya İsmi (Family Name)</li>
+                            <li>Hesselbarth İsmi (Hesselbarth Name)</li>
+                            <li>İl İsmi (Province Name)</li>
+                            <li>Tür İsim (Species Name)</li>
+                            <li>Full İsim (Full Name)</li>
+                        </ul>
+                        <p>Büyük/küçük harf duyarlılığı olmadan arama yapabilirsiniz.</p>
+                    </div>
+                `,
+                icon: 'info',
+                confirmButtonText: 'Tamam',
+                confirmButtonColor: '#3085d6'
             });
         });
     </script>

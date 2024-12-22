@@ -320,14 +320,14 @@
         KTUtil.onDOMContentLoaded(function () {
             ImportHandler.init();
         });
-     
+
     </script>
     <script>
                 // Import sayfasındaki download template linkine click handler ekle
         document.querySelector('#downloadTemplate').addEventListener('click', async (e) => {
             e.preventDefault();
 
-            try 
+            try
             {
                 const response = await fetch('https://localhost:7128/api/ExcelTemplate/download', {
             method: 'GET',

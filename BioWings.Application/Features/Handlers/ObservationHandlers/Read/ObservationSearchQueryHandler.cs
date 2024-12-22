@@ -27,7 +27,8 @@ public class ObservationSearchQueryHandler(IObservationRepository observationRep
                 o.Species.Genus.Family.Name.ToLower().Contains(searchTerm) ||
                 o.Species.HesselbarthName.ToLower().Contains(searchTerm) ||
                 o.Location.Province.Name.ToLower().Contains(searchTerm) ||
-                o.Species.FullName.ToLower().Contains(searchTerm)
+                o.Species.FullName.ToLower().Contains(searchTerm) ||
+                o.Species.Name.ToLower().Contains(searchTerm)
             );
         }
         var totalCount = await observations.CountAsync(cancellationToken);
