@@ -1,14 +1,17 @@
-﻿using BioWings.Application.Services;
+﻿using BioWings.Application.Interfaces;
+using BioWings.Application.Services;
 using BioWings.Domain.Entities;
-using BioWings.Domain.Interfaces;
 using BioWings.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using MySqlConnector;
+using System.Data;
 using System.Linq.Expressions;
 
 namespace BioWings.Persistence.Repositories;
 public class SpeciesRepository(AppDbContext dbContext, IUnitOfWork unitOfWork, ILogger<SpeciesRepository> logger) : GenericRepository<Species>(dbContext), ISpeciesRepository
 {
+    private readonly DbContext dbContext1 = unitOfWork.GetContext();
     public IQueryable<Species?> GetUnusedSpeciesRecord() => _dbSet.Include(x => x.Observations).Include(x => x.Subspecies).Where(spec => !spec.Observations.Any() &&  !spec.Subspecies.Any());
     public async Task<Species?> FirstOrDefaultAsync(Expression<Func<Species, bool>> predicate, CancellationToken cancellationToken = default) => await _dbSet.Include(x => x.Authority).Include(y => y.Genus).FirstOrDefaultAsync(predicate, cancellationToken);
     public async Task<Species?> GetByHesselbarthNameAsync(string hesselbarthName, CancellationToken cancellationToken = default) => await _dbSet.FirstOrDefaultAsync(x => x.HesselbarthName== hesselbarthName, cancellationToken);
@@ -58,6 +61,39 @@ public class SpeciesRepository(AppDbContext dbContext, IUnitOfWork unitOfWork, I
 
         // Hiçbir ek koşul yoksa
         return await query.FirstOrDefaultAsync(cancellationToken);
+    }
+    public async Task<Species?> GetOrCreateSpeciesAsync<TDto>(TDto dto, int? genusId, int? authorityId, CancellationToken cancellationToken) where TDto : ISpeciesImportDto
+    {
+        var parameters = new[]
+        {
+            new MySqlParameter("@p0", (object)dto.SpeciesName ?? DBNull.Value),
+            new MySqlParameter("@p1", (object)genusId ?? DBNull.Value),
+            new MySqlParameter("@p2", (object)authorityId ?? DBNull.Value),
+            new MySqlParameter("@p3", (object)dto.ScientificName ?? DBNull.Value),
+            new MySqlParameter("@p4", (object)dto.EUName ?? DBNull.Value),
+            new MySqlParameter("@p5", (object)dto.FullName ?? DBNull.Value),
+            new MySqlParameter("@p6", (object)dto.HesselbarthName ?? DBNull.Value),
+            new MySqlParameter("@p7", (object)dto.TurkishName ?? DBNull.Value),
+            new MySqlParameter("@p8", (object)dto.EnglishName ?? DBNull.Value),
+            new MySqlParameter("@p9", (object)dto.TurkishNamesTrakel ?? DBNull.Value),
+            new MySqlParameter("@p10", (object)dto.Trakel ?? DBNull.Value),
+            new MySqlParameter("@p11", (object)dto.KocakName ?? DBNull.Value)
+        };
+
+        var sql = "CALL sp_GetOrCreateSpecies(@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11)";
+
+        List<Species> result = await dbContext1.Set<Species>()
+        .FromSqlRaw(sql, parameters)
+        .ToListAsync(cancellationToken);
+
+        Species? species = result.FirstOrDefault();
+
+        if (species != null)
+        {
+            return species;
+        }
+
+        return null;
     }
 }
 

@@ -1,6 +1,6 @@
 ﻿using BioWings.Domain.Entities;
 
-namespace BioWings.Domain.Interfaces;
+namespace BioWings.Application.Interfaces;
 
 public interface IObserverRepository : IGenericRepository<Observer>
 {

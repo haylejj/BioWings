@@ -1,5 +1,5 @@
-﻿using BioWings.Domain.Entities;
-using BioWings.Domain.Interfaces;
+﻿using BioWings.Application.Interfaces;
+using BioWings.Domain.Entities;
 using BioWings.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
@@ -87,5 +87,9 @@ public class ObservationRepository(AppDbContext dbContext) : GenericRepository<O
             .Select(o => o.Id)
             .ToListAsync(cancellationToken);
         return duplicateIds;
+    }
+    public async Task BulkInsertObservationsAsync(IList<Observation> observations, CancellationToken cancellationToken = default)
+    {
+        await BulkInsertAsync("observations", observations, cancellationToken);
     }
 }

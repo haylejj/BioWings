@@ -1,7 +1,7 @@
 ﻿using BioWings.Application.Features.Queries.ProvinceQueries;
 using BioWings.Application.Features.Results.ProvinceResults;
+using BioWings.Application.Interfaces;
 using BioWings.Application.Results;
-using BioWings.Domain.Interfaces;
 using MediatR;
 using Microsoft.Extensions.Logging;
 

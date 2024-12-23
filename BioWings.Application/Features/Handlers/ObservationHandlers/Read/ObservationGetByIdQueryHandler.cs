@@ -1,7 +1,7 @@
 ﻿using BioWings.Application.Features.Queries.ObservationQueries;
 using BioWings.Application.Features.Results.ObservationResults;
+using BioWings.Application.Interfaces;
 using BioWings.Application.Results;
-using BioWings.Domain.Interfaces;
 using MediatR;
 using Microsoft.Extensions.Logging;
 

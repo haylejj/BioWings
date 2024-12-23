@@ -1,7 +1,8 @@
 ﻿using BioWings.Domain.Entities;
+using System.Data;
 using System.Linq.Expressions;
 
-namespace BioWings.Domain.Interfaces;
+namespace BioWings.Application.Interfaces;
 
 public interface ISpeciesRepository : IGenericRepository<Species>
 {
@@ -13,6 +14,7 @@ public interface ISpeciesRepository : IGenericRepository<Species>
     IQueryable<Species?> GetUnusedSpeciesRecord();
     Task<Species?> GetByNameOrScientificNameAsync(string name, CancellationToken cancellationToken = default);
     Task<Species?> GetByName_Authority_GenusAsync(string name, string? authorityName, string? genusName, int? authorityYear, CancellationToken cancellationToken = default);
+    Task<Species?> GetOrCreateSpeciesAsync<TDto>(TDto dto, int? genusId, int? authorityId, CancellationToken cancellationToken) where TDto : ISpeciesImportDto;
 }
 
 

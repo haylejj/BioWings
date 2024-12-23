@@ -1,5 +1,5 @@
-﻿using BioWings.Application.Services;
-using BioWings.Domain.Interfaces;
+﻿using BioWings.Application.Interfaces;
+using BioWings.Application.Services;
 using BioWings.Persistence.Context;
 using BioWings.Persistence.Interceptors;
 using BioWings.Persistence.Repositories;

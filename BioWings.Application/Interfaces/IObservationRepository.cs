@@ -1,7 +1,7 @@
 ﻿using BioWings.Domain.Entities;
 using System.Linq.Expressions;
 
-namespace BioWings.Domain.Interfaces;
+namespace BioWings.Application.Interfaces;
 
 public interface IObservationRepository : IGenericRepository<Observation>
 {
@@ -10,6 +10,7 @@ public interface IObservationRepository : IGenericRepository<Observation>
     Task<List<Observation>> GetAllDuplicateObservationsAsync(CancellationToken cancellationToken = default);
     Task RemoveDuplicatesAsync(List<int> batchIds, CancellationToken cancellationToken = default);
     Task<List<int>> GetAllDuplicateObservationIdsAsync(CancellationToken cancellationToken = default);
+    Task BulkInsertObservationsAsync(IList<Observation> observations, CancellationToken cancellationToken = default);
 }
 
 

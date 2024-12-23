@@ -1,7 +1,8 @@
-﻿using BioWings.Domain.Enums;
+﻿using BioWings.Application.Interfaces;
+using BioWings.Domain.Enums;
 
 namespace BioWings.Application.DTOs.ImportDtos;
-public class ImportCreateDto
+public class ImportCreateDto : ILocationImportDto, ISpeciesImportDto
 {
     public string? AuthorityName { get; set; }
     public int AuthorityYear { get; set; }

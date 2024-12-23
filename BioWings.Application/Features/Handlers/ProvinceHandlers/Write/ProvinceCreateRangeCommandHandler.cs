@@ -1,8 +1,8 @@
 ﻿using BioWings.Application.Features.Commands.ProvinceCommands;
+using BioWings.Application.Interfaces;
 using BioWings.Application.Results;
 using BioWings.Application.Services;
 using BioWings.Domain.Entities;
-using BioWings.Domain.Interfaces;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using System.Net;

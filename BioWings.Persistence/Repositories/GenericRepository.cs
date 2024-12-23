@@ -1,7 +1,11 @@
-﻿using BioWings.Domain.Entities;
-using BioWings.Domain.Interfaces;
+﻿using BioWings.Application.Interfaces;
+using BioWings.Domain.Entities;
 using BioWings.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
+using MySqlConnector;
+using System.Collections;
+using System.Data;
 using System.Linq.Expressions;
 
 namespace BioWings.Persistence.Repositories;
@@ -24,4 +28,113 @@ public class GenericRepository<T>(AppDbContext dbContext) : IGenericRepository<T
     public void UpdateRange(IEnumerable<T> entities) => _dbSet.UpdateRange(entities);
     public async Task<int> GetTotalCountAsync(CancellationToken cancellationToken = default) => await _dbSet.CountAsync(cancellationToken);
     public IQueryable<T> GetPagedAsQueryable(int pageNumber, int pageSize) => _dbSet.Skip((pageNumber - 1) * pageSize).Take(pageSize);
+
+    public async Task<TResult> ExecuteStoredProcedureAsync<TResult>(string procedureName, object parameters, CancellationToken cancellationToken = default)
+    {
+        var paramList = new List<MySqlParameter>();
+        foreach (var prop in parameters.GetType().GetProperties())
+        {
+            paramList.Add(new MySqlParameter($"@{prop.Name}", prop.GetValue(parameters) ?? DBNull.Value));
+        }
+
+        var result = await dbContext.Database
+        .SqlQueryRaw<TResult>($"CALL {procedureName}({string.Join(",", paramList.Select(p => p.ParameterName))})", paramList.ToArray())
+        .FirstOrDefaultAsync(cancellationToken);
+
+        return result;
+    }
+
+    public async Task ExecuteStoredProcedureAsync(string procedureName, object parameters, CancellationToken cancellationToken = default)
+    {
+        var paramList = new List<MySqlParameter>();
+        foreach (var prop in parameters.GetType().GetProperties())
+        {
+            paramList.Add(new MySqlParameter($"@{prop.Name}", prop.GetValue(parameters) ?? DBNull.Value));
+        }
+
+        await dbContext.Database.ExecuteSqlRawAsync($"CALL {procedureName}({string.Join(",", paramList.Select(p => p.ParameterName))})",
+                paramList.ToArray(),
+                cancellationToken);
+    }
+
+    public async Task BulkInsertAsync<TResult>(string tableName, IList<TResult> entities, CancellationToken cancellationToken = default)
+    {
+        var transaction = dbContext.Database.CurrentTransaction?.GetDbTransaction() as MySqlTransaction;
+        var connection = dbContext.Database.GetDbConnection() as MySqlConnection;
+
+        if (connection.State != ConnectionState.Open)
+        {
+            await connection.OpenAsync(cancellationToken);
+        }
+
+        var bulkCopy = new MySqlBulkCopy(connection, transaction)  // transaction'ı burada ver
+        {
+            DestinationTableName = tableName,
+            BulkCopyTimeout = 600
+        };
+
+        var dataTable = CreateDataTable(entities);
+        await bulkCopy.WriteToServerAsync(dataTable, cancellationToken);
+    }
+    private DataTable CreateDataTable<TResult>(IList<TResult> entities)
+    {
+        var dataTable = new DataTable();
+        var allProperties = typeof(TResult).GetProperties();
+        var properties = typeof(TResult)
+            .GetProperties()
+            .Where(p =>
+            {
+                // Virtual kontrolü
+                var isVirtual = p.GetGetMethod()?.IsVirtual ?? false;
+                // Collection kontrolü - daha spesifik
+                var isCollection = p.PropertyType != typeof(string) &&
+                                 typeof(IEnumerable).IsAssignableFrom(p.PropertyType);
+                // Type kontrolü
+                var isValidType = p.PropertyType.IsPrimitive ||
+                                p.PropertyType == typeof(string) ||
+                                p.PropertyType == typeof(DateTime) ||
+                                p.PropertyType == typeof(decimal) ||
+                                p.PropertyType == typeof(int) ||
+                                p.PropertyType == typeof(long) ||
+                                (Nullable.GetUnderlyingType(p.PropertyType)?.IsPrimitive ?? false) ||
+                                Nullable.GetUnderlyingType(p.PropertyType) == typeof(decimal);
+                return !isVirtual && !isCollection && isValidType;
+            })
+            .ToList();
+
+        foreach (var property in properties)
+        {
+            var type = Nullable.GetUnderlyingType(property.PropertyType) ?? property.PropertyType;
+            dataTable.Columns.Add(property.Name, type);
+        }
+
+        // BaseEntity alanları için kolon ekle
+        if (!dataTable.Columns.Contains("CreatedDateTime"))
+        {
+            dataTable.Columns.Add("CreatedDateTime", typeof(DateTime));
+        }
+        if (!dataTable.Columns.Contains("UpdatedDateTime"))
+        {
+            dataTable.Columns.Add("UpdatedDateTime", typeof(DateTime));
+        }
+
+        foreach (var entity in entities)
+        {
+            var row = dataTable.NewRow();
+            foreach (var property in properties)
+            {
+                var value = property.GetValue(entity);
+                row[property.Name] = value ?? DBNull.Value;
+            }
+
+            // BaseEntity alanlarını set et
+            var now = DateTime.Now;
+            row["CreatedDateTime"] = now;
+            row["UpdatedDateTime"] = DateTime.MinValue;
+
+            dataTable.Rows.Add(row);
+        }
+
+        return dataTable;
+    }
 }

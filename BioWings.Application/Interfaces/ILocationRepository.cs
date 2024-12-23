@@ -1,7 +1,7 @@
 ﻿using BioWings.Domain.Entities;
 using System.Linq.Expressions;
 
-namespace BioWings.Domain.Interfaces;
+namespace BioWings.Application.Interfaces;
 
 public interface ILocationRepository : IGenericRepository<Location>
 {
@@ -9,6 +9,7 @@ public interface ILocationRepository : IGenericRepository<Location>
     Task<Location?> FirstOrDefaultAsync(Expression<Func<Location, bool>> predicate, CancellationToken cancellationToken = default);
     IQueryable<Location?> GetUnusedLocationRecord();
     Task<Location?> GetByCoordinatesAsync(decimal latitude, decimal longitude, string squareRef, CancellationToken cancellationToken = default);
+    Task<Location?> GetOrCreateLocationAsync<TDto>(TDto dto, int? provinceId, CancellationToken cancellationToken) where TDto : ILocationImportDto;
 }
 
 

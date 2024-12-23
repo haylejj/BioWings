@@ -1,7 +1,7 @@
 ﻿using BioWings.Domain.Entities;
 using System.Linq.Expressions;
 
-namespace BioWings.Domain.Interfaces;
+namespace BioWings.Application.Interfaces;
 public interface IGenericRepository<T> where T : BaseEntity
 {
     // Temel CRUD operasyonları
@@ -24,4 +24,8 @@ public interface IGenericRepository<T> where T : BaseEntity
     // Filtreleme
     Task<IEnumerable<T>> GetFilteredAsync(Expression<Func<T, bool>> predicate, CancellationToken cancellationToken = default);
     Task<IEnumerable<T>> GetFilteredAsNoTrackingAsync(Expression<Func<T, bool>> predicate, CancellationToken cancellationToken = default);
+    Task<TResult> ExecuteStoredProcedureAsync<TResult>(string procedureName, object parameters, CancellationToken cancellationToken = default);
+    Task ExecuteStoredProcedureAsync(string procedureName, object parameters, CancellationToken cancellationToken = default);
+    Task BulkInsertAsync<TResult>(string tableName, IList<TResult> entities, CancellationToken cancellationToken = default);
+
 }

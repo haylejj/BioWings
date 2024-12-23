@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BioWings.Persistence.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241222084639_mig_init")]
+    [Migration("20241222220820_mig_init")]
     partial class mig_init
     {
         /// <inheritdoc />

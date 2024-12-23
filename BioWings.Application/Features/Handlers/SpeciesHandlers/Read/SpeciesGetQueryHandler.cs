@@ -1,7 +1,7 @@
 ﻿using BioWings.Application.Features.Queries.SpeciesQueries;
 using BioWings.Application.Features.Results.SpeciesResults;
+using BioWings.Application.Interfaces;
 using BioWings.Application.Results;
-using BioWings.Domain.Interfaces;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;

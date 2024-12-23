@@ -1,5 +1,5 @@
-﻿using BioWings.Domain.Entities;
-using BioWings.Domain.Interfaces;
+﻿using BioWings.Application.Interfaces;
+using BioWings.Domain.Entities;
 using BioWings.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 
