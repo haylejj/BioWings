@@ -33,6 +33,8 @@ public class ImportCreateDto : ILocationImportDto, ISpeciesImportDto
     public string? MgrsCoordinates { get; set; }
     public decimal Altitude1 { get; set; }
     public decimal Altitude2 { get; set; }
+    public decimal X { get; set; }
+    public decimal Y { get; set; }
     public string? UtmReference { get; set; }
     public CoordinatePrecisionLevel CoordinatePrecisionLevel { get; set; }
     //Observer

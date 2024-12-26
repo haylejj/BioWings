@@ -11,7 +11,6 @@ public class GenusConfiguration : IEntityTypeConfiguration<Genus>
         builder.HasKey(x => x.Id);
 
         builder.Property(x => x.Name)
-            .IsRequired()
             .HasMaxLength(50);
 
         builder.HasMany(x => x.Species)

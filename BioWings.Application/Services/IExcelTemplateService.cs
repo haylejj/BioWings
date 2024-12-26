@@ -1,4 +1,4 @@
-﻿namespace BioWings.Infrastructure.Services.ExcelTemplate;
+﻿namespace BioWings.Application.Services;
 public interface IExcelTemplateService
 {
     byte[] CreateImportTemplate();

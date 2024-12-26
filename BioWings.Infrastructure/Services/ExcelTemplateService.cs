@@ -1,9 +1,10 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using BioWings.Application.Services;
+using Microsoft.Extensions.Logging;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
 using System.Drawing;
 
-namespace BioWings.Infrastructure.Services.ExcelTemplate;
+namespace BioWings.Infrastructure.Services;
 public class ExcelTemplateService(ILogger<ExcelTemplateService> logger) : IExcelTemplateService
 {
     public byte[] CreateImportTemplate()
@@ -96,32 +97,32 @@ public class ExcelTemplateService(ILogger<ExcelTemplateService> logger) : IExcel
         // Freeze the header row
         worksheet.View.FreezePanes(2, 1);
 
-        // Add instructions sheet
-        var instructionsSheet = package.Workbook.Worksheets.Add("Instructions");
-        instructionsSheet.Cells["A1"].Value = "Import Instructions";
-        instructionsSheet.Cells["A1"].Style.Font.Size = 14;
-        instructionsSheet.Cells["A1"].Style.Font.Bold = true;
+        //    // Add instructions sheet
+        //    var instructionsSheet = package.Workbook.Worksheets.Add("Instructions");
+        //    instructionsSheet.Cells["A1"].Value = "Import Instructions";
+        //    instructionsSheet.Cells["A1"].Style.Font.Size = 14;
+        //    instructionsSheet.Cells["A1"].Style.Font.Bold = true;
 
-        var instructions = new[]
-        {
-        "1. Do not modify or delete the header row",
-        "2. All dates should be in YYYY-MM-DD format",
-        "3. Coordinates should use decimal points, not commas",
-        "4. Required fields:",
-        "   - Scientific Name",
-        "   - Observation Date",
-        "   - Location (Latitude/Longitude or Square Ref)",
-        "5. For Sex, use: Male, Female, or Unknown",
-        "6. For Life Stage, use: Egg, Larva, Pupa, or Adult",
-        "7. Numbers should not contain any special characters"
-    };
+        //    var instructions = new[]
+        //    {
+        //    "1. Do not modify or delete the header row",
+        //    "2. All dates should be in YYYY-MM-DD format",
+        //    "3. Coordinates should use decimal points, not commas",
+        //    "4. Required fields:",
+        //    "   - Scientific Name",
+        //    "   - Observation Date",
+        //    "   - Location (Latitude/Longitude or Square Ref)",
+        //    "5. For Sex, use: Male, Female, or Unknown",
+        //    "6. For Life Stage, use: Egg, Larva, Pupa, or Adult",
+        //    "7. Numbers should not contain any special characters"
+        //};
 
-        for (int i = 0; i < instructions.Length; i++)
-        {
-            instructionsSheet.Cells[i + 3, 1].Value = instructions[i];
-        }
+        //    for (int i = 0; i < instructions.Length; i++)
+        //    {
+        //        instructionsSheet.Cells[i + 3, 1].Value = instructions[i];
+        //    }
 
-        instructionsSheet.Column(1).AutoFit();
+        //    instructionsSheet.Column(1).AutoFit();
 
         logger.LogInformation("Excel template created successfully");
 
@@ -710,32 +711,32 @@ public class ExcelTemplateService(ILogger<ExcelTemplateService> logger) : IExcel
         // Freeze the header row
         worksheet.View.FreezePanes(2, 1);
 
-        // Add instructions sheet
-        var instructionsSheet = package.Workbook.Worksheets.Add("Instructions");
-        instructionsSheet.Cells["A1"].Value = "Import Instructions";
-        instructionsSheet.Cells["A1"].Style.Font.Size = 14;
-        instructionsSheet.Cells["A1"].Style.Font.Bold = true;
+        //// Add instructions sheet
+        //var instructionsSheet = package.Workbook.Worksheets.Add("Instructions");
+        //instructionsSheet.Cells["A1"].Value = "Import Instructions";
+        //instructionsSheet.Cells["A1"].Style.Font.Size = 14;
+        //instructionsSheet.Cells["A1"].Style.Font.Bold = true;
 
-        var instructions = new[]
-        {
-        "1. Do not modify or delete the header row",
-        "2. All dates should be in YYYY-MM-DD format",
-        "3. Coordinates should use decimal points, not commas",
-        "4. Required fields:",
-        "   - Scientific Name",
-        "   - Observation Date",
-        "   - Location (Latitude/Longitude or Square Ref)",
-        "5. For Sex, use: Male, Female, or Unknown",
-        "6. For Life Stage, use: Egg, Larva, Pupa, or Adult",
-        "7. Numbers should not contain any special characters"
-    };
+        //var instructions = new[]
+        //{
+        //"1. Do not modify or delete the header row",
+        //"2. All dates should be in YYYY-MM-DD format",
+        //"3. Coordinates should use decimal points, not commas",
+        //"4. Required fields:",
+        //"   - Scientific Name",
+        //"   - Observation Date",
+        //"   - Location (Latitude/Longitude or Square Ref)",
+        //"5. For Sex, use: Male, Female, or Unknown",
+        //"6. For Life Stage, use: Egg, Larva, Pupa, or Adult",
+        //"7. Numbers should not contain any special characters"
+        //};
 
-        for (int i = 0; i < instructions.Length; i++)
-        {
-            instructionsSheet.Cells[i + 3, 1].Value = instructions[i];
-        }
+        //for (int i = 0; i < instructions.Length; i++)
+        //{
+        //    instructionsSheet.Cells[i + 3, 1].Value = instructions[i];
+        //}
 
-        instructionsSheet.Column(1).AutoFit();
+        //instructionsSheet.Column(1).AutoFit();
 
         return package.GetAsByteArray();
     }

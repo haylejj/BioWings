@@ -97,7 +97,6 @@ namespace BioWings.Persistence.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
 
@@ -378,11 +377,11 @@ namespace BioWings.Persistence.Migrations
                         .HasColumnType("varchar(70)");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasMaxLength(70)
                         .HasColumnType("varchar(70)");
 
                     b.Property<string>("ScientificName")
-                        .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("varchar(200)");
 

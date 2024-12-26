@@ -4,5 +4,5 @@ using Microsoft.AspNetCore.Http;
 namespace BioWings.Application.Services;
 public interface IExcelImportService
 {
-    List<ImportCreateDto> ImportFromExcel(IFormFile file);
+    Task<List<ImportCreateDto>> ImportFromExcelAsync(IFormFile file);
 }

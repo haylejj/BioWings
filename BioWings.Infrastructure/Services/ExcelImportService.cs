@@ -3,46 +3,44 @@ using BioWings.Application.Helper;
 using BioWings.Application.Mappings;
 using BioWings.Application.Services;
 using BioWings.Domain.Enums;
+using ExcelDataReader;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using OfficeOpenXml;
 using System.Globalization;
 
-namespace BioWings.Infrastructure.Services.ExcelImport;
+namespace BioWings.Infrastructure.Services;
 public class ExcelImportService : IExcelImportService
 {
     private readonly ILogger<ExcelImportService> _logger;
     private readonly Dictionary<string, ExcelMapping> _mappings;
+    private readonly IGeocodingService _geocodingService;
 
-    public ExcelImportService(ILogger<ExcelImportService> logger)
+    public ExcelImportService(ILogger<ExcelImportService> logger,IGeocodingService geocodingService)
     {
+        _geocodingService=geocodingService;
         _logger = logger;
         _mappings = GetDefaultMappings();
     }
 
-    public List<ImportCreateDto> ImportFromExcel(IFormFile file)
+    public async Task<List<ImportCreateDto>> ImportFromExcelAsync(IFormFile file)
     {
         try
         {
-            using var stream = file.OpenReadStream();
-            using var package = new ExcelPackage(stream);
-            var worksheet = package.Workbook.Worksheets.FirstOrDefault();
+            List<ImportCreateDto> allData = new();
 
-            if (worksheet == null || worksheet.Dimension == null)
-                throw new InvalidOperationException("Excel dosyası boş veya geçersiz.");
+            if (!Path.GetExtension(file.FileName).Equals(".xlsx", StringComparison.OrdinalIgnoreCase))
+            {
+                using var stream = file.OpenReadStream();
+                using var newPackage = new ExcelPackage();
+                var xlsxBytes = ConvertXlsToXlsx(file, stream, newPackage);
+                using var convertedPackage = new ExcelPackage(new MemoryStream(xlsxBytes));
+                return await  ProcessAllSheets(convertedPackage);
+            }
 
-            // Format tespiti
-            string format = ExcelFormatDetectorHelper.DetectFormat(worksheet);
-
-            if (!_mappings.ContainsKey(format))
-                throw new InvalidOperationException($"Desteklenmeyen Excel formatı: {format}");
-
-            var mapping = _mappings[format];
-
-            // Sütun eşleştirmelerini oluştur
-            var columnMappings = CreateColumnMappings(worksheet, mapping);
-
-            return ProcessRows(worksheet, columnMappings, mapping);
+            using var originalStream = file.OpenReadStream();
+            using var originalPackage = new ExcelPackage(originalStream);
+            return await  ProcessAllSheets(originalPackage);
         }
         catch (Exception ex)
         {
@@ -51,6 +49,26 @@ public class ExcelImportService : IExcelImportService
         }
     }
 
+    private async Task<List<ImportCreateDto>> ProcessAllSheets(ExcelPackage package)
+    {
+        List<ImportCreateDto> allData = new();
+
+        foreach (var worksheet in package.Workbook.Worksheets)
+        {
+            if (worksheet?.Dimension == null) continue;
+
+            string format = ExcelFormatDetectorHelper.DetectFormat(worksheet);
+            _logger.LogInformation($"Excel formatı: {format}");
+            if (!_mappings.ContainsKey(format)) continue;
+
+            var mapping = _mappings[format];
+            var columnMappings = CreateColumnMappings(worksheet, mapping);
+            var sheetData = await ProcessRows(worksheet, columnMappings, mapping);
+            allData.AddRange(sheetData);
+        }
+
+        return !allData.Any() ? throw new InvalidOperationException("Excel dosyası boş veya geçersiz format içeriyor.") : allData;
+    }
     private Dictionary<string, int> CreateColumnMappings(ExcelWorksheet worksheet, ExcelMapping mapping)
     {
         var columnMappings = new Dictionary<string, int>();
@@ -75,7 +93,7 @@ public class ExcelImportService : IExcelImportService
         return columnMappings;
     }
 
-    private List<ImportCreateDto> ProcessRows(ExcelWorksheet worksheet, Dictionary<string, int> columnMappings, ExcelMapping mapping)
+    private async Task<List<ImportCreateDto>> ProcessRows(ExcelWorksheet worksheet, Dictionary<string, int> columnMappings, ExcelMapping mapping)
     {
         var result = new List<ImportCreateDto>();
         var rowCount = worksheet.Dimension.Rows;
@@ -84,7 +102,7 @@ public class ExcelImportService : IExcelImportService
         {
             try
             {
-                var dto = CreateImportDto(worksheet, row, columnMappings);
+                var dto = await CreateImportDto(worksheet, row, columnMappings);
                 if (dto != null)
                 {
                     result.Add(dto);
@@ -100,8 +118,57 @@ public class ExcelImportService : IExcelImportService
 
         return result;
     }
+    private byte[] ConvertXlsToXlsx(IFormFile file, Stream stream, ExcelPackage excelPackage)
+    {
+        _logger.LogInformation("XLS dosyası XLSX formatına dönüştürülüyor...");
 
-    private ImportCreateDto CreateImportDto(ExcelWorksheet worksheet, int row, Dictionary<string, int> columnMappings)
+        using var reader = ExcelReaderFactory.CreateReader(stream);
+        var result = reader.AsDataSet();
+
+        _logger.LogInformation($"Toplam sheet sayısı: {result.Tables.Count}");
+
+        // Tüm tabloları döngüyle gezip her biri için yeni sheet oluştur
+        for (int tableIndex = 0; tableIndex < result.Tables.Count; tableIndex++)
+        {
+            var table = result.Tables[tableIndex];
+
+            // Sheet adını koru veya varsayılan ad ata
+            string sheetName = !string.IsNullOrWhiteSpace(table.TableName)
+                ? table.TableName
+                : $"Sheet{tableIndex + 1}";
+
+            var worksheet = excelPackage.Workbook.Worksheets.Add(sheetName);
+
+            _logger.LogInformation($"'{sheetName}' sheet'i işleniyor. Satır sayısı: {table.Rows.Count}, Sütun sayısı: {table.Columns.Count}");
+
+            // Tablodaki tüm hücreleri kopyala
+            for (int row = 0; row < table.Rows.Count; row++)
+            {
+                for (int col = 0; col < table.Columns.Count; col++)
+                {
+                    var cellValue = table.Rows[row][col];
+                    if (cellValue != null)
+                    {
+                        worksheet.Cells[row + 1, col + 1].Value = cellValue;
+
+                        // Tarih formatını koru
+                        if (cellValue is DateTime)
+                        {
+                            worksheet.Cells[row + 1, col + 1].Style.Numberformat.Format = "dd.mm.yyyy";
+                        }
+                    }
+                }
+            }
+
+            // Sütun genişliklerini otomatik ayarla
+            worksheet.Cells.AutoFitColumns();
+        }
+
+        _logger.LogInformation($"Dönüştürme tamamlandı. XLSX dosyasında {excelPackage.Workbook.Worksheets.Count} sheet bulunuyor");
+
+        return excelPackage.GetAsByteArray();
+    }
+    private async Task<ImportCreateDto> CreateImportDto(ExcelWorksheet worksheet, int row, Dictionary<string, int> columnMappings)
     {
         var dto = new ImportCreateDto
         {
@@ -121,6 +188,8 @@ public class ExcelImportService : IExcelImportService
             ProvinceName = GetCellValue(worksheet, row, columnMappings, "ProvinceName"),
             ProvinceCode = GetNullableIntValue(worksheet, row, columnMappings, "ProvinceCode"),
             SquareRef = GetCellValue(worksheet, row, columnMappings, "SquareRef"),
+            X= GetDecimalValue(worksheet, row, columnMappings, "X"),
+            Y= GetDecimalValue(worksheet, row, columnMappings, "Y"),
             Latitude = GetDecimalValue(worksheet, row, columnMappings, "Latitude"),
             Longitude = GetDecimalValue(worksheet, row, columnMappings, "Longitude"),
             LocationInfo = GetCellValue(worksheet, row, columnMappings, "LocationInfo"),
@@ -154,7 +223,36 @@ public class ExcelImportService : IExcelImportService
             UtmReference = GetCellValue(worksheet, row, columnMappings, "UtmReference"),
             CoordinatePrecisionLevel = GetEnumValue(worksheet, row, columnMappings, "CoordinatePrecisionLevel")
         };
+        //if (dto.ProvinceName == null && dto.Latitude != 0 && dto.Longitude != 0)
+        //{
+        //    var provinceCode = await _geocodingService.GetProvinceAsync(dto.Latitude, dto.Longitude);
+        //    if (provinceCode == null)
+        //    {
+        //        _logger.LogWarning($"Province bulunamadı: Lat={dto.Latitude}, Lon={dto.Longitude}");
+        //    }
+        //    else
+        //    {
+        //        dto.ProvinceCode = int.Parse(provinceCode);
+        //    }
 
+        //}
+        if (dto.X!=0 && dto.Y!=0 && dto.SquareRef != null)
+        {
+            //if (dto.ProvinceName != null)
+            //{
+            //    var latLon = await _geocodingService.GetLatitudeAndLongitudeByProvinceNameAsync(dto.ProvinceName);
+            //    var utmZone = _geocodingService.CalculateUTMZone(latLon.longitude);
+            //    //var utmXY = _geocodingService.ConvertMGRSToUTM(Convert.ToDouble(dto.X), Convert.ToDouble(dto.Y),dto.SquareRef);
+            //    var realLatLon = _geocodingService.ConvertUtmToLatLong(Convert.ToDouble(dto.X), Convert.ToDouble(dto.Y), utmZone);
+            //    dto.Latitude = Convert.ToDecimal(realLatLon.latitude);
+            //    dto.Longitude = Convert.ToDecimal(realLatLon.longitude);
+            //}
+            //else
+            //{
+                dto.Latitude = 10;
+                dto.Longitude = 10;
+            //}
+        }
         return dto;
     }
     private CoordinatePrecisionLevel GetEnumValue(ExcelWorksheet worksheet, int row, Dictionary<string, int> columnMappings, string propertyName)
@@ -185,7 +283,7 @@ public class ExcelImportService : IExcelImportService
             }
         }
 
-        return CoordinatePrecisionLevel.ExactCoordinate; // Default değer
+        return CoordinatePrecisionLevel.ExactCoordinate;
     }
     private string GetCellValue(ExcelWorksheet worksheet, int row, Dictionary<string, int> columnMappings, string propertyName)
     {
@@ -228,7 +326,9 @@ public class ExcelImportService : IExcelImportService
             var value = worksheet.Cells[row, column].Text?.Replace(',', '.');
             if (decimal.TryParse(value, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal result))
             {
-                return result;
+                return propertyName.Contains("Latitude")
+                    ? Math.Max(-90, Math.Min(90, result))
+                    : propertyName.Contains("Longitude") ? Math.Max(-180, Math.Min(180, result)) : result;
             }
         }
         return defaultValue;
@@ -238,6 +338,7 @@ public class ExcelImportService : IExcelImportService
         return new Dictionary<string, ExcelMapping>
     {
         {
+                //DKM data All data_Mar2014_Ayse
             "Format1", new ExcelMapping
             {
                 SheetName = "Sheet1",
@@ -249,7 +350,7 @@ public class ExcelImportService : IExcelImportService
                     { "FullName", new[] { "Full name" } },
                     
                     // Location
-                    { "ProvinceCode", new[] { "Province No." } },
+                    { "ProvinceCode", new[] { "Province No:" } },
                     { "ProvinceName", new[] { "Province" } },
                     { "SquareRef", new[] { "Square" } },
                     { "Latitude", new[] { "X" } },
@@ -268,6 +369,7 @@ public class ExcelImportService : IExcelImportService
             }
         },
         {
+                //Hesselbarth et al 1995  data
             "Format2", new ExcelMapping
             {
                 SheetName = "Sheet1",
@@ -302,6 +404,7 @@ public class ExcelImportService : IExcelImportService
             }
         },
         {
+                //Tablib Dataset observations-dkm-vakfi_2023
             "Format3", new ExcelMapping
             {
                 SheetName = "Sheet1",
@@ -331,6 +434,7 @@ public class ExcelImportService : IExcelImportService
             }
         },
         {
+                //Default template
             "Format4", new ExcelMapping
             {
                 SheetName = "Sheet1",
@@ -387,7 +491,41 @@ public class ExcelImportService : IExcelImportService
                     { "LocationInfo", new[] { "Location Info" } }
                 }
             }
-        }
+        },
+        {
+                //Mixed obs since 1995 All data_Mar2014_Ayse
+            "Format5", new ExcelMapping
+            {
+               SheetName = "Sheet1",
+                ColumnMappings = new Dictionary<string, string[]>
+                {
+                    // Taxonomy
+                    { "GenusName", new[] { "Genus" } },
+                    { "SpeciesName", new[] { "Species" } },
+                    { "FullName", new[] { "Full name" } },
+                    { "SubspeciesName", new[] { "Subspecies" } },
+                    
+                    // Location
+                    { "ProvinceCode", new[] { "Prov. No." } },
+                    { "ProvinceName", new[] { "Prov. Name" } },
+                    { "SquareRef", new[] { "Square" } },
+                    { "X", new[] { "X" } },
+                    { "Y", new[] { "Y" } },
+                    { "LocationInfo", new[] { "Location"} },
+                    { "Altitude1", new[] { "Altitude 1" } },
+                    { "Altitude2", new[] { "Altitude 2" } },
+                    { "UtmReference", new[] { "UTM_10X10" } },
+                    
+                    // Other
+                    { "Source", new[] { "Source" } },
+                    
+                    // Date
+                    { "Day", new[] { "Day 1" } },
+                    { "Month", new[] { "Month 1" } },
+                    { "Year", new[] { "Year" } }
+                }
+            }
+        },
     };
     }
 }

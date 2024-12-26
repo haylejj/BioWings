@@ -101,7 +101,7 @@ namespace BioWings.Persistence.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
+                    Name = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     FamilyId = table.Column<int>(type: "int", nullable: true),
                     CreatedDateTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
@@ -172,9 +172,9 @@ namespace BioWings.Persistence.Migrations
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     AuthorityId = table.Column<int>(type: "int", nullable: true),
                     GenusId = table.Column<int>(type: "int", nullable: true),
-                    ScientificName = table.Column<string>(type: "varchar(200)", maxLength: 200, nullable: false)
+                    ScientificName = table.Column<string>(type: "varchar(200)", maxLength: 200, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Name = table.Column<string>(type: "varchar(70)", maxLength: 70, nullable: true)
+                    Name = table.Column<string>(type: "varchar(70)", maxLength: 70, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     EUName = table.Column<string>(type: "varchar(70)", maxLength: 70, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),

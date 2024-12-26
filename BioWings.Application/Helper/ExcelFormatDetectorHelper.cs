@@ -9,33 +9,15 @@ public static class ExcelFormatDetectorHelper
         var headers = GetHeaders(worksheet, headerRow);
 
         // Format1 için characteristic columns
-        if (headers.Contains("Province No.") &&
-            headers.Contains("Square") &&
-            headers.Contains("Day") &&
-            headers.Contains("Month") &&
-            headers.Contains("Year"))
-        {
+        if (headers.Contains("Province No:"))
             return "Format1";
-        }
 
         // Format2 için characteristic columns
-        if (headers.Contains("Prov. No.") &&
-            headers.Contains("Prov. Name") &&
-            headers.Contains("Sq. Ref") &&
-            headers.Contains("Raw Record"))
-        {
-            return "Format2";
-        }
-
-        // Format3 için characteristic columns
-        return headers.Contains("scientific name") &&
-            headers.Contains("life stage") &&
-            headers.Contains("date") &&
-            headers.Contains("time")
-            ? "Format3"
-            : headers.Contains("Authority Name") && headers.Contains("Turkish Name")
-            ? "Format4"
-            : throw new InvalidOperationException("Unknown Excel format");
+        return headers.Contains("Raw Record")
+            ? "Format2"
+            : headers.Contains("Day 1")
+            ? "Format5"
+            : headers.Contains("lat") && headers.Contains("lng") ? "Format3" : headers.Contains("Authority Name") ? "Format4" : "Format4";
     }
 
     private static HashSet<string> GetHeaders(ExcelWorksheet worksheet, int headerRow)

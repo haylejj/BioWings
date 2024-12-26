@@ -60,11 +60,7 @@ public class LocationRepository(AppDbContext dbContext, IUnitOfWork unitOfWork) 
             .ToListAsync(cancellationToken);
 
         Location? location = result.FirstOrDefault();
-        if (location != null)
-        {
-            return location;
-        }
-        return null;
+        return location != null ? location : null;
     }
 
     public IQueryable<Location?> GetUnusedLocationRecord() => _dbSet.Include(x => x.Observations).Where(loc => !loc.Observations.Any());

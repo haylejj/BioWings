@@ -84,4 +84,12 @@ public class ObservationsController(IMediator mediator) : BaseController
         var result = await mediator.Send(searchQuery);
         return CreateResult(result);
     }
+    // GET: api/Observations/Count
+    [HttpGet("Count")]
+    public async Task<IActionResult> GetCount()
+    {
+        var query = new ObservationGetCountQuery();
+        var result = await mediator.Send(query);
+        return CreateResult(result);
+    }
 }

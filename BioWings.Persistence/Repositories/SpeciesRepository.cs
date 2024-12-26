@@ -88,12 +88,7 @@ public class SpeciesRepository(AppDbContext dbContext, IUnitOfWork unitOfWork, I
 
         Species? species = result.FirstOrDefault();
 
-        if (species != null)
-        {
-            return species;
-        }
-
-        return null;
+        return species != null ? species : null;
     }
 }
 

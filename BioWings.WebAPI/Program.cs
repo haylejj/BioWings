@@ -26,7 +26,7 @@ builder.Services.AddCors(options =>
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
+builder.Services.AddHttpClient();
 // Add services from the Application project
 builder.Services.AddApplicationExtensions(builder.Configuration);
 // Add services from the Persistence project

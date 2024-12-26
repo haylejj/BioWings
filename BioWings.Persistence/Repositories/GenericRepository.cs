@@ -76,6 +76,10 @@ public class GenericRepository<T>(AppDbContext dbContext) : IGenericRepository<T
         var dataTable = CreateDataTable(entities);
         await bulkCopy.WriteToServerAsync(dataTable, cancellationToken);
     }
+    public async Task ExecuteStoredProcedureWithoutNoParamatersAsync(string storedProcedureName, CancellationToken cancellationToken = default)
+    {
+        await dbContext.Database.ExecuteSqlRawAsync(storedProcedureName, cancellationToken);
+    }
     private DataTable CreateDataTable<TResult>(IList<TResult> entities)
     {
         var dataTable = new DataTable();

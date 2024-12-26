@@ -1,5 +1,4 @@
 ﻿using BioWings.Domain.Entities;
-using System.Data;
 using System.Linq.Expressions;
 
 namespace BioWings.Application.Interfaces;
