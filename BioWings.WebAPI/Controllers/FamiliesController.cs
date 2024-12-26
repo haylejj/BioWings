@@ -1,5 +1,6 @@
 ﻿using BioWings.Application.Features.Commands.FamilyCommands;
 using BioWings.Application.Features.Queries.FamilyQueries;
+using BioWings.Application.Features.Queries.GenusQueries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,6 +21,14 @@ public class FamiliesController(IMediator mediator) : BaseController
     {
         var query = new FamilyGetPagedQuery { PageNumber = pageNumber, PageSize = pageSize };
         var result = await mediator.Send(query);
+        return CreateResult(result);
+    }
+    // GET: api/Families/Search
+    [HttpGet("Search")]
+    public async Task<IActionResult> Search([FromQuery] string searchTerm,[FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 25)
+    {
+        var searchQuery = new FamilySearchQuery { PageNumber=pageNumber, PageSize=pageSize, SearchTerm=searchTerm };
+        var result = await mediator.Send(searchQuery);
         return CreateResult(result);
     }
 

@@ -31,6 +31,14 @@ public class GeneraController(IMediator mediator) : BaseController
         var result = await mediator.Send(searchQuery);
         return CreateResult(result);
     }
+    // GET: api/Genera/Count
+    [HttpGet("Count")]
+    public async Task<IActionResult> Count()
+    {
+        var query = new GenusGetCountQuery();
+        var result = await mediator.Send(query);
+        return CreateResult(result);
+    }
 
     // GET: api/Genera/{id}
     [HttpGet("{id}")]
