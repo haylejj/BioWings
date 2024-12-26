@@ -6,6 +6,7 @@ public interface IGenusRepository : IGenericRepository<Genus>
 {
     Task<Genus?> GetByNameAndFamilyIdAsync(string name, int? familyId, CancellationToken cancellationToken = default);
     Task<Genus?> GetByNameAsync(string name, CancellationToken cancellationToken = default);
+    Task<Genus?> GetByIdWithAllNavigation(int id, CancellationToken cancellationToken = default);
 }
 
 

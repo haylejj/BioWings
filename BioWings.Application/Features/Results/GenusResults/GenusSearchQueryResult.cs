@@ -1,5 +1,5 @@
 ﻿namespace BioWings.Application.Features.Results.GenusResults;
-public class GenusGetByIdQueryResult
+public class GenusSearchQueryResult
 {
     public int Id { get; set; }
     public string GenusName { get; set; }

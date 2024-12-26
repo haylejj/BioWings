@@ -20,7 +20,9 @@ internal class GenusGetByIdQueryHandler(IGenusRepository genusRepository, ILogge
         var result = new GenusGetByIdQueryResult
         {
             Id = genus.Id,
-            Name = genus.Name
+            GenusName = genus.Name,
+            FamilyId=genus.FamilyId,
+            FamilyName=genus.Family?.Name
         };
         logger.LogInformation("Genus found successfully");
         return ServiceResult<GenusGetByIdQueryResult>.Success(result);

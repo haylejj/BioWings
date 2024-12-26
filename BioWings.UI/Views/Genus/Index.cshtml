@@ -1,0 +1,577 @@
+﻿@model ApiPaginatedListResult<GenusGetViewModel>
+@{
+    ViewData["Title"] = "Genus";
+    Layout = "~/Views/MainLayout/Index.cshtml";
+}
+
+<!--begin::Card-->
+<div class="card">
+    <div class="card-header border-0 pt-6">
+        <!--begin::Card title-->
+        <div class="card-title">
+            <!--begin::Search-->
+            <div class="d-flex align-items-center position-relative my-1">
+                <span class="svg-icon svg-icon-1 position-absolute ms-6">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2" rx="1" transform="rotate(45 17.0365 15.1223)" fill="currentColor"></rect>
+                        <path d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z" fill="currentColor"></path>
+                    </svg>
+                </span>
+                <input type="text" id="searchInput" class="form-control form-control-solid w-250px ps-14" placeholder="Search Genus">
+            </div>
+            <!--end::Search-->
+        </div>
+        <!--end::Card title-->
+        <!--begin::Card toolbar-->
+        <div class="card-toolbar">
+            <!--begin::Toolbar-->
+            <div class="d-flex justify-content-end">
+                <button type="button" class="btn btn-light-dark" data-bs-toggle="modal" data-bs-target="#kt_createmodal_genus">
+                    <span class="svg-icon svg-icon-2">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect opacity="0.5" x="11.364" y="20.364" width="16" height="2" rx="1" transform="rotate(-90 11.364 20.364)" fill="currentColor"></rect>
+                            <rect x="4.36396" y="11.364" width="16" height="2" rx="1" fill="currentColor"></rect>
+                        </svg>
+                    </span>
+                    New Genus
+                </button>
+            </div>
+            <!--end::Toolbar-->
+        </div>
+        <!--end::Card toolbar-->
+    </div>
+    <!--begin::Card body-->
+    <div class="card-body py-4">
+        <!--begin::Table-->
+        <table class="table align-middle table-row-dashed fs-6 gy-5" id="genusTable">
+            <thead>
+                <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
+                    <th>Id</th>
+                    <th>Genus Name</th>
+                    <th>Family Name</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody class="text-gray-600 fw-semibold">
+                @foreach (var item in Model.Items)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@(item.GenusName ?? "-")</td>
+                        <td>@(item.FamilyName ?? "-")</td>
+                        <td>
+                            <div class="d-flex justify-content-center">
+                                <a href="javascript:;" onclick="confirmDelete(@item.Id)"
+                                   class="btn btn-icon btn-bg-light btn-active-color-danger btn-sm me-2">
+                                    <i class="fas fa-trash text-danger"></i>
+                                </a>
+                                <a href="javascript:;" onclick="updateGenus(@item.Id)"
+                                   class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm">
+                                    <i class="fas fa-edit text-primary"></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <!--end::Table-->
+        <!--begin::Pagination-->
+        <div class="d-flex flex-stack flex-wrap pt-10">
+            <div class="fs-6 fw-semibold text-gray-700">
+                @{
+                    var startEntry = (Model.PageNumber - 1) * 25 + 1;
+                    var endEntry = Math.Min(Model.PageNumber * 25, Model.TotalCount);
+                    if (Model.TotalCount == 0)
+                    {
+                        startEntry = 0;
+                        endEntry = 0;
+                    }
+                }
+                Showing @startEntry to @endEntry of @Model.TotalCount entries
+            </div>
+            <ul class="pagination">
+                @{
+                    var maxVisiblePages = Math.Min(5, Model.TotalPages);
+                    var currentPage = Model.PageNumber;
+                    var totalPages = Model.TotalPages;
+
+                    var halfVisible = Math.Floor((maxVisiblePages - 1) / 2.0);
+                    var startPage = Math.Max(1, currentPage - (int)halfVisible);
+                    var endPage = Math.Min(totalPages, startPage + maxVisiblePages - 1);
+
+                    if (endPage - startPage + 1 < maxVisiblePages)
+                    {
+                        startPage = Math.Max(1, endPage - maxVisiblePages + 1);
+                    }
+                }
+
+                <!--begin::Previous-->
+                <li class="page-item previous @(!Model.HasPreviousPage ? "disabled" : "")">
+                    @if (Model.HasPreviousPage)
+                    {
+                        <a href="javascript:;" onclick="loadPage(@(Model.PageNumber - 1))" class="page-link">
+                            <i class="previous"></i>
+                        </a>
+                    }
+                    else
+                    {
+                        <span class="page-link"><i class="previous"></i></span>
+                    }
+                </li>
+
+                @if (startPage > 1)
+                {
+                    <li class="page-item">
+                        <a href="javascript:;" onclick="loadPage(1)" class="page-link">1</a>
+                    </li>
+                    @if (startPage > 2)
+                    {
+                        <li class="page-item disabled">
+                            <span class="page-link">...</span>
+                        </li>
+                    }
+                }
+
+                @for (var i = startPage; i <= endPage; i++)
+                {
+                    <li class="page-item @(i == currentPage ? "active" : "")">
+                        <a href="javascript:;" onclick="loadPage(@i)" class="page-link">@i</a>
+                    </li>
+                }
+
+                @if (endPage < totalPages)
+                {
+                    @if (endPage < totalPages - 1)
+                    {
+                        <li class="page-item disabled">
+                            <span class="page-link">...</span>
+                        </li>
+                    }
+                    <li class="page-item">
+                        <a href="javascript:;" onclick="loadPage(@totalPages)" class="page-link">@totalPages</a>
+                    </li>
+                }
+
+                <!--begin::Next-->
+                <li class="page-item next @(!Model.HasNextPage ? "disabled" : "")">
+                    @if (Model.HasNextPage)
+                    {
+                        <a href="javascript:;" onclick="loadPage(@(Model.PageNumber + 1))" class="page-link">
+                            <i class="next"></i>
+                        </a>
+                    }
+                    else
+                    {
+                        <span class="page-link"><i class="next"></i></span>
+                    }
+                </li>
+            </ul>
+        </div>
+        <!--end::Pagination-->
+    </div>
+    <!--end::Card body-->
+</div>
+<!--end::Card-->
+<!--begin::Create Modal-->
+<div class="modal fade" id="kt_createmodal_genus" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content rounded">
+            <div class="modal-header pb-0 border-0 justify-content-end">
+                <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                    <i class="ki-duotone ki-cross fs-1">
+                        <span class="path1"></span>
+                        <span class="path2"></span>
+                    </i>
+                </div>
+            </div>
+            <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
+                <div class="mb-13 text-center">
+                    <h1 class="mb-3">Create Genus</h1>
+                </div>
+                <form id="create_genus_form">
+                    <div class="d-flex flex-column mb-8">
+                        <label class="fs-6 fw-semibold mb-2">Genus Name<span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" name="name" id="createName" required />
+                    </div>
+                    <div class="d-flex flex-column mb-8">
+                        <label class="fs-6 fw-semibold mb-2">Family</label>
+                        <div class="d-flex align-items-center">
+                            <select class="form-select" name="familyId" id="createFamilyId">
+                                <option value="">Select Family</option>
+                            </select>
+                            <a href="/Family" class="btn btn-sm btn-light-primary ms-2" title="Add New Family">
+                                <i class="fas fa-plus"></i>
+                            </a>
+                        </div>
+                        <div class="text-muted mt-2">
+                            <small><i class="fas fa-info-circle"></i> If the family you're looking for is not listed, you can add it from the Family page.</small>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <button type="button" class="btn btn-light-success" id="createGenusButton">
+                            <span class="indicator-label">Create</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--end::Create Modal-->
+<!--begin::Update Modal-->
+<div class="modal fade" id="kt_updatemodal_genus" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content rounded">
+            <div class="modal-header pb-0 border-0 justify-content-end">
+                <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                    <i class="ki-duotone ki-cross fs-1">
+                        <span class="path1"></span>
+                        <span class="path2"></span>
+                    </i>
+                </div>
+            </div>
+            <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
+                <div class="mb-13 text-center">
+                    <h1 class="mb-3">Update Genus</h1>
+                </div>
+                <form id="update_genus_form">
+                    <input type="hidden" id="updateId" name="id" />
+                    <div class="d-flex flex-column mb-8">
+                        <label class="fs-6 fw-semibold mb-2">Name<span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" name="name" id="updateName" required />
+                    </div>
+                    <div class="d-flex flex-column mb-8">
+                        <label class="fs-6 fw-semibold mb-2">Family</label>
+                        <select class="form-select" name="familyId" id="updateFamilyId">
+                            <option value="">Select Family</option>
+                        </select>
+                    </div>
+                    <div class="text-center">
+                        <button type="button" class="btn btn-light-success" id="updateGenusButton">
+                            <span class="indicator-label">Update</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--end::Update Modal-->
+@section Scripts {
+    <script>
+        // DataTable initialization
+        var table = $('#genusTable').DataTable({
+            "searching": false,
+            "paging": false,
+            "info": false,
+            "ordering": true,
+            "order": [[0, "asc"]]
+        });
+
+        // Search functionality
+        $(document).ready(function() {
+            const searchInput = $('#searchInput');
+
+            const debouncedSearch = debounce(function(value) {
+                if (value.trim().length === 0) {
+                    window.location.href = '/Genus/Index';
+                } else {
+                    const currentPageSize = new URLSearchParams(window.location.search).get('pageSize') || '@Model.PageSize';
+                    window.location.href = `/Genus/Index?searchTerm=${encodeURIComponent(value.trim())}&pageNumber=1&pageSize=${currentPageSize}`;
+                }
+            }, 500);
+
+            searchInput.off('keyup').on('keyup', function() {
+                debouncedSearch(this.value);
+            });
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const searchTerm = urlParams.get('searchTerm');
+            if (searchTerm) {
+                searchInput.val(decodeURIComponent(searchTerm));
+            }
+        });
+
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        function loadPage(pageNumber) {
+            const searchTerm = $('#searchInput').val().trim();
+            const baseUrl = '/Genus/Index';
+            const queryParams = new URLSearchParams(window.location.search);
+
+            queryParams.set('pageNumber', pageNumber);
+
+            // Mevcut pageSize'ı koru veya varsayılan değeri kullan
+            const currentPageSize = queryParams.get('pageSize') || '@Model.PageSize';
+            queryParams.set('pageSize', currentPageSize);
+
+            if (searchTerm) {
+                queryParams.set('searchTerm', searchTerm);
+            } else {
+                queryParams.delete('searchTerm');
+            }
+
+            window.location.href = `${baseUrl}?${queryParams.toString()}`;
+        }
+
+        // Family dropdown population
+        async function populateFamilyDropdown(selectElementId, selectedFamilyId = null) {
+            try {
+                const response = await fetch('https://localhost:7128/api/Families');
+                if (!response.ok) {
+                    throw new Error('Failed to fetch families');
+                }
+
+                const result = await response.json();
+                const selectElement = document.getElementById(selectElementId);
+                selectElement.innerHTML = '<option value="">Select Family</option>';
+
+                const sortedFamilies = result.data.sort((a, b) => {
+                    return a.name.localeCompare(b.name, 'tr-TR');
+                });
+
+                sortedFamilies.forEach(family => {
+                    const option = document.createElement('option');
+                    option.value = family.id;
+                    option.textContent = family.name.trim();
+                    selectElement.appendChild(option);
+                });
+
+                if (selectedFamilyId) {
+                    selectElement.value = selectedFamilyId;
+                }
+            } catch (error) {
+                console.error('Error loading families:', error);
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'Failed to load families: ' + error.message,
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });
+            }
+        }
+
+        // Delete functionality
+        function confirmDelete(id) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "This Genus will be permanently deleted!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'Cancel'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: `https://localhost:7128/api/Genera/${id}`,
+                        type: 'DELETE',
+                        success: function(response) {
+                            Swal.fire({
+                                title: 'Deleted!',
+                                text: 'Genus has been deleted successfully.',
+                                icon: 'success',
+                                timer: 2000,
+                                showConfirmButton: true
+                            }).then(() => {
+                                window.location.reload();
+                            });
+                        },
+                        error: function(xhr, status, error) {
+                            Swal.fire({
+                                title: 'Error!',
+                                text: 'An error occurred during deletion.',
+                                icon: 'error'
+                            });
+                        }
+                    });
+                }
+            });
+        }
+
+        // Create functionality
+        $(document).ready(function() {
+            $('#kt_createmodal_genus').on('show.bs.modal', function() {
+                populateFamilyDropdown('createFamilyId');
+            });
+
+            $('#createGenusButton').on('click', function() {
+                if (!$('#create_genus_form')[0].checkValidity()) {
+                    Swal.fire({
+                        title: 'Validation Error!',
+                        text: 'Please fill in all required fields.',
+                        icon: 'error',
+                        confirmButtonText: 'OK'
+                    });
+                    return;
+                }
+
+                const formData = {
+                    name: $('#createName').val(),
+                    familyId: $('#createFamilyId').val() ? parseInt($('#createFamilyId').val()) : null
+                };
+
+                $.ajax({
+                    url: 'https://localhost:7128/api/Genera',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(formData),
+                    success: function(response) {
+                        if (response.isSuccess) {
+                            Swal.fire({
+                                title: 'Success!',
+                                text: 'Genus created successfully',
+                                icon: 'success',
+                                timer: 2000,
+                                showConfirmButton: true
+                            }).then(() => {
+                                $('#kt_createmodal_genus').modal('hide');
+                                window.location.reload();
+                            });
+                        } else {
+                            Swal.fire({
+                                title: 'Error!',
+                                text: response.errorList ? response.errorList.join(', ') : 'Failed to create genus',
+                                icon: 'error'
+                            });
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        let errorMessage = 'Failed to create genus';
+                        if (xhr.responseJSON && xhr.responseJSON.errorList) {
+                            errorMessage = xhr.responseJSON.errorList.join(', ');
+                        }
+                        Swal.fire({
+                            title: 'Error!',
+                            text: errorMessage,
+                            icon: 'error'
+                        });
+                    }
+                });
+            });
+        });
+
+        // Update functionality
+        async function updateGenus(id) {
+            try {
+                const response = await fetch(`https://localhost:7128/api/Genera/${id}`);
+                if (!response.ok) {
+                    throw new Error('Failed to fetch genus data');
+                }
+
+                const result = await response.json();
+                const genus = result.data;
+
+                $('#updateId').val(genus.id);
+                $('#updateName').val(genus.genusName);
+                await populateFamilyDropdown('updateFamilyId', genus.familyId);
+
+                const modal = new bootstrap.Modal(document.getElementById('kt_updatemodal_genus'));
+                modal.show();
+            } catch (error) {
+                console.error('Error:', error);
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'Failed to fetch genus data: ' + error.message,
+                    icon: 'error'
+                });
+            }
+        }
+
+        $('#updateGenusButton').on('click', function() {
+            if (!$('#update_genus_form')[0].checkValidity()) {
+                Swal.fire({
+                    title: 'Validation Error!',
+                    text: 'Please fill in all required fields.',
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });
+                return;
+            }
+
+            const formData = {
+                id: parseInt($('#updateId').val()),
+                name: $('#updateName').val(),
+                familyId: $('#updateFamilyId').val() ? parseInt($('#updateFamilyId').val()) : null
+            };
+
+            $.ajax({
+            url: 'https://localhost:7128/api/Genera',
+            type: 'PUT',
+            contentType: 'application/json',
+            data: JSON.stringify(formData),
+            success: function(response, status, xhr) {  // xhr parametresini ekledik
+                // 204 No Content durumunu kontrol ediyoruz
+                if (xhr.status === 204) {
+                    Swal.fire({
+                        title: 'Success!',
+                        text: 'Genus updated successfully',
+                        icon: 'success',
+                        timer: 2000,
+                        showConfirmButton: true
+                    }).then(() => {
+                        $('#kt_updatemodal_genus').modal('hide');
+                        window.location.reload();
+                    });
+                } else {
+                    // Diğer başarılı durumlar için (200 OK gibi)
+                    if (response && response.isSuccess) {
+                        Swal.fire({
+                            title: 'Success!',
+                            text: 'Genus updated successfully',
+                            icon: 'success',
+                            timer: 2000,
+                            showConfirmButton: true
+                        }).then(() => {
+                            $('#kt_updatemodal_genus').modal('hide');
+                            window.location.reload();
+                        });
+                    } else {
+                        Swal.fire({
+                            title: 'Error!',
+                            text: response?.errorList ? response.errorList.join(', ') : 'Failed to update genus',
+                            icon: 'error'
+                        });
+                    }
+                }
+            },
+            error: function(xhr, status, error) {
+                let errorMessage = 'Failed to update genus';
+                if (xhr.responseJSON && xhr.responseJSON.errorList) {
+                    errorMessage = xhr.responseJSON.errorList.join(', ');
+                }
+                Swal.fire({
+                    title: 'Error!',
+                    text: errorMessage,
+                    icon: 'error'
+                });
+            }
+        });
+        });
+
+        // Modal cleanup
+        $('#kt_createmodal_genus').on('hidden.bs.modal', function() {
+            $('#create_genus_form')[0].reset();
+            $('.is-invalid').removeClass('is-invalid');
+            $('.invalid-feedback').remove();
+        });
+
+        $('#kt_updatemodal_genus').on('hidden.bs.modal', function() {
+            $('#update_genus_form')[0].reset();
+            $('.is-invalid').removeClass('is-invalid');
+            $('.invalid-feedback').remove();
+        });
+    </script>
+}
