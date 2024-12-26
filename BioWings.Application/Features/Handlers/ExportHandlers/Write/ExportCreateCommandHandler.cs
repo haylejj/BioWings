@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace BioWings.Application.Features.Handlers.ExportHandlers.Write;
-public class ExportCreateCommandHandler(ILogger<ExportCreateCommandHandler> logger, IObservationRepository observationRepository,IExcelExportService excelExportService) : IRequestHandler<ExportCreateCommand, ServiceResult<byte[]>>
+public class ExportCreateCommandHandler(ILogger<ExportCreateCommandHandler> logger, IObservationRepository observationRepository, IExcelExportService excelExportService) : IRequestHandler<ExportCreateCommand, ServiceResult<byte[]>>
 {
     public async Task<ServiceResult<byte[]>> Handle(ExportCreateCommand request, CancellationToken cancellationToken)
     {

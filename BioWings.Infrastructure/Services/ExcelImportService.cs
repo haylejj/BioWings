@@ -16,7 +16,7 @@ public class ExcelImportService : IExcelImportService
     private readonly Dictionary<string, ExcelMapping> _mappings;
     private readonly IGeocodingService _geocodingService;
 
-    public ExcelImportService(ILogger<ExcelImportService> logger,IGeocodingService geocodingService)
+    public ExcelImportService(ILogger<ExcelImportService> logger, IGeocodingService geocodingService)
     {
         _geocodingService=geocodingService;
         _logger = logger;
@@ -35,12 +35,12 @@ public class ExcelImportService : IExcelImportService
                 using var newPackage = new ExcelPackage();
                 var xlsxBytes = ConvertXlsToXlsx(file, stream, newPackage);
                 using var convertedPackage = new ExcelPackage(new MemoryStream(xlsxBytes));
-                return await  ProcessAllSheets(convertedPackage);
+                return await ProcessAllSheets(convertedPackage);
             }
 
             using var originalStream = file.OpenReadStream();
             using var originalPackage = new ExcelPackage(originalStream);
-            return await  ProcessAllSheets(originalPackage);
+            return await ProcessAllSheets(originalPackage);
         }
         catch (Exception ex)
         {
@@ -249,8 +249,8 @@ public class ExcelImportService : IExcelImportService
             //}
             //else
             //{
-                dto.Latitude = 10;
-                dto.Longitude = 10;
+            dto.Latitude = 10;
+            dto.Longitude = 10;
             //}
         }
         return dto;

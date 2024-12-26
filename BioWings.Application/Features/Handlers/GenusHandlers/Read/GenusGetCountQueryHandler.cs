@@ -10,8 +10,8 @@ public class GenusGetCountQueryHandler(IGenusRepository genusRepository, ILogger
 {
     public async Task<ServiceResult<GenusGetCountQueryResult>> Handle(GenusGetCountQuery request, CancellationToken cancellationToken)
     {
-        var genusCount=await genusRepository.GetTotalCountAsync(cancellationToken);
+        var genusCount = await genusRepository.GetTotalCountAsync(cancellationToken);
         logger.LogInformation("Genus count fetched successfully");
-        return ServiceResult<GenusGetCountQueryResult>.Success(new GenusGetCountQueryResult { Count=genusCount});
+        return ServiceResult<GenusGetCountQueryResult>.Success(new GenusGetCountQueryResult { Count=genusCount });
     }
 }

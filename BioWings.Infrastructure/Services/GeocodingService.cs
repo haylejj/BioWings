@@ -1,6 +1,5 @@
 ﻿using BioWings.Application.DTOs.NominatimApiDtos;
 using BioWings.Application.Services;
-using DotSpatial.Projections;
 using Microsoft.Extensions.Logging;
 using System.Globalization;
 using System.Text.Json;
@@ -60,11 +59,11 @@ public class GeocodingService(ILogger<GeocodingService> logger, IHttpClientFacto
         if (!isNorthernHemisphere) utmY -= 10000000.0;
 
         double M = utmY / k0;
-        double mu = M / (a * (1 - Math.Pow(e, 2) / 4 - 3 * Math.Pow(e, 4) / 64 - 5 * Math.Pow(e, 6) / 256));
+        double mu = M / (a * (1 - (Math.Pow(e, 2) / 4) - (3 * Math.Pow(e, 4) / 64) - (5 * Math.Pow(e, 6) / 256)));
 
-        double phi1 = mu + (3 * e1sq / 2 - 27 * Math.Pow(e1sq, 3) / 32) * Math.Sin(2 * mu)
-                        + (21 * Math.Pow(e1sq, 2) / 16 - 55 * Math.Pow(e1sq, 4) / 32) * Math.Sin(4 * mu)
-                        + (151 * Math.Pow(e1sq, 3) / 96) * Math.Sin(6 * mu);
+        double phi1 = mu + (((3 * e1sq / 2) - (27 * Math.Pow(e1sq, 3) / 32)) * Math.Sin(2 * mu))
+                        + (((21 * Math.Pow(e1sq, 2) / 16) - (55 * Math.Pow(e1sq, 4) / 32)) * Math.Sin(4 * mu))
+                        + (151 * Math.Pow(e1sq, 3) / 96 * Math.Sin(6 * mu));
 
         double N1 = a / Math.Sqrt(1 - Math.Pow(e * Math.Sin(phi1), 2));
         double T1 = Math.Pow(Math.Tan(phi1), 2);
@@ -72,16 +71,16 @@ public class GeocodingService(ILogger<GeocodingService> logger, IHttpClientFacto
         double R1 = a * (1 - Math.Pow(e, 2)) / Math.Pow(1 - Math.Pow(e * Math.Sin(phi1), 2), 1.5);
         double D = utmX / (N1 * k0);
 
-        double latitude = phi1 - (N1 * Math.Tan(phi1) / R1) *
-                         (Math.Pow(D, 2) / 2 - (5 + 3 * T1 + 10 * C1 - 4 * Math.Pow(C1, 2) - 9 * e1sq) * Math.Pow(D, 4) / 24 +
-                         (61 + 90 * T1 + 298 * C1 + 45 * Math.Pow(T1, 2) - 252 * e1sq - 3 * Math.Pow(C1, 2)) * Math.Pow(D, 6) / 720);
+        double latitude = phi1 - (N1 * Math.Tan(phi1) / R1 *
+                         ((Math.Pow(D, 2) / 2) - ((5 + (3 * T1) + (10 * C1) - (4 * Math.Pow(C1, 2)) - (9 * e1sq)) * Math.Pow(D, 4) / 24) +
+                         ((61 + (90 * T1) + (298 * C1) + (45 * Math.Pow(T1, 2)) - (252 * e1sq) - (3 * Math.Pow(C1, 2))) * Math.Pow(D, 6) / 720)));
 
-        double longitude = (D - (1 + 2 * T1 + C1) * Math.Pow(D, 3) / 6 +
-                          (5 - 2 * C1 + 28 * T1 - 3 * Math.Pow(C1, 2) + 8 * e1sq + 24 * Math.Pow(T1, 2)) * Math.Pow(D, 5) / 120) /
+        double longitude = (D - ((1 + (2 * T1) + C1) * Math.Pow(D, 3) / 6) +
+                          ((5 - (2 * C1) + (28 * T1) - (3 * Math.Pow(C1, 2)) + (8 * e1sq) + (24 * Math.Pow(T1, 2))) * Math.Pow(D, 5) / 120)) /
                           Math.Cos(phi1);
 
         latitude = latitude * 180 / Math.PI;
-        longitude = longitude * 180 / Math.PI + ((utmZone - 1) * 6 - 180 + 3); // Merkez meridyene göre düzelt
+        longitude = (longitude * 180 / Math.PI) + (((utmZone - 1) * 6) - 180 + 3); // Merkez meridyene göre düzelt
 
         return (latitude, longitude);
     }

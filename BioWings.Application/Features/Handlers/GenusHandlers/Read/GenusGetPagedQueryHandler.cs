@@ -17,7 +17,7 @@ public class GenusGetPagedQueryHandler(IGenusRepository genusRepository, ILogger
         var totalCount = await genusRepository.GetTotalCountAsync(cancellationToken);
 
         var genera = await genusRepository.GetPagedAsQueryable(request.PageNumber, request.PageSize)
-                    .Include(x=> x.Family).AsNoTracking().ToListAsync(cancellationToken);
+                    .Include(x => x.Family).AsNoTracking().ToListAsync(cancellationToken);
 
         var result = genera.Select(g => new GenusGetPagedQueryResult
         {

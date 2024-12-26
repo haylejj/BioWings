@@ -2,7 +2,6 @@
 using BioWings.Application.Services;
 using BioWings.Domain.Entities;
 using OfficeOpenXml;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace BioWings.Infrastructure.Services;
 public class ExcelExportService : IExcelExportService
@@ -34,7 +33,7 @@ public class ExcelExportService : IExcelExportService
                 worksheet.Cells[rowIndex, columnIndex].Value = value ?? "";
                 if (column.PropertyPath.EndsWith("Date") || column.PropertyPath.EndsWith("DateTime"))
                 {
-                     worksheet.Cells[rowIndex, columnIndex].Style.Numberformat.Format = "yyyy-mm-dd";
+                    worksheet.Cells[rowIndex, columnIndex].Style.Numberformat.Format = "yyyy-mm-dd";
                 }
                 columnIndex++;
             }

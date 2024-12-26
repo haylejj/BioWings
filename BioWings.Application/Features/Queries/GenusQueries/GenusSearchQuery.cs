@@ -1,10 +1,9 @@
 ﻿using BioWings.Application.Features.Results.GenusResults;
-using BioWings.Application.Features.Results.ObservationResults;
 using BioWings.Application.Results;
 using MediatR;
 
 namespace BioWings.Application.Features.Queries.GenusQueries;
-public class GenusSearchQuery: IRequest<ServiceResult<PaginatedList<GenusSearchQueryResult>>>
+public class GenusSearchQuery : IRequest<ServiceResult<PaginatedList<GenusSearchQueryResult>>>
 {
     public string? SearchTerm { get; set; }
     public int PageNumber { get; set; } = 1;

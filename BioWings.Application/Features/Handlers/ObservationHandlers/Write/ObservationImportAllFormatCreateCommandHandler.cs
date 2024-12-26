@@ -11,7 +11,7 @@ using Microsoft.Extensions.Logging;
 using System.Diagnostics;
 
 namespace BioWings.Application.Features.Handlers.ObservationHandlers.Write;
-public class ObservationImportAllFormatCreateCommandHandler(ILogger<ObservationImportAllFormatCreateCommandHandler> logger,IGeocodingService geocodingService, IUnitOfWork unitOfWork, IExcelImportService excelImportService, IObservationRepository observationRepository, ISubspeciesRepository subspeciesRepository, ISpeciesRepository speciesRepository, ILocationRepository locationRepository, IProvinceRepository provinceRepository, IObserverRepository observerRepository, IAuthorityRepository authorityRepository, IFamilyRepository familyRepository, IGenusRepository genusRepository) : IRequestHandler<ObservationImportAllFormatCreateCommand, ServiceResult>
+public class ObservationImportAllFormatCreateCommandHandler(ILogger<ObservationImportAllFormatCreateCommandHandler> logger, IGeocodingService geocodingService, IUnitOfWork unitOfWork, IExcelImportService excelImportService, IObservationRepository observationRepository, ISubspeciesRepository subspeciesRepository, ISpeciesRepository speciesRepository, ILocationRepository locationRepository, IProvinceRepository provinceRepository, IObserverRepository observerRepository, IAuthorityRepository authorityRepository, IFamilyRepository familyRepository, IGenusRepository genusRepository) : IRequestHandler<ObservationImportAllFormatCreateCommand, ServiceResult>
 {
     private Dictionary<string, Family> _familyCache = new();
     private Dictionary<GenusKey, Genus> _genusCache = new();

@@ -1,6 +1,5 @@
 ﻿using BioWings.Application.Features.Commands.GenusCommands;
 using BioWings.Application.Features.Queries.GenusQueries;
-using BioWings.Application.Features.Queries.ObservationQueries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

@@ -69,7 +69,7 @@ public class ExportController(IHttpClientFactory httpClientFactory, ILogger<Obse
 
             var result = await response.Content.ReadFromJsonAsync<ServiceResult<byte[]>>();
             logger.LogInformation("Exported data successfully");
-            return File(result.Data,"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",$"exportObservations_{DateTime.Now:yyyy-MM-dd_HH-mm}.xlsx");
+            return File(result.Data, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", $"exportObservations_{DateTime.Now:yyyy-MM-dd_HH-mm}.xlsx");
         }
 
     }
