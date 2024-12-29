@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace BioWings.Application.Features.Handlers.SpeciesHandlers.Read;
-public class SpeciesSearchQueryHandler(ISpeciesRepository speciesRepository,ILogger<SpeciesSearchQueryHandler> logger) : IRequestHandler<SpeciesSearchQuery, ServiceResult<PaginatedList<SpeciesSearchQueryResult>>>
+public class SpeciesSearchQueryHandler(ISpeciesRepository speciesRepository, ILogger<SpeciesSearchQueryHandler> logger) : IRequestHandler<SpeciesSearchQuery, ServiceResult<PaginatedList<SpeciesSearchQueryResult>>>
 {
     public async Task<ServiceResult<PaginatedList<SpeciesSearchQueryResult>>> Handle(SpeciesSearchQuery request, CancellationToken cancellationToken)
     {
@@ -42,7 +42,7 @@ public class SpeciesSearchQueryHandler(ISpeciesRepository speciesRepository,ILog
                 KocakName = x.KocakName,
                 HesselbarthName = x.HesselbarthName
             }).ToListAsync(cancellationToken);
-        var paginatedResult = new PaginatedList<SpeciesSearchQueryResult>(items,totalCount, request.PageNumber, request.PageSize);
+        var paginatedResult = new PaginatedList<SpeciesSearchQueryResult>(items, totalCount, request.PageNumber, request.PageSize);
         logger.LogInformation("Species are filtered and fetched successfully.");
         return ServiceResult<PaginatedList<SpeciesSearchQueryResult>>.Success(paginatedResult);
     }

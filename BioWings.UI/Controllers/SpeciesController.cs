@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
 namespace BioWings.UI.Controllers;
-public class SpeciesController(IHttpClientFactory httpClientFactory,ILogger<SpeciesController> logger) : Controller
+public class SpeciesController(IHttpClientFactory httpClientFactory, ILogger<SpeciesController> logger) : Controller
 {
     public async Task<IActionResult> Index(string searchTerm, int pageNumber = 1, int pageSize = 25)
     {
@@ -13,7 +13,7 @@ public class SpeciesController(IHttpClientFactory httpClientFactory,ILogger<Spec
             ? $"https://localhost:7128/api/Species/Paged?pageNumber={pageNumber}&pageSize={pageSize}"
             : $"https://localhost:7128/api/Species/Search?searchTerm={Uri.EscapeDataString(searchTerm)}&pageNumber={pageNumber}&pageSize={pageSize}";
         var response = await client.GetAsync(url);
-        if(response.IsSuccessStatusCode)
+        if (response.IsSuccessStatusCode)
         {
             var content = await response.Content.ReadAsStringAsync();
             var species = JsonConvert.DeserializeObject<ApiPaginatedResponse<SpeciesGetViewModel>>(content);

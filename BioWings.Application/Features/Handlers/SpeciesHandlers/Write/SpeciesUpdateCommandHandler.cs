@@ -5,10 +5,9 @@ using BioWings.Application.Services;
 using BioWings.Domain.Entities;
 using MediatR;
 using Microsoft.Extensions.Logging;
-using System.ComponentModel.DataAnnotations;
 
 namespace BioWings.Application.Features.Handlers.SpeciesHandlers.Write;
-public class SpeciesUpdateCommandHandler(ISpeciesRepository speciesRepository,IAuthorityRepository authorityRepository, IUnitOfWork unitOfWork, ILogger<SpeciesUpdateCommandHandler> logger) : IRequestHandler<SpeciesUpdateCommand, ServiceResult>
+public class SpeciesUpdateCommandHandler(ISpeciesRepository speciesRepository, IAuthorityRepository authorityRepository, IUnitOfWork unitOfWork, ILogger<SpeciesUpdateCommandHandler> logger) : IRequestHandler<SpeciesUpdateCommand, ServiceResult>
 {
     public async Task<ServiceResult> Handle(SpeciesUpdateCommand request, CancellationToken cancellationToken)
     {

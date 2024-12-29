@@ -1,5 +1,4 @@
 ﻿using BioWings.Application.Features.Commands.SpeciesCommands;
-using BioWings.Application.Features.Queries.FamilyQueries;
 using BioWings.Application.Features.Queries.SpeciesQueries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;

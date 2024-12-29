@@ -1,6 +1,5 @@
 ﻿using BioWings.Application.Results;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 
 namespace BioWings.Application.Features.Commands.SpeciesCommands;
 public class SpeciesCreateCommand : IRequest<ServiceResult>
