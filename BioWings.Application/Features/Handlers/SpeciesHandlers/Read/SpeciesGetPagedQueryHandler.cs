@@ -15,14 +15,14 @@ public class SpeciesGetPagedQueryHandler(ISpeciesRepository speciesRepository, I
         request.PageSize = request.PageSize <= 0 ? 25 : Math.Min(request.PageSize, 50);
         var totalCount = await speciesRepository.GetTotalCountAsync(cancellationToken);
 
-        var species = await speciesRepository.GetPagedAsQueryable(request.PageNumber, request.PageSize).Include(x => x.Genus).Include(x => x.Authority).ToListAsync(cancellationToken);
+        var species = await speciesRepository.GetPagedAsQueryable(request.PageNumber, request.PageSize).Include(x => x.Genus).ThenInclude(x=> x.Family).Include(x => x.Authority).ToListAsync(cancellationToken);
         var result = species.Select(s => new SpeciesGetPagedQueryResult
         {
             Id = s.Id,
             GenusId = s.GenusId,
-            GenusName = s.Genus.Name,
+            GenusName = s.Genus?.Name,
             AuthorityId = s.AuthorityId,
-            AuthorityName = s.Authority.Name,
+            AuthorityName = s.Authority?.Name,
             FullName = s.FullName,
             EnglishName = s.EnglishName,
             EUName = s.EUName,
@@ -32,7 +32,9 @@ public class SpeciesGetPagedQueryHandler(ISpeciesRepository speciesRepository, I
             TurkishNamesTrakel = s.TurkishNamesTrakel,
             Trakel=s.Trakel,
             HesselbarthName = s.HesselbarthName,
-            KocakName = s.KocakName
+            KocakName = s.KocakName,
+            FamilyId = s.Genus?.FamilyId,
+            FamilyName = s.Genus.Family?.Name
         });
         var paginatedResult = new PaginatedList<SpeciesGetPagedQueryResult>(
             result,

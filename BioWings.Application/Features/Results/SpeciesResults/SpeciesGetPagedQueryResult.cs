@@ -6,6 +6,8 @@ public class SpeciesGetPagedQueryResult
     public string AuthorityName { get; set; }
     public int? GenusId { get; set; }
     public string GenusName { get; set; }
+    public int? FamilyId { get; set; }
+    public string FamilyName { get; set; }
     public string ScientificName { get; set; }
     public string Name { get; set; }
     public string EUName { get; set; }

@@ -21,9 +21,12 @@ public class SpeciesGetByIdQueryHandler(ISpeciesRepository speciesRepository, IL
         {
             Id = species.Id,
             AuthorityId = species.AuthorityId,
-            AuthorityName = species.Authority.Name,
+            AuthorityName = species.Authority?.Name,
+            AuthorityYear = species.Authority?.Year,
             GenusId = species.GenusId,
-            GenusName = species.Genus.Name,
+            GenusName = species.Genus?.Name,
+            FamilyId = species.Genus?.FamilyId,
+            FamilyName = species.Genus?.Family?.Name,
             ScientificName = species.ScientificName,
             Name = species.Name,
             EUName = species.EUName,
@@ -39,7 +42,7 @@ public class SpeciesGetByIdQueryHandler(ISpeciesRepository speciesRepository, IL
         logger.LogInformation("Retrieved species {SpeciesName} (ID: {SpeciesId}) of genus {GenusName}",
             species.Name,
             species.Id,
-            species.Genus.Name);
+            species.Genus?.Name);
 
         return ServiceResult<SpeciesGetByIdQueryResult>.Success(speciesResult);
     }

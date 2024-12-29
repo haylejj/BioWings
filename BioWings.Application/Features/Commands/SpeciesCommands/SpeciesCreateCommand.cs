@@ -5,7 +5,8 @@ using Microsoft.AspNetCore.Http;
 namespace BioWings.Application.Features.Commands.SpeciesCommands;
 public class SpeciesCreateCommand : IRequest<ServiceResult>
 {
-    public int AuthorityId { get; set; }
+    public string? AuthorityName { get; set; }
+    public int? AuthorityYear { get; set; }
     public int GenusId { get; set; }
     public int SpeciesTypeId { get; set; }
     public string ScientificName { get; set; }
@@ -18,5 +19,4 @@ public class SpeciesCreateCommand : IRequest<ServiceResult>
     public string Trakel { get; set; }
     public string KocakName { get; set; }
     public string HesselbarthName { get; set; }
-    public List<IFormFile> FormFiles { get; set; }//IFormFile is used to upload files . its equivalent to Media 
 }
