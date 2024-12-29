@@ -1,0 +1,31 @@
+﻿using BioWings.Application.Results;
+using Microsoft.AspNetCore.Mvc;
+
+namespace BioWings.UI.Controllers;
+public class ProvinceController(IHttpClientFactory httpClientFactory, ILogger<ProvinceController> logger) : Controller
+{
+    public IActionResult Index()
+    {
+        return View();
+    }
+    [HttpGet("ExportData/{provinceId}")]
+    public async Task<IActionResult> ExportData([FromRoute] int provinceId)
+    {
+        using (var httpClient = httpClientFactory.CreateClient())
+        {
+            // API'ye request gönder
+            var response = await httpClient.GetAsync($"https://localhost:7128/api/Exports/ExportObservationsByProvince/{provinceId}");
+
+            if (!response.IsSuccessStatusCode)
+            {
+                logger.LogError($"API error: {response.StatusCode}");
+                return StatusCode((int)response.StatusCode, "Export failed");
+            }
+
+            var result = await response.Content.ReadFromJsonAsync<ServiceResult<byte[]>>();
+            logger.LogInformation("Exported data successfully");
+            return File(result.Data, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", $"exportObservations_{DateTime.Now:yyyy-MM-dd_HH-mm}.xlsx");
+        }
+
+    }
+}

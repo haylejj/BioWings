@@ -184,4 +184,16 @@ public class ObservationRepository(AppDbContext dbContext) : GenericRepository<O
 
         return query;
     }
+    public IQueryable<Observation> GetObservationsByProvinceIdForExporting(int provinceId)
+    {
+        var query = _dbSet.AsNoTracking().Include(x => x.Location).AsQueryable();
+        query = query.Where(x => x.Location.ProvinceId == provinceId);
+
+        query=query.Include(x => x.Species).ThenInclude(x => x.Genus).ThenInclude(x => x.Family);
+        query=query.Include(x => x.Species).ThenInclude(x => x.Authority);
+        query=query.Include(x => x.Observer);
+        query=query.Include(x => x.Location).ThenInclude(x => x.Province);
+
+        return query;
+    }
 }

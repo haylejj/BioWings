@@ -92,4 +92,12 @@ public class ObservationsController(IMediator mediator) : BaseController
         var result = await mediator.Send(query);
         return CreateResult(result);
     }
+    // GET: api/Observations/ByProvince/{provinceCode}
+    [HttpGet("ByProvince/{provinceCode}")]
+    public async Task<IActionResult> GetByProvince(int provinceCode, int pageNumber = 1, int pageSize = 25)
+    {
+        var query = new ObservationGetByProvinceQuery(provinceCode, pageNumber, pageSize);
+        var result = await mediator.Send(query);
+        return CreateResult(result);
+    }
 }

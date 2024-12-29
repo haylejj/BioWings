@@ -5,4 +5,5 @@ namespace BioWings.Application.Services;
 public interface IExcelExportService
 {
     byte[] ExportToExcel(IEnumerable<Observation> observations, List<ExpertColumnInfo> columns);
+    List<ExpertColumnInfo> GetDefaultColumns();
 }

@@ -16,6 +16,7 @@ public interface IObservationRepository : IGenericRepository<Observation>
     Task RemoveDuplicateObservationsWithEfCoreAsync(CancellationToken cancellationToken = default);
     Task<int> GetCountAsync(CancellationToken cancellationToken = default);
     IQueryable<Observation> GetObservationsForExporting(DateTime? startDate, DateTime? endDate, int? recordLimit, bool exportAllDates, bool exportAllRecords, List<ExpertColumnInfo> columns);
+    IQueryable<Observation> GetObservationsByProvinceIdForExporting(int provinceId);
 }
 
 

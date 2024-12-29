@@ -10,7 +10,7 @@ namespace BioWings.Application.Features.Handlers.ObservationMapHandlers;
 public class ObservationMapGetQueryHandler(IObservationRepository observationRepository, ILogger<ObservationMapGetQueryHandler> logger) : IRequestHandler<ObservationMapGetQuery, ServiceResult<List<ObservationMapGetQueryResult>>>
 {
     public async Task<ServiceResult<List<ObservationMapGetQueryResult>>> Handle(ObservationMapGetQuery request, CancellationToken cancellationToken)
-    
+
     {
         var observations = observationRepository.GetAllAsQueryable()
            .Include(x => x.Location)

@@ -6,17 +6,17 @@ using MediatR;
 using Microsoft.Extensions.Logging;
 
 namespace BioWings.Application.Features.Handlers.ObservationMapHandlers;
-public class ObservationMapGetByObservationIdQueryHandler(IObservationRepository observationRepository,ILogger<ObservationMapGetByObservationIdQueryHandler> logger) : IRequestHandler<ObservationMapGetByObservationIdQuery, ServiceResult<ObservationMapGetByObservationIdQueryResult>>
+public class ObservationMapGetByObservationIdQueryHandler(IObservationRepository observationRepository, ILogger<ObservationMapGetByObservationIdQueryHandler> logger) : IRequestHandler<ObservationMapGetByObservationIdQuery, ServiceResult<ObservationMapGetByObservationIdQueryResult>>
 {
     public async Task<ServiceResult<ObservationMapGetByObservationIdQueryResult>> Handle(ObservationMapGetByObservationIdQuery request, CancellationToken cancellationToken)
     {
-        var observation=await  observationRepository.GetByIdWithAllNavigationsAsync(request.ObservationId);
+        var observation = await observationRepository.GetByIdWithAllNavigationsAsync(request.ObservationId);
         if (observation==null)
-        { 
+        {
             logger.LogError($"Observation that has id : {request.ObservationId} not found");
-            return ServiceResult<ObservationMapGetByObservationIdQueryResult>.Error($"Observation that has id : {request.ObservationId} not found",System.Net.HttpStatusCode.NotFound);
+            return ServiceResult<ObservationMapGetByObservationIdQueryResult>.Error($"Observation that has id : {request.ObservationId} not found", System.Net.HttpStatusCode.NotFound);
         }
-        var observationMap=new ObservationMapGetByObservationIdQueryResult
+        var observationMap = new ObservationMapGetByObservationIdQueryResult
         {
             Id=observation.Id,
             Latitude=observation.Location.Latitude,

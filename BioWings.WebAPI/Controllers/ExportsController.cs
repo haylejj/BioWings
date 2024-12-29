@@ -21,4 +21,11 @@ public class ExportsController(IMediator mediator) : BaseController
         var result = await mediator.Send(command);
         return CreateResult(result);
     }
+    // GET: api/Exports/ExportObservationsByProvince
+    [HttpGet("ExportObservationsByProvince/{code}")]
+    public async Task<IActionResult> ExportObservationsByProvince([FromRoute] int code)
+    {
+        var result = await mediator.Send(new ExportObservationsByProvinceQuery(code));
+        return CreateResult(result);
+    }
 }

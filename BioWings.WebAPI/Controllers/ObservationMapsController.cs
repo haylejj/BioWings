@@ -3,7 +3,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BioWings.WebAPI.Controllers;
-public class ObservationMapsController(IMediator mediator,ILogger<ObservationMapsController> logger) : BaseController
+public class ObservationMapsController(IMediator mediator, ILogger<ObservationMapsController> logger) : BaseController
 {
     // GET: api/ObservationMaps
     [HttpGet]
