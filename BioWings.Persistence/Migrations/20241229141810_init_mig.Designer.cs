@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BioWings.Persistence.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241225074826_mig_init")]
-    partial class mig_init
+    [Migration("20241229141810_init_mig")]
+    partial class init_mig
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

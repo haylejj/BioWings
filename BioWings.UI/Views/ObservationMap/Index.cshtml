@@ -1,0 +1,793 @@
+﻿
+@{
+    ViewData["Title"] = "Gözlem Haritası";
+    Layout = "~/Views/MainLayout/Index.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Türkiye Gözlem Haritası</h3>
+                </div>
+                <div class="card-body">
+                    <div id="map" style="height: 700px;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Styles {
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+
+        #map {
+            width: 100%;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+
+        /* Info Box ve Legend Stilleri */
+        .info-box {
+            padding: 12px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.2);
+        }
+
+            .info-box h4 {
+                margin: 0 0 10px;
+                font-size: 16px;
+                font-weight: bold;
+                color: #333;
+            }
+
+        .legend {
+            line-height: 18px;
+            color: #555;
+        }
+
+        .legend-item {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            font-size: 13px;
+        }
+
+        .legend i {
+            width: 18px;
+            height: 18px;
+            float: left;
+            margin-right: 8px;
+            opacity: 0.9;
+        }
+
+        .total-count {
+            font-size: 14px;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #eee;
+        }
+
+        /* Popup Stilleri */
+        .custom-popup-container .leaflet-popup-content-wrapper {
+            padding: 0;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        .custom-cluster-icon {
+            background: none !important;
+        }
+
+            .custom-cluster-icon div {
+                box-shadow: 0 3px 14px rgba(0,0,0,0.2);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                padding: 2px;
+            }
+
+            .custom-cluster-icon small {
+                display: block;
+                font-size: 9px;
+                margin-top: 1px;
+                white-space: nowrap;
+            }
+
+        .custom-popup {
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        .popup-header {
+            background-color: #f8f9fa;
+            padding: 12px 15px;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+            .popup-header .scientific-name {
+                font-size: 14px;
+                color: #666;
+                margin-top: 4px;
+            }
+
+        .popup-body {
+            padding: 15px;
+        }
+
+        .coordinates {
+            font-size: 11px;
+            color: #666;
+            margin-top: 2px;
+            margin-left: 26px;
+        }
+
+        .taxonomy-section, .observation-section {
+            margin-bottom: 15px;
+        }
+
+        .taxonomy-section {
+            background-color: #f8f9fa;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+        }
+
+        .info-group {
+            margin-bottom: 12px;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+            .info-group:last-child {
+                margin-bottom: 0;
+            }
+
+            .info-group i {
+                width: 18px;
+                color: #666;
+                margin-right: 8px;
+                float: left;
+            }
+
+        .taxonomy-details div, .alternative-names div {
+            margin-bottom: 4px;
+        }
+
+        .info-group.notes {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+            clear: both;
+        }
+
+            .info-group.notes i {
+                float: none;
+            }
+
+        /* Marker Cluster Stilleri */
+        .marker-cluster-small {
+            background-color: rgba(181, 226, 140, 0.9);
+        }
+
+            .marker-cluster-small div {
+                background-color: rgba(110, 204, 57, 0.9);
+            }
+
+        .marker-cluster-medium {
+            background-color: rgba(241, 211, 87, 0.9);
+        }
+
+            .marker-cluster-medium div {
+                background-color: rgba(240, 194, 12, 0.9);
+            }
+
+        .marker-cluster-large {
+            background-color: rgba(253, 156, 115, 0.9);
+        }
+
+            .marker-cluster-large div {
+                background-color: rgba(241, 128, 23, 0.9);
+            }
+
+        /* Leaflet Genel Stilleri */
+        .leaflet-popup-content {
+            margin: 0;
+            width: 300px !important;
+        }
+
+        .popup-header h6 {
+            margin: 0;
+            color: #333;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .custom-popup h6 {
+            margin: 0 0 8px 0;
+            color: #333;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .custom-popup p {
+            margin: 0;
+            line-height: 1.4;
+            font-size: 13px;
+        }
+
+        .observation-details {
+            padding: 0 12px;
+        }
+
+        .leaflet-marker-icon.leaflet-div-icon {
+            background: transparent;
+            border: none;
+        }
+
+        .leaflet-popup-content-wrapper {
+            border-radius: 8px;
+            padding: 0;
+        }
+
+        .leaflet-popup-content {
+            margin: 0;
+            line-height: 1.4;
+        }
+
+        /* Marker Hover Efekti */
+        .custom-marker {
+            transition: transform 0.2s ease;
+        }
+
+            .custom-marker:hover {
+                transform: scale(1.2);
+                z-index: 1000 !important;
+            }
+
+        /* Loading Spinner */
+        #loading {
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+    </style>
+}
+
+
+@section Scripts {
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+<script>
+                var map;
+        var markers;
+        const MIN_ZOOM_LEVEL = 7;
+        let isInitialLoad = true;
+
+        $(document).ready(function () {
+            // Hoş geldiniz mesajı
+            $('.card-body').prepend(`
+                <div class="alert alert-info alert-dismissible fade show" role="alert">
+                    <strong>Hoş Geldiniz!</strong>
+                    <p>
+                        Bu haritada gözlem noktalarını görebilirsiniz.
+                        Kırmızı noktalar tek gözlemleri, renkli kümeler ise yakın gözlem gruplarını gösterir.
+                        Detaylı bilgi için noktalara tıklayın.
+                    </p>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            `);
+
+            // Debounce fonksiyonu
+            function debounce(func, wait) {
+                var timeout;
+                return function executedFunction(...args) {
+                    const later = () => {
+                        clearTimeout(timeout);
+                        func(...args);
+                    };
+                    clearTimeout(timeout);
+                    timeout = setTimeout(later, wait);
+                };
+            }
+
+            // Harita ayarları
+            map = L.map('map', {
+                center: [39.0, 35.0],
+                zoom: 6,
+                minZoom: 5,
+                maxZoom: 18,
+                maxBounds: [
+                    [35.0, 25.0], // Güneybatı sınırı
+                    [43.0, 45.0]  // Kuzeydoğu sınırı
+                ],
+                maxBoundsViscosity: 1.0
+            });
+
+            // Base layers
+            var osm = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors, © CartoDB'
+            }).addTo(map);
+
+            var satellite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+                attribution: '© Esri'
+            });
+
+            // Layer kontrolü
+            var baseMaps = {
+                "OpenStreetMap": osm,
+                "Uydu Görüntüsü": satellite
+            };
+            L.control.layers(baseMaps).addTo(map);
+
+            // Info box
+            var info = L.control({ position: 'topright' });
+            info.onAdd = function (map) {
+                this._div = L.DomUtil.create('div', 'info-box');
+                this.update();
+                return this._div;
+            };
+                    info.update = function (totalCount) {
+            this._div.innerHTML = `
+                <h4>Gözlem Haritası</h4>
+                <div class="total-count">
+                    <strong>Toplam Gözlem:</strong> ${totalCount || 0}
+                </div>
+                <div class="legend">
+                    <div class="legend-item">
+                        <i style="background: #FF4444; border: 2px solid white; border-radius: 50%; box-shadow: 0 0 4px rgba(0,0,0,0.3);"></i>
+                        <span>Tekil Gözlem</span>
+                    </div>
+                    <div class="legend-item">
+                        <i style="background: #4285F4; border: 2px solid white; border-radius: 50%; box-shadow: 0 0 4px rgba(0,0,0,0.3);"></i>
+                        <span>< 50 Gözlem</span>
+                    </div>
+                    <div class="legend-item">
+                        <i style="background: #F4B400; border: 2px solid white; border-radius: 50%; box-shadow: 0 0 4px rgba(0,0,0,0.3);"></i>
+                        <span>50-100 Gözlem</span>
+                    </div>
+                    <div class="legend-item">
+                        <i style="background: #DB4437; border: 2px solid white; border-radius: 50%; box-shadow: 0 0 4px rgba(0,0,0,0.3);"></i>
+                        <span>> 100 Gözlem</span>
+                    </div>
+                </div>
+            `;
+        };
+            info.addTo(map);
+
+            // Marker cluster group
+            markers = L.markerClusterGroup({
+                maxClusterRadius: 80,
+                spiderfyOnMaxZoom: true,
+                showCoverageOnHover: true,
+                zoomToBoundsOnClick: true,
+                disableClusteringAtZoom: 18,
+                chunkedLoading: true,
+                animate: true,
+                spiderfyDistanceMultiplier: 2,
+                spiderLegPolylineOptions: { weight: 1.5, color: '#222', opacity: 0.5 },
+
+                // Cluster icon
+                iconCreateFunction: function (cluster) {
+                    var childCount = cluster.getChildCount();
+                    var color = '#4285F4';
+                    var size = 40;
+                    var className = 'marker-cluster-';
+
+                    if (childCount > 100) {
+                        color = '#DB4437';
+                        size = 50;
+                        className += 'large';
+                    } else if (childCount > 50) {
+                        color = '#F4B400';
+                        size = 45;
+                        className += 'medium';
+                    } else {
+                        className += 'small';
+                    }
+
+                    // Cluster içindeki türleri say
+                    var species = {};
+                    cluster.getAllChildMarkers().forEach(marker => {
+                        if (marker.options.data && marker.options.data.speciesName) {
+                            species[marker.options.data.speciesName] =
+                                (species[marker.options.data.speciesName] || 0) + 1;
+                        }
+                    });
+
+                    var speciesCount = Object.keys(species).length;
+
+                    return L.divIcon({
+                        html: `<div style="
+                            background-color: ${color};
+                            width: ${size}px;
+                            height: ${size}px;
+                            border-radius: 50%;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            color: white;
+                            font-weight: bold;
+                            border: 2px solid white;
+                            box-shadow: 0 0 4px rgba(0,0,0,0.3);">
+                            <div>
+                                <span>${childCount}</span>
+                                ${speciesCount > 1 ? `<small style="display:block;font-size:9px;">${speciesCount} tür</small>` : ''}
+                            </div>
+                        </div>`,
+                        className: 'custom-cluster-icon ' + className,
+                        iconSize: L.point(size, size),
+                        iconAnchor: L.point(size / 2, size / 2)
+                    });
+                }
+            });
+
+            // Harita kontrolleri
+            L.control.zoom({ position: 'bottomright' }).addTo(map);
+            L.control.scale({ imperial: false, position: 'bottomleft' }).addTo(map);
+
+            // Loading göstergesi
+            var loadingDiv = $('<div>')
+                .attr('id', 'loading')
+                .css({
+                    'position': 'absolute',
+                    'top': '50%',
+                    'left': '50%',
+                    'transform': 'translate(-50%, -50%)',
+                    'z-index': 1000,
+                    'background': 'white',
+                    'padding': '20px',
+                    'border-radius': '5px',
+                    'box-shadow': '0 0 10px rgba(0,0,0,0.2)',
+                    'text-align': 'center',
+                    'display': 'none'
+                })
+                .html(`
+                    <div class="spinner-border text-primary" role="status"></div>
+                    <div class="mt-2">Gözlem noktaları yükleniyor...</div>
+                    <div class="mt-1 small text-muted">
+                        <i class="fas fa-info-circle"></i>
+                        Haritayı hareket ettirdiğinizde veriler otomatik güncellenir
+                    </div>
+                    <div id="progress-text" class="mt-1 small text-muted"></div>
+                `)
+                .appendTo($('.card-body'));
+
+            // Marker oluşturma fonksiyonu
+            function createMarker(point) {
+                try {
+                    if (!point.latitude || !point.longitude) {
+                        return null;
+                    }
+
+                    const lat = parseFloat(point.latitude);
+                    const lng = parseFloat(point.longitude);
+
+                    if (isNaN(lat) || isNaN(lng)) {
+                        return null;
+                    }
+
+                    if (lat < 35 || lat > 43 || lng < 25 || lng > 45) {
+                        return null;
+                    }
+
+                    var marker = L.marker([lat, lng], {
+                        icon: L.divIcon({
+                            className: 'custom-marker',
+                            html: `<div style="
+                                background-color: #FF4444;
+                                width: 12px;
+                                height: 12px;
+                                border-radius: 50%;
+                                border: 2px solid white;
+                                box-shadow: 0 0 4px rgba(0,0,0,0.3);">
+                            </div>`,
+                            iconSize: [12, 12],
+                            iconAnchor: [6, 6]
+                        }),
+                        data: point
+                    });
+
+                    // Başlangıçta boş bir popup bağla
+                    marker.bindPopup(createLoadingPopup(), {
+                        maxWidth: 350,
+                        maxHeight: 500,
+                        autoPan: true,
+                        closeButton: true,
+                        className: 'custom-popup-container'
+                    });
+
+                    // Click event handler ekle
+                    marker.on('click', function () {
+                        marker.getPopup().setContent(createLoadingPopup());
+                        marker.getPopup().update();
+
+                        // Detay bilgilerini getir
+                        fetchObservationDetails(point.id, marker);
+                    });
+
+                    return marker;
+                } catch (error) {
+                    console.error('Error in createMarker:', error);
+                    return null;
+                }
+            }
+
+            // Yükleniyor popup içeriği
+            function createLoadingPopup() {
+                return `
+                    <div class="custom-popup">
+                        <div class="popup-header">
+                            <h6>Yükleniyor...</h6>
+                        </div>
+                        <div class="popup-body">
+                            <div class="d-flex justify-content-center">
+                                <div class="spinner-border text-primary" role="status">
+                                    <span class="visually-hidden">Yükleniyor...</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            // Detay bilgilerini getiren fonksiyon
+            function fetchObservationDetails(id, marker) {
+                $.ajax({
+                    url: `https://localhost:7128/api/ObservationMaps/${id}`,
+                    method: 'GET',
+                    success: function (response) {
+                        const detailData=response.data;
+                        const popupContent = createDetailPopup(detailData);
+                        marker.getPopup().setContent(popupContent);
+                        marker.getPopup().update();
+                    },
+                    error: function (xhr, status, error) {
+                        const errorContent = createErrorPopup();
+                        marker.getPopup().setContent(errorContent);
+                        marker.getPopup().update();
+                    }
+                });
+            }
+
+            // Detay popup içeriği oluşturma
+                   function createDetailPopup(detail) {
+            const formatDate = (dateString) => {
+                if (!dateString) return 'Tarih Yok';
+                const cleanDate = dateString.split('.')[0];
+                const date = new Date(cleanDate);
+
+                if (isNaN(date.getTime())) {
+                    return 'Geçersiz Tarih';
+                }
+
+                return date.toLocaleDateString('tr-TR', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+            };
+
+            const authorityInfo = detail.authortyName ?
+                `${detail.authortyName}${detail.authorityYear ? `, ${detail.authorityYear}` : ''}` : '';
+
+            // Koordinat gösterimini güvenli hale getirme
+            const coordinates = (detail.latitude != null && detail.longitude != null) ?
+                `<small>(${Number(detail.latitude).toFixed(6)}, ${Number(detail.longitude).toFixed(6)})</small>` :
+                '<small>Koordinat bilgisi yok</small>';
+
+            return `
+                 <div class="custom-popup">
+                    <div class="popup-header">
+                        <h6>Gözlem Detayı</h6>
+                    </div>
+
+                    <div class="popup-body">
+                            <div class="taxonomy-section">
+                                ${detail.speciesName ? `
+                                <div class="info-group">
+                                    <i class="fas fa-bug"></i>
+                                    <strong>Tür:</strong> ${detail.speciesName}
+                                </div>
+                            ` : ''}
+
+                            ${detail.scientificName ? `
+                                <div class="info-group">
+                                    <i class="fas fa-microscope"></i>
+                                    <strong>Bilimsel Adı:</strong> <em>${detail.scientificName}</em>
+                                </div>
+                            ` : ''}
+                            ${detail.familyName ? `
+                                <div class="info-group">
+                                    <i class="fas fa-sitemap"></i>
+                                    <strong>Familya:</strong> ${detail.familyName}
+                                </div>
+                            ` : ''}
+
+                            ${detail.genusName ? `
+                                <div class="info-group">
+                                    <i class="fas fa-dna"></i>
+                                    <strong>Cins:</strong> ${detail.genusName}
+                                </div>
+                            ` : ''}
+
+                            ${detail.kocakName ? `
+                                <div class="info-group">
+                                    <i class="fas fa-tag"></i>
+                                    <strong>Koçak:</strong> ${detail.kocakName}
+                                </div>
+                            ` : ''}
+
+                            ${detail.hesselbartName ? `
+                                <div class="info-group">
+                                    <i class="fas fa-tag"></i>
+                                    <strong>Hesselbart:</strong> ${detail.hesselbartName}
+                                </div>
+                            ` : ''}
+
+                            ${authorityInfo ? `
+                                <div class="info-group">
+                                    <i class="fas fa-user-edit"></i>
+                                    <strong>Authority:</strong> ${authorityInfo}
+                                </div>
+                            ` : ''}
+                        </div>
+
+                        <div class="observation-details">
+                            <div class="info-group">
+                                <i class="fas fa-calendar-alt"></i>
+                                <strong>Gözlem Tarihi:</strong> ${formatDate(detail.observationDate)}
+                            </div>
+
+                            <div class="info-group">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <strong>İl:</strong> ${detail.provinceName || '-'}
+                                <div class="coordinates">
+                                    ${coordinates}
+                                </div>
+                            </div>
+
+                            <div class="info-group">
+                                <i class="fas fa-binoculars"></i>
+                                <strong>Gözlem Sayısı:</strong> ${detail.numberSeen || 1}
+                            </div>
+
+                            ${detail.notes ? `
+                                <div class="info-group notes">
+                                    <i class="fas fa-sticky-note"></i>
+                                    <strong>Notlar:</strong><br>
+                                    ${detail.notes}
+                                </div>
+                            ` : ''}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+                    function createErrorPopup() {
+                return `
+                    <div class="custom-popup">
+                        <div class="popup-header">
+                            <h6>Hata</h6>
+                        </div>
+                        <div class="popup-body">
+                            <div class="info-group">
+                                <i class="fas fa-exclamation-triangle text-danger"></i>
+                                Detay bilgileri yüklenirken bir hata oluştu. Lütfen tekrar deneyin.
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            // Markerları yükleme fonksiyonu
+            function loadMarkers() {
+                var bounds = map.getBounds();
+                var zoom = map.getZoom();
+
+                // Zoom level kontrolü
+                if (zoom < MIN_ZOOM_LEVEL && !isInitialLoad) {
+                    markers.clearLayers();
+                    showZoomMessage();
+                    return;
+                }
+
+                $('#loading').show();
+
+                $.ajax({
+                    url: 'https://localhost:7128/api/ObservationMaps',
+                    method: 'GET',
+                    data: {
+                        minLat: bounds.getSouth(),
+                        maxLat: bounds.getNorth(),
+                        minLng: bounds.getWest(),
+                        maxLng: bounds.getEast(),
+                        zoomLevel: zoom
+                    },
+                    success: function(response) {
+                        if (response && response.data && Array.isArray(response.data)) {
+                            markers.clearLayers();
+                            let validMarkerCount = 0;
+
+                            response.data.forEach((point) => {
+                                const marker = createMarker(point);
+                                if (marker) {
+                                    markers.addLayer(marker);
+                                    validMarkerCount++;
+                                }
+                            });
+
+                            if (!map.hasLayer(markers)) {
+                                map.addLayer(markers);
+                            }
+
+                            info.update(validMarkerCount);
+                            isInitialLoad = false;
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('API Error:', error);
+                        showErrorMessage();
+                    },
+                    complete: function() {
+                        $('#loading').hide();
+                    }
+                });
+            }
+
+            // Zoom message gösterme
+            function showZoomMessage() {
+                if (!$('#zoom-message').length) {
+                    $('.card-body').prepend(`
+                        <div id="zoom-message" class="alert alert-info alert-dismissible fade show" role="alert">
+                            <strong>Bilgi!</strong> Daha detaylı gözlem noktalarını görmek için lütfen haritayı yakınlaştırın.
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    `);
+                }
+            }
+
+            // Hata mesajı gösterme
+            function showErrorMessage() {
+                $('.card-body').prepend(`
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>Hata!</strong> Veriler yüklenirken bir sorun oluştu. Lütfen tekrar deneyin.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                `);
+            }
+
+            // Debounce fonksiyonu tanımlama
+            const debouncedLoadMarkers = debounce(loadMarkers, 2000);
+
+            // Harita event listener'ları
+            map.on('moveend', () => {
+                if (map.getZoom() >= MIN_ZOOM_LEVEL || isInitialLoad) {
+                    debouncedLoadMarkers();
+                }
+            });
+
+            map.on('zoomend', () => {
+                if (map.getZoom() >= MIN_ZOOM_LEVEL || isInitialLoad) {
+                    debouncedLoadMarkers();
+                } else {
+                    markers.clearLayers();
+                    showZoomMessage();
+                }
+            });
+
+            // İlk yükleme
+            loadMarkers();
+        });
+</script>
+}
+

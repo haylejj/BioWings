@@ -223,19 +223,19 @@ public class ExcelImportService : IExcelImportService
             UtmReference = GetCellValue(worksheet, row, columnMappings, "UtmReference"),
             CoordinatePrecisionLevel = GetEnumValue(worksheet, row, columnMappings, "CoordinatePrecisionLevel")
         };
-        //if (dto.ProvinceName == null && dto.Latitude != 0 && dto.Longitude != 0)
-        //{
-        //    var provinceCode = await _geocodingService.GetProvinceAsync(dto.Latitude, dto.Longitude);
-        //    if (provinceCode == null)
-        //    {
-        //        _logger.LogWarning($"Province bulunamadı: Lat={dto.Latitude}, Lon={dto.Longitude}");
-        //    }
-        //    else
-        //    {
-        //        dto.ProvinceCode = int.Parse(provinceCode);
-        //    }
+        if (dto.ProvinceName == null && dto.Latitude != 0 && dto.Longitude != 0)
+        {
+            var provinceCode = await _geocodingService.GetProvinceAsync(dto.Latitude, dto.Longitude);
+            if (provinceCode == null)
+            {
+                _logger.LogWarning($"Province bulunamadı: Lat={dto.Latitude}, Lon={dto.Longitude}");
+            }
+            else
+            {
+                dto.ProvinceCode = int.Parse(provinceCode);
+            }
 
-        //}
+        }
         if (dto.X!=0 && dto.Y!=0 && dto.SquareRef != null)
         {
             //if (dto.ProvinceName != null)
