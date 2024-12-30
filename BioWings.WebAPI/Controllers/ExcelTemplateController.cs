@@ -16,4 +16,14 @@ public class ExcelTemplateController(IExcelTemplateService excelTemplateService)
             "observation_import_template.xlsx"
         );
     }
+    [HttpGet("download/species")]
+    public IActionResult DownloadSpeciesTemplate()
+    {
+        var fileContents = excelTemplateService.CreateSpeciesTemplateWithMockData();
+        return File(
+            fileContents,
+            "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            "species_import_template.xlsx"
+        );
+    }
 }

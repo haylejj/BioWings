@@ -8,21 +8,24 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using OfficeOpenXml;
 using System.Globalization;
+using System.Text.RegularExpressions;
 
 namespace BioWings.Infrastructure.Services;
 public class ExcelImportService : IExcelImportService
 {
     private readonly ILogger<ExcelImportService> _logger;
     private readonly Dictionary<string, ExcelMapping> _mappings;
+    private readonly Dictionary<string,ExcelMapping> _speciesMappings;
     private readonly IGeocodingService _geocodingService;
-
+    private static readonly Regex _authorityPattern = new Regex(@"\((.*?)(?:,\s*\[?(\d{4})\]?)?\)");
+    //ObservationImport
     public ExcelImportService(ILogger<ExcelImportService> logger, IGeocodingService geocodingService)
     {
         _geocodingService=geocodingService;
         _logger = logger;
         _mappings = GetDefaultMappings();
+        _speciesMappings = GetDefaultSpeciesMapping();
     }
-
     public async Task<List<ImportCreateDto>> ImportFromExcelAsync(IFormFile file)
     {
         try
@@ -48,7 +51,6 @@ public class ExcelImportService : IExcelImportService
             throw;
         }
     }
-
     private async Task<List<ImportCreateDto>> ProcessAllSheets(ExcelPackage package)
     {
         List<ImportCreateDto> allData = new();
@@ -92,7 +94,6 @@ public class ExcelImportService : IExcelImportService
 
         return columnMappings;
     }
-
     private async Task<List<ImportCreateDto>> ProcessRows(ExcelWorksheet worksheet, Dictionary<string, int> columnMappings, ExcelMapping mapping)
     {
         var result = new List<ImportCreateDto>();
@@ -255,6 +256,7 @@ public class ExcelImportService : IExcelImportService
         }
         return dto;
     }
+    //Common methods
     private CoordinatePrecisionLevel GetEnumValue(ExcelWorksheet worksheet, int row, Dictionary<string, int> columnMappings, string propertyName)
     {
         if (columnMappings.TryGetValue(propertyName, out int column))
@@ -294,7 +296,6 @@ public class ExcelImportService : IExcelImportService
         }
         return null;
     }
-
     private int GetIntValue(ExcelWorksheet worksheet, int row, Dictionary<string, int> columnMappings, string propertyName, int defaultValue = 0)
     {
         if (columnMappings.TryGetValue(propertyName, out int column))
@@ -306,7 +307,6 @@ public class ExcelImportService : IExcelImportService
         }
         return defaultValue;
     }
-
     private int? GetNullableIntValue(ExcelWorksheet worksheet, int row, Dictionary<string, int> columnMappings, string propertyName)
     {
         if (columnMappings.TryGetValue(propertyName, out int column))
@@ -318,7 +318,6 @@ public class ExcelImportService : IExcelImportService
         }
         return null;
     }
-
     private decimal GetDecimalValue(ExcelWorksheet worksheet, int row, Dictionary<string, int> columnMappings, string propertyName, decimal defaultValue = 0)
     {
         if (columnMappings.TryGetValue(propertyName, out int column))
@@ -333,6 +332,7 @@ public class ExcelImportService : IExcelImportService
         }
         return defaultValue;
     }
+    //SpeciesImport
     private static Dictionary<string, ExcelMapping> GetDefaultMappings()
     {
         return new Dictionary<string, ExcelMapping>
@@ -527,6 +527,194 @@ public class ExcelImportService : IExcelImportService
             }
         },
     };
+    }
+    private static Dictionary<string, ExcelMapping> GetDefaultSpeciesMapping()
+    {
+        return new Dictionary<string, ExcelMapping>
+        {
+            { "Format1",new ExcelMapping
+                {
+                    SheetName = "Sheet1",
+                    ColumnMappings=new Dictionary<string, string[]>
+                    {
+                        { "AuthorityName", new [] {"Authority Name" } },
+                        { "AuthorityYear", new [] {"Authority Year" } },
+                        { "GenusName", new [] {"Genus Name" }},
+                        { "FamilyName",new [] { "Family Name" }},
+                        { "ScientificName",new [] { "Scientific Name" }},
+                        { "SpeciesName", new [] {"Species Name" }},
+                        { "EUName", new [] {"EU Name" }},
+                        { "FullName",new [] { "Full Name" }},
+                        { "TurkishName", new [] {"Turkish Name" }},
+                        { "EnglishName", new [] {"English Name" }},
+                        { "TurkishNamesTrakel",new [] { "Turkish Names Trakel" }},
+                        { "Trakel",new [] { "Trakel" }},
+                        { "KocakName", new [] {"Kocak Name" }},
+                        { "HesselbarthName",new [] { "Hesselbarth Name" }}
+                    }
+                }
+            },
+            { "Format2",new ExcelMapping
+                {
+                    SheetName = "Sheet1",
+                    ColumnMappings=new Dictionary<string, string[]>
+                    {
+                        { "EUName", new [] { "Species EU" } },
+                        { "AuthorityName", new [] {"Authority" } },
+                        { "FamilyName",new [] { "Family" }},
+                        { "SpeciesName", new [] {"English Name" }},
+                        { "Turkish Name", new [] {"Turkish Name" }},
+                        { "EnglishName", new [] {"English Name" }},
+                        { "TurkishNamesTrakel",new [] { "Turkish Names Trakel" }},
+                        { "Trakel",new [] { "Species Trakel" }},
+                    }
+                }
+            }
+        };
+    }
+    private (string? Name, int? Year) ParseAuthority(string? authorityText)
+    {
+        if (string.IsNullOrWhiteSpace(authorityText))
+            return (null, null);
+
+        var match = _authorityPattern.Match(authorityText);
+
+        if (!match.Success)
+            return (authorityText?.Trim(), null);
+
+        var name = match.Groups[1].Value.Trim();
+        var yearStr = match.Groups[2].Value;
+
+        if (int.TryParse(yearStr, out int year))
+            return (name, year);
+
+        return (name, null);
+    }
+    private ImportCreateSpeciesDto CreateSpeciesDto(ExcelWorksheet worksheet, int row, Dictionary<string, int> columnMappings)
+    {
+        var dto = new ImportCreateSpeciesDto
+        {
+            AuthorityName = GetCellValue(worksheet, row, columnMappings, "AuthorityName"),
+            AuthorityYear = GetNullableIntValue(worksheet, row, columnMappings, "AuthorityYear"),
+            GenusName = GetCellValue(worksheet, row, columnMappings, "GenusName"),
+            FamilyName = GetCellValue(worksheet, row, columnMappings, "FamilyName"),
+            ScientificName = GetCellValue(worksheet, row, columnMappings, "ScientificName"),
+            SpeciesName = GetCellValue(worksheet, row, columnMappings, "SpeciesName"),
+            EUName = GetCellValue(worksheet, row, columnMappings, "EUName"),
+            FullName = GetCellValue(worksheet, row, columnMappings, "FullName"),
+            TurkishName = GetCellValue(worksheet, row, columnMappings, "TurkishName"),
+            EnglishName = GetCellValue(worksheet, row, columnMappings, "EnglishName"),
+            TurkishNamesTrakel = GetCellValue(worksheet, row, columnMappings, "TurkishNamesTrakel"),
+            Trakel = GetCellValue(worksheet, row, columnMappings, "Trakel"),
+            KocakName = GetCellValue(worksheet, row, columnMappings, "KocakName"),
+            HesselbarthName = GetCellValue(worksheet, row, columnMappings, "HesselbarthName")
+        };
+        if (dto.SpeciesName == null) dto.SpeciesName=dto.EnglishName;
+
+        // Authority bilgisini parse et
+        if (columnMappings.TryGetValue("AuthorityName", out int authorityCol))
+        {
+            var authorityText = worksheet.Cells[row, authorityCol].Text;
+            if (!string.IsNullOrEmpty(authorityText))
+            {
+                var (name, year) = ParseAuthority(authorityText);
+                if (dto.AuthorityName == null) dto.AuthorityName = name;
+                if (dto.AuthorityYear == null) dto.AuthorityYear = year;
+            }
+        }
+
+        return dto;
+    }
+    private List<ImportCreateSpeciesDto> ProcessSpeciesRows(ExcelWorksheet worksheet, Dictionary<string, int> columnMappings)
+    {
+        var result = new List<ImportCreateSpeciesDto>();
+        var rowCount = worksheet.Dimension.Rows;
+
+        for (int row = 2; row <= rowCount; row++) 
+        {
+            try
+            {
+                var dto = CreateSpeciesDto(worksheet, row, columnMappings);
+                if (dto != null && !string.IsNullOrWhiteSpace(dto.SpeciesName)) 
+                {
+                    result.Add(dto);
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Satır {row} işlenirken hata oluştu");
+                continue;
+            }
+        }
+
+        return result;
+    }
+    private List<ImportCreateSpeciesDto> ProcessAllSheetsForSpecies(ExcelPackage package)
+    {
+        List<ImportCreateSpeciesDto> allData = new();
+        var targetSheet = package.Workbook.Worksheets[0]; 
+
+        if (targetSheet?.Dimension == null)
+            throw new InvalidOperationException("Hedef sheet bulunamadı veya boş.");
+
+        string format = ExcelFormatDetectorHelper.DetectFormatForSpeciesImport(targetSheet);
+        _logger.LogInformation($"Excel formatı: {format}");
+
+        if (!_speciesMappings.ContainsKey(format))
+            throw new InvalidOperationException("Geçersiz Excel formatı.");
+
+        var mapping = _speciesMappings[format];
+        var columnMappings = CreateSpeciesColumnMappings(targetSheet, mapping);
+        allData.AddRange(ProcessSpeciesRows(targetSheet, columnMappings));
+
+        return !allData.Any()
+            ? throw new InvalidOperationException("Excel dosyası boş veya geçersiz format içeriyor.")
+            : allData;
+    }
+    public List<ImportCreateSpeciesDto> ImportSpeciesFromExcel(IFormFile file)
+    {
+        try
+        {
+            if (!Path.GetExtension(file.FileName).Equals(".xlsx", StringComparison.OrdinalIgnoreCase))
+            {
+                throw new InvalidOperationException("Sadece XLSX formatında dosyalar kabul edilmektedir.");
+            }
+            if (file == null || file.Length == 0)
+            {
+                throw new ArgumentException("Dosya boş veya geçersiz.");
+            }
+            using var originalStream = file.OpenReadStream();
+            using var originalPackage = new ExcelPackage(originalStream);
+            return  ProcessAllSheetsForSpecies(originalPackage);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Excel import işlemi sırasında hata oluştu");
+            throw;
+        }
+    }
+    private Dictionary<string, int> CreateSpeciesColumnMappings(ExcelWorksheet worksheet, ExcelMapping mapping)
+    {
+        var columnMappings = new Dictionary<string, int>();
+        var headerRow = 1;
+
+        for (int col = 1; col <= worksheet.Dimension.Columns; col++)
+        {
+            var headerValue = worksheet.Cells[headerRow, col].Text?.Trim();
+            if (string.IsNullOrEmpty(headerValue)) continue;
+
+            foreach (var map in mapping.ColumnMappings)
+            {
+                if (map.Value.Any(possibleHeader =>
+                    possibleHeader.Equals(headerValue, StringComparison.OrdinalIgnoreCase)))
+                {
+                    columnMappings[map.Key] = col;
+                    break;
+                }
+            }
+        }
+
+        return columnMappings;
     }
 }
 

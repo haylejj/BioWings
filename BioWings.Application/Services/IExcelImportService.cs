@@ -5,4 +5,5 @@ namespace BioWings.Application.Services;
 public interface IExcelImportService
 {
     Task<List<ImportCreateDto>> ImportFromExcelAsync(IFormFile file);
+    List<ImportCreateSpeciesDto> ImportSpeciesFromExcel(IFormFile file);
 }

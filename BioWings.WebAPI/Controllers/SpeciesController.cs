@@ -54,7 +54,13 @@ public class SpeciesController(IMediator mediator) : BaseController
         var result = await mediator.Send(command);
         return CreateResult(result);
     }
-
+    // POST: api/Species/Import
+    [HttpPost("Import")]
+    public async Task<IActionResult> Import(SpeciesImportCreateCommand speciesImportCreateCommand)
+    {
+        var result = await mediator.Send(speciesImportCreateCommand);
+        return CreateResult(result);
+    }
 
     // PUT: api/Species
     [HttpPut]

@@ -1,6 +1,7 @@
 ﻿using BioWings.Application.Services;
 using Microsoft.Extensions.Logging;
 using OfficeOpenXml;
+using OfficeOpenXml.DataValidation;
 using OfficeOpenXml.Style;
 using System.Drawing;
 
@@ -737,6 +738,112 @@ public class ExcelTemplateService(ILogger<ExcelTemplateService> logger) : IExcel
         //}
 
         //instructionsSheet.Column(1).AutoFit();
+
+        return package.GetAsByteArray();
+    }
+    public byte[] CreateSpeciesTemplateWithMockData()
+    {
+        using var package = new ExcelPackage();
+        var worksheet = package.Workbook.Worksheets.Add("Species and Some Subspecies");
+
+        var headers = new string[]
+        {
+       "Authority Name", "Authority Year", "Genus Name", "Family Name",
+       "Scientific Name", "Species Name", "EU Name", "Full Name",
+       "Turkish Name", "English Name", "Turkish Names Trakel",
+       "Trakel", "Kocak Name", "Hesselbarth Name"
+        };
+
+        // Set headers
+        for (int i = 0; i < headers.Length; i++)
+        {
+            var cell = worksheet.Cells[1, i + 1];
+            cell.Value = headers[i];
+            cell.Style.Fill.PatternType = ExcelFillStyle.Solid;
+            cell.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(184, 204, 228));
+            cell.Style.Font.Bold = true;
+        }
+
+        var exampleData = new object[][]
+        {
+       new object[] { "Linnaeus", 1758, "Aglais", "Nymphalidae", "Aglais io", "io", "Peacock", "Aglais io (Linnaeus, 1758)",
+           "Tavuskelebeği", "Peacock", "Tavus Kelebeği", "Inachis io", "Nymphalis io", "Vanessa io" },
+
+       new object[] { "Linnaeus", 1758, "Pieris", "Pieridae", "Pieris brassicae", "brassicae", "Large White", "Pieris brassicae (Linnaeus, 1758)",
+           "Lahana Kelebeği", "Large White", "Lahana Kelebeği", "Common White", "Pieris brassicae", "Great White" }
+        };
+
+        // Add example data
+        for (int row = 0; row < exampleData.Length; row++)
+        {
+            for (int col = 0; col < exampleData[row].Length; col++)
+            {
+                worksheet.Cells[row + 2, col + 1].Value = exampleData[row][col];
+            }
+        }
+
+        // Format columns
+        for (int col = 1; col <= headers.Length; col++)
+        {
+            worksheet.Column(col).AutoFit();
+
+            // Add number validation for Authority Year
+            if (headers[col - 1] == "Authority Year")
+            {
+                var yearValidation = worksheet.DataValidations.AddIntegerValidation($"{GetExcelColumnName(col)}2:{GetExcelColumnName(col)}1000");
+                yearValidation.Formula.Value = 1000;
+                yearValidation.Formula2.Value = DateTime.Now.Year;
+                yearValidation.ErrorStyle = ExcelDataValidationWarningStyle.stop;
+                yearValidation.ErrorTitle = "Invalid Year";
+                yearValidation.Error = "Please enter a year between 1700 and current year";
+            }
+        }
+
+        // Freeze header row
+        worksheet.View.FreezePanes(2, 1);
+
+        return package.GetAsByteArray();
+    }
+    public byte[] CreateSpeciesTemplate()
+    {
+        using var package = new ExcelPackage();
+        var worksheet = package.Workbook.Worksheets.Add("Species and Some Subspecies");
+
+        var headers = new string[]
+        {
+       "Authority Name", "Authority Year", "Genus Name", "Family Name",
+       "Scientific Name", "Species Name", "EU Name", "Full Name",
+       "Turkish Name", "English Name", "Turkish Names Trakel",
+       "Trakel", "Kocak Name", "Hesselbarth Name"
+        };
+
+        // Set headers
+        for (int i = 0; i < headers.Length; i++)
+        {
+            var cell = worksheet.Cells[1, i + 1];
+            cell.Value = headers[i];
+            cell.Style.Fill.PatternType = ExcelFillStyle.Solid;
+            cell.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(184, 204, 228));
+            cell.Style.Font.Bold = true;
+        }
+
+        // Format columns
+        for (int col = 1; col <= headers.Length; col++)
+        {
+            worksheet.Column(col).AutoFit();
+
+            if (headers[col - 1] == "Authority Year")
+            {
+                var yearValidation = worksheet.DataValidations.AddIntegerValidation($"{GetExcelColumnName(col)}2:{GetExcelColumnName(col)}1000");
+                yearValidation.Formula.Value = 1000;
+                yearValidation.Formula2.Value = DateTime.Now.Year;
+                yearValidation.ErrorStyle = ExcelDataValidationWarningStyle.stop;
+                yearValidation.ErrorTitle = "Invalid Year";
+                yearValidation.Error = "Please enter a year between 1700 and current year";
+            }
+        }
+
+        worksheet.View.FreezePanes(2, 1);
 
         return package.GetAsByteArray();
     }

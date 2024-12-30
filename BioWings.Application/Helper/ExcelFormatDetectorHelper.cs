@@ -19,6 +19,14 @@ public static class ExcelFormatDetectorHelper
             ? "Format5"
             : headers.Contains("lat") && headers.Contains("lng") ? "Format3" : headers.Contains("Authority Name") ? "Format4" : "Format4";
     }
+    public static string DetectFormatForSpeciesImport(ExcelWorksheet worksheet)
+    {
+        var headerRow = 1; 
+        var headers = GetHeaders(worksheet, headerRow);
+        if(headers.Contains("Authority")) return "Format2";
+        if(headers.Contains("Hesselbarth Name")) return "Format1";
+        return "Unknown";
+    }
 
     private static HashSet<string> GetHeaders(ExcelWorksheet worksheet, int headerRow)
     {

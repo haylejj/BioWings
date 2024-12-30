@@ -3,4 +3,6 @@ public interface IExcelTemplateService
 {
     byte[] CreateImportTemplate();
     byte[] CreateImportTemplateWithMockData();
+    byte[] CreateSpeciesTemplateWithMockData();
+    byte[] CreateSpeciesTemplate();
 }
