@@ -1,4 +1,5 @@
-﻿using BioWings.Domain.Entities;
+﻿using BioWings.Application.DTOs.StatisticsDtos;
+using BioWings.Domain.Entities;
 using System.Linq.Expressions;
 
 namespace BioWings.Application.Interfaces;
@@ -14,6 +15,7 @@ public interface ISpeciesRepository : IGenericRepository<Species>
     Task<Species?> GetByNameOrScientificNameAsync(string name, CancellationToken cancellationToken = default);
     Task<Species?> GetByName_Authority_GenusAsync(string name, string? authorityName, string? genusName, int? authorityYear, CancellationToken cancellationToken = default);
     Task<Species?> GetOrCreateSpeciesAsync<TDto>(TDto dto, int? genusId, int? authorityId, CancellationToken cancellationToken) where TDto : ISpeciesImportDto;
+    Task<List<SpeciesStatDto>> GetTopSpeciesAsync(CancellationToken cancellationToken = default);
 }
 
 

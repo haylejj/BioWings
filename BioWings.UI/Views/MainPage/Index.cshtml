@@ -1,0 +1,215 @@
+﻿@model StatisticsGetViewModel
+@{
+    ViewData["Title"] = "Statistics";
+    Layout = "~/Views/MainLayout/Index.cshtml";
+}
+
+<!--begin::Hero Carousel-->
+<div class="card mb-8">
+    <div id="kt_carousel" class="carousel carousel-custom slide" data-bs-ride="carousel" data-bs-interval="3000">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="d-flex align-items-center min-h-400px">
+                    <img src="/images/butterfly1.jpg" class="w-100 h-400px object-fit-cover" />
+                    <div class="position-absolute bottom-0 w-100 py-5 bg-dark bg-opacity-50">
+                        <div class="container">
+                            <h3 class="text-white fw-bold fs-1">Common Blue</h3>
+                            <p class="text-white fs-4">Polyommatus icarus</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="d-flex align-items-center min-h-400px">
+                    <img src="/images/butterfly2.jpg" class="w-100 h-400px object-fit-cover" />
+                    <div class="position-absolute bottom-0 w-100 py-5 bg-dark bg-opacity-50">
+                        <div class="container">
+                            <h3 class="text-white fw-bold fs-1">Swallowtail</h3>
+                            <p class="text-white fs-4">Papilio machaon</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="d-flex align-items-center min-h-400px">
+                    <img src="/images/butterfly3.jpg" class="w-100 h-400px object-fit-cover" />
+                    <div class="position-absolute bottom-0 w-100 py-5 bg-dark bg-opacity-50">
+                        <div class="container">
+                            <h3 class="text-white fw-bold fs-1">Painted Lady</h3>
+                            <p class="text-white fs-4">Vanessa cardui</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="d-flex align-items-center min-h-400px">
+                    <img src="/images/butterfly5.jpg" class="w-100 h-400px object-fit-cover" />
+                    <div class="position-absolute bottom-0 w-100 py-5 bg-dark bg-opacity-50">
+                        <div class="container">
+                            <h3 class="text-white fw-bold fs-1">Painted Lady</h3>
+                            <p class="text-white fs-4">Vanessa cardui</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <ol class="carousel-indicators">
+            <li data-bs-target="#kt_carousel" data-bs-slide-to="0" class="active"></li>
+            <li data-bs-target="#kt_carousel" data-bs-slide-to="1"></li>
+            <li data-bs-target="#kt_carousel" data-bs-slide-to="2"></li>
+        </ol>
+    </div>
+</div>
+
+<!--begin::Stats-->
+<div class="row g-5 g-xl-8 mb-8">
+    <div class="col-xl-3">
+        <div class="card bg-primary h-100">
+            <div class="card-body">
+                <div class="text-white">
+                    <span class="fs-2x fw-bold">@Model.TotalObservationCount</span>
+                    <p class="fs-5 mt-2">Toplam Gözlem</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3">
+        <div class="card bg-success h-100">
+            <div class="card-body">
+                <div class="text-white">
+                    <span class="fs-2x fw-bold">@Model.TotalSpeciesCount</span>
+                    <p class="fs-5 mt-2">Toplam Tür</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3">
+        <div class="card bg-warning h-100">
+            <div class="card-body">
+                <div class="text-white">
+                    <span class="fs-2x fw-bold">@Model.TotalFamilyCount</span>
+                    <p class="fs-5 mt-2">Toplam Familya</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3">
+        <div class="card bg-info h-100">
+            <div class="card-body">
+                <div class="text-white">
+                    <span class="fs-2x fw-bold">@Model.TotalObserverCount</span>
+                    <p class="fs-5 mt-2">Toplam Gözlemci</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--begin::Charts-->
+<div class="row g-5 g-xl-8">
+    <div class="col-xl-6">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">İllere Göre Dağılım</h3>
+            </div>
+            <div class="card-body">
+                <div id="province_chart" style="height: 350px"></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-6">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Familyalara Göre Dağılım</h3>
+            </div>
+            <div class="card-body">
+                <div id="family_chart" style="height: 350px"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row g-5 g-xl-8 mt-5">
+    <div class="col-xl-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="d-flex align-items-center">
+                    <h3 class="card-title">En Çok Gözlemlenen Türler</h3>
+                    <span class="text-muted ms-2 fs-7">(Ortalama Yükseklik: m)</span>
+                </div>
+            </div>
+            <div class="card-body">
+                <div id="species_chart" style="height: 350px"></div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Styles{
+    <style>
+        .h-500px {
+            height: 500px !important;
+        }
+
+        .fs-2hx {
+            font-size: 3.5rem !important;
+        }
+
+        .object-fit-cover {
+            object-fit: cover;
+        }
+    </style>
+}
+@section Scripts {
+    <script>
+        // Province Chart
+        var provinceData = @Json.Serialize(Model.TopProvinces);
+        var provinceChart = new ApexCharts(document.querySelector("#province_chart"), {
+            series: [{
+                data: provinceData.map(x => x.observationCount)
+            }],
+            chart: { type: 'bar', height: 350 },
+            xaxis: { categories: provinceData.map(x => x.provinceName) },
+            colors: ['#009ef7']
+        });
+        provinceChart.render();
+
+        // Family Chart
+        var familyData = @Json.Serialize(Model.TopFamilies);
+        var familyChart = new ApexCharts(document.querySelector("#family_chart"), {
+            series: familyData.map(x => x.observationCount),
+            labels: familyData.map(x => x.familyName),
+            chart: { type: 'pie', height: 350 },
+            colors: ['#009ef7', '#50cd89', '#f1416c', '#ffc700', '#7239ea']
+        });
+        familyChart.render();
+
+            var speciesData = @Json.Serialize(Model.TopSpecies);
+        var speciesChart = new ApexCharts(document.querySelector("#species_chart"), {
+            series: [{
+                name: 'Gözlem Sayısı',
+                data: speciesData.map(x => x.observationCount)
+            }, {
+                name: 'Ortalama Yükseklik (m)',
+                data: speciesData.map(x => x.averageAltitude)
+            }],
+            chart: {
+                type: 'bar',
+                height: 350
+            },
+            xaxis: {
+                categories: speciesData.map(x => x.speciesName),
+                labels: { rotate: -45 }
+            },
+            yaxis: [
+                {
+                    title: { text: 'Gözlem Sayısı' }
+                },
+                {
+                    opposite: true,
+                    title: { text: 'Yükseklik (m)' }
+                }
+            ],
+            colors: ['#009ef7', '#50cd89']
+        });
+        speciesChart.render();
+    </script>
+}

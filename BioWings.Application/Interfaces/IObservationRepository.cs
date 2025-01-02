@@ -1,4 +1,5 @@
 ﻿using BioWings.Application.DTOs.ExportDtos;
+using BioWings.Application.DTOs.StatisticsDtos;
 using BioWings.Domain.Entities;
 using System.Linq.Expressions;
 
@@ -17,6 +18,7 @@ public interface IObservationRepository : IGenericRepository<Observation>
     Task<int> GetCountAsync(CancellationToken cancellationToken = default);
     IQueryable<Observation> GetObservationsForExporting(DateTime? startDate, DateTime? endDate, int? recordLimit, bool exportAllDates, bool exportAllRecords, List<ExpertColumnInfo> columns);
     IQueryable<Observation> GetObservationsByProvinceIdForExporting(int provinceId);
+    Task<List<ProvinceStatDto>> GetTopProvincesAsync(CancellationToken cancellationToken = default);
 }
 
 

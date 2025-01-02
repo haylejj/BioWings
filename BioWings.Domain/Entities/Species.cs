@@ -15,8 +15,8 @@ public class Species : BaseEntity
     public string? TurkishNamesTrakel { get; set; }
     public string? Trakel { get; set; }
     public string? KocakName { get; set; }
-    public virtual Authority Authority { get; set; }
-    public virtual Genus Genus { get; set; }
-    public virtual ICollection<Subspecies> Subspecies { get; set; }
-    public virtual ICollection<Observation> Observations { get; set; }
+    public virtual Authority? Authority { get; set; }
+    public virtual Genus? Genus { get; set; }
+    public virtual ICollection<Subspecies>? Subspecies { get; set; }
+    public virtual ICollection<Observation>? Observations { get; set; }
 }

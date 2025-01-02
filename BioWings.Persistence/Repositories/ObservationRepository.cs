@@ -1,4 +1,5 @@
 ﻿using BioWings.Application.DTOs.ExportDtos;
+using BioWings.Application.DTOs.StatisticsDtos;
 using BioWings.Application.Interfaces;
 using BioWings.Domain.Entities;
 using BioWings.Persistence.Context;
@@ -196,4 +197,18 @@ public class ObservationRepository(AppDbContext dbContext) : GenericRepository<O
 
         return query;
     }
+
+    public async Task<List<ProvinceStatDto>> GetTopProvincesAsync(CancellationToken cancellationToken = default) => await _dbSet.AsNoTracking()
+            .Include(x => x.Location)
+            .ThenInclude(x => x.Province)
+            .GroupBy(x => x.Location.Province)
+            .Select(x => new ProvinceStatDto
+            {
+                ProvinceName = x.Key.Name,
+                ObservationCount = x.Count(),
+                UniqueSpeciesCount = x.Select(y => y.SpeciesId).Distinct().Count()
+            })
+            .OrderByDescending(x => x.ObservationCount)
+            .Take(5)
+            .ToListAsync(cancellationToken);
 }

@@ -1,4 +1,5 @@
-﻿using BioWings.Application.Interfaces;
+﻿using BioWings.Application.DTOs.StatisticsDtos;
+using BioWings.Application.Interfaces;
 using BioWings.Application.Services;
 using BioWings.Domain.Entities;
 using BioWings.Persistence.Context;
@@ -90,5 +91,16 @@ public class SpeciesRepository(AppDbContext dbContext, IUnitOfWork unitOfWork, I
 
         return species != null ? species : null;
     }
+
+    public async Task<List<SpeciesStatDto>> GetTopSpeciesAsync(CancellationToken cancellationToken = default) => await _dbSet.Include(x => x.Observations).ThenInclude(x=> x.Location)
+        .Select(x => new SpeciesStatDto
+        {
+            SpeciesName = x.Name,
+            ObservationCount=x.Observations.Count,
+            AverageAltitude = x.Observations.Average(o => o.Location.Altitude1),
+        })
+        .OrderByDescending(x => x.ObservationCount)
+        .Take(5)
+        .ToListAsync(cancellationToken);
 }
 
