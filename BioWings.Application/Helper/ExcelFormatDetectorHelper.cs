@@ -5,15 +5,12 @@ public static class ExcelFormatDetectorHelper
 {
     public static string DetectFormat(ExcelWorksheet worksheet)
     {
-        var headerRow = 1; // Varsayılan header row
+        var headerRow = 1;
         var headers = GetHeaders(worksheet, headerRow);
 
-        // Format1 için characteristic columns
-        if (headers.Contains("Province No:"))
-            return "Format1";
-
-        // Format2 için characteristic columns
-        return headers.Contains("Raw Record")
+        return headers.Contains("Province No:")
+            ? "Format1"
+            : headers.Contains("Raw Record")
             ? "Format2"
             : headers.Contains("Day 1")
             ? "Format5"
@@ -21,11 +18,9 @@ public static class ExcelFormatDetectorHelper
     }
     public static string DetectFormatForSpeciesImport(ExcelWorksheet worksheet)
     {
-        var headerRow = 1; 
+        var headerRow = 1;
         var headers = GetHeaders(worksheet, headerRow);
-        if(headers.Contains("Authority")) return "Format2";
-        if(headers.Contains("Hesselbarth Name")) return "Format1";
-        return "Unknown";
+        return headers.Contains("Authority") ? "Format2" : headers.Contains("Hesselbarth Name") ? "Format1" : "Unknown";
     }
 
     private static HashSet<string> GetHeaders(ExcelWorksheet worksheet, int headerRow)

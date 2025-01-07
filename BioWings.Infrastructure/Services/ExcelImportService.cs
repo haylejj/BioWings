@@ -15,9 +15,9 @@ public class ExcelImportService : IExcelImportService
 {
     private readonly ILogger<ExcelImportService> _logger;
     private readonly Dictionary<string, ExcelMapping> _mappings;
-    private readonly Dictionary<string,ExcelMapping> _speciesMappings;
+    private readonly Dictionary<string, ExcelMapping> _speciesMappings;
     private readonly IGeocodingService _geocodingService;
-    private static readonly Regex _authorityPattern = new Regex(@"\((.*?)(?:,\s*\[?(\d{4})\]?)?\)");
+    private static readonly Regex _authorityPattern = new(@"\((.*?)(?:,\s*\[?(\d{4})\]?)?\)");
     //ObservationImport
     public ExcelImportService(ILogger<ExcelImportService> logger, IGeocodingService geocodingService)
     {
@@ -224,35 +224,23 @@ public class ExcelImportService : IExcelImportService
             UtmReference = GetCellValue(worksheet, row, columnMappings, "UtmReference"),
             CoordinatePrecisionLevel = GetEnumValue(worksheet, row, columnMappings, "CoordinatePrecisionLevel")
         };
-        if (dto.ProvinceName == null && dto.Latitude != 0 && dto.Longitude != 0)
-        {
-            var provinceCode = await _geocodingService.GetProvinceAsync(dto.Latitude, dto.Longitude);
-            if (provinceCode == null)
-            {
-                _logger.LogWarning($"Province bulunamadı: Lat={dto.Latitude}, Lon={dto.Longitude}");
-            }
-            else
-            {
-                dto.ProvinceCode = int.Parse(provinceCode);
-            }
+        //if (dto.ProvinceName == null && dto.Latitude != 0 && dto.Longitude != 0)
+        //{
+        //    var provinceCode = await _geocodingService.GetProvinceAsync(dto.Latitude, dto.Longitude);
+        //    if (provinceCode == null)
+        //    {
+        //        _logger.LogWarning($"Province bulunamadı: Lat={dto.Latitude}, Lon={dto.Longitude}");
+        //    }
+        //    else
+        //    {
+        //        dto.ProvinceCode = int.Parse(provinceCode);
+        //    }
 
-        }
+        //}
         if (dto.X!=0 && dto.Y!=0 && dto.SquareRef != null)
         {
-            //if (dto.ProvinceName != null)
-            //{
-            //    var latLon = await _geocodingService.GetLatitudeAndLongitudeByProvinceNameAsync(dto.ProvinceName);
-            //    var utmZone = _geocodingService.CalculateUTMZone(latLon.longitude);
-            //    //var utmXY = _geocodingService.ConvertMGRSToUTM(Convert.ToDouble(dto.X), Convert.ToDouble(dto.Y),dto.SquareRef);
-            //    var realLatLon = _geocodingService.ConvertUtmToLatLong(Convert.ToDouble(dto.X), Convert.ToDouble(dto.Y), utmZone);
-            //    dto.Latitude = Convert.ToDecimal(realLatLon.latitude);
-            //    dto.Longitude = Convert.ToDecimal(realLatLon.longitude);
-            //}
-            //else
-            //{
             dto.Latitude = 10;
             dto.Longitude = 10;
-            //}
         }
         return dto;
     }
@@ -585,10 +573,7 @@ public class ExcelImportService : IExcelImportService
         var name = match.Groups[1].Value.Trim();
         var yearStr = match.Groups[2].Value;
 
-        if (int.TryParse(yearStr, out int year))
-            return (name, year);
-
-        return (name, null);
+        return int.TryParse(yearStr, out int year) ? ((string? Name, int? Year))(name, year) : ((string? Name, int? Year))(name, null);
     }
     private ImportCreateSpeciesDto CreateSpeciesDto(ExcelWorksheet worksheet, int row, Dictionary<string, int> columnMappings)
     {
@@ -630,12 +615,12 @@ public class ExcelImportService : IExcelImportService
         var result = new List<ImportCreateSpeciesDto>();
         var rowCount = worksheet.Dimension.Rows;
 
-        for (int row = 2; row <= rowCount; row++) 
+        for (int row = 2; row <= rowCount; row++)
         {
             try
             {
                 var dto = CreateSpeciesDto(worksheet, row, columnMappings);
-                if (dto != null && !string.IsNullOrWhiteSpace(dto.SpeciesName)) 
+                if (dto != null && !string.IsNullOrWhiteSpace(dto.SpeciesName))
                 {
                     result.Add(dto);
                 }
@@ -652,7 +637,7 @@ public class ExcelImportService : IExcelImportService
     private List<ImportCreateSpeciesDto> ProcessAllSheetsForSpecies(ExcelPackage package)
     {
         List<ImportCreateSpeciesDto> allData = new();
-        var targetSheet = package.Workbook.Worksheets[0]; 
+        var targetSheet = package.Workbook.Worksheets[0];
 
         if (targetSheet?.Dimension == null)
             throw new InvalidOperationException("Hedef sheet bulunamadı veya boş.");
@@ -685,7 +670,7 @@ public class ExcelImportService : IExcelImportService
             }
             using var originalStream = file.OpenReadStream();
             using var originalPackage = new ExcelPackage(originalStream);
-            return  ProcessAllSheetsForSpecies(originalPackage);
+            return ProcessAllSheetsForSpecies(originalPackage);
         }
         catch (Exception ex)
         {

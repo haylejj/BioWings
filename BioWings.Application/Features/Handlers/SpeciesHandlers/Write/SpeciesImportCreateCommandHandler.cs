@@ -1,5 +1,4 @@
-﻿using BioWings.Application.DTOs.ImportDtos;
-using BioWings.Application.Features.Commands.SpeciesCommands;
+﻿using BioWings.Application.Features.Commands.SpeciesCommands;
 using BioWings.Application.Interfaces;
 using BioWings.Application.Results;
 using BioWings.Application.Services;
@@ -11,7 +10,7 @@ using Microsoft.Extensions.Logging;
 using System.Diagnostics;
 
 namespace BioWings.Application.Features.Handlers.SpeciesHandlers.Write;
-public class SpeciesImportCreateCommandHandler(ISpeciesRepository speciesRepository,IUnitOfWork unitOfWork,IAuthorityRepository authorityRepository,IGenusRepository genusRepository,IFamilyRepository familyRepository,ILogger<SpeciesImportCreateCommandHandler> logger,IExcelImportService excelImportService) : IRequestHandler<SpeciesImportCreateCommand, ServiceResult>
+public class SpeciesImportCreateCommandHandler(ISpeciesRepository speciesRepository, IUnitOfWork unitOfWork, IAuthorityRepository authorityRepository, IGenusRepository genusRepository, IFamilyRepository familyRepository, ILogger<SpeciesImportCreateCommandHandler> logger, IExcelImportService excelImportService) : IRequestHandler<SpeciesImportCreateCommand, ServiceResult>
 {
     private Dictionary<string, Family> _familyCache = new();
     private Dictionary<GenusKey, Genus> _genusCache = new();
@@ -32,7 +31,7 @@ public class SpeciesImportCreateCommandHandler(ISpeciesRepository speciesReposit
             // Mevcut verileri cache'le
             var existingAuthorities = authorityRepository.GetAllAsNoTracking();
             _authorityCache = existingAuthorities.ToDictionary(
-                a => new AuthorityKey { Name = a.Name, Year = a.Year.GetValueOrDefault() },
+                a => new AuthorityKey(a.Name, a.Year.GetValueOrDefault()),
                 a => a
             );
 
@@ -43,7 +42,7 @@ public class SpeciesImportCreateCommandHandler(ISpeciesRepository speciesReposit
             var genusDict = new Dictionary<GenusKey, Genus>();
             foreach (var genus in existingGenera)
             {
-                var genusKey = new GenusKey { GenusName = genus.Name, FamilyId = genus.FamilyId };
+                var genusKey = new GenusKey(genus.Name, genus.FamilyId);
                 if (!genusDict.ContainsKey(genusKey))
                 {
                     genusDict[genusKey] = genus;
@@ -57,7 +56,7 @@ public class SpeciesImportCreateCommandHandler(ISpeciesRepository speciesReposit
 
             var existingSpecies = speciesRepository.GetAllAsNoTracking();
             _speciesCache = existingSpecies.ToDictionary(
-                s => new SpeciesKey { Name = s.Name, GenusId = s.GenusId, AuthorityId = s.AuthorityId },
+                s => new SpeciesKey(s.Name, s.GenusId, s.AuthorityId),
                 s => s
             );
 
@@ -78,7 +77,7 @@ public class SpeciesImportCreateCommandHandler(ISpeciesRepository speciesReposit
 
                     foreach (var group in groupedData)
                     {
-                        var authorityKey = new AuthorityKey { Name = group.Key.AuthorityName, Year = group.Key.AuthorityYear.Value };
+                        var authorityKey = new AuthorityKey(group.Key.AuthorityName, group.Key.AuthorityYear.Value);
                         var authority = !string.IsNullOrEmpty(group.Key.AuthorityName) && _authorityCache.TryGetValue(authorityKey, out var existingAuthority)
                             ? existingAuthority
                             : await GetOrCreateAuthorityAsync(group.Key.AuthorityName, group.Key.AuthorityYear.Value, cancellationToken);
@@ -87,7 +86,7 @@ public class SpeciesImportCreateCommandHandler(ISpeciesRepository speciesReposit
                             ? existingFamily
                             : await GetOrCreateFamilyAsync(group.Key.FamilyName, cancellationToken);
 
-                        var genusKey = new GenusKey { GenusName = group.Key.GenusName, FamilyId = family?.Id };
+                        var genusKey = new GenusKey(group.Key.GenusName, family?.Id);
                         var genus = !string.IsNullOrEmpty(group.Key.GenusName) && _genusCache.TryGetValue(genusKey, out var existingGenus)
                             ? existingGenus
                             : await GetOrCreateGenusAsync(group.Key.GenusName, family?.Id, cancellationToken);
@@ -95,11 +94,8 @@ public class SpeciesImportCreateCommandHandler(ISpeciesRepository speciesReposit
                         foreach (var dto in group)
                         {
                             var speciesKey = new SpeciesKey
-                            {
-                                Name = dto.SpeciesName,
-                                GenusId = genus?.Id,
-                                AuthorityId = authority?.Id
-                            };
+                            (dto.SpeciesName, genus?.Id, authority?.Id
+                            );
 
                             if (!_speciesCache.TryGetValue(speciesKey, out var existingSpecies))
                             {
@@ -128,7 +124,7 @@ public class SpeciesImportCreateCommandHandler(ISpeciesRepository speciesReposit
                                 if (batchSpecies.Count >= batchSize)
                                 {
                                     await speciesRepository.AddRangeAsync(batchSpecies, cancellationToken);
-                                    await unitOfWork.SaveChangesAsync(cancellationToken); 
+                                    await unitOfWork.SaveChangesAsync(cancellationToken);
                                     totalProcessed += batchSpecies.Count;
                                     logger.LogInformation($"Batch processed: {totalProcessed}/{importDtos.Count}");
                                     batchSpecies.Clear();
@@ -171,7 +167,7 @@ public class SpeciesImportCreateCommandHandler(ISpeciesRepository speciesReposit
         {
             return null;
         }
-        var authorityKey = new AuthorityKey { Name = name, Year = year };
+        var authorityKey = new AuthorityKey(name, year);
         var authority = new Authority { Name = name, Year = year };
         await authorityRepository.AddAsync(authority, cancellationToken);
         await unitOfWork.SaveChangesAsync(cancellationToken);
@@ -197,7 +193,7 @@ public class SpeciesImportCreateCommandHandler(ISpeciesRepository speciesReposit
         {
             return null;
         }
-        var genusKey = new GenusKey { GenusName = name, FamilyId = familyId };
+        var genusKey = new GenusKey(name, familyId);
         if (!_genusCache.TryGetValue(genusKey, out var genus))
         {
             genus = new Genus { Name = name, FamilyId = familyId };

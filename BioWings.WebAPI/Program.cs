@@ -1,5 +1,6 @@
 using BioWings.Application.Extensions;
 using BioWings.Infrastructure.Extensions;
+using BioWings.Infrastructure.Hubs;
 using BioWings.Persistence.Extensions;
 using BioWings.WebAPI.Exceptions;
 using Serilog;
@@ -11,7 +12,7 @@ builder.Logging.ClearProviders();
 builder.Host.UseSerilog((context, configuration) =>
     configuration.ReadFrom.Configuration(context.Configuration));
 builder.Services.AddProblemDetails();
-
+builder.Services.AddSignalR();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowMvcApp", builder =>
@@ -51,7 +52,7 @@ app.UseHttpsRedirection();
 app.UseExceptionHandler(opt => { });
 
 app.UseAuthorization();
-
+app.MapHub<ProgressHub>("/progressHub");
 app.MapControllers();
 
 app.Run();

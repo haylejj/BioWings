@@ -14,6 +14,8 @@ public static class InfrastructureExtensions
         services.AddScoped<IExcelImportService, ExcelImportService>();
         services.AddScoped<IExcelExportService, ExcelExportService>();
         services.AddScoped<IGeocodingService, GeocodingService>();
+        services.AddScoped<IObservationImportProgressTracker, ObservationImportProgressTracker>();
+        services.AddScoped<IProgressTracker, ProgressTracker>();
         return services;
     }
 }

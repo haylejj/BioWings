@@ -11,7 +11,7 @@ using Microsoft.Extensions.Logging;
 using System.Diagnostics;
 
 namespace BioWings.Application.Features.Handlers.ObservationHandlers.Write;
-public class ObservationImportAllFormatCreateCommandHandler(ILogger<ObservationImportAllFormatCreateCommandHandler> logger, IGeocodingService geocodingService, IUnitOfWork unitOfWork, IExcelImportService excelImportService, IObservationRepository observationRepository, ISubspeciesRepository subspeciesRepository, ISpeciesRepository speciesRepository, ILocationRepository locationRepository, IProvinceRepository provinceRepository, IObserverRepository observerRepository, IAuthorityRepository authorityRepository, IFamilyRepository familyRepository, IGenusRepository genusRepository) : IRequestHandler<ObservationImportAllFormatCreateCommand, ServiceResult>
+public class ObservationImportAllFormatCreateCommandHandler(ILogger<ObservationImportAllFormatCreateCommandHandler> logger, IObservationImportProgressTracker observationImportProgressTracker, IGeocodingService geocodingService, IUnitOfWork unitOfWork, IExcelImportService excelImportService, IObservationRepository observationRepository, ISpeciesRepository speciesRepository, ILocationRepository locationRepository, IObserverRepository observerRepository, IAuthorityRepository authorityRepository, IFamilyRepository familyRepository, IGenusRepository genusRepository) : IRequestHandler<ObservationImportAllFormatCreateCommand, ServiceResult>
 {
     private Dictionary<string, Family> _familyCache = new();
     private Dictionary<GenusKey, Genus> _genusCache = new();
@@ -26,52 +26,42 @@ public class ObservationImportAllFormatCreateCommandHandler(ILogger<ObservationI
         {
             var stopwatch = Stopwatch.StartNew();
             var importDtos = await excelImportService.ImportFromExcelAsync(request.File);
+            observationImportProgressTracker.SetTotalRecords(importDtos.Count);
             logger.LogInformation($"Excel'den {importDtos.Count} satır okundu.");
             const int batchSize = 1500;
             var totalProcessed = 0;
             // Batch fetching existing data
             var existingAuthorities = authorityRepository.GetAllAsNoTracking();
             _authorityCache = existingAuthorities.ToDictionary(
-                a => new AuthorityKey { Name = a.Name, Year = a.Year.GetValueOrDefault() },
+                a => new AuthorityKey(a.Name, a.Year.GetValueOrDefault()),
                 a => a
             );
 
             var existingFamilies = familyRepository.GetAllAsNoTracking();
             _familyCache = existingFamilies.ToDictionary(f => f.Name);
 
-            //var existingGenera =  genusRepository.GetAllAsNoTracking();
-            //_genusCache = existingGenera.ToDictionary(x=> new GenusKey { FamilyId=x.FamilyId,GenusName=x.Name},x=> x);
-            var existingGenera = genusRepository.GetAllAsNoTracking();
-            var genusDict = new Dictionary<GenusKey, Genus>();
-
-            foreach (var genus in existingGenera)
-            {
-                var genusKey = new GenusKey { GenusName = genus.Name, FamilyId = genus.FamilyId };
-                if (!genusDict.ContainsKey(genusKey))
-                {
-                    genusDict[genusKey] = genus;
-                }
-                else
-                {
-                    // Handle duplicates, e.g., log a warning or merge duplicates
-                    logger.LogWarning($"Duplicate GenusKey found: {genusKey.GenusName}, {genusKey.FamilyId}");
-                }
-            }
-
-            _genusCache = genusDict;
+            var existingGenera = genusRepository.GetAllAsNoTracking().ToList();
+            _genusCache = existingGenera
+                .DistinctBy(g => new GenusKey(g.Name, g.FamilyId))
+                .ToDictionary(
+                    g => new GenusKey(g.Name, g.FamilyId),
+                    g => g
+                );
 
             var existingObservers = observerRepository.GetAllAsNoTracking();
             _observerCache = existingObservers.ToDictionary(o => o.FullName);
 
             var existingLocations = locationRepository.GetAllAsNoTracking();
-            _locationCache = existingLocations.ToDictionary(l => new LocationKey { Latitude = l.Latitude, Longitude = l.Longitude }, l => l);
+            _locationCache = existingLocations.ToDictionary(l => new LocationKey(l.Latitude, l.Longitude), l => l);
 
-            var existingSpecies = speciesRepository.GetAllAsNoTracking();
-            _speciesCache = existingSpecies.ToDictionary(
-                s => new SpeciesKey { Name = s.Name, GenusId = s.GenusId, AuthorityId = s.AuthorityId },
-                s => s
-            );
-
+            var existingSpecies = speciesRepository.GetAllAsNoTracking().ToList();
+            _speciesCache = existingSpecies
+                .DistinctBy(s => new SpeciesKey(s.Name, s.GenusId, s.AuthorityId))
+                .ToDictionary(
+                    s => new SpeciesKey(s.Name, s.GenusId, s.AuthorityId),
+                    s => s
+                );
+            //Transaction işlemi
             await context.Database.CreateExecutionStrategy().ExecuteAsync(async () =>
             {
                 await using var transaction = await context.Database.BeginTransactionAsync(cancellationToken);
@@ -91,7 +81,7 @@ public class ObservationImportAllFormatCreateCommandHandler(ILogger<ObservationI
 
                     foreach (var group in groupedData)
                     {
-                        var authorityKey = new AuthorityKey { Name = group.Key.AuthorityName, Year = group.Key.AuthorityYear };
+                        var authorityKey = new AuthorityKey(group.Key.AuthorityName, group.Key.AuthorityYear);
                         var authority = !string.IsNullOrEmpty(group.Key.AuthorityName) && _authorityCache.TryGetValue(authorityKey, out var existingAuthority)
                             ? existingAuthority
                             : await GetOrCreateAuthorityAsync(group.Key.AuthorityName, group.Key.AuthorityYear, cancellationToken);
@@ -100,7 +90,7 @@ public class ObservationImportAllFormatCreateCommandHandler(ILogger<ObservationI
                             ? existingFamily
                             : await GetOrCreateFamilyAsync(group.Key.FamilyName, cancellationToken);
 
-                        var genusKey = new GenusKey { GenusName = group.Key.GenusName, FamilyId = family?.Id };
+                        var genusKey = new GenusKey(group.Key.GenusName, family?.Id);
                         var genus = !string.IsNullOrEmpty(group.Key.GenusName) && _genusCache.TryGetValue(genusKey, out var existingGenus)
                             ? existingGenus
                             : await GetOrCreateGenusAsync(group.Key.GenusName, family?.Id, cancellationToken);
@@ -115,17 +105,13 @@ public class ObservationImportAllFormatCreateCommandHandler(ILogger<ObservationI
 
                         foreach (var dto in group)
                         {
-                            //var species = await speciesRepository.GetOrCreateSpeciesAsync(dto, genus?.Id, authority?.Id, cancellationToken);
 
-                            //// Location işlemi
-                            //var location = await locationRepository.GetOrCreateLocationAsync(dto, group.Key.ProvinceCode, cancellationToken);
-
-                            var speciesKey = new SpeciesKey { Name = dto.SpeciesName, GenusId = genus?.Id, AuthorityId = authority?.Id };
+                            var speciesKey = new SpeciesKey(dto.SpeciesName, genus?.Id, authority?.Id);
                             var species = !string.IsNullOrEmpty(dto.SpeciesName) && _speciesCache.TryGetValue(speciesKey, out var existingSpecies)
                                 ? existingSpecies
                                 : await CreateBatchSpeciesAsync(dto, genus?.Id, authority?.Id, cancellationToken);
 
-                            var locationKey = new LocationKey { Latitude = dto.Latitude, Longitude = dto.Longitude };
+                            var locationKey = new LocationKey(dto.Latitude, dto.Longitude);
                             var location = _locationCache.TryGetValue(locationKey, out var existingLocation)
                                 ? existingLocation
                                 : await CreateBatchLocationAsync(dto, group.Key.ProvinceCode, cancellationToken);
@@ -150,6 +136,7 @@ public class ObservationImportAllFormatCreateCommandHandler(ILogger<ObservationI
                             {
                                 await observationRepository.BulkInsertObservationsAsync(batchObservations, cancellationToken);
                                 totalProcessed += batchObservations.Count;
+                                observationImportProgressTracker.IncrementProgress(batchObservations.Count);
                                 logger.LogInformation($"Batch processed: {totalProcessed}/{importDtos.Count}");
                                 batchObservations.Clear();
                                 unitOfWork.GetContext().ChangeTracker.Clear();
@@ -160,6 +147,7 @@ public class ObservationImportAllFormatCreateCommandHandler(ILogger<ObservationI
                         if (batchObservations.Any())
                         {
                             await observationRepository.BulkInsertObservationsAsync(batchObservations, cancellationToken);
+                            observationImportProgressTracker.IncrementProgress(batchObservations.Count);
                             totalProcessed += batchObservations.Count;
                             logger.LogInformation($"Batch processed: {totalProcessed}/{importDtos.Count}");
                         }
@@ -192,7 +180,7 @@ public class ObservationImportAllFormatCreateCommandHandler(ILogger<ObservationI
         {
             return null;
         }
-        var authorityKey = new AuthorityKey { Name = name, Year = year };
+        var authorityKey = new AuthorityKey(name, year);
         var authority = new Authority { Name = name, Year = year };
         await authorityRepository.AddAsync(authority, cancellationToken);
         await unitOfWork.SaveChangesAsync(cancellationToken);
@@ -218,7 +206,7 @@ public class ObservationImportAllFormatCreateCommandHandler(ILogger<ObservationI
         {
             return null;
         }
-        var genusKey = new GenusKey { GenusName = name, FamilyId = familyId };
+        var genusKey = new GenusKey(name, familyId);
         if (!_genusCache.TryGetValue(genusKey, out var genus))
         {
             genus = new Genus { Name = name, FamilyId = familyId };
@@ -261,10 +249,11 @@ public class ObservationImportAllFormatCreateCommandHandler(ILogger<ObservationI
             else
             {
                 importCreateDto.ProvinceCode = int.Parse(provinceCode);
+                provinceId=int.Parse(provinceCode);
             }
 
         }
-        var locationKey = new LocationKey { Latitude = importCreateDto.Latitude, Longitude = importCreateDto.Longitude };
+        var locationKey = new LocationKey(importCreateDto.Latitude, importCreateDto.Longitude);
         var location = new Location
         {
             Latitude = importCreateDto.Latitude,
@@ -294,7 +283,7 @@ public class ObservationImportAllFormatCreateCommandHandler(ILogger<ObservationI
         {
             return null;
         }
-        var speciesKey = new SpeciesKey { Name = ımportCreateDto.SpeciesName, GenusId = genusId, AuthorityId = authorityId };
+        var speciesKey = new SpeciesKey(ımportCreateDto.SpeciesName, genusId, authorityId);
         var species = new Species
         {
             AuthorityId=authorityId,
@@ -317,22 +306,7 @@ public class ObservationImportAllFormatCreateCommandHandler(ILogger<ObservationI
     }
     private async Task CleanDuplicateObservations(CancellationToken cancellationToken)
     {
-        //const int batchSize = 1500;
-        //var duplicateIds = await observationRepository.GetAllDuplicateObservationIdsAsync(cancellationToken);
-
-        //if (duplicateIds.Any())
-        //{
-        //    for (int i = 0; i < duplicateIds.Count; i += batchSize)
-        //    {
-        //        var batchIds = duplicateIds.Skip(i).Take(batchSize).ToList();
-        //        unitOfWork.GetContext().ChangeTracker.Clear();
-        //        await observationRepository.RemoveDuplicatesAsync(batchIds, cancellationToken);
-        //        await unitOfWork.SaveChangesAsync(cancellationToken);
-        //    }
-        //    logger.LogInformation($"Removed {duplicateIds.Count} duplicate observations");
-        //}
         await observationRepository.RemoveDuplicatesWithProcedureAsync("CALL CleanDuplicateObservations()", cancellationToken);
-        //await observationRepository.RemoveDuplicateObservationsWithEfCoreAsync(cancellationToken);
         logger.LogInformation($"Removed  duplicate observations successfully.");
     }
 }

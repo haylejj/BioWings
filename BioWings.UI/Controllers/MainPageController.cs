@@ -13,7 +13,7 @@ public class MainPageController(IHttpClientFactory httpClientFactory) : Controll
         if (response.IsSuccessStatusCode)
         {
             var content = await response.Content.ReadAsStringAsync();
-            var jsonData=JsonConvert.DeserializeObject<ApiResponse<StatisticsGetViewModel>>(content);
+            var jsonData = JsonConvert.DeserializeObject<ApiResponse<StatisticsGetViewModel>>(content);
             return View(jsonData.Data);
         }
 

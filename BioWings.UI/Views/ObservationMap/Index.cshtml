@@ -337,10 +337,11 @@
                 return this._div;
             };
                     info.update = function (totalCount) {
+                        const displayCount = totalCount > 5000 ? '+5000' : totalCount || 0;
             this._div.innerHTML = `
                 <h4>Gözlem Haritası</h4>
                 <div class="total-count">
-                    <strong>Toplam Gözlem:</strong> ${totalCount || 0}
+                    <strong>Toplam Gözlem:</strong> ${displayCount || 0}
                 </div>
                 <div class="legend">
                     <div class="legend-item">

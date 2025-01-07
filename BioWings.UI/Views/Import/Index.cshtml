@@ -152,7 +152,6 @@
                 "use strict";
 
         var ImportHandler = function () {
-            // Private variables
             const API_URL = 'https://localhost:7128/api/Observations/ImportAllFormat';
             var submitButton;
             var cancelButton;
@@ -164,6 +163,28 @@
             var successCount;
             var errorCount;
             var dropzone;
+            let connection;
+
+        const initSignalR = async () => {
+            connection = new signalR.HubConnectionBuilder()
+                .withUrl("https://localhost:7128/progressHub")
+                .build();
+
+                connection.on("ReceiveProgress", (progress) => {
+                updateProgress(progress.progress, progress.message);
+                if (progress.status === "Completed") {
+                    progressElement.classList.add('d-none');
+                }
+            });
+
+            try {
+                await connection.start();
+                console.log("SignalR Connected");
+            } catch (err) {
+                console.error("SignalR connection error:", err);
+                setTimeout(initSignalR, 5000);
+            }
+        };
 
             // Dropzone configuration
             const initDropzone = () => {
@@ -216,7 +237,7 @@
                 errorCount.textContent = "0";
             };
 
-            // Handle form submission
+            // Import edilecek dosya dropzone a eklendi.Api'ye istek atılarak işlem yapılacak.
             const handleSubmit = () => {
                 submitButton.addEventListener('click', async e => {
                     e.preventDefault();
@@ -225,11 +246,13 @@
                         toastr.error("Please select a file to import");
                         return;
                     }
-
+                    progressElement.classList.remove('d-none');
                     const formData = new FormData();
                     formData.append('file', dropzone.files[0]);
 
                     try {
+                        updateProgress(0);
+                        progressText.textContent = "Starting import...";
                         submitButton.setAttribute('data-kt-indicator', 'on');
                         submitButton.disabled = true;
                         progressElement.classList.remove('d-none');
@@ -248,18 +271,11 @@
                         }
 
                         if (result.isSuccess) {
-                            successCount.textContent = result.data?.successCount || 0;
-                            errorCount.textContent = result.data?.errorCount || 0;
-                            resultsElement.classList.remove('d-none');
                             toastr.success("Import completed successfully!");
                             dropzone.removeAllFiles();
                         } else {
                             toastr.error(result.message || "Import failed");
-                            errorCount.textContent = result.data?.errorCount || 0;
-                            resultsElement.classList.remove('d-none');
                         }
-
-                        updateProgress(100);
                     } catch (error) {
                         console.error('Import error:', error);
                         toastr.error(error.message || "An error occurred during import");
@@ -308,7 +324,7 @@
                     errorCount = document.querySelector('#errorCount');
 
                     submitButton.disabled = true;
-
+                    initSignalR();
                     initDropzone();
                     handleSubmit();
                     handleCancel();
@@ -323,7 +339,7 @@
 
     </script>
     <script>
-                // Import sayfasındaki download template linkine click handler ekle
+     // Import sayfasındaki download template butonuna tıklayınca burası calısacak ve apiye istek atacak.
         document.querySelector('#downloadTemplate').addEventListener('click', async (e) => {
             e.preventDefault();
 
@@ -334,7 +350,7 @@
             headers: {
                 'Accept': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
             },
-            credentials: 'same-origin' // 'include' yerine 'same-origin' kullanın
+            credentials: 'same-origin'
         });
                     if (!response.ok) throw new Error('Download failed');
 

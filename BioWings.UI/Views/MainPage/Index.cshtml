@@ -3,158 +3,245 @@
     ViewData["Title"] = "Statistics";
     Layout = "~/Views/MainLayout/Index.cshtml";
 }
+<!--begin::Content-->
+<div class="card card-custom mt-10">
+   <!--begin::Header-->
+   <div class="card-body pb-0">
+       <h1 class="page-title">Türkiye Kelebek Gözlem Veritabanı</h1>
+       <p class="page-description">
+           Türkiye'nin en kapsamlı kelebek gözlem platformuna hoş geldiniz. Bu platform, ülkemizdeki kelebek türlerinin dağılımını, yaşam döngülerini ve habitatlarını takip etmemizi sağlayan bir veri tabanıdır.
+       </p>
 
-<!--begin::Hero Carousel-->
-<div class="card mb-8">
-    <div id="kt_carousel" class="carousel carousel-custom slide" data-bs-ride="carousel" data-bs-interval="3000">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <div class="d-flex align-items-center min-h-400px">
-                    <img src="/images/butterfly1.jpg" class="w-100 h-400px object-fit-cover" />
-                    <div class="position-absolute bottom-0 w-100 py-5 bg-dark bg-opacity-50">
-                        <div class="container">
-                            <h3 class="text-white fw-bold fs-1">Common Blue</h3>
-                            <p class="text-white fs-4">Polyommatus icarus</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="d-flex align-items-center min-h-400px">
-                    <img src="/images/butterfly2.jpg" class="w-100 h-400px object-fit-cover" />
-                    <div class="position-absolute bottom-0 w-100 py-5 bg-dark bg-opacity-50">
-                        <div class="container">
-                            <h3 class="text-white fw-bold fs-1">Swallowtail</h3>
-                            <p class="text-white fs-4">Papilio machaon</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="d-flex align-items-center min-h-400px">
-                    <img src="/images/butterfly3.jpg" class="w-100 h-400px object-fit-cover" />
-                    <div class="position-absolute bottom-0 w-100 py-5 bg-dark bg-opacity-50">
-                        <div class="container">
-                            <h3 class="text-white fw-bold fs-1">Painted Lady</h3>
-                            <p class="text-white fs-4">Vanessa cardui</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="d-flex align-items-center min-h-400px">
-                    <img src="/images/butterfly5.jpg" class="w-100 h-400px object-fit-cover" />
-                    <div class="position-absolute bottom-0 w-100 py-5 bg-dark bg-opacity-50">
-                        <div class="container">
-                            <h3 class="text-white fw-bold fs-1">Painted Lady</h3>
-                            <p class="text-white fs-4">Vanessa cardui</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <ol class="carousel-indicators">
-            <li data-bs-target="#kt_carousel" data-bs-slide-to="0" class="active"></li>
-            <li data-bs-target="#kt_carousel" data-bs-slide-to="1"></li>
-            <li data-bs-target="#kt_carousel" data-bs-slide-to="2"></li>
-        </ol>
-    </div>
-</div>
+       <!--begin::Stats-->
+       <div class="row g-5 g-xl-8 mb-8">
+           <div class="col-xl-3">
+               <div class="bg-dark stat-card">
+                   <span class="text-white stat-number">@Model.TotalObservationCount</span>
+                   <div class="text-white stat-label">Toplam Gözlem</div>
+               </div>
+           </div>
+           <div class="col-xl-3">
+                <div class="bg-dark stat-card">
+                   <span class="text-white stat-number">@Model.TotalSpeciesCount</span>
+                   <div class="text-white stat-label">Toplam Tür</div>
+               </div>
+           </div>
+           <div class="col-xl-3">
+                <div class="bg-dark stat-card">
+                   <span class="text-white stat-number">@Model.TotalFamilyCount</span>
+                   <div class="text-white stat-label">Toplam Familya</div>
+               </div>
+           </div>
+           <div class="col-xl-3">
+                <div class="bg-dark stat-card">
+                   <span class="text-white stat-number">@Model.TotalObserverCount</span>
+                   <div class="text-white stat-label">Toplam Gözlemci</div>
+               </div>
+           </div>
+       </div>
+   </div>
 
-<!--begin::Stats-->
-<div class="row g-5 g-xl-8 mb-8">
-    <div class="col-xl-3">
-        <div class="card bg-primary h-100">
-            <div class="card-body">
-                <div class="text-white">
-                    <span class="fs-2x fw-bold">@Model.TotalObservationCount</span>
-                    <p class="fs-5 mt-2">Toplam Gözlem</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-xl-3">
-        <div class="card bg-success h-100">
-            <div class="card-body">
-                <div class="text-white">
-                    <span class="fs-2x fw-bold">@Model.TotalSpeciesCount</span>
-                    <p class="fs-5 mt-2">Toplam Tür</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-xl-3">
-        <div class="card bg-warning h-100">
-            <div class="card-body">
-                <div class="text-white">
-                    <span class="fs-2x fw-bold">@Model.TotalFamilyCount</span>
-                    <p class="fs-5 mt-2">Toplam Familya</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-xl-3">
-        <div class="card bg-info h-100">
-            <div class="card-body">
-                <div class="text-white">
-                    <span class="fs-2x fw-bold">@Model.TotalObserverCount</span>
-                    <p class="fs-5 mt-2">Toplam Gözlemci</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+   <!--begin::Carousel-->
+   <div class="card-body pt-0">
+       <div class="carousel-wrapper">
+           <div id="kt_carousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+               <div class="carousel-inner">
+                   <div class="carousel-item active">
+                       <div class="position-relative">
+                           <img src="/images/butterfly1.jpg" class="carousel-image" alt="Common Blue"/>
+                           <div class="carousel-caption-overlay">
+                               <div class="container">
+                                   <div class="text-center">
+                                       <h2 class="carousel-title">Common Blue</h2>
+                                       <p class="carousel-subtitle">Polyommatus icarus</p>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+                   <div class="carousel-item">
+                       <div class="position-relative">
+                           <img src="/images/butterfly2.jpg" class="carousel-image" alt="Swallowtail"/>
+                           <div class="carousel-caption-overlay">
+                               <div class="container">
+                                   <div class="text-center">
+                                       <h2 class="carousel-title">Swallowtail</h2>
+                                       <p class="carousel-subtitle">Papilio machaon</p>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+                   <div class="carousel-item">
+                       <div class="position-relative">
+                           <img src="/images/butterfly3.jpg" class="carousel-image" alt="Painted Lady"/>
+                           <div class="carousel-caption-overlay">
+                               <div class="container">
+                                   <div class="text-center">
+                                       <h2 class="carousel-title">Painted Lady</h2>
+                                       <p class="carousel-subtitle">Vanessa cardui</p>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+                    <div class="carousel-item">
+                        <div class="position-relative">
+                            <img src="/images/butterfly5.jpg" class="carousel-image" alt="Painted Lady" />
+                            <div class="carousel-caption-overlay">
+                                <div class="container">
+                                    <div class="text-center">
+                                        <h2 class="carousel-title">Painted Lady</h2>
+                                        <p class="carousel-subtitle">Vanessa cardui</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+               </div>
+               <button class="carousel-control-prev" type="button" data-bs-target="#kt_carousel" data-bs-slide="prev">
+                   <span class="carousel-control-prev-icon"></span>
+               </button>
+               <button class="carousel-control-next" type="button" data-bs-target="#kt_carousel" data-bs-slide="next">
+                   <span class="carousel-control-next-icon"></span>
+               </button>
+           </div>
+       </div>
+   </div>
 
-<!--begin::Charts-->
-<div class="row g-5 g-xl-8">
-    <div class="col-xl-6">
-        <div class="card">
-            <div class="card-header">
-                <h3 class="card-title">İllere Göre Dağılım</h3>
-            </div>
-            <div class="card-body">
-                <div id="province_chart" style="height: 350px"></div>
-            </div>
-        </div>
-    </div>
-    <div class="col-xl-6">
-        <div class="card">
-            <div class="card-header">
-                <h3 class="card-title">Familyalara Göre Dağılım</h3>
-            </div>
-            <div class="card-body">
-                <div id="family_chart" style="height: 350px"></div>
-            </div>
-        </div>
-    </div>
+   <!--begin::Charts-->
+   <div class="card-body pt-0">
+       <div class="row g-5 g-xl-8">
+           <div class="col-xl-6">
+               <div class="card chart-card">
+                   <h3 class="chart-title">İllere Göre Dağılım</h3>
+                   <div class="card-body">
+                       <div id="province_chart" style="height: 350px"></div>
+                   </div>
+               </div>
+           </div>
+           <div class="col-xl-6">
+               <div class="card chart-card">
+                   <h3 class="chart-title">Familyalara Göre Dağılım</h3>
+                   <div class="card-body">
+                       <div id="family_chart" style="height: 350px"></div>
+                   </div>
+               </div>
+           </div>
+       </div>
+   </div>
+
+   <div class="card-body pt-0">
+       <div class="row g-5 g-xl-8">
+           <div class="col-xl-12">
+               <div class="card chart-card">
+                   <h3 class="chart-title">En Çok Gözlemlenen Türler ve Ortalama Yükseklikleri</h3>
+                   <div class="card-body">
+                       <div id="species_chart" style="height: 350px"></div>
+                   </div>
+               </div>
+           </div>
+       </div>
+   </div>
 </div>
-<div class="row g-5 g-xl-8 mt-5">
-    <div class="col-xl-12">
-        <div class="card">
-            <div class="card-header">
-                <div class="d-flex align-items-center">
-                    <h3 class="card-title">En Çok Gözlemlenen Türler</h3>
-                    <span class="text-muted ms-2 fs-7">(Ortalama Yükseklik: m)</span>
-                </div>
-            </div>
-            <div class="card-body">
-                <div id="species_chart" style="height: 350px"></div>
-            </div>
-        </div>
-    </div>
-</div>
-@section Styles{
+@section Styles {
     <style>
-        .h-500px {
-            height: 500px !important;
+        /* Ana başlık ve açıklama stilleri */
+        .page-title {
+            font-size: 2.5rem !important;
+            font-weight: 600 !important;
+            color: #181C32 !important;
+            margin-bottom: 1rem !important;
         }
 
-        .fs-2hx {
-            font-size: 3.5rem !important;
+        .page-description {
+            font-size: 1.1rem !important;
+            color: #7E8299 !important;
+            margin-bottom: 2rem !important;
         }
 
-        .object-fit-cover {
-            object-fit: cover;
+        /* İstatistik kartları */
+        .stat-card {
+            padding: 1.5rem;
+            border-radius: 0.625rem !important;
+            min-height: 140px;
+        }
+
+        .stat-number {
+            font-size: 2.5rem !important;
+            font-weight: 600 !important;
+            line-height: 1.2;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1rem !important;
+            font-weight: 500 !important;
+        }
+
+        .carousel-wrapper {
+            margin: 2rem 0;
+            border-radius: 0.625rem;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .carousel-image {
+            height: 280px !important; /* Yüksekliği azalttım */
+            width: 100% !important;
+            object-fit: contain !important; /* cover yerine contain kullandım */
+            background-color: #f5f8fa; /* Arka plan rengi ekledim */
+        }
+
+        .carousel-caption-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.5) !important; /* Gradient yerine düz overlay */
+            padding: 1rem 0 !important;
+        }
+
+        .carousel-title {
+            font-size: 2rem !important;
+            font-weight: 600 !important;
+            margin-bottom: 0.5rem !important;
+        }
+
+        .carousel-subtitle {
+            font-size: 1.2rem !important;
+            font-weight: 500 !important;
+        }
+
+        .carousel-control-prev,
+        .carousel-control-next {
+            width: 40px;
+            height: 40px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 50%;
+            top: 50%;
+            transform: translateY(-50%);
+            margin: 0 1rem;
+        }
+
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Grafik kartları */
+        .chart-card {
+            border-radius: 0.625rem !important;
+            box-shadow: 0px 0px 20px 0px rgba(76, 87, 125, 0.02) !important;
+        }
+
+        .chart-title {
+            font-size: 1.25rem !important;
+            font-weight: 600 !important;
+            color: #181C32 !important;
+            padding: 1.5rem !important;
         }
     </style>
 }

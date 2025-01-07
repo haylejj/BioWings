@@ -92,7 +92,7 @@ public class SpeciesRepository(AppDbContext dbContext, IUnitOfWork unitOfWork, I
         return species != null ? species : null;
     }
 
-    public async Task<List<SpeciesStatDto>> GetTopSpeciesAsync(CancellationToken cancellationToken = default) => await _dbSet.Include(x => x.Observations).ThenInclude(x=> x.Location)
+    public async Task<List<SpeciesStatDto>> GetTopSpeciesAsync(CancellationToken cancellationToken = default) => await _dbSet.Include(x => x.Observations).ThenInclude(x => x.Location)
         .Select(x => new SpeciesStatDto
         {
             SpeciesName = x.Name,

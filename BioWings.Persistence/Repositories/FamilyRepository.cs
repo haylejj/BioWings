@@ -12,10 +12,10 @@ public class FamilyRepository(AppDbContext dbContext) : GenericRepository<Family
 
     public async Task<List<FamilyStatDto>> GetTopFamiliesAsync(CancellationToken cancellationToken = default) => await _dbSet
         .AsNoTracking()
-        .Include(x=> x.Genera).ThenInclude(y => y.Species).ThenInclude(z => z.Observations)
+        .Include(x => x.Genera).ThenInclude(y => y.Species).ThenInclude(z => z.Observations)
         .Select(x => new FamilyStatDto
         {
-            ObservationCount = x.Genera.Sum(y=> y.Species.Sum(z => z.Observations.Count)),
+            ObservationCount = x.Genera.Sum(y => y.Species.Sum(z => z.Observations.Count)),
             FamilyName = x.Name,
             SpeciesCount = x.Genera.Sum(y => y.Species.Count)
         })
