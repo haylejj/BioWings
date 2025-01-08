@@ -1,0 +1,290 @@
+﻿/* Base Header Styles */
+#kt_app_header {
+    background-color: #1e1e2d;
+    border-bottom: 1px solid #2B2B40;
+}
+
+/* Theme Mode Styles */
+[data-bs-theme="light"] #kt_app_header {
+    background-color: #1e1e2d !important;
+}
+
+/* Header Menu Styles */
+.app-header .menu-title {
+    color: #ffffff !important;
+    font-weight: 500 !important;
+}
+
+.app-header .menu-icon i {
+    color: #ffffff !important;
+    opacity: 1 !important;
+}
+
+.app-header .menu-item.show .menu-link,
+.app-header .menu-item.hover .menu-link {
+    background-color: #2B2B40 !important;
+}
+
+.app-header .menu-link:hover {
+    background-color: #2B2B40 !important;
+}
+
+/* Path Colors */
+.app-header .menu-icon i .path1,
+.app-header .menu-icon i .path2,
+.app-header .menu-icon i .path3,
+.app-header .menu-icon i .path4 {
+    color: #ffffff !important;
+    opacity: 1 !important;
+}
+
+/* Theme Mode Text Colors */
+[data-bs-theme="light"] .app-header .menu-title,
+[data-bs-theme="dark"] .app-header .menu-title {
+    color: #ffffff !important;
+}
+
+[data-bs-theme="light"] .app-header .menu-icon i,
+[data-bs-theme="dark"] .app-header .menu-icon i {
+    color: #ffffff !important;
+}
+
+/* Dropdown Menu Styles */
+.menu-sub-dropdown {
+    background-color: var(--bs-body-bg) !important;
+}
+
+    .menu-sub-dropdown .menu-link {
+        color: var(--bs-body-color) !important;
+    }
+
+        .menu-sub-dropdown .menu-link:hover {
+            background-color: var(--bs-gray-100) !important;
+        }
+
+/* Theme Icons */
+.app-header .theme-light-show,
+.app-header .theme-dark-show {
+    color: #ffffff !important;
+}
+
+/* User Menu Icons */
+.app-header .symbol-label i {
+    color: #ffffff !important;
+}
+
+/* Light Theme Specific Styles */
+[data-bs-theme="light"] .menu-sub-dropdown.menu-sub-dropdown-light {
+    background-color: #ffffff !important;
+}
+
+[data-bs-theme="light"] .menu-sub-dropdown .menu-link {
+    color: #3F4254 !important;
+}
+
+    [data-bs-theme="light"] .menu-sub-dropdown .menu-link .menu-title {
+        color: #3F4254 !important;
+    }
+
+    [data-bs-theme="light"] .menu-sub-dropdown .menu-link:hover {
+        background-color: #F4F6FA !important;
+    }
+
+/* Dark Theme Specific Styles */
+[data-bs-theme="dark"] .menu-sub-dropdown {
+    background-color: #1e1e2d !important;
+}
+
+    [data-bs-theme="dark"] .menu-sub-dropdown .menu-link {
+        color: #ffffff !important;
+    }
+
+        [data-bs-theme="dark"] .menu-sub-dropdown .menu-link .menu-title {
+            color: #ffffff !important;
+        }
+
+        [data-bs-theme="dark"] .menu-sub-dropdown .menu-link:hover {
+            background-color: #2B2B40 !important;
+        }
+
+/* Icon Colors for Both Themes */
+.menu-sub-dropdown .menu-link .menu-icon i {
+    color: #3F4254 !important;
+}
+
+[data-bs-theme="dark"] .menu-sub-dropdown .menu-link .menu-icon i {
+    color: #ffffff !important;
+}
+
+/* Mobile Menu Toggle Button */
+#kt_app_header_menu_toggle {
+    display: none;
+    color: #ffffff;
+    background-color: transparent;
+    border: none;
+    padding: 0.5rem;
+}
+
+/* Responsive Styles */
+@media (max-width: 991.98px) {
+    /* Header Container */
+    #kt_app_header_container {
+        padding: 0 10px;
+    }
+
+    /* Toggle Button Display */
+    #kt_app_header_menu_toggle {
+        display: block;
+    }
+
+    /* Mobile Menu Drawer */
+    .app-header-mobile-drawer {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: -250px;
+        width: 250px !important;
+        background-color: #1e1e2d;
+        overflow-y: auto;
+        transition: left 0.3s ease;
+        z-index: 1001;
+        padding: 1rem;
+    }
+
+        .app-header-mobile-drawer.drawer-on {
+            left: 0;
+        }
+
+    /* Menu Wrapper */
+    .app-header-menu {
+        width: 100%;
+        margin: 0;
+        padding-top: 1rem;
+    }
+
+    /* Mobile Menu Items */
+    .menu-item.menu-lg-down-accordion {
+        width: 100%;
+    }
+
+    .menu-sub.menu-sub-lg-down-accordion {
+        width: 100% !important;
+        margin: 0;
+        padding: 0.5rem 0;
+    }
+
+    /* Menu Links */
+    .menu-link {
+        padding: 0.75rem 1rem !important;
+        min-height: 44px;
+    }
+
+    .menu-sub .menu-link {
+        padding-left: 2rem !important;
+    }
+
+    /* Navbar */
+    .app-navbar {
+        position: relative;
+        padding: 0.5rem 0;
+    }
+
+    .app-navbar-item {
+        margin: 0 0.25rem !important;
+    }
+
+    /* Overlay */
+    .drawer-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+        display: none;
+    }
+
+        .drawer-overlay.active {
+            display: block;
+        }
+
+    /* Mobile Menu Layout */
+    .menu-lg-row {
+        flex-direction: column !important;
+    }
+
+    /* Dropdown Positioning */
+    .menu-sub-dropdown {
+        position: static !important;
+        background-color: transparent !important;
+        box-shadow: none !important;
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0.5rem 0 0.5rem 1rem !important;
+    }
+}
+
+/* Small Mobile Devices */
+@media (max-width: 575.98px) {
+    /* Header */
+    .app-header {
+        min-height: auto;
+    }
+
+    /* Icons */
+    .menu-icon i,
+    .app-navbar .btn-icon i {
+        font-size: 1.25rem !important;
+    }
+
+    /* Menu Text */
+    .menu-title {
+        font-size: 0.95rem !important;
+    }
+
+    /* Container */
+    .app-container {
+        padding-left: 0.5rem !important;
+        padding-right: 0.5rem !important;
+    }
+
+    /* User Menu */
+    .app-navbar .menu-sub-dropdown {
+        width: 260px !important;
+        min-width: 260px !important;
+    }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) and (pointer: coarse) {
+    .btn,
+    .menu-link,
+    .nav-link {
+        min-height: 44px;
+        min-width: 44px;
+    }
+
+    .menu-item {
+        margin: 2px 0;
+    }
+}
+
+/* iOS Safari Fixes */
+@supports (-webkit-touch-callout: none) {
+    .app-main {
+        padding-bottom: env(safe-area-inset-bottom);
+    }
+}
+
+/* Mobile Menu Transitions */
+.menu-sub {
+    transition: all 0.3s ease;
+}
+
+/* Mobile Keyboard Fixes */
+@media (max-width: 991.98px) {
+    .app-root {
+        min-height: -webkit-fill-available;
+    }
+}
