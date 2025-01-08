@@ -18,7 +18,6 @@ public class SpeciesSearchQueryHandler(ISpeciesRepository speciesRepository, ILo
             var searchTerm = request.SearchTerm.ToLower();
             species = species.Where(s => s.Name.ToLower().Contains(searchTerm) || s.ScientificName.ToLower().Contains(searchTerm) || s.FullName.ToLower().Contains(searchTerm) || s.TurkishName.ToLower().Contains(searchTerm) || s.EnglishName.ToLower().Contains(searchTerm) || s.KocakName.ToLower().Contains(searchTerm) || s.HesselbarthName.ToLower().Contains(searchTerm));
         }
-        var totalCount = await speciesRepository.GetTotalCountAsync(cancellationToken);
         var items = await species
             .Skip((request.PageNumber - 1) * request.PageSize)
             .Take(request.PageSize)
@@ -42,6 +41,8 @@ public class SpeciesSearchQueryHandler(ISpeciesRepository speciesRepository, ILo
                 KocakName = x.KocakName,
                 HesselbarthName = x.HesselbarthName
             }).ToListAsync(cancellationToken);
+
+        var totalCount = items.Count;
         var paginatedResult = new PaginatedList<SpeciesSearchQueryResult>(items, totalCount, request.PageNumber, request.PageSize);
         logger.LogInformation("Species are filtered and fetched successfully.");
         return ServiceResult<PaginatedList<SpeciesSearchQueryResult>>.Success(paginatedResult);

@@ -34,4 +34,5 @@ public class ObservationController(IHttpClientFactory httpClientFactory, ILogger
         ModelState.AddModelError(string.Empty, "An error occurred while fetching observations");
         return View();
     }
+
 }

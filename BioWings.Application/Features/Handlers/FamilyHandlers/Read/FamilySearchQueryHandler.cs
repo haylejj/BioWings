@@ -19,7 +19,6 @@ public class FamilySearchQueryHandler(IFamilyRepository familyRepository, ILogge
             var searchTerm = request.SearchTerm.ToLower();
             families = families.Where(f => f.Name.ToLower().Contains(searchTerm));
         }
-        var totalCount = await familyRepository.GetTotalCountAsync(cancellationToken);
         var items = await families
             .Skip((request.PageNumber - 1) * request.PageSize)
             .Take(request.PageSize)
@@ -29,6 +28,7 @@ public class FamilySearchQueryHandler(IFamilyRepository familyRepository, ILogge
                 Name = x.Name,
 
             }).ToListAsync(cancellationToken);
+        var totalCount = items.Count;
         var paginatedResult = new PaginatedList<FamilySearchQueryResult>(items, totalCount, request.PageNumber, request.PageSize);
         logger.LogInformation("Families are filtered and fetched successfully.");
         return ServiceResult<PaginatedList<FamilySearchQueryResult>>.Success(paginatedResult);

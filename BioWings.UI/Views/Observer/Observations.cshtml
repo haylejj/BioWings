@@ -1,0 +1,453 @@
+﻿@model ApiPaginatedListResult<ObserverGetObservationsViewModel>
+@{
+    ViewData["Title"] = "Gözlemler";
+    Layout = "~/Views/MainLayout/Index.cshtml";
+}
+
+<div class="card">
+    <div class="card-header border-0 pt-6">
+        <div class="card-title">
+            <div class="d-flex align-items-center position-relative my-1">
+                <span class="svg-icon svg-icon-1 position-absolute ms-6">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2" rx="1" transform="rotate(45 17.0365 15.1223)" fill="currentColor"></rect>
+                        <path d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z" fill="currentColor"></path>
+                    </svg>
+                </span>
+                <input type="text" id="searchInput" class="form-control form-control-solid w-250px ps-14" placeholder="Gözlem Ara">
+            </div>
+        </div>
+    </div>
+    <div class="card-body py-4">
+        <table class="table align-middle table-row-dashed fs-6 gy-5" id="observationsTable">
+            <thead>
+                <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
+                    <th>Bilimsel Ad</th>
+                    <th>Tür Adı</th>
+                    <th>Cins</th>
+                    <th>Familya</th>
+                    <th>İl</th>
+                    <th>Tarih</th>
+                    <th>Sayı</th>
+                    <th>Kaynak</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody class="text-gray-600 fw-semibold">
+                @foreach (var item in Model.Items)
+                {
+                    <tr>
+                        <td>@(item.ScientificName ?? "-")</td>
+                        <td>@(item.SpeciesName ?? "-")</td>
+                        <td>@item.GenusName</td>
+                        <td>@item.FamilyName</td>
+                        <td>@item.ProvinceName</td>
+                        <td>@item.ObservationDate.ToString("dd.MM.yyyy")</td>
+                        <td>@item.NumberSeen</td>
+                        <td>@item.Source</td>
+                        <td>
+                            <button onclick="showDetails(@item.Id)" 
+                                    class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm"
+                                    data-bs-toggle="tooltip"
+                                    data-bs-placement="top"
+                                    title="Detaylar">
+                                <i class="fas fa-eye text-primary"></i>
+                            </button>
+                            <button onclick="showUpdateModal(@item.Id)"
+                                    class="btn btn-icon btn-bg-light btn-active-color-warning btn-sm me-1"
+                                    data-bs-toggle="tooltip"
+                                    data-bs-placement="top"
+                                    title="Düzenle">
+                                <i class="fas fa-pen text-warning"></i>
+                            </button>
+                            <button onclick="showDeleteModal(@item.Id)"
+                                    class="btn btn-icon btn-bg-light btn-active-color-danger btn-sm"
+                                    data-bs-toggle="tooltip"
+                                    data-bs-placement="top"
+                                    title="Sil">
+                                <i class="fas fa-trash text-danger"></i>
+                            </button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <div class="d-flex flex-stack flex-wrap pt-10">
+            <div class="fs-6 fw-semibold text-gray-700">
+                Showing @((Model.PageNumber - 1) * Model.PageSize + 1) to @(Math.Min(Model.PageNumber * Model.PageSize, Model.TotalCount)) of @Model.TotalCount entries
+            </div>
+            <ul class="pagination">
+                <li class="page-item previous @(!Model.HasPreviousPage ? "disabled" : "")">
+                    <a href="javascript:;" onclick="loadPage(@(Model.PageNumber - 1))" class="page-link">
+                        <i class="previous"></i>
+                    </a>
+                </li>
+
+                @for (var i = 1; i <= Model.TotalPages; i++)
+                {
+                    <li class="page-item @(i == Model.PageNumber ? "active" : "")">
+                        <a href="javascript:;" onclick="loadPage(@i)" class="page-link">@i</a>
+                    </li>
+                }
+
+                <li class="page-item next @(!Model.HasNextPage ? "disabled" : "")">
+                    <a href="javascript:;" onclick="loadPage(@(Model.PageNumber + 1))" class="page-link">
+                        <i class="next"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Detay Modal -->
+<div class="modal fade" id="kt_modal_observation" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content rounded">
+            <div class="modal-header pb-0 border-0 justify-content-end">
+                <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                    <i class="ki-duotone ki-cross fs-1">
+                        <span class="path1"></span>
+                        <span class="path2"></span>
+                    </i>
+                </div>
+            </div>
+
+            <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
+                <div class="mb-13 text-center">
+                    <h1 class="mb-3">Observation Details</h1>
+                </div>
+
+                <!--begin::Classification Card-->
+                <div class="card shadow-sm mb-8 modal-section">
+                    <div class="card-header">
+                        <h3 class="card-title align-items-start flex-column">
+                            <span class="card-label fw-bold text-dark">Classification Information</span>
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-5 g-xl-8">
+                            <div class="col-xl-6">
+                                <div class="field-container mb-5">
+                                    <div class="fs-6 fw-semibold mb-2">Scientific Name</div>
+                                    <div class="fs-7 text-gray-800 bg-light p-3 rounded" id="modalScientificName"></div>
+                                </div>
+                                <div class="field-container mb-5">
+                                    <div class="fs-6 fw-semibold mb-2">Family Name</div>
+                                    <div class="fs-7 text-gray-800 bg-light p-3 rounded" id="modalFamilyName"></div>
+                                </div>
+                                <div class="field-container mb-5">
+                                    <div class="fs-6 fw-semibold mb-2">Genus Name</div>
+                                    <div class="fs-7 text-gray-800 bg-light p-3 rounded" id="modalGenusName"></div>
+                                </div>
+                                <div class="field-container mb-5">
+                                    <div class="fs-6 fw-semibold mb-2">EU Name</div>
+                                    <div class="fs-7 text-gray-800 bg-light p-3 rounded" id="modalEuName"></div>
+                                </div>
+                                <div class="field-container mb-5">
+                                    <div class="fs-6 fw-semibold mb-2">Full Name</div>
+                                    <div class="fs-7 text-gray-800 bg-light p-3 rounded" id="modalFullName"></div>
+                                </div>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="field-container mb-5">
+                                    <div class="fs-6 fw-semibold mb-2">Turkish Name</div>
+                                    <div class="fs-7 text-gray-800 bg-light p-3 rounded" id="modalTurkishName"></div>
+                                </div>
+                                <div class="field-container mb-5">
+                                    <div class="fs-6 fw-semibold mb-2">English Name</div>
+                                    <div class="fs-7 text-gray-800 bg-light p-3 rounded" id="modalEnglishName"></div>
+                                </div>
+                                <div class="field-container mb-5">
+                                    <div class="fs-6 fw-semibold mb-2">Authority</div>
+                                    <div class="fs-7 text-gray-800 bg-light p-3 rounded" id="modalAuthority"></div>
+                                </div>
+                                <div class="field-container mb-5">
+                                    <div class="fs-6 fw-semibold mb-2">Name</div>
+                                    <div class="fs-7 text-gray-800 bg-light p-3 rounded" id="modalName"></div>
+                                </div>
+                                <div class="field-container mb-5">
+                                    <div class="fs-6 fw-semibold mb-2">Turkish Names Trakel</div>
+                                    <div class="fs-7 text-gray-800 bg-light p-3 rounded" id="modalTurkishNamesTrakel"></div>
+                                </div>
+                                <div class="field-container mb-5">
+                                    <div class="fs-6 fw-semibold mb-2">Trakel</div>
+                                    <div class="fs-7 text-gray-800 bg-light p-3 rounded" id="modalTrakel"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end::Classification Card-->
+                <!--begin::Location Card-->
+                <div class="card shadow-sm mb-8 modal-section">
+                    <div class="card-header">
+                        <h3 class="card-title align-items-start flex-column">
+                            <span class="card-label fw-bold text-dark">Location Details</span>
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-5 g-xl-8">
+                            <div class="col-xl-6">
+                                <div class="field-container mb-5">
+                                    <div class="fs-6 fw-semibold mb-2">Province</div>
+                                    <div class="fs-7 text-gray-800 bg-light p-3 rounded" id="modalProvince"></div>
+                                </div>
+                                <div class="field-container mb-5">
+                                    <div class="fs-6 fw-semibold mb-2">Coordinates</div>
+                                    <div class="fs-7 text-gray-800 bg-light p-3 rounded" id="modalCoordinates"></div>
+                                </div>
+                                <div class="field-container mb-5">
+                                    <div class="fs-6 fw-semibold mb-2">Square Reference</div>
+                                    <div class="fs-7 text-gray-800 bg-light p-3 rounded" id="modalSquareRef"></div>
+                                </div>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="field-container mb-5">
+                                    <div class="fs-6 fw-semibold mb-2">Altitude</div>
+                                    <div class="fs-7 text-gray-800 bg-light p-3 rounded" id="modalAltitude"></div>
+                                </div>
+                                <div class="field-container mb-5">
+                                    <div class="fs-6 fw-semibold mb-2">UTM Reference</div>
+                                    <div class="fs-7 text-gray-800 bg-light p-3 rounded" id="modalUtmReference"></div>
+                                </div>
+                                <div class="field-container mb-5">
+                                    <div class="fs-6 fw-semibold mb-2">Location Info</div>
+                                    <div class="fs-7 text-gray-800 bg-light p-3 rounded" id="modalLocationInfo"></div>
+                                </div>
+                                <div class="field-container mb-5">
+                                    <div class="fs-6 fw-semibold mb-2">Coordinate Precision Level</div>
+                                    <div class="fs-7 text-gray-800 bg-light p-3 rounded" id="modalCoordinatePrecisionLevel"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!--end::Location Card-->
+                <!--begin::Observation Card-->
+                <div class="card shadow-sm modal-section">
+                    <div class="card-header">
+                        <h3 class="card-title align-items-start flex-column">
+                            <span class="card-label fw-bold text-dark">Observation Details</span>
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-5 g-xl-8">
+                            <div class="col-xl-6">
+                                <div class="field-container mb-5">
+                                    <div class="fs-6 fw-semibold mb-2">Observer</div>
+                                    <div class="fs-7 text-gray-800 bg-light p-3 rounded" id="modalObserver"></div>
+                                </div>
+                                <div class="field-container mb-5">
+                                    <div class="fs-6 fw-semibold mb-2">Date</div>
+                                    <div class="fs-7 text-gray-800 bg-light p-3 rounded" id="modalObservationDate"></div>
+                                </div>
+                                <div class="field-container mb-5">
+                                    <div class="fs-6 fw-semibold mb-2">Number Seen</div>
+                                    <div class="fs-7 text-gray-800 bg-light p-3 rounded" id="modalNumberSeen"></div>
+                                </div>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="field-container mb-5">
+                                    <div class="fs-6 fw-semibold mb-2">Sex</div>
+                                    <div class="fs-7 text-gray-800 bg-light p-3 rounded" id="modalSex"></div>
+                                </div>
+                                <div class="field-container mb-5">
+                                    <div class="fs-6 fw-semibold mb-2">Life Stage</div>
+                                    <div class="fs-7 text-gray-800 bg-light p-3 rounded" id="modalLifeStage"></div>
+                                </div>
+                                <div class="field-container mb-5">
+                                    <div class="fs-6 fw-semibold mb-2">Notes</div>
+                                    <div class="fs-7 text-gray-800 bg-light p-3 rounded" id="modalNotes"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="field-container mb-5">
+                            <div class="fs-6 fw-semibold mb-2">Source</div>
+                            <div class="fs-7 text-gray-800 bg-light p-3 rounded" id="modalSource"></div>
+                        </div>
+                    </div>
+                </div>
+                <!--end::Observation Card-->
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        var detailsModal;
+        var table;
+        
+        $(document).ready(function() {
+            // Initialize modal
+            detailsModal = new bootstrap.Modal(document.getElementById('kt_modal_observation'));
+            
+            // Initialize tooltips
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl)
+            });
+
+            // Initialize DataTable
+            table = $('#observationsTable').DataTable({
+                "searching": false,
+                "paging": false,
+                "info": false,
+                "ordering": true,
+                "order": [[5, "desc"]] // Tarihe göre sıralama
+            });
+
+            // Search functionality
+            const searchInput = $('#searchInput');
+            const debouncedSearch = debounce(function(value) {
+                if (value.trim().length === 0) {
+                    window.location.href = `/Observer/Observations/@ViewBag.ObserverId`;
+                } else {
+                    window.location.href = `/Observer/Observations/@ViewBag.ObserverId?searchTerm=${encodeURIComponent(value.trim())}`;
+                }
+            }, 500);
+
+            searchInput.on('keyup', function() {
+                debouncedSearch(this.value);
+            });
+
+            if ('@ViewBag.SearchTerm' != '') {
+                searchInput.val('@ViewBag.SearchTerm');
+            }
+        });
+
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        function loadPage(pageNumber) {
+            const searchTerm = $('#searchInput').val().trim();
+            const baseUrl = `/Observer/Observations/@ViewBag.ObserverId`;
+            const queryParams = new URLSearchParams(window.location.search);
+
+            queryParams.set('pageNumber', pageNumber);
+            if (searchTerm) {
+                queryParams.set('searchTerm', searchTerm);
+            }
+
+            window.location.href = `${baseUrl}?${queryParams.toString()}`;
+        }
+
+        function showDetails(id) {
+            $.ajax({
+                url: `https://localhost:7128/api/Observations/${id}`,
+                method: 'GET',
+                success: function(response) {
+                    if (response.isSuccess && response.data) {
+                        const data = response.data;
+
+                        // Classification Information
+                        fillDetailField('modalScientificName', data.scientificName);
+                        fillDetailField('modalFamilyName', data.familyName);
+                        fillDetailField('modalGenusName', data.genusName);
+                        fillDetailField('modalEuName', data.euName);
+                        fillDetailField('modalFullName', data.fullName);
+                        fillDetailField('modalTurkishName', data.turkishName);
+                        fillDetailField('modalEnglishName', data.englishName);
+                        fillDetailField('modalAuthority', `${data.authorityName || ''} ${data.authorityYear || ''}`);
+                        fillDetailField('modalName', data.name);
+                        fillDetailField('modalTurkishNamesTrakel', data.turkishNamesTrakel);
+                        fillDetailField('modalTrakel', data.trakel);
+
+                        fillDetailField('modalProvince', data.provinceName);
+
+                        // Coordinates display
+                        const coordinates = [];
+                        if (data.squareLatitude) coordinates.push(`Square Latitude: ${data.squareLatitude}`);
+                        if (data.squareLongitude) coordinates.push(`Square Longitude: ${data.squareLongitude}`);
+                        if (data.latitude) coordinates.push(`Latitude: ${data.latitude}`);
+                        if (data.longitude) coordinates.push(`Longitude: ${data.longitude}`);
+                        if (data.decimalDegrees) coordinates.push(`Decimal Degrees: ${data.decimalDegrees}`);
+                        if (data.degreesMinutesSeconds) coordinates.push(`DMS: ${data.degreesMinutesSeconds}`);
+                        if (data.decimalMinutes) coordinates.push(`Decimal Minutes: ${data.decimalMinutes}`);
+                        if (data.utmCoordinates) coordinates.push(`UTM: ${data.utmCoordinates}`);
+                        if (data.mgrsCoordinates) coordinates.push(`MGRS: ${data.mgrsCoordinates}`);
+                        fillDetailField('modalCoordinates', coordinates.join('<br>'));
+
+                        // Location Details
+                        fillDetailField('modalProvince', data.provinceName);
+                        fillDetailField('modalSquareRef', data.squareRef);
+                        fillDetailField('modalAltitude', `${data.altitude1} - ${data.altitude2}`);
+                        fillDetailField('modalUtmReference', data.utmReference);
+                        fillDetailField('modalLocationInfo', data.locationInfo);
+                        fillDetailField('modalCoordinatePrecisionLevel', getCoordinatePrecisionLevelText(data.coordinatePrecisionLevel));
+
+                        // Observation Details
+                        fillDetailField('modalObserver', data.observerFullName);
+                        fillDetailField('modalObservationDate', moment(data.observationDate).format('DD.MM.YYYY'));
+                        fillDetailField('modalNumberSeen', data.numberSeen);
+                        fillDetailField('modalSex', data.sex);
+                        fillDetailField('modalLifeStage', data.lifeStage);
+                        fillDetailField('modalNotes', data.notes);
+                        fillDetailField('modalSource', data.source);
+
+                        // Show modal
+                        $('#kt_modal_observation').modal('show');
+                    } else {
+                        showError('Veri alınamadı', 'Gözlem detayları getirilirken bir hata oluştu.');
+                    }
+                },
+                error: function(xhr, status, error) {
+                    showError('Hata!', 'Sunucu ile iletişim kurulurken bir hata oluştu.');
+                }
+            });
+        }
+
+        // Yardımcı fonksiyonlar
+        function fillDetailField(fieldId, value) {
+            const element = document.getElementById(fieldId);
+            if (element) {
+                // Eğer değer HTML içeriyorsa innerHTML kullan, aksi halde textContent kullan
+                if (typeof value === 'string' && value.includes('&lt;br&gt;')) {
+                    element.innerHTML = value.replace(/&lt;br&gt;/g, '<br>') || '-';
+                } else if (typeof value === 'string' && value.includes('<br>')) {
+                    element.innerHTML = value || '-';
+                } else {
+                    element.textContent = value || '-';
+                }
+            }
+        }
+
+        function showError(title, message) {
+            Swal.fire({
+                title: title,
+                text: message,
+                icon: 'error',
+                confirmButtonText: 'Tamam',
+                confirmButtonColor: '#3085d6'
+            });
+        }
+
+        function getCoordinatePrecisionLevelText(level) {
+            const precisionLevels = {
+                0: "Tam/Hassas Koordinat",
+                1: "UTM Koordinatı",
+                2: "İlçe Koordinatı",
+                3: "Kare Koordinatı",
+                4: "İl Koordinatı"
+            };
+
+            return precisionLevels[level] || "Bilinmiyor";
+        }
+
+        
+</script>
+}
+
+

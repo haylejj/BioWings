@@ -38,5 +38,21 @@ public class ObserversController(IMediator mediator) : BaseController
         var result = await mediator.Send(query);
         return CreateResult(result);
     }
+    // GET: api/Observers/{id}/Observations
+    [HttpGet("{id}/Observations")]
+    public async Task<IActionResult> GetObservations(int id, [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 25)
+    {
+        var query = new ObserverGetObservationsWithPagedQuery { ObserverId=id, PageNumber=pageNumber, PageSize=pageSize };
+        var result = await mediator.Send(query);
+        return CreateResult(result);
+    }
+    // GET: api/Observers/{id}/Observations/Search
+    [HttpGet("{id}/Observations/Search")]
+    public async Task<IActionResult> SearchObservations(int id, [FromQuery] string searchTerm, [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 25)
+    {
+        var searchQuery = new ObserverGetObservationsWithSearchQuery { ObserverId=id, PageNumber=pageNumber, PageSize=pageSize, SearchTerm=searchTerm };
+        var result = await mediator.Send(searchQuery);
+        return CreateResult(result);
+    }
 
 }

@@ -1,9 +1,7 @@
 ﻿using BioWings.Application.Features.Queries.ObserverQueries;
-using BioWings.Application.Features.Results.ObservationResults;
 using BioWings.Application.Features.Results.ObserverResults;
 using BioWings.Application.Interfaces;
 using BioWings.Application.Results;
-using BioWings.Domain.Entities;
 using MediatR;
 using Microsoft.Extensions.Logging;
 
@@ -16,7 +14,7 @@ public class ObserverGetPagedQueryHandler(IObserverRepository observerRepository
         request.PageSize = request.PageSize <= 0 ? 25 : Math.Min(request.PageSize, 50);
         var totalCount = await observerRepository.GetTotalCountAsync(cancellationToken);
 
-        var observer=await observerRepository.GetPagedAsNoTrackingAsync(request.PageNumber, request.PageSize,cancellationToken);
+        var observer = await observerRepository.GetPagedAsNoTrackingAsync(request.PageNumber, request.PageSize, cancellationToken);
         var result = observer.Select(x => new ObserverGetPagedQueryResult
         {
             Id = x.Id,

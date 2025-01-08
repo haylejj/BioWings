@@ -18,7 +18,6 @@ public class GenusSearchQueryHandler(IGenusRepository genusRepository, ILogger<G
             var searchTerm = request.SearchTerm.ToLower();
             genus = genus.Where(g => g.Name.ToLower().Contains(searchTerm) || g.Family.Name.ToLower().Contains(searchTerm));
         }
-        var totalCount = await genusRepository.GetTotalCountAsync(cancellationToken);
         var items = await genus
             .Skip((request.PageNumber - 1) * request.PageSize)
             .Take(request.PageSize)
@@ -29,7 +28,7 @@ public class GenusSearchQueryHandler(IGenusRepository genusRepository, ILogger<G
                 FamilyName = x.Family.Name,
                 FamilyId = x.FamilyId
             }).ToListAsync(cancellationToken);
-
+        var totalCount = items.Count;
         var paginatedResult = new PaginatedList<GenusSearchQueryResult>(
             items,
             totalCount,

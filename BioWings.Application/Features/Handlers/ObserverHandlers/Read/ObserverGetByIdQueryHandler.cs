@@ -11,11 +11,11 @@ public class ObserverGetByIdQueryHandler(IObserverRepository observerRepository,
 {
     public async Task<ServiceResult<ObserverGetByIdQueryResult>> Handle(ObserverGetByIdQuery request, CancellationToken cancellationToken)
     {
-        var observer=await  observerRepository.GetByIdAsync(request.Id);
+        var observer = await observerRepository.GetByIdAsync(request.Id);
         if (observer==null)
         {
             logger.LogError($"Observer with ID : {request.Id} was not found");
-            return ServiceResult<ObserverGetByIdQueryResult>.Error($"Observer not found that has id : {request.Id}",System.Net.HttpStatusCode.NotFound);
+            return ServiceResult<ObserverGetByIdQueryResult>.Error($"Observer not found that has id : {request.Id}", System.Net.HttpStatusCode.NotFound);
         }
         var observerResult = new ObserverGetByIdQueryResult
         {

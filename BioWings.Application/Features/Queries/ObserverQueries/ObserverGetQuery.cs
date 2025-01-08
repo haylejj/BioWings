@@ -3,6 +3,6 @@ using BioWings.Application.Results;
 using MediatR;
 
 namespace BioWings.Application.Features.Queries.ObserverQueries;
-public class ObserverGetQuery:IRequest<ServiceResult<List<ObserverGetQueryResult>>>
+public class ObserverGetQuery : IRequest<ServiceResult<List<ObserverGetQueryResult>>>
 {
 }

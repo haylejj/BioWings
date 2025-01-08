@@ -11,13 +11,12 @@ public class ObserverSearchQueryHandler(IObserverRepository observerRepository, 
 {
     public async Task<ServiceResult<PaginatedList<ObserverSearchQueryResult>>> Handle(ObserverSearchQuery request, CancellationToken cancellationToken)
     {
-        var observers=observerRepository.GetAllAsNoTracking();
+        var observers = observerRepository.GetAllAsNoTracking();
         if (!string.IsNullOrEmpty(request.SearchTerm))
         {
             var searchTerm = request.SearchTerm.ToLower();
             observers = observers.Where(s => s.Name.ToLower().Contains(searchTerm) || s.Surname.ToLower().Contains(searchTerm) || s.FullName.ToLower().Contains(searchTerm));
         }
-        var totalCount = await observerRepository.GetTotalCountAsync(cancellationToken);
         var result = await observers.Select(x => new ObserverSearchQueryResult
         {
             Id = x.Id,
@@ -25,6 +24,7 @@ public class ObserverSearchQueryHandler(IObserverRepository observerRepository, 
             LastName = x.Surname,
             FullName = x.FullName
         }).ToListAsync(cancellationToken);
+        var totalCount = result.Count;
         var paginatedResult = new PaginatedList<ObserverSearchQueryResult>(
             result,
             totalCount,
