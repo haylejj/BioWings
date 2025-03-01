@@ -30,6 +30,10 @@ public static class PersistenceExtensions
         services.AddScoped<IObserverRepository, ObserverRepository>();
         services.AddScoped<IProvinceRepository, ProvinceRepository>();
         services.AddScoped<ISubspeciesRepository, SubspeciesRepository>();
+        services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<ICountryRepository, CountryRepository>();
+        services.AddScoped<IRoleRepository, RoleRepository>();
+        services.AddScoped<IUserRoleRepository, UserRoleRepository>();
         return services;
     }
 }

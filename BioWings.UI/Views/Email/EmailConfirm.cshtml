@@ -1,0 +1,244 @@
+﻿@model EmailConfirmViewModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <title>BioWings - Email Onaylama</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="shortcut icon" href="~/assets/media/logos/favicon.ico" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
+    <link href="~/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login-card {
+            border-radius: 12px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+        }
+
+        .auth-logo {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 1.5rem;
+        }
+
+        .login-form-container {
+            padding: 3rem 3rem;
+        }
+
+        .app-title {
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: #181C32;
+            margin-bottom: 0.75rem;
+        }
+
+        .app-subtitle {
+            color: #7E8299;
+            font-size: 1rem;
+            margin-bottom: 2.5rem;
+        }
+
+        #kt_app_root {
+            width: 100%;
+        }
+
+        /* New success checkmark style to match the image */
+        .success-checkmark {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 2rem;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+            .success-checkmark .check-icon {
+                width: 80px;
+                height: 80px;
+                position: relative;
+                border-radius: 50%;
+                box-sizing: content-box;
+                background-color: #50CD89;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+                .success-checkmark .check-icon:after {
+                    content: '';
+                    display: block;
+                    width: 30px;
+                    height: 18px;
+                    border-bottom: 4px solid white;
+                    border-right: 4px solid white;
+                    transform: rotate(45deg) translate(-2px, -5px);
+                }
+
+        .error-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 2rem;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+            .error-icon .icon {
+                width: 60px;
+                height: 60px;
+                position: relative;
+                border-radius: 50%;
+                box-sizing: content-box;
+                background-color: #F1416C;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+                .error-icon .icon i {
+                    color: white;
+                    font-size: 30px;
+                }
+    </style>
+</head>
+
+<body id="kt_body" class="app-blank">
+    <!-- Main Content -->
+    <div class="d-flex flex-column flex-root" id="kt_app_root">
+        <div class="d-flex flex-column flex-lg-row flex-column-fluid justify-content-center align-items-center min-vh-100">
+            <div class="d-flex flex-column flex-lg-row-fluid w-lg-500px p-10">
+                <div class="d-flex flex-center flex-column flex-lg-row-fluid">
+                    <div class="w-lg-500px p-10">
+                        <div class="card shadow-sm">
+                            <div class="card-body p-10 text-center">
+                                <!-- Logo -->
+                                <div class="text-center">
+                                    <img src="~/assets/media/logos/butterfly1-logo.svg" alt="BioWings Logo" class="auth-logo" />
+                                </div>
+
+                                @if (Model.IsSuccess)
+                                {
+                                    <!-- Success Checkmark -->
+                                    <div class="success-checkmark">
+                                        <div class="check-icon"></div>
+                                    </div>
+
+                                    <h1 class="app-title">E-posta Adresiniz Onaylandı</h1>
+                                }
+                                else
+                                {
+                                    <!-- Error Icon -->
+                                    <div class="error-icon">
+                                        <div class="icon">
+                                            <i class="fas fa-exclamation-triangle"></i>
+                                        </div>
+                                    </div>
+
+                                    <h1 class="app-title">E-posta Onaylama Hatası</h1>
+                                }
+
+                                <div class="app-subtitle">
+                                    @Model.Message
+                                </div>
+
+                                <!-- Buttons -->
+                                <div class="d-grid @(Model.ShowResendButton ? "gap-3" : "") mt-8">
+                                    @if (Model.ShowResendButton && !string.IsNullOrEmpty(Model.Email))
+                                    {
+                                        <button type="button" onclick="resendConfirmationEmail('@Model.Email')" class="btn btn-primary">
+                                            <span class="indicator-label" id="resend-label">Onay E-postasını Tekrar Gönder</span>
+                                            <span class="indicator-progress d-none" id="resend-progress">
+                                                Lütfen bekleyin...
+                                                <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                                            </span>
+                                        </button>
+                                    }
+                                    <a href="/Login/Login" class="btn @(Model.IsSuccess ? "btn-primary" : "btn-light-primary")">
+                                        <span class="indicator-label">Giriş Yap</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-lg-500px d-flex flex-stack px-10 mx-auto">
+                    <div class="d-flex fw-semibold text-primary fs-base gap-5 w-100 justify-content-center">
+                        <a href="#" target="_blank">Gizlilik Politikası</a>
+                        <a href="#" target="_blank">Kullanım Şartları</a>
+                        <a href="#" target="_blank">Destek</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>var hostUrl = "~/assets/";</script>
+    <script src="~/assets/plugins/global/plugins.bundle.js"></script>
+    <script src="~/assets/js/scripts.bundle.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.all.min.js"></script>
+    <script>
+        function resendConfirmationEmail(email) {
+            // Show loading
+            const resendLabel = document.getElementById('resend-label');
+            const resendProgress = document.getElementById('resend-progress');
+
+            resendLabel.classList.add('d-none');
+            resendProgress.classList.remove('d-none');
+
+            // Make API call
+            fetch('https://localhost:7128/api/Email/resendEmailConfirmation', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email: email })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Handle success
+                Swal.fire({
+                    title: 'Başarılı',
+                    text: 'Onay e-postası tekrar gönderildi.',
+                    icon: 'success',
+                    confirmButtonText: 'Tamam'
+                });
+            })
+            .catch(error => {
+                // Handle error
+                Swal.fire({
+                    title: 'Hata',
+                    text: 'Onay e-postası gönderilirken bir hata oluştu.',
+                    icon: 'error',
+                    confirmButtonText: 'Tamam'
+                });
+            })
+            .finally(() => {
+                // Hide loading
+                resendLabel.classList.remove('d-none');
+                resendProgress.classList.add('d-none');
+            });
+        }
+    </script>
+</body>
+</html>

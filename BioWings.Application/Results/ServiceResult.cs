@@ -5,7 +5,7 @@ namespace BioWings.Application.Results;
 public class ServiceResult<T>
 {
     public T? Data { get; set; }
-    public bool IsSuccess { get; private set; }
+    public bool IsSuccess { get; set; }
     public List<string>? ErrorList { get; set; }
     [JsonIgnore]
     public HttpStatusCode StatusCode { get; set; }

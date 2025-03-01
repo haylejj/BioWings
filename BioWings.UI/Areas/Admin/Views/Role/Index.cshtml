@@ -1,0 +1,385 @@
+﻿@model RoleViewModel
+@{
+    ViewData["Title"] = "Roller";
+    Layout = "~/Areas/Admin/Views/AdminMainLayout/Index.cshtml";
+}
+
+<div class="card">
+    <div class="card-header border-0 pt-6">
+        <div class="card-title">
+        </div>
+        <div class="card-toolbar">
+            <div class="d-flex justify-content-end" data-kt-user-table-toolbar="base">
+                <!-- Özel arama kutusu -->
+                <div class="input-group me-2" style="width: 250px;">
+                    <span class="input-group-text">
+                        <i class="fas fa-search"></i>
+                    </span>
+                    <input type="text" id="customSearch" class="form-control" placeholder="Rol ara...">
+                </div>
+
+                <!-- Yeni Rol Ekle butonu -->
+                <button type="button" class="btn btn-light-dark" onclick="openCreateRoleModal()">
+                    <span class="svg-icon svg-icon-2">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect opacity="0.5" x="11.364" y="20.364" width="16" height="2" rx="1" transform="rotate(-90 11.364 20.364)" fill="currentColor"></rect>
+                            <rect x="4.36396" y="11.364" width="16" height="2" rx="1" fill="currentColor"></rect>
+                        </svg>
+                    </span>
+                    Yeni Rol Ekle
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="card-body py-4">
+        @if (ViewData.ContainsKey("ErrorMessage"))
+        {
+            <div class="alert alert-danger">
+                @ViewData["ErrorMessage"]
+            </div>
+        }
+        <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_datatable">
+            <thead>
+                <tr class="text-start text-muted fw-bold fs-7 text-uppercase gs-0">
+                    <th>ID</th>
+                    <th>Rol Adı</th>
+                    <th>Kullanıcı Sayısı</th>
+                    <th>İşlemler</th>
+                </tr>
+            </thead>
+            <tbody class="text-gray-600 fw-semibold">
+                @if (Model?.GetViewModels != null)
+                {
+                    foreach (var role in Model.GetViewModels)
+                    {
+                        <tr>
+                            <td>@role.Id</td>
+                            <td>@role.Name</td>
+                            <td>@role.UserCount</td>
+                            <td>
+                                <div class="d-flex justify-content-center flex-shrink-0">
+                                    <a href="javascript:void(0);"
+                                       onclick="populateUpdateModal('@role.Id')"
+                                       class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
+                                       data-bs-toggle="tooltip"
+                                       data-bs-placement="top"
+                                       title="Düzenle">
+                                        <span class="svg-icon svg-icon-3">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path opacity="0.3" d="M21.4 8.35303L19.241 10.511L13.485 4.755L15.643 2.59595C16.0248 2.21423 16.5426 1.99988 17.0825 1.99988C17.6224 1.99988 18.1402 2.21423 18.522 2.59595L21.4 5.474C21.7817 5.85581 21.9962 6.37355 21.9962 6.91345C21.9962 7.45335 21.7817 7.97122 21.4 8.35303ZM3.68699 21.932L9.88699 19.865L4.13099 14.109L2.06399 20.309C1.98815 20.5354 1.97703 20.7787 2.03189 21.0111C2.08674 21.2436 2.2054 21.4561 2.37449 21.6248C2.54359 21.7934 2.75641 21.9115 2.989 21.9658C3.22158 22.0201 3.4647 22.0084 3.69099 21.932H3.68699Z" fill="currentColor"></path>
+                                                <path d="M5.574 21.3L3.692 21.928C3.46591 22.0032 3.22334 22.0141 2.99144 21.9594C2.75954 21.9046 2.54744 21.7864 2.3789 21.6179C2.21036 21.4495 2.09202 21.2375 2.03711 21.0056C1.9822 20.7737 1.99289 20.5312 2.06799 20.3051L2.696 18.422L5.574 21.3ZM4.13499 14.105L9.891 19.861L19.245 10.507L13.489 4.75098L4.13499 14.105Z" fill="currentColor"></path>
+                                            </svg>
+                                        </span>
+                                    </a>
+                                    <a href="javascript:void(0);"
+                                       onclick="deleteRole('@role.Id')"
+                                       class="btn btn-icon btn-bg-light btn-active-color-danger btn-sm"
+                                       data-bs-toggle="tooltip"
+                                       data-bs-placement="top"
+                                       title="Sil">
+                                        <span class="svg-icon svg-icon-3">
+                                            <svg width="24" height="24" viewBox="0 0 24 24"
+                                                 fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M5 9C5 8.44772 5.44772 8 6 8H18C18.5523 8 19 8.44772 19 9V18C19 19.6569 17.6569 21 16 21H8C6.34315 21 5 19.6569 5 18V9Z"
+                                                      fill="currentColor"></path>
+                                                <path opacity="0.5"
+                                                      d="M5 5C5 4.44772 5.44772 4 6 4H18C18.5523 4 19 4.44772 19 5V5C19 5.55228 18.5523 6 18 6H6C5.44772 6 5 5.55228 5 5V5Z"
+                                                      fill="currentColor"></path>
+                                                <path opacity="0.5"
+                                                      d="M9 4C9 3.44772 9.44772 3 10 3H14C14.5523 3 15 3.44772 15 4V4H9V4Z"
+                                                      fill="currentColor"></path>
+                                            </svg>
+                                        </span>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="4" class="text-center">Kayıtlı hiç rol bulunamadı.</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Rol Güncelleme Modal -->
+<div class="modal fade" id="kt_modal_update_role" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Rol Güncelleme</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="updateRoleForm" asp-area="Admin" asp-action="Update" asp-controller="Role" method="post">
+                    <input type="hidden" asp-for="UpdateViewModel.Id" id="updateRoleId" />
+
+                    <div class="mb-3">
+                        <label for="updateRoleName" class="form-label">Rol Adı</label>
+                        <input type="text"
+                               id="updateRoleName"
+                               asp-for="UpdateViewModel.Name"
+                               class="form-control form-control-solid"
+                               placeholder="Rol adını güncelleyiniz..."
+                               required />
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">İptal</button>
+                        <button type="submit" class="btn btn-primary">Kaydet</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Rol Ekleme Modal -->
+<div class="modal fade" id="kt_modal_create_role" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Yeni Rol Oluştur</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="createRoleForm">
+                    <div class="mb-3">
+                        <label for="createRoleName" class="form-label">Rol Adı</label>
+                        <input type="text"
+                               id="createRoleName"
+                               class="form-control form-control-solid"
+                               placeholder="Rol adını giriniz..."
+                               required />
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">İptal</button>
+                        <button type="submit" class="btn btn-success">Kaydet</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <!-- DataTable Init -->
+    <script>
+        $(document).ready(function () {
+            var table = $("#kt_datatable").DataTable({
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Turkish.json",
+                    "emptyTable": "Kayıtlı hiç rol bulunamadı."
+                },
+                "responsive": {
+                    "details": false
+                },
+                "lengthChange": true,
+                "pageLength": 10,
+                "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "Tümü"]],
+                    "columnDefs": [
+                    {
+                        targets: -1,
+                        orderable: false,
+                        className: 'text-center'
+                    },
+                    {
+                        targets: 0,
+                        className: 'text-left dt-body-left',
+                        orderable: true,
+                        width: "80px"
+                    },
+                    {
+                        targets: 1,
+                        className: 'text-left',
+                        width: "300px"
+                    },
+                    {
+                        targets: 2,
+                        className: 'text-center',
+                        width: "200px"
+                    }
+                ]
+            });
+
+            $('#customSearch').keyup(function(){
+                table.search($(this).val()).draw();
+            });
+
+            $('[data-bs-toggle="tooltip"]').tooltip();
+
+                
+        });
+    </script>
+
+    <!-- Update Role -->
+    <script>
+        async function populateUpdateModal(roleId) {
+            try {
+                const response = await fetch(`https://localhost:7128/api/Roles/${roleId}`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error('Rol bilgileri alınamadı');
+                }
+
+                const roleData = await response.json();
+
+                // Input alanlarını doldur
+                document.getElementById('updateRoleId').value = roleData.data.id;
+                document.getElementById('updateRoleName').value = roleData.data.name;
+
+                const updateModal = new bootstrap.Modal(document.getElementById('kt_modal_update_role'));
+                updateModal.show();
+
+            } catch (error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Hata',
+                    text: 'Rol bilgileri yüklenirken bir hata oluştu.'
+                });
+                console.error('Fetch error:', error);
+            }
+        }
+    </script>
+
+    <!-- Update Success/Error Messages -->
+    @if (TempData["SuccessMessageForUpdate"] != null)
+    {
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Başarılı!',
+                text: 'Rol başarıyla güncellendi.',
+                timer: 4000,
+                timerProgressBar: true
+            });
+        </script>
+    }
+
+    @if (TempData["ErrorMessageForUpdate"] != null)
+    {
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Hata!',
+                text: 'Rol güncellenirken bir hata oluştu.',
+                timer: 4000,
+                timerProgressBar: true
+            });
+        </script>
+    }
+
+    <!-- Delete Role -->
+    <script>
+        async function deleteRole(roleId) {
+            const result = await Swal.fire({
+                title: 'Emin misiniz?',
+                text: "Bu rolü silmek istediğinizden emin misiniz?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Evet, sil!',
+                cancelButtonText: 'İptal'
+            });
+
+            if (result.isConfirmed) {
+                try {
+                    const response = await fetch(`https://localhost:7128/api/Roles/${roleId}`, {
+                        method: 'DELETE',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    });
+
+                    // Sadece 204 No Content durumunda başarılı
+                    if (response.status === 204) {
+                        Swal.fire(
+                            'Silindi!',
+                            'Rol başarıyla silindi.',
+                            'success'
+                        ).then(() => {
+                            location.reload();
+                        });
+                    } else {
+                        // Diğer tüm durumlarda standart hata mesajı
+                        Swal.fire(
+                            'Hata!',
+                            'Silme işlemi sırasında bir hata oluştu.',
+                            'error'
+                        );
+                    }
+                } catch (error) {
+                    console.error("Hata:", error);
+                    Swal.fire(
+                        'Hata!',
+                        'Silme işlemi sırasında bir hata oluştu.',
+                        'error'
+                    );
+                }
+            }
+        }
+    </script>
+
+    <!-- Create Role -->
+    <script>
+        function openCreateRoleModal() {
+            document.getElementById('createRoleName').value = '';
+
+            const createModal = new bootstrap.Modal(document.getElementById('kt_modal_create_role'));
+            createModal.show();
+        }
+
+        document.getElementById('createRoleForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const roleData = {
+                name: document.getElementById('createRoleName').value
+            };
+
+            try {
+                const response = await fetch('https://localhost:7128/api/Roles', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(roleData)
+                });
+
+                if (!response.ok) {
+                    throw new Error('Rol oluşturma başarısız');
+                }
+
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Başarılı!',
+                    text: 'Rol başarıyla oluşturuldu.',
+                    timer: 2000,
+                    timerProgressBar: true
+                }).then(() => {
+                    bootstrap.Modal.getInstance(document.getElementById('kt_modal_create_role')).hide();
+                    location.reload();
+                });
+            } catch (error) {
+                console.error('Hata:', error);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Hata!',
+                    text: 'Rol oluşturulurken bir hata oluştu.'
+                });
+            }
+        });
+    </script>
+}
+

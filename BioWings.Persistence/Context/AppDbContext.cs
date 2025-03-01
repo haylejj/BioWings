@@ -14,5 +14,9 @@ public class AppDbContext(DbContextOptions<AppDbContext> dbContextOptions) : DbC
     public DbSet<Location> Locations { get; set; }
     public DbSet<Observer> Observers { get; set; }
     public DbSet<Province> Provinces { get; set; }
+    public DbSet<User> Users { get; set; }
+    public DbSet<Role> Roles { get; set; }
+    public DbSet<UserRole> UserRoles { get; set; }
+    public DbSet<Country> Countries { get; set; }
 }
 

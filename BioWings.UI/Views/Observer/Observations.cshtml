@@ -275,7 +275,219 @@
         </div>
     </div>
 </div>
+<!-- Update Modal -->
+<div class="modal fade" id="kt_updatemodal_observation" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content rounded">
+            <div class="modal-header pb-0 border-0 justify-content-end">
+                <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                    <i class="ki-duotone ki-cross fs-1">
+                        <span class="path1"></span>
+                        <span class="path2"></span>
+                    </i>
+                </div>
+            </div>
 
+            <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
+                <div class="mb-13 text-center">
+                    <h1 class="mb-3">Gözlem Güncelle</h1>
+                </div>
+
+                <form id="update_observation_form">
+                    <!--begin::Classification Card-->
+                    <div class="card shadow-sm mb-8 modal-section">
+                        <div class="card-header">
+                            <h3 class="card-title align-items-start flex-column">
+                                <span class="card-label fw-bold text-dark">Sınıflandırma Bilgileri</span>
+                            </h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="row g-5 g-xl-8">
+                                <div class="col-xl-6">
+                                    <input type="hidden" name="id" id="updateId" />
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Bilimsel Ad</div>
+                                        <input class="form-control" name="scientificName" type="text" id="updateScientificName" />
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Familya Adı</div>
+                                        <input class="form-control" name="familyName" type="text" id="updateFamilyName" />
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Cins Adı</div>
+                                        <input class="form-control" name="genusName" type="text" id="updateGenusName" />
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">AB Adı</div>
+                                        <input class="form-control" name="euName" type="text" id="updateEUName" />
+                                    </div>
+                                </div>
+                                <div class="col-xl-6">
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Türkçe Ad</div>
+                                        <input class="form-control" name="turkishName" type="text" id="updateTurkishName" />
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">İngilizce Ad</div>
+                                        <input class="form-control" name="englishName" type="text" id="updateEnglishName" />
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Otorite</div>
+                                        <input class="form-control" name="authority" type="text" id="updateAuthority" />
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Ad</div>
+                                        <input class="form-control" name="name" type="text" id="updateName" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end::Classification Card-->
+                    <!--begin::Location Card-->
+                    <div class="card shadow-sm mb-8 modal-section">
+                        <div class="card-header">
+                            <h3 class="card-title align-items-start flex-column">
+                                <span class="card-label fw-bold text-dark">Konum Bilgileri</span>
+                            </h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="row g-5 g-xl-8">
+                                <div class="col-xl-6">
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">İl</div>
+                                        <select class="form-select" name="provinceId" id="updateProvinceName">
+                                            <option value="">İl Seçiniz</option>
+                                        </select>
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Kare Referansı</div>
+                                        <input class="form-control" name="squareRef" type="text" id="updateSquareRef" />
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Kare Enlemi</div>
+                                        <input class="form-control" name="squareLatitude" type="number" step="0.000001" id="updateSquareLatitude" />
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Kare Boylamı</div>
+                                        <input class="form-control" name="squareLongitude" type="number" step="0.000001" id="updateSquareLongitude" />
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Enlem</div>
+                                        <input class="form-control" name="latitude" type="number" step="0.000001" id="updateLatitude" />
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Boylam</div>
+                                        <input class="form-control" name="longitude" type="number" step="0.000001" id="updateLongitude" />
+                                    </div>
+                                </div>
+                                <div class="col-xl-6">
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Ondalık Derece</div>
+                                        <input class="form-control" name="decimalDegrees" type="text" id="updateDecimalDegrees" />
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Derece Dakika Saniye</div>
+                                        <input class="form-control" name="degreesMinutesSeconds" type="text" id="updateDegreesMinutesSeconds" />
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Ondalık Dakika</div>
+                                        <input class="form-control" name="decimalMinutes" type="text" id="updateDecimalMinutes" />
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">UTM Koordinatları</div>
+                                        <input class="form-control" name="utmCoordinates" type="text" id="updateUtmCoordinates" />
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">MGRS Koordinatları</div>
+                                        <input class="form-control" name="mgrsCoordinates" type="text" id="updateMgrsCoordinates" />
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Rakım 1</div>
+                                        <input class="form-control" name="altitude1" type="number" step="0.01" id="updateAltitude1" />
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Rakım 2</div>
+                                        <input class="form-control" name="altitude2" type="number" step="0.01" id="updateAltitude2" />
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">UTM Referansı</div>
+                                        <input class="form-control" name="utmReference" type="text" id="updateUtmReference" />
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Konum Bilgisi</div>
+                                        <input class="form-control" name="locationInfo" type="text" id="updateLocationInfo" />
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Koordinat Hassasiyet Seviyesi</div>
+                                        <select class="form-select" name="coordinatePrecisionLevel" id="updateCoordinatePrecisionLevel">
+                                            <option value="0">Tam/Hassas Koordinat</option>
+                                            <option value="1">UTM Koordinatı</option>
+                                            <option value="2">İlçe Koordinatı</option>
+                                            <option value="3">Kare Koordinatı</option>
+                                            <option value="4">İl Koordinatı</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end::Location Card-->
+                    <!--begin::Observation Card-->
+                    <div class="card shadow-sm modal-section">
+                        <div class="card-header">
+                            <h3 class="card-title align-items-start flex-column">
+                                <span class="card-label fw-bold text-dark">Gözlem Detayları</span>
+                            </h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="row g-5 g-xl-8">
+                                <div class="col-xl-6">
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Gözlemci</div>
+                                        <input class="form-control" name="observerFullName" type="text" id="updateObserverName" />
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Tarih</div>
+                                        <input class="form-control" name="observationDate" type="date" id="updateObservationDate" />
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Görülen Sayı</div>
+                                        <input class="form-control" name="numberSeen" type="number" id="updateNumberSeen" />
+                                    </div>
+                                </div>
+                                <div class="col-xl-6">
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Cinsiyet</div>
+                                        <input class="form-control" name="sex" type="text" id="updateSex" />
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Yaşam Evresi</div>
+                                        <input class="form-control" name="lifeStage" type="text" id="updateLifeStage" />
+                                    </div>
+                                    <div class="field-container mb-5">
+                                        <div class="fs-6 fw-semibold mb-2">Notlar</div>
+                                        <input class="form-control" name="notes" type="text" id="updateNotes" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field-container mb-5">
+                                <div class="fs-6 fw-semibold mb-2">Kaynak</div>
+                                <input class="form-control" name="source" type="text" id="updateSource" />
+                            </div>
+                            <div class="text-center mt-15">
+                                <button type="button" class="btn btn-light-success" id="updateObservationButton">
+                                    <span class="indicator-label">Güncelle</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end::Observation Card-->
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 @section Scripts {
     <script>
         var detailsModal;
@@ -447,6 +659,204 @@
         }
 
         
+</script>
+<script>
+            function showUpdateModal(id) {
+            // Önce illeri getir
+            $.ajax({
+                url: 'https://localhost:7128/api/Provinces',
+                method: 'GET',
+                success: function(provinceResponse) {
+                    if (provinceResponse.isSuccess && provinceResponse.data) {
+                        const provinceSelect = $('#updateProvinceName');
+                        provinceSelect.empty();
+                        provinceSelect.append('<option value="">Select Province</option>');
+
+                        provinceResponse.data.forEach(province => {
+                            provinceSelect.append(`<option value="${province.id}">${province.name}</option>`);
+                        });
+
+                        // Sonra gözlem detaylarını getir
+                        $.ajax({
+                            url: `https://localhost:7128/api/Observations/${id}`,
+                            method: 'GET',
+                            success: function(response) {
+                                if (response.isSuccess && response.data) {
+                                    const data = response.data;
+
+                                    // Form alanlarını doldur
+                                    $('#updateId').val(data.id);
+                                    $('#updateScientificName').val(data.scientificName);
+                                    $('#updateFamilyName').val(data.familyName);
+                                    $('#updateGenusName').val(data.genusName);
+                                    $('#updateEUName').val(data.euName);
+                                    $('#updateFullName').val(data.fullName);
+                                    $('#updateKocakName').val(data.kocakName);
+                                    $('#updateTurkishName').val(data.turkishName);
+                                    $('#updateEnglishName').val(data.englishName);
+                                    $('#updateAuthority').val(`${data.authorityName || ''} ${data.authorityYear || ''}`);
+                                    $('#updateName').val(data.name);
+                                    $('#updateTurkishNamesTrakel').val(data.turkishNamesTrakel);
+                                    $('#updateTrakel').val(data.trakel);
+                                    $('#updateHesselbarthName').val(data.hesselbarthName);
+
+                                    // Location bilgileri
+                                    $('#updateProvinceName').val(data.provinceId);
+                                    $('#updateSquareRef').val(data.squareRef);
+                                    $('#updateSquareLatitude').val(data.squareLatitude);
+                                    $('#updateSquareLongitude').val(data.squareLongitude);
+                                    $('#updateLatitude').val(data.latitude);
+                                    $('#updateLongitude').val(data.longitude);
+                                    $('#updateDecimalDegrees').val(data.decimalDegrees);
+                                    $('#updateDegreesMinutesSeconds').val(data.degreesMinutesSeconds);
+                                    $('#updateDecimalMinutes').val(data.decimalMinutes);
+                                    $('#updateUtmCoordinates').val(data.utmCoordinates);
+                                    $('#updateMgrsCoordinates').val(data.mgrsCoordinates);
+                                    $('#updateAltitude1').val(data.altitude1);
+                                    $('#updateAltitude2').val(data.altitude2);
+                                    $('#updateUtmReference').val(data.utmReference);
+                                    $('#updateLocationInfo').val(data.locationInfo);
+                                    $('#updateCoordinatePrecisionLevel').val(data.coordinatePrecisionLevel);
+
+                                    // Observation bilgileri
+                                    $('#updateObserverName').val(data.observerFullName);
+                                    $('#updateObservationDate').val(moment(data.observationDate).format('YYYY-MM-DD'));
+                                    $('#updateNumberSeen').val(data.numberSeen);
+                                    $('#updateSex').val(data.sex);
+                                    $('#updateLifeStage').val(data.lifeStage);
+                                    $('#updateNotes').val(data.notes);
+                                    $('#updateSource').val(data.source);
+
+                                    // Modalı göster
+                                    $('#kt_updatemodal_observation').modal('show');
+                                } else {
+                                    showError('Veri alınamadı', 'Gözlem detayları getirilirken bir hata oluştu.');
+                                }
+                            },
+                            error: function(xhr, status, error) {
+                                showError('Hata!', 'Sunucu ile iletişim kurulurken bir hata oluştu.');
+                            }
+                        });
+                    }
+                },
+                error: function(xhr, status, error) {
+                    showError('Hata!', 'İller getirilirken bir hata oluştu.');
+                }
+            });
+        }
+
+        $('#updateObservationButton').on('click', function() {
+            // Otorite bilgisini ayırma
+                const authorityValue = $('#updateAuthority').val();
+                let authorityName = '';
+                let year = 0;
+                if (authorityValue) {
+                    const parts = authorityValue.split(' ');
+                    if (parts.length >= 2) {
+                        year = parseInt(parts[parts.length - 1]) || 0;
+                        authorityName = parts.slice(0, -1).join(' ').trim();
+                    }
+                }
+
+            // Gözlemci bilgisini ayırma
+            const observerValue = $('#updateObserverName').val();
+            let observerName = '';
+            let surname = '';
+            if (observerValue) {
+                const parts = observerValue.split(' ').map(part => part.trim());
+                if (parts.length === 2) {
+                    observerName = parts[0];
+                    surname = parts[1];
+                }
+            }
+
+            const formData = {
+                 id: parseInt($('#updateId').val()),
+
+                // Classification bilgileri
+                scientificName: $('#updateScientificName').val() || null,
+                familyName: $('#updateFamilyName').val() || null,
+                genusName: $('#updateGenusName').val() || null,
+                euName: $('#updateEUName').val() || null,
+                fullName: $('#updateFullName').val() || null,
+                turkishName: $('#updateTurkishName').val() || null,
+                englishName: $('#updateEnglishName').val() || null,
+                name: $('#updateName').val() || null,
+                turkishNamesTrakel: $('#updateTurkishNamesTrakel').val() || null,
+                trakel: $('#updateTrakel').val() || null,
+                kocakName: $('#updateKocakName').val() || null,
+                hesselbarthName: $('#updateHesselbarthName').val() || null,
+                authorityName: authorityName || null,
+                year: year || null,
+
+                // Location bilgileri
+                provinceId: parseInt($('#updateProvinceName').val()) || null,
+                squareRef: $('#updateSquareRef').val() || null,
+                latitude: $('#updateLatitude').val() ? parseFloat($('#updateLatitude').val()) : 0,
+                longitude: $('#updateLongitude').val() ? parseFloat($('#updateLongitude').val()) : 0,
+                squareLatitude: $('#updateSquareLatitude').val() ? parseFloat($('#updateSquareLatitude').val()) : 0,
+                squareLongitude: $('#updateSquareLongitude').val() ? parseFloat($('#updateSquareLongitude').val()) : 0,
+                decimalDegrees: $('#updateDecimalDegrees').val() || null,
+                degreesMinutesSeconds: $('#updateDegreesMinutesSeconds').val() || null,
+                decimalMinutes: $('#updateDecimalMinutes').val() || null,
+                utmCoordinates: $('#updateUtmCoordinates').val() || null,
+                mgrsCoordinates: $('#updateMgrsCoordinates').val() || null,
+                altitude1: $('#updateAltitude1').val() ? parseFloat($('#updateAltitude1').val()) : 0, 
+                altitude2: $('#updateAltitude2').val() ? parseFloat($('#updateAltitude2').val()) : 0,
+                utmReference: $('#updateUtmReference').val() || null,
+                locationInfo: $('#updateLocationInfo').val() || null,
+                coordinatePrecisionLevel: parseInt($('#updateCoordinatePrecisionLevel').val()) || 0,
+
+                // Observation bilgileri
+                observerFullName: observerValue || null,
+                observerName: observerName || null,
+                surname: surname || null,
+                observationDate: $('#updateObservationDate').val() ? new Date($('#updateObservationDate').val()).toISOString() : null,
+                numberSeen: $('#updateNumberSeen').val() ? parseInt($('#updateNumberSeen').val()) : 0,
+                sex: $('#updateSex').val() || null,
+                lifeStage: $('#updateLifeStage').val() || null,
+                notes: $('#updateNotes').val() || null,
+                source: $('#updateSource').val() || null
+
+            };
+
+            console.log('Gönderilen veriler:', formData);
+
+            $.ajax({
+                url: 'https://localhost:7128/api/Observations',
+                method: 'PUT',
+                contentType: 'application/json',
+                data: JSON.stringify(formData),
+                success: function(response) {
+                    if (response.isSuccess) {
+                        Swal.fire({
+                            title: 'Başarılı!',
+                            text: 'Gözlem başarıyla güncellendi.',
+                            icon: 'success',
+                            timer: 2000,
+                            showConfirmButton: true
+                        }).then(() => {
+                            $('#kt_updatemodal_observation').modal('hide');
+                            window.location.reload();
+                        });
+                    } else {
+                        Swal.fire({
+                            title: 'Hata!',
+                            text: response.message || 'Güncelleme işlemi başarısız oldu.',
+                            icon: 'error'
+                        });
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('Update Error:', xhr.responseText);
+                    Swal.fire({
+                        title: 'Hata!',
+                        text: 'Güncelleme işlemi sırasında bir hata oluştu.',
+                        icon: 'error'
+                    });
+                }
+            });
+        });
 </script>
 }
 

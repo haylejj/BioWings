@@ -13,6 +13,8 @@ public interface IGenericRepository<T> where T : BaseEntity
     IQueryable<T> GetAllAsQueryable();
     Task<IEnumerable<T>> GetAllAsync(CancellationToken cancellationToken = default);
     Task<int> GetTotalCountAsync(CancellationToken cancellationToken = default);
+    Task<bool> AnyAsync(Expression<Func<T, bool>> predicate, CancellationToken cancellationToken = default);
+    Task<bool> IsExistAsync(Expression<Func<T, bool>> predicate, CancellationToken cancellationToken = default);
     //Toplu işlemler
     Task AddRangeAsync(IEnumerable<T> entities, CancellationToken cancellationToken = default);
     void UpdateRange(IEnumerable<T> entities);

@@ -55,6 +55,29 @@ namespace BioWings.Persistence.Migrations
                     b.ToTable("Authorities");
                 });
 
+            modelBuilder.Entity("BioWings.Domain.Entities.Country", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedDateTime")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<DateTime>("UpdatedDateTime")
+                        .HasColumnType("datetime(6)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Countries");
+                });
+
             modelBuilder.Entity("BioWings.Domain.Entities.Family", b =>
                 {
                     b.Property<int>("Id")
@@ -339,6 +362,33 @@ namespace BioWings.Persistence.Migrations
                     b.ToTable("Provinces");
                 });
 
+            modelBuilder.Entity("BioWings.Domain.Entities.Role", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedDateTime")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<DateTime>("UpdatedDateTime")
+                        .HasColumnType("datetime(6)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
+
+                    b.ToTable("Roles");
+                });
+
             modelBuilder.Entity("BioWings.Domain.Entities.Species", b =>
                 {
                     b.Property<int>("Id")
@@ -444,6 +494,95 @@ namespace BioWings.Persistence.Migrations
                     b.ToTable("Subspecies");
                 });
 
+            modelBuilder.Entity("BioWings.Domain.Entities.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CountryId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDateTime")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<string>("EmailConfirmationToken")
+                        .HasMaxLength(400)
+                        .HasColumnType("varchar(400)");
+
+                    b.Property<DateTime?>("EmailConfirmationTokenExpireDate")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("FirstName")
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<string>("LastName")
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<string>("PasswordHash")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("RefreshToken")
+                        .HasMaxLength(400)
+                        .HasColumnType("varchar(400)");
+
+                    b.Property<DateTime?>("RefreshTokenExpireDate")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("ResetPasswordToken")
+                        .HasMaxLength(400)
+                        .HasColumnType("varchar(400)");
+
+                    b.Property<DateTime?>("ResetPasswordTokenExpireDate")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime>("UpdatedDateTime")
+                        .HasColumnType("datetime(6)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CountryId");
+
+                    b.HasIndex("Email")
+                        .IsUnique();
+
+                    b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("BioWings.Domain.Entities.UserRole", b =>
+                {
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDateTime")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime>("UpdatedDateTime")
+                        .HasColumnType("datetime(6)");
+
+                    b.HasKey("UserId", "RoleId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("UserRoles");
+                });
+
             modelBuilder.Entity("BioWings.Domain.Entities.Genus", b =>
                 {
                     b.HasOne("BioWings.Domain.Entities.Family", "Family")
@@ -516,9 +655,44 @@ namespace BioWings.Persistence.Migrations
                     b.Navigation("Species");
                 });
 
+            modelBuilder.Entity("BioWings.Domain.Entities.User", b =>
+                {
+                    b.HasOne("BioWings.Domain.Entities.Country", "Country")
+                        .WithMany("Users")
+                        .HasForeignKey("CountryId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Country");
+                });
+
+            modelBuilder.Entity("BioWings.Domain.Entities.UserRole", b =>
+                {
+                    b.HasOne("BioWings.Domain.Entities.Role", "Role")
+                        .WithMany("UserRoles")
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BioWings.Domain.Entities.User", "User")
+                        .WithMany("UserRoles")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Role");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("BioWings.Domain.Entities.Authority", b =>
                 {
                     b.Navigation("Species");
+                });
+
+            modelBuilder.Entity("BioWings.Domain.Entities.Country", b =>
+                {
+                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("BioWings.Domain.Entities.Family", b =>
@@ -546,11 +720,21 @@ namespace BioWings.Persistence.Migrations
                     b.Navigation("Locations");
                 });
 
+            modelBuilder.Entity("BioWings.Domain.Entities.Role", b =>
+                {
+                    b.Navigation("UserRoles");
+                });
+
             modelBuilder.Entity("BioWings.Domain.Entities.Species", b =>
                 {
                     b.Navigation("Observations");
 
                     b.Navigation("Subspecies");
+                });
+
+            modelBuilder.Entity("BioWings.Domain.Entities.User", b =>
+                {
+                    b.Navigation("UserRoles");
                 });
 #pragma warning restore 612, 618
         }

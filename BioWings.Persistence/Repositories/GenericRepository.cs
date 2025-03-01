@@ -141,4 +141,7 @@ public class GenericRepository<T>(AppDbContext dbContext) : IGenericRepository<T
 
         return dataTable;
     }
+
+    public async Task<bool> AnyAsync(Expression<Func<T, bool>> predicate, CancellationToken cancellationToken = default) => await _dbSet.AnyAsync(predicate, cancellationToken);
+    public async Task<bool> IsExistAsync(Expression<Func<T, bool>> predicate, CancellationToken cancellationToken = default) => await _dbSet.AnyAsync(predicate, cancellationToken);
 }

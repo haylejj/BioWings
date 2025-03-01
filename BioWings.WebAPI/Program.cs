@@ -3,7 +3,10 @@ using BioWings.Infrastructure.Extensions;
 using BioWings.Infrastructure.Hubs;
 using BioWings.Persistence.Extensions;
 using BioWings.WebAPI.Exceptions;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 using Serilog;
+using System.Text;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -36,6 +39,30 @@ builder.Services.AddPersistenceExtensions(builder.Configuration);
 builder.Services.AddInfrastructureExtensions(builder.Configuration);
 // global exception handler
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+// jwt configuration
+builder.Services.AddAuthentication(x =>
+{
+    x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    x.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(options =>
+{
+    options.SaveToken = true;
+    options.RequireHttpsMetadata = false;
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        ClockSkew = TimeSpan.Zero,
+        ValidIssuer = builder.Configuration["JwtSettings:Issuer"],
+        ValidAudience = builder.Configuration["JwtSettings:Audience"],
+        IssuerSigningKey = new SymmetricSecurityKey(
+            Encoding.UTF8.GetBytes(builder.Configuration["JwtSettings:SecretKey"]))
+    };
+});
+builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
@@ -50,7 +77,7 @@ app.UseSerilogRequestLogging();
 app.UseHttpsRedirection();
 
 app.UseExceptionHandler(opt => { });
-
+app.UseAuthentication();
 app.UseAuthorization();
 app.MapHub<ProgressHub>("/progressHub");
 app.MapControllers();

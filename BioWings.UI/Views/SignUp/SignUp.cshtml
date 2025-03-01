@@ -1,0 +1,441 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>BioWings - Registration</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="shortcut icon" href="~/assets/media/logos/favicon.ico" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
+    <link href="~/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.min.css">
+    <style>
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login-card {
+            border-radius: 12px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+        }
+
+        .auth-logo {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 1.5rem;
+        }
+
+        .login-form-container {
+            padding: 3rem 3rem;
+        }
+
+        .app-title {
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: #181C32;
+            margin-bottom: 0.75rem;
+        }
+
+        .app-subtitle {
+            color: #7E8299;
+            font-size: 1rem;
+            margin-bottom: 2.5rem;
+        }
+
+        #kt_app_root {
+            width: 100%;
+        }
+
+        .password-toggle {
+            cursor: pointer;
+        }
+
+        .password-requirements {
+            font-size: 0.85rem;
+        }
+
+        .password-requirement {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+            .password-requirement i {
+                margin-right: 0.5rem;
+                font-size: 0.8rem;
+            }
+
+        .requirement-met {
+            color: #50CD89;
+        }
+
+        .requirement-unmet {
+            color: #A1A5B7;
+        }
+    </style>
+</head>
+
+<body id="kt_body" class="app-blank">
+    <!-- Main Content -->
+    <div class="d-flex flex-column flex-root" id="kt_app_root">
+        <div class="d-flex flex-column flex-lg-row flex-column-fluid justify-content-center align-items-center min-vh-100">
+            <div class="d-flex flex-column flex-lg-row-fluid w-lg-500px p-10">
+                <div class="d-flex flex-center flex-column flex-lg-row-fluid">
+                    <div class="w-lg-500px p-10">
+                        <form class="form w-100" novalidate="novalidate" id="kt_sign_up_form">
+                            <div class="text-center mb-11">
+                                <!-- Logo -->
+                                <div class="text-center">
+                                    <img src="~/assets/media/logos/butterfly1-logo.svg" alt="BioWings Logo" class="auth-logo" />
+                                </div>
+                                <h1 class="app-title">Sign Up for BioWings System</h1>
+                                <div class="app-subtitle">
+                                    Enter your information to register with BioWings.
+                                </div>
+                            </div>
+
+                            <!-- Name and Surname Fields -->
+                            <div class="row mb-6">
+                                <div class="col-md-6 fv-row">
+                                    <input type="text" placeholder="First Name" name="firstName" autocomplete="off" class="form-control bg-transparent" />
+                                    <div class="fv-plugins-message-container invalid-feedback"></div>
+                                </div>
+                                <div class="col-md-6 fv-row">
+                                    <input type="text" placeholder="Last Name" name="lastName" autocomplete="off" class="form-control bg-transparent" />
+                                    <div class="fv-plugins-message-container invalid-feedback"></div>
+                                </div>
+                            </div>
+
+                            <!-- Email -->
+                            <div class="fv-row mb-6">
+                                <input type="email" placeholder="Email" name="email" autocomplete="off" class="form-control bg-transparent" />
+                                <div class="fv-plugins-message-container invalid-feedback"></div>
+                            </div>
+
+                            <!-- Country Dropdown -->
+                            <div class="fv-row mb-6">
+                                <select name="countryId" class="form-control bg-transparent" placeholder="Ülke Seçiniz">
+                                    <option value="">Select your country</option>
+                                    @if (ViewBag.Countries != null)
+                                    {
+                                        foreach (var country in ViewBag.Countries)
+                                        {
+                                            <option value="@country.Id">@country.Name</option>
+                                        }
+                                    }
+                                </select>
+                                <div class="fv-plugins-message-container invalid-feedback"></div>
+                            </div>
+
+                            <!-- Password -->
+                            <div class="fv-row mb-3 position-relative">
+                                <input type="password" placeholder="Password" name="password" autocomplete="off" class="form-control bg-transparent" id="password-field" />
+                                <span class="password-toggle position-absolute top-50 end-0 translate-middle-y me-3">
+                                    <i class="fas fa-eye-slash toggle-password" onclick="togglePassword('password-field')"></i>
+                                </span>
+                                <div class="fv-plugins-message-container invalid-feedback"></div>
+                            </div>
+
+                            <!-- Password strength indicator -->
+                            <div class="mb-8">
+                                <div class="password-requirements text-muted mt-2">
+                                    <div class="password-requirement">
+                                        <i class="fas fa-circle requirement-unmet" id="min-length"></i>
+                                        <span>Minimum 8 characters</span>
+                                    </div>
+                                    <div class="password-requirement">
+                                        <i class="fas fa-circle requirement-unmet" id="has-uppercase"></i>
+                                        <span>At least 1 uppercase letter</span>
+                                    </div>
+                                    <div class="password-requirement">
+                                        <i class="fas fa-circle requirement-unmet" id="has-lowercase"></i>
+                                        <span>At least 1 lowercase letter</span>
+                                    </div>
+                                    <div class="password-requirement">
+                                        <i class="fas fa-circle requirement-unmet" id="has-number"></i>
+                                        <span>At least 1 number</span>
+                                    </div>
+                                    <div class="password-requirement">
+                                        <i class="fas fa-circle requirement-unmet" id="has-special"></i>
+                                        <span>At least 1 special character</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Confirm Password -->
+                            <div class="fv-row mb-8 position-relative">
+                                <input type="password" placeholder="Confirm Password" name="confirmPassword" autocomplete="off" class="form-control bg-transparent" id="confirm-password-field" />
+                                <span class="password-toggle position-absolute top-50 end-0 translate-middle-y me-3">
+                                    <i class="fas fa-eye-slash toggle-password" onclick="togglePassword('confirm-password-field')"></i>
+                                </span>
+                                <div class="fv-plugins-message-container invalid-feedback"></div>
+                            </div>
+
+                            <!-- Terms and Conditions -->
+                            <div class="fv-row mb-8">
+                                <label class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" name="toc" value="1" />
+                                    <span class="form-check-label fw-semibold text-gray-700 fs-base ms-1">
+                                        I accept the <a href="#" class="ms-1 link-primary">Terms of Use</a> and
+                                        <a href="#" class="ms-1 link-primary">Privacy Policy</a>
+                                    </span>
+                                </label>
+                                <div class="fv-plugins-message-container invalid-feedback"></div>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <div class="d-grid mb-10">
+                                <button type="submit" id="kt_sign_up_submit" class="btn btn-primary">
+                                    <span class="indicator-label">Sign Up</span>
+                                    <span class="indicator-progress">
+                                        Please wait...
+                                        <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                                    </span>
+                                </button>
+                            </div>
+
+                            <!-- Sign In Link -->
+                            <div class="text-gray-500 text-center fw-semibold fs-6">
+                                Already have an account?
+                                <a href="/Auth/Login" class="link-primary">Sign In</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="w-lg-500px d-flex flex-stack px-10 mx-auto">
+                    <div class="d-flex fw-semibold text-primary fs-base gap-5 w-100 justify-content-center">
+                        <a href="#" target="_blank">Privacy Policy</a>
+                        <a href="#" target="_blank">Terms of Use</a>
+                        <a href="#" target="_blank">Support</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>var hostUrl = "~/assets/";</script>
+    <script src="~/assets/plugins/global/plugins.bundle.js"></script>
+    <script src="~/assets/js/scripts.bundle.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.all.min.js"></script>
+    <script>
+        // Password toggle function
+        function togglePassword(fieldId) {
+            const passwordField = document.getElementById(fieldId);
+            const passwordToggle = passwordField.parentElement.querySelector('.toggle-password');
+
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                passwordToggle.classList.remove('fa-eye-slash');
+                passwordToggle.classList.add('fa-eye');
+            } else {
+                passwordField.type = 'password';
+                passwordToggle.classList.remove('fa-eye');
+                passwordToggle.classList.add('fa-eye-slash');
+            }
+        }
+
+        // Form validation and password strength
+        document.addEventListener('DOMContentLoaded', function () {
+            // Form element
+            const form = document.getElementById('kt_sign_up_form');
+            const submitButton = document.getElementById('kt_sign_up_submit');
+            const passwordField = document.getElementById('password-field');
+            const tocCheckbox = document.querySelector('input[name="toc"]');
+
+            // Password strength indicators
+            const minLength = document.getElementById('min-length');
+            const hasUppercase = document.getElementById('has-uppercase');
+            const hasLowercase = document.getElementById('has-lowercase');
+            const hasNumber = document.getElementById('has-number');
+            const hasSpecial = document.getElementById('has-special');
+
+            // Password validation
+            passwordField.addEventListener('input', function () {
+                const password = this.value;
+
+                // Check requirements
+                const meetsLength = password.length >= 8;
+                const meetsUppercase = /[A-Z]/.test(password);
+                const meetsLowercase = /[a-z]/.test(password);
+                const meetsNumber = /[0-9]/.test(password);
+                const meetsSpecial = /[^A-Za-z0-9]/.test(password);
+
+                // Update indicators
+                updateRequirement(minLength, meetsLength);
+                updateRequirement(hasUppercase, meetsUppercase);
+                updateRequirement(hasLowercase, meetsLowercase);
+                updateRequirement(hasNumber, meetsNumber);
+                updateRequirement(hasSpecial, meetsSpecial);
+            });
+
+            // Confirm password validation
+            const confirmPasswordField = document.getElementById('confirm-password-field');
+            confirmPasswordField.addEventListener('input', function() {
+                const password = passwordField.value;
+                const confirmPassword = this.value;
+
+                if (password === confirmPassword) {
+                    this.setCustomValidity('');
+                } else {
+                    this.setCustomValidity('Passwords do not match');
+                }
+            });
+
+            // Update requirement indicator
+            function updateRequirement(element, isMet) {
+                if (isMet) {
+                    element.classList.remove('requirement-unmet');
+                    element.classList.add('requirement-met');
+                } else {
+                    element.classList.remove('requirement-met');
+                    element.classList.add('requirement-unmet');
+                }
+            }
+
+            // Form submission
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                // Check if all required fields are filled
+                const firstName = form.querySelector('input[name="firstName"]').value;
+                const lastName = form.querySelector('input[name="lastName"]').value;
+                const email = form.querySelector('input[name="email"]').value;
+                const country = form.querySelector('select[name="countryId"]').value;
+                const password = passwordField.value;
+                const confirmPassword = confirmPasswordField.value;
+
+                // Validate required fields
+                if (!firstName || !lastName || !email || !country || !password || !confirmPassword) {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'Please fill in all required fields.',
+                        icon: 'error',
+                        confirmButtonText: 'OK'
+                    });
+                    return false;
+                }
+
+
+                // Validate password requirements
+                if (!validatePassword()) {
+                    Swal.fire({
+                        title: 'Password Error!',
+                        text: 'Your password does not meet the requirements.',
+                        icon: 'error',
+                        confirmButtonText: 'OK'
+                    });
+                    return false;
+                }
+
+                // Confirm passwords match
+                if (password !== confirmPassword) {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'Passwords do not match.',
+                        icon: 'error',
+                        confirmButtonText: 'OK'
+                    });
+                    return false;
+                }
+
+                // Check if Terms and Conditions is checked
+                if (!tocCheckbox.checked) {
+                    Swal.fire({
+                        title: 'Terms Required!',
+                        text: 'You must accept the Terms of Use and Privacy Policy to continue.',
+                        icon: 'warning',
+                        confirmButtonText: 'OK'
+                    });
+                    return false;
+                }
+
+                // Show loading indication
+                submitButton.setAttribute('data-kt-indicator', 'on');
+                submitButton.disabled = true;
+
+                // Submit the form programmatically
+                const formData = new FormData(form);
+                // AJAX isteği gönder
+                fetch('/SignUp/SignUp', {
+                    method: 'POST',
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'  // Bu, isteğin AJAX olduğunu belirtir
+                    },
+                    body: formData
+                })
+                .then(response => {
+                    if (!response.ok && !response.headers.get('content-type').includes('application/json')) {
+                        throw new Error('Server error occurred');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.success) {
+                        // Başarılı kayıt
+                        Swal.fire({
+                            title: 'Registration Successful!',
+                            text: 'A confirmation email has been sent to your address. Please check your inbox and click the verification link to activate your account.',
+                            icon: 'success',
+                            confirmButtonText: 'OK'
+                        }).then(() => {
+                            // Yönlendirme varsa kullan ama doğruluğunu kontrol et
+                            if (data.redirectUrl) {
+                                window.location.href = data.redirectUrl;
+                            } else {
+                                window.location.href = '/Login/Login';
+                            }
+                            });
+                     } else {
+                        // Hata durumu
+                        Swal.fire({
+                            title: 'Registration Failed!',
+                            text: data.message || 'An error occurred during registration.',
+                            icon: 'error',
+                            confirmButtonText: 'OK'
+                        });
+                    }
+                })
+                .catch(error => {
+                    // Genel hata
+                    Swal.fire({
+                        title: 'Registration Failed!',
+                        text: 'An error occurred during registration. Please try again later.',
+                        icon: 'error',
+                        confirmButtonText: 'OK'
+                    });
+                })
+                .finally(() => {
+                    // Loading durumunu kaldır
+                    submitButton.removeAttribute('data-kt-indicator');
+                    submitButton.disabled = false;
+                });
+            });
+
+            function validatePassword() {
+                const password = passwordField.value;
+
+                // Check requirements
+                const meetsLength = password.length >= 8;
+                const meetsUppercase = /[A-Z]/.test(password);
+                const meetsLowercase = /[a-z]/.test(password);
+                const meetsNumber = /[0-9]/.test(password);
+                const meetsSpecial = /[^A-Za-z0-9]/.test(password);
+
+                // Ensure all requirements are met
+                return meetsLength && meetsUppercase && meetsLowercase &&
+                       meetsNumber && meetsSpecial;
+            }
+        });
+    </script>
+</body>
+</html>

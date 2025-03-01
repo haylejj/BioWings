@@ -34,11 +34,6 @@
             border-bottom: 1px solid #2B2B40;
         }
 
-        /* Light modda header arkaplan rengi sabit kalacak */
-        [data-bs-theme="light"] #kt_app_header {
-            background-color: #1e1e2d !important;
-        }
-
         /* Header menü yazı renkleri */
         .app-header .menu-title {
             color: #ffffff !important;
@@ -71,80 +66,21 @@
             opacity: 1 !important;
         }
 
-        /* Light/Dark mod geçişlerinde header içindeki menü öğeleri hep beyaz kalacak */
-        [data-bs-theme="light"] .app-header .menu-title,
-        [data-bs-theme="dark"] .app-header .menu-title {
-            color: #ffffff !important;
-        }
-
-        [data-bs-theme="light"] .app-header .menu-icon i,
-        [data-bs-theme="dark"] .app-header .menu-icon i {
-            color: #ffffff !important;
-        }
-
-        /* Tema değiştirme menüsü */
+        /* Menu sub dropdown styles */
         .menu-sub-dropdown {
-            background-color: var(--bs-body-bg) !important;
-        }
-
-            .menu-sub-dropdown .menu-link {
-                color: var(--bs-body-color) !important;
-            }
-
-                .menu-sub-dropdown .menu-link:hover {
-                    background-color: var(--bs-gray-100) !important;
-                }
-
-        /* Tema değiştirme ikonları */
-        .app-header .theme-light-show,
-        .app-header .theme-dark-show {
-            color: #ffffff !important;
-        }
-
-        /* Kullanıcı menüsü ikonları */
-        .app-header .symbol-label i {
-            color: #ffffff !important;
-        }
-
-        [data-bs-theme="light"] .menu-sub-dropdown.menu-sub-dropdown-light {
             background-color: #ffffff !important;
         }
 
-        [data-bs-theme="light"] .menu-sub-dropdown .menu-link {
-            color: #3F4254 !important;
-        }
-
-            [data-bs-theme="light"] .menu-sub-dropdown .menu-link .menu-title {
+            .menu-sub-dropdown .menu-link {
                 color: #3F4254 !important;
             }
 
-            [data-bs-theme="light"] .menu-sub-dropdown .menu-link:hover {
-                background-color: #F4F6FA !important;
-            }
-
-        /* Dark modda tema menüsü için özel stiller */
-        [data-bs-theme="dark"] .menu-sub-dropdown {
-            background-color: #1e1e2d !important;
-        }
-
-            [data-bs-theme="dark"] .menu-sub-dropdown .menu-link {
-                color: #ffffff !important;
-            }
-
-                [data-bs-theme="dark"] .menu-sub-dropdown .menu-link .menu-title {
-                    color: #ffffff !important;
+                .menu-sub-dropdown .menu-link:hover {
+                    background-color: #F4F6FA !important;
                 }
 
-                [data-bs-theme="dark"] .menu-sub-dropdown .menu-link:hover {
-                    background-color: #2B2B40 !important;
-                }
-
-        /* Icon renkleri her iki mod için */
-        .menu-sub-dropdown .menu-link .menu-icon i {
-            color: #3F4254 !important;
-        }
-
-        [data-bs-theme="dark"] .menu-sub-dropdown .menu-link .menu-icon i {
+        /* Kullanıcı menüsü ikonları */
+        .app-header .symbol-label i {
             color: #ffffff !important;
         }
     </style>
@@ -152,9 +88,6 @@
 </head>
 
 <body id="kt_app_body" data-kt-app-layout="light-header" data-kt-app-header-fixed="true" data-kt-app-toolbar-enabled="true" class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled">
-    <!--begin::Theme mode setup on page load-->
-    <script>var defaultThemeMode = "light"; var themeMode; if (document.documentElement) { if (document.documentElement.hasAttribute("data-bs-theme-mode")) { themeMode = document.documentElement.getAttribute("data-bs-theme-mode"); } else { if (localStorage.getItem("data-bs-theme") !== null) { themeMode = localStorage.getItem("data-bs-theme"); } else { themeMode = defaultThemeMode; } } if (themeMode === "system") { themeMode = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"; } document.documentElement.setAttribute("data-bs-theme", themeMode); }</script>
-    <!--end::Theme mode setup on page load-->
     <!--begin::App-->
     <div class="d-flex flex-column flex-root app-root" id="kt_app_root">
         <!--begin::Page-->
@@ -166,10 +99,7 @@
                     <!--begin::Logo-->
                     <div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0 me-lg-15">
                         <a href="/">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="white" viewBox="0 0 16 16">
-                                <path d="M14 3.113a3.198 3.198 0 0 0-3.088-3.108A8.376 8.376 0 0 0 8.9 0c-.75 0-1.49.1-2.212.303A3.2 3.2 0 0 0 3.6 3.113c-.025.366-.038.733-.037 1.1v1.1a.85.85 0 0 0 1.7 0v-1.1c0-.307.012-.613.037-.918a1.5 1.5 0 0 1 1.45-1.45c.607-.168 1.236-.253 1.867-.25.633-.003 1.262.082 1.87.25a1.5 1.5 0 0 1 1.45 1.45c.024.305.036.611.037.918v1.1a.85.85 0 0 0 1.7 0v-1.1c0-.367-.012-.734-.037-1.1" />
-                                <path d="M2.55 4.463a.85.85 0 0 0-.85.85v2.188c0 2.625 1.637 4.537 3.675 5.55.371.184.77.328 1.184.431a.094.094 0 0 0 .072 0 6.97 6.97 0 0 0 1.184-.431c2.037-1.013 3.675-2.925 3.675-5.55V5.313a.85.85 0 0 0-.85-.85z" />
-                            </svg>
+                            <img src="~/assets/media/logos/butterfly1-logo.svg" width="40" height="40" alt="Site Logo">
                         </a>
                     </div>
                     <!--end::Logo-->
@@ -295,51 +225,6 @@
                         <!--end::Menu wrapper-->
                         <!--begin::Navbar-->
                         <div class="app-navbar flex-shrink-0">
-                            <!--begin::Theme mode-->
-                            <div class="app-navbar-item ms-1 ms-lg-3">
-                                <a href="#" class="btn btn-icon btn-custom w-35px h-35px w-md-40px h-md-40px" data-kt-menu-trigger="{default:'click', lg: 'hover'}" data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
-                                    <!-- Light mode icon -->
-                                    <i class="fas fa-sun fs-2 theme-light-show" style="color: #ffffff;"></i>
-                                    <!-- Dark mode icon -->
-                                    <i class="fas fa-moon fs-2 theme-dark-show" style="color: #ffffff;"></i>
-                                </a>
-
-                                <!--begin::Menu toggle-->
-                                <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg menu-state-color fw-semibold py-4 fs-6 w-175px" data-kt-menu="true" data-kt-element="theme-mode-menu">
-                                    <!--begin::Menu item-->
-                                    <div class="menu-item px-3 my-0">
-                                        <a href="#" class="menu-link px-3 py-2 fs-6 fw-semibold" data-kt-element="mode" data-kt-value="light">
-                                            <span class="menu-icon" data-kt-element="icon">
-                                                <i class="fas fa-sun fs-2"></i>
-                                            </span>
-                                            <span class="menu-title">Aydınlık</span>
-                                        </a>
-                                    </div>
-                                    <!--end::Menu item-->
-                                    <!--begin::Menu item-->
-                                    <div class="menu-item px-3 my-0">
-                                        <a href="#" class="menu-link px-3 py-2 fs-6 fw-semibold" data-kt-element="mode" data-kt-value="dark">
-                                            <span class="menu-icon" data-kt-element="icon">
-                                                <i class="fas fa-moon fs-2"></i>
-                                            </span>
-                                            <span class="menu-title">Karanlık</span>
-                                        </a>
-                                    </div>
-                                    <!--end::Menu item-->
-                                    <!--begin::Menu item-->
-                                    <div class="menu-item px-3 my-0">
-                                        <a href="#" class="menu-link px-3 py-2 fs-6 fw-semibold" data-kt-element="mode" data-kt-value="system">
-                                            <span class="menu-icon" data-kt-element="icon">
-                                                <i class="fas fa-desktop fs-2"></i>
-                                            </span>
-                                            <span class="menu-title">Sistem</span>
-                                        </a>
-                                    </div>
-                                    <!--end::Menu item-->
-                                </div>
-                                <!--end::Menu toggle-->
-                            </div>
-                            <!--end::Theme mode-->
                             <!--begin::User menu-->
                             <div class="app-navbar-item ms-1 ms-lg-3" id="kt_header_user_menu_toggle">
                                 <!--begin::Menu wrapper-->
