@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using FluentValidation;
+using FluentValidation.AspNetCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 namespace BioWings.Application.Extensions;
@@ -10,6 +12,8 @@ public static class ApplicationExtensions
         {
             opt.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
         });
+        services.AddFluentValidationAutoValidation();
+        services.AddValidatorsFromAssembly(typeof(ApplicationExtensions).Assembly);
 
         return services;
     }

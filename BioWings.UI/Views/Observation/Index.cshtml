@@ -312,7 +312,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
                 <!--end::Location Card-->
@@ -1003,6 +1003,7 @@
             return precisionLevels[level] || "Bilgi yok";
         }
     </script>
+    @*Remove Observation*@
     <script>
         function confirmDelete(id) {
             Swal.fire({
@@ -1042,6 +1043,7 @@
             });
         }
     </script>
+    @*Fetch Observation Data By ObverationId for updating observation*@
     <script>
         async function populateProvinceDropdown(selectElement, selectedProvinceId) {
             try {
@@ -1165,81 +1167,204 @@
             }
         }
     </script>
+    @*Update Observation*@
     <script>
         $(document).ready(function() {
-            $('#updateObservationButton').on('click', function() {
-                 // Form verilerini obje olarak toplama
-            const authorityValue = $('#updateAuthority').val();
-            let authorityName = '';
-            let year = 0;
-            if (authorityValue) {
-                const parts = authorityValue.split(',').map(part => part.trim());
-                if (parts.length === 2) {
-                    authorityName = parts[0];
-                    year = parseInt(parts[1]) || 0;
+            // Doldurulması zorunlu alanlar.
+            const requiredFields = [
+                'updateSquareRef',
+                'updateLatitude',
+                'updateLongitude',
+                'updateProvinceName',
+                'updateName',
+                'updateScientificName',
+                'updateObserverName',
+                'updateObservationDate',
+                'updateNumberSeen'
+            ];
+
+            // Zorunlu alan işaretlerini ekle
+            requiredFields.forEach(fieldId => {
+                const label = $(`#${fieldId}`).prev('.fs-6.fw-semibold');
+                label.html(`${label.html()} <span class="text-danger">*</span>`);
+                $(`#${fieldId}`).prop('required', true);
+            });
+
+            $('#updateObservationButton').on('click', function(e) {
+                // Validasyon kontrolü
+                let isValid = true;
+                let firstInvalidField = null;
+
+                // Zorunlu alanları kontrol et
+                requiredFields.forEach(fieldId => {
+                    const field = $(`#${fieldId}`);
+                    const value = field.val();
+
+                    if (!value || value.trim() === '') {
+                        isValid = false;
+                        field.addClass('is-invalid');
+                        if (!firstInvalidField) firstInvalidField = field;
+
+                        if (field.next('.invalid-feedback').length === 0) {
+                            field.after(`<div class="invalid-feedback">This field is required</div>`);
+                        }
+                    } else {
+                        field.removeClass('is-invalid');
+                        field.next('.invalid-feedback').remove();
+                    }
+                });
+
+                // Koordinat validasyonu
+                const latitude = parseFloat($('#updateLatitude').val());
+                const longitude = parseFloat($('#updateLongitude').val());
+
+                if (isNaN(latitude) || latitude < -90 || latitude > 90) {
+                    isValid = false;
+                    $('#updateLatitude').addClass('is-invalid');
+                    if ($('#updateLatitude').next('.invalid-feedback').length === 0) {
+                        $('#updateLatitude').after('<div class="invalid-feedback">Please enter a valid latitude (-90 to 90)</div>');
+                    }
+                    if (!firstInvalidField) firstInvalidField = $('#updateLatitude');
                 }
-            }
-            const observerValue=$('#updateObserverName').val();
-            let observerName='';
-            let surname='';
-            if(observerValue){
-                const parts=observerValue.split(' ').map(part=>part.trim());
-                if(parts.length===2){
-                    observerName=parts[0];
-                    surname=parts[1];
+
+                if (isNaN(longitude) || longitude < -180 || longitude > 180) {
+                    isValid = false;
+                    $('#updateLongitude').addClass('is-invalid');
+                    if ($('#updateLongitude').next('.invalid-feedback').length === 0) {
+                        $('#updateLongitude').after('<div class="invalid-feedback">Please enter a valid longitude (-180 to 180)</div>');
+                    }
+                    if (!firstInvalidField) firstInvalidField = $('#updateLongitude');
                 }
-            }
-            const formData = {
-                // Hidden ID
-                id: $('#updateId').val(),
-                
-                // Classification bilgileri
-                scientificName: $('#updateScientificName').val(),
-                familyName: $('#updateFamilyName').val(),
-                genusName: $('#updateGenusName').val(),
-                euName: $('#updateEUName').val(),
-                fullName: $('#updateFullName').val(),
-                turkishName: $('#updateTurkishName').val(),
-                englishName: $('#updateEnglishName').val(),
-                authorityName: $('#updateAuthority').val(),
-                name: $('#updateName').val(),
-                turkishNamesTrakel: $('#updateTurkishNamesTrakel').val(),
-                trakel: $('#updateTrakel').val(),
-                kocakName: $('#updateKocakName').val(),
-                hesselbarthName: $('#updateHesselbarthName').val(),
-                authorityName: authorityName,
-                year: year,
 
-                provinceId: parseInt($('#updateProvinceName').val()) || 0,
-                squareRef: $('#updateSquareRef').val(),
-                squareLatitude: parseFloat($('#updateSquareLatitude').val()) || 0,
-                squareLongitude: parseFloat($('#updateSquareLongitude').val()) || 0,
-                latitude: parseFloat($('#updateLatitude').val()) || 0,
-                longitude: parseFloat($('#updateLongitude').val()) || 0,
-                decimalDegrees: $('#updateDecimalDegrees').val(),
-                degreesMinutesSeconds: $('#updateDegreesMinutesSeconds').val(),
-                decimalMinutes: $('#updateDecimalMinutes').val(),
-                utmCoordinates: $('#updateUtmCoordinates').val(),
-                mgrsCoordinates: $('#updateMgrsCoordinates').val(),
-                altitude1: parseFloat($('#updateAltitude1').val()) || 0,
-                altitude2: parseFloat($('#updateAltitude2').val()) || 0,
-                utmReference: $('#updateUtmReference').val(),
-                locationInfo: $('#updateLocationInfo').val(),
-                coordinatePrecisionLevel: parseInt($('#updateCoordinatePrecisionLevel').val()) || 0,
+                // Authority formatı kontrolü
+                const authorityValue = $('#updateAuthority').val();
+                if (authorityValue && !authorityValue.match(/^.+,\s*\d+$/)) {
+                    isValid = false;
+                    $('#updateAuthority').addClass('is-invalid');
+                    if ($('#updateAuthority').next('.invalid-feedback').length === 0) {
+                        $('#updateAuthority').after('<div class="invalid-feedback">Authority must be in format "Name, Year"</div>');
+                    }
+                    if (!firstInvalidField) firstInvalidField = $('#updateAuthority');
+                }
 
-                // Observation bilgileri
-                observerFullName: $('#updateObserverName').val(),
-                observerName: observerName,
-                surname: surname,
-                observationDate: $('#updateObservationDate').val(),
-                numberSeen: parseInt($('#updateNumberSeen').val()) || 0,
-                sex: $('#updateSex').val(),
-                lifeStage: $('#updateLifeStage').val(),
-                notes: $('#updateNotes').val(),
-                source: $('#updateSource').val()
-            };
+                // Observer name surname kontrolü
+                const observerValue = $('#updateObserverName').val();
+                if (observerValue) {
+                    const nameParts = observerValue.trim().split(/\s+/);
+                    if (nameParts.length < 2) {
+                        isValid = false;
+                        $('#updateObserverName').addClass('is-invalid');
+                        if ($('#updateObserverName').next('.invalid-feedback').length === 0) {
+                            $('#updateObserverName').after('<div class="invalid-feedback">Observer must include both name and surname</div>');
+                        }
+                        if (!firstInvalidField) firstInvalidField = $('#updateObserverName');
+                    }
+                }
 
-                console.log('Gönderilen veriler:', formData); // Kontrol için
+                // NumberSeen kontrolü
+                const numberSeen = parseInt($('#updateNumberSeen').val());
+                if (isNaN(numberSeen) || numberSeen <= 0) {
+                    isValid = false;
+                    $('#updateNumberSeen').addClass('is-invalid');
+                    if ($('#updateNumberSeen').next('.invalid-feedback').length === 0) {
+                        $('#updateNumberSeen').after('<div class="invalid-feedback">Please enter a valid positive number</div>');
+                    }
+                    if (!firstInvalidField) firstInvalidField = $('#updateNumberSeen');
+                }
+
+                if (!isValid) {
+                    e.preventDefault();
+                    if (firstInvalidField) {
+                        firstInvalidField[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        firstInvalidField.focus();
+                    }
+
+                    Swal.fire({
+                        title: 'Validation Error!',
+                        text: 'Please fill in all required fields correctly',
+                        icon: 'error',
+                        confirmButtonText: 'OK'
+                    });
+                    return false;
+                }
+
+                // Authority parsing
+                const authorityParts = authorityValue ? authorityValue.split(',').map(part => part.trim()) : [];
+                const parsedAuthorityName = authorityParts.length === 2 ? authorityParts[0] : '';
+                const parsedYear = authorityParts.length === 2 ? parseInt(authorityParts[1]) || 0 : 0;
+
+                // Observer parsing - Gelişmiş, birden fazla isim desteği
+                let parsedObserverName = '';
+                let parsedSurname = '';
+
+                if (observerValue) {
+                    const parts = observerValue.trim().split(/\s+/).filter(part => part);
+
+                    if (parts.length >= 2) {
+                        // Son kelime soyad, geri kalanı isim(ler)
+                        parsedSurname = parts[parts.length - 1];
+                        parsedObserverName = parts.slice(0, -1).join(' ');
+                    }
+                }
+
+                // ID kontrolü için
+                const observationId = $('#updateId').val();
+                console.log('Güncellenecek ID:', observationId);
+
+                // Form data hazırlama
+                const formData = {
+                    // Hidden ID
+                    id: observationId,
+
+                    // Classification bilgileri
+                    scientificName: $('#updateScientificName').val(),
+                    familyName: $('#updateFamilyName').val(),
+                    genusName: $('#updateGenusName').val(),
+                    euName: $('#updateEUName').val(),
+                    fullName: $('#updateFullName').val(),
+                    turkishName: $('#updateTurkishName').val(),
+                    englishName: $('#updateEnglishName').val(),
+                    name: $('#updateName').val(),
+                    turkishNamesTrakel: $('#updateTurkishNamesTrakel').val(),
+                    trakel: $('#updateTrakel').val(),
+                    kocakName: $('#updateKocakName').val(),
+                    hesselbarthName: $('#updateHesselbarthName').val(),
+                    authorityName: parsedAuthorityName,
+                    year: parsedYear,
+
+                    // Location bilgileri
+                    provinceId: parseInt($('#updateProvinceName').val()) || 0,
+                    squareRef: $('#updateSquareRef').val(),
+                    squareLatitude: parseFloat($('#updateSquareLatitude').val()) || 0,
+                    squareLongitude: parseFloat($('#updateSquareLongitude').val()) || 0,
+                    latitude: parseFloat($('#updateLatitude').val()) || 0,
+                    longitude: parseFloat($('#updateLongitude').val()) || 0,
+                    decimalDegrees: $('#updateDecimalDegrees').val(),
+                    degreesMinutesSeconds: $('#updateDegreesMinutesSeconds').val(),
+                    decimalMinutes: $('#updateDecimalMinutes').val(),
+                    utmCoordinates: $('#updateUtmCoordinates').val(),
+                    mgrsCoordinates: $('#updateMgrsCoordinates').val(),
+                    altitude1: parseFloat($('#updateAltitude1').val()) || 0,
+                    altitude2: parseFloat($('#updateAltitude2').val()) || 0,
+                    utmReference: $('#updateUtmReference').val(),
+                    locationInfo: $('#updateLocationInfo').val(),
+                    coordinatePrecisionLevel: parseInt($('#updateCoordinatePrecisionLevel').val()) || 0,
+
+                    // Observation bilgileri
+                    observerFullName: observerValue,
+                    observerName: parsedObserverName,
+                    surname: parsedSurname,
+                    observationDate: $('#updateObservationDate').val(),
+                    numberSeen: parseInt($('#updateNumberSeen').val()) || 0,
+                    sex: $('#updateSex').val(),
+                    lifeStage: $('#updateLifeStage').val(),
+                    notes: $('#updateNotes').val(),
+                    source: $('#updateSource').val()
+                };
+
+                console.log('Gönderilen veriler:', formData);
+
+                // AJAX isteği
                 $.ajax({
                     url: `https://localhost:7128/api/Observations`,
                     type: 'PUT',
@@ -1257,19 +1382,36 @@
                         });
                     },
                     error: function(xhr, status, error) {
+                        let errorMessage = 'Güncelleme işlemi sırasında bir hata oluştu.';
+                        if (xhr.responseJSON && xhr.responseJSON.errorList) {
+                            errorMessage = xhr.responseJSON.errorList.join('<br>');
+                        }
                         Swal.fire({
                             title: 'Hata!',
-                            text: 'Güncelleme işlemi sırasında bir hata oluştu.',
+                            text: errorMessage,
                             icon: 'error'
                         });
                     }
                 });
             });
+
+            // Input değişikliklerinde validasyon mesajlarını temizle
+            $('input, select').on('input change', function() {
+                $(this).removeClass('is-invalid');
+                $(this).next('.invalid-feedback').remove();
+            });
+
+            // Modal kapandığında validasyon mesajlarını temizle
+            $('#kt_updatemodal_observation').on('hidden.bs.modal', function () {
+                $('.is-invalid').removeClass('is-invalid');
+                $('.invalid-feedback').remove();
+            });
         });
     </script>
+    @*Create Observation*@
     <script>
         async function populateProvinceDropdown2(selectElementId) {
-            try 
+            try
             {
                 const result = await $.ajax({
                     url: `https://localhost:7128/api/Provinces`,
@@ -1295,7 +1437,7 @@
                     selectElement.appendChild(option);
                 });
 
-            } 
+            }
             catch (error) {
                 console.error('Error loading provinces:', error);
                 Swal.fire({
@@ -1312,7 +1454,7 @@
         });
 
         $(document).ready(function() {
-            // Zorunlu alanları işaretle
+            // Doldurulması zorunlu alanlar.
             const requiredFields = [
                 'createSquareRef',
                 'createLatitude',
@@ -1554,6 +1696,7 @@
             });
         });
     </script>
+    @*Arama kısmı için bilgilendirme*@
     <script>
         document.getElementById('searchInfoBtn').addEventListener('click', function() {
             Swal.fire({
@@ -1579,6 +1722,7 @@
             });
         });
     </script>
+    @*Base Url*@
     <script>
         const apiConfig = {
             baseUrl: '@Configuration["ApiSettings:BaseUrl"]'

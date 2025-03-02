@@ -2,12 +2,14 @@
 using BioWings.Application.Interfaces;
 using BioWings.Application.Results;
 using BioWings.Application.Services;
+using BioWings.Application.Validators.Observation;
 using BioWings.Domain.Entities;
+using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.Logging;
 
 namespace BioWings.Application.Features.Handlers.ObservationHandlers.Write;
-public class ObservationCreateCommandHandler(IObservationRepository observationRepository, ISpeciesRepository speciesRepository, ISubspeciesRepository subspeciesRepository, ILocationRepository locationRepository, IProvinceRepository provinceRepository, IObserverRepository observerRepository, IAuthorityRepository authorityRepository, IFamilyRepository familyRepository, IGenusRepository genusRepository, IUnitOfWork unitOfWork, ILogger<ObservationCreateCommandHandler> logger) : IRequestHandler<ObservationCreateCommand, ServiceResult>
+public class ObservationCreateCommandHandler(IObservationRepository observationRepository, ISpeciesRepository speciesRepository, ISubspeciesRepository subspeciesRepository, ILocationRepository locationRepository, IProvinceRepository provinceRepository, IObserverRepository observerRepository, IAuthorityRepository authorityRepository, IFamilyRepository familyRepository, IGenusRepository genusRepository, IUnitOfWork unitOfWork, ILogger<ObservationCreateCommandHandler> logger,IValidator<ObservationCreateCommand> validator) : IRequestHandler<ObservationCreateCommand, ServiceResult>
 {
     public async Task<ServiceResult> Handle(ObservationCreateCommand request, CancellationToken cancellationToken)
     {
@@ -15,6 +17,14 @@ public class ObservationCreateCommandHandler(IObservationRepository observationR
         {
             logger.LogError("ObservationCreateCommand request is null");
             return ServiceResult.Error("ObservationCreateCommand request is null");
+        }
+        //Fluent Validation
+        var validationResult = await validator.ValidateAsync(request, cancellationToken);
+        if (!validationResult.IsValid)
+        {
+            var errors = string.Join(", ", validationResult.Errors.Select(e => e.ErrorMessage));
+            logger.LogWarning("Observation validation failed: {Errors}", errors);
+            return ServiceResult.Error(errors);
         }
         // 1. Create or Get Authority
         var authority = await GetOrCreateAuthority(request, cancellationToken);
@@ -32,7 +42,7 @@ public class ObservationCreateCommandHandler(IObservationRepository observationR
             return ServiceResult.Error(genus.ErrorList);
 
         // 5. Create or Get Species
-        var species = await GetOrCreateSpecies(request, authority.Data?.Id, genus.Data?.Id, cancellationToken);
+        var species = await GetOrCreateSpecies(request, genus.Data?.Id, authority.Data?.Id, cancellationToken);
         if (!species.IsSuccess)
             return ServiceResult.Error(species.ErrorList);
 
@@ -200,35 +210,4 @@ public class ObservationCreateCommandHandler(IObservationRepository observationR
         }
         return ServiceResult<Observer>.Success(observer);
     }
-    //private async Task<ServiceResult<Subspecies>> GetOrCreateSubspecies(ObservationCreateCommand request, int speciesId, CancellationToken cancellationToken)
-    //{
-    //    if (string.IsNullOrEmpty(request.SubspeciesName))
-    //    {
-    //        return ServiceResult<Subspecies>.Success(null); // Subspecies zorunlu değilse
-    //    }
-
-    //    var subspecies = await subspeciesRepository.GetByNameAndSpeciesIdAsync(
-    //        request.SubspeciesName,
-    //        speciesId,
-    //        cancellationToken);
-
-    //    if (subspecies == null)
-    //    {
-    //        subspecies = new Subspecies
-    //        {
-    //            Name = request.SubspeciesName,
-    //            SpeciesId = speciesId
-    //        };
-
-    //        await subspeciesRepository.AddAsync(subspecies, cancellationToken);
-    //        await unitOfWork.SaveChangesAsync(cancellationToken);
-
-    //        logger.LogInformation(
-    //            "New subspecies created: {SubspeciesName} for species ID: {SpeciesId}",
-    //            request.SubspeciesName,
-    //            speciesId);
-    //    }
-
-    //    return ServiceResult<Subspecies>.Success(subspecies);
-    //}
 }

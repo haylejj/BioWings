@@ -3,12 +3,13 @@ using BioWings.Application.Interfaces;
 using BioWings.Application.Results;
 using BioWings.Application.Services;
 using BioWings.Domain.Entities;
+using FluentValidation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace BioWings.Application.Features.Handlers.ObservationHandlers.Write;
-public class ObservationUpdateCommandHandler(IObservationRepository observationRepository, IFamilyRepository familyRepository, ILocationRepository locationRepository, IObserverRepository observerRepository, IGenusRepository genusRepository, IAuthorityRepository authorityRepository, ISpeciesRepository speciesRepository, IUnitOfWork unitOfWork, ILogger<ObservationUpdateCommandHandler> logger) : IRequestHandler<ObservationUpdateCommand, ServiceResult>
+public class ObservationUpdateCommandHandler(IObservationRepository observationRepository, IFamilyRepository familyRepository, ILocationRepository locationRepository, IObserverRepository observerRepository, IGenusRepository genusRepository, IAuthorityRepository authorityRepository, ISpeciesRepository speciesRepository, IUnitOfWork unitOfWork, ILogger<ObservationUpdateCommandHandler> logger,IValidator<ObservationUpdateCommand> validator ) : IRequestHandler<ObservationUpdateCommand, ServiceResult>
 {
     public async Task<ServiceResult> Handle(ObservationUpdateCommand request, CancellationToken cancellationToken)
     {
@@ -17,6 +18,13 @@ public class ObservationUpdateCommandHandler(IObservationRepository observationR
         {
             logger.LogError($"Observation with id {request.Id} not found");
             return ServiceResult.Error($"Observation with id {request.Id} not found", System.Net.HttpStatusCode.NotFound);
+        }
+        var validationResult = await validator.ValidateAsync(request, cancellationToken);
+        if (!validationResult.IsValid)
+        {
+            logger.LogError("Validation failed for observation update command");
+            var errors= validationResult.Errors.Select(e => e.ErrorMessage).ToList();
+            return ServiceResult.Error(errors);
         }
 
         var species = await GetOrCreateSpecies(request, cancellationToken);

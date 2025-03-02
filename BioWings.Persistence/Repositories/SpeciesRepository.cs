@@ -30,16 +30,19 @@ public class SpeciesRepository(AppDbContext dbContext, IUnitOfWork unitOfWork, I
             return null;
 
         // Ana sorguyu oluştur
-        var query = _dbSet.AsNoTracking().Where(s => s.Name == name);
+        var query = _dbSet.AsNoTracking()
+                      .Include(s => s.Authority)
+                      .Include(s => s.Genus)
+                      .Where(s => s.Name == name);
 
         // Authority ve Genus koşulları varsa birleştir
         if (!string.IsNullOrEmpty(authorityName) && !string.IsNullOrEmpty(genusName) && authorityYear.HasValue)
         {
             // Tek sorguda birleştirilmiş hali
             return await query
-                .Where(s => s.Authority.Name == authorityName &&
+                .Where(s => s.Authority != null && s.Authority.Name == authorityName &&
                            s.Authority.Year == authorityYear &&
-                           s.Genus.Name == genusName)
+                           s.Genus != null && s.Genus.Name == genusName)
                 .FirstOrDefaultAsync(cancellationToken);
         }
 
@@ -47,7 +50,7 @@ public class SpeciesRepository(AppDbContext dbContext, IUnitOfWork unitOfWork, I
         if (!string.IsNullOrEmpty(authorityName) && authorityYear.HasValue)
         {
             return await query
-                .Where(s => s.Authority.Name == authorityName &&
+                .Where(s => s.Authority != null && s.Authority.Name == authorityName &&
                            s.Authority.Year == authorityYear)
                 .FirstOrDefaultAsync(cancellationToken);
         }
@@ -56,7 +59,7 @@ public class SpeciesRepository(AppDbContext dbContext, IUnitOfWork unitOfWork, I
         if (!string.IsNullOrEmpty(genusName))
         {
             return await query
-                .Where(s => s.Genus.Name == genusName)
+                .Where(s => s.Genus != null && s.Genus.Name == genusName)
                 .FirstOrDefaultAsync(cancellationToken);
         }
 
