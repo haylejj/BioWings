@@ -1,4 +1,5 @@
-﻿using BioWings.Application.Features.Commands.SpeciesCommands;
+﻿using BioWings.Application.DTOs.ImportDtos;
+using BioWings.Application.Features.Commands.SpeciesCommands;
 using BioWings.Application.Interfaces;
 using BioWings.Application.Results;
 using BioWings.Application.Services;
@@ -24,6 +25,13 @@ public class SpeciesImportCreateCommandHandler(ISpeciesRepository speciesReposit
             var stopwatch = Stopwatch.StartNew();
             var importDtos = excelImportService.ImportSpeciesFromExcel(request.File);
             logger.LogInformation($"Excel'den {importDtos.Count} satır okundu.");
+
+            // Validation kontrolü
+            var validationErrors = ValidateImportDtos(importDtos);
+            if (validationErrors.Any())
+            {
+                return ServiceResult.Error(string.Join("\n", validationErrors));
+            }
 
             const int batchSize = 500;
             var totalProcessed = 0;
@@ -54,11 +62,13 @@ public class SpeciesImportCreateCommandHandler(ISpeciesRepository speciesReposit
             }
             _genusCache = genusDict;
 
-            var existingSpecies = speciesRepository.GetAllAsNoTracking();
-            _speciesCache = existingSpecies.ToDictionary(
-                s => new SpeciesKey(s.Name, s.GenusId, s.AuthorityId),
-                s => s
-            );
+            var existingSpecies = speciesRepository.GetAllAsNoTracking().ToList();
+            _speciesCache = existingSpecies
+                .DistinctBy(s => new SpeciesKey(s.Name, s.GenusId, s.AuthorityId))
+                .ToDictionary(
+                    s => new SpeciesKey(s.Name, s.GenusId, s.AuthorityId),
+                    s => s
+                );
 
             var result = await context.Database.CreateExecutionStrategy().ExecuteAsync(async () =>
             {
@@ -77,10 +87,14 @@ public class SpeciesImportCreateCommandHandler(ISpeciesRepository speciesReposit
 
                     foreach (var group in groupedData)
                     {
-                        var authorityKey = new AuthorityKey(group.Key.AuthorityName, group.Key.AuthorityYear.Value);
-                        var authority = !string.IsNullOrEmpty(group.Key.AuthorityName) && _authorityCache.TryGetValue(authorityKey, out var existingAuthority)
-                            ? existingAuthority
-                            : await GetOrCreateAuthorityAsync(group.Key.AuthorityName, group.Key.AuthorityYear.Value, cancellationToken);
+                        Authority authority = null;
+                        if (!string.IsNullOrEmpty(group.Key.AuthorityName) && group.Key.AuthorityYear.HasValue)
+                        {
+                            var authorityKey = new AuthorityKey(group.Key.AuthorityName, group.Key.AuthorityYear.Value);
+                            authority = _authorityCache.TryGetValue(authorityKey, out var existingAuthority)
+                                ? existingAuthority
+                                : await GetOrCreateAuthorityAsync(group.Key.AuthorityName, group.Key.AuthorityYear.Value, cancellationToken);
+                        }
 
                         var family = !string.IsNullOrEmpty(group.Key.FamilyName) && _familyCache.TryGetValue(group.Key.FamilyName, out var existingFamily)
                             ? existingFamily
@@ -161,9 +175,55 @@ public class SpeciesImportCreateCommandHandler(ISpeciesRepository speciesReposit
             return ServiceResult.Error($"Import işlemi sırasında hata oluştu: {ex.Message}");
         }
     }
+    //private async Task<Authority> GetOrCreateAuthorityAsync(string name, int year, CancellationToken cancellationToken)
+    //{
+    //    if (string.IsNullOrEmpty(name) || year == null)
+    //    {
+    //        return null;
+    //    }
+    //    var authorityKey = new AuthorityKey(name, year);
+    //    var authority = new Authority { Name = name, Year = year };
+    //    await authorityRepository.AddAsync(authority, cancellationToken);
+    //    await unitOfWork.SaveChangesAsync(cancellationToken);
+    //    _authorityCache[authorityKey] = authority;
+    //    return authority;
+    //}
+    private IList<string> ValidateImportDtos(List<ImportCreateSpeciesDto> importDtos)
+    {
+        var errors = new List<string>();
+
+        // Boş dosya kontrolü
+        if (importDtos == null || importDtos.Count == 0)
+        {
+            errors.Add("Import edilecek veri bulunamadı. Lütfen Excel dosyasını kontrol edin.");
+            return errors;
+        }
+
+        foreach (var dto in importDtos)
+        {
+            if (string.IsNullOrWhiteSpace(dto.SpeciesName))
+            {
+                errors.Add("Species Name (Tür Adı) boş olan sütunlar mevcut.Lütfen gerekli alanları doldurunuz.");
+            }
+
+            if (string.IsNullOrWhiteSpace(dto.ScientificName))
+            {
+                errors.Add("Scientific Name (Bilimsel Adı) boş olan sütunlar mevcut.Lütfen gerekli alanları doldurunuz.");
+            }
+
+            if ((!string.IsNullOrWhiteSpace(dto.AuthorityName) && !dto.AuthorityYear.HasValue) ||
+                (string.IsNullOrWhiteSpace(dto.AuthorityName) && dto.AuthorityYear.HasValue))
+            {
+                errors.Add($"Authority Name ve Authority Year birlikte doldurulmalıdır.Lütfen gerekli alanları düzgün doldurunuz.");
+            }
+        }
+
+        // Tekrarlayan hataları temizle
+        return errors.Distinct().ToList();
+    }
     private async Task<Authority> GetOrCreateAuthorityAsync(string name, int year, CancellationToken cancellationToken)
     {
-        if (string.IsNullOrEmpty(name) || year == null)
+        if (string.IsNullOrEmpty(name))
         {
             return null;
         }
@@ -174,6 +234,7 @@ public class SpeciesImportCreateCommandHandler(ISpeciesRepository speciesReposit
         _authorityCache[authorityKey] = authority;
         return authority;
     }
+
     private async Task<Family> GetOrCreateFamilyAsync(string name, CancellationToken cancellationToken)
     {
         if (string.IsNullOrEmpty(name))

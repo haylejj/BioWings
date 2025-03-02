@@ -620,7 +620,7 @@ public class ExcelImportService : IExcelImportService
             try
             {
                 var dto = CreateSpeciesDto(worksheet, row, columnMappings);
-                if (dto != null && !string.IsNullOrWhiteSpace(dto.SpeciesName))
+                if (dto != null)
                 {
                     result.Add(dto);
                 }

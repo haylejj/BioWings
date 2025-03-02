@@ -34,7 +34,7 @@ public class SpeciesGetPagedQueryHandler(ISpeciesRepository speciesRepository, I
             HesselbarthName = s.HesselbarthName,
             KocakName = s.KocakName,
             FamilyId = s.Genus?.FamilyId,
-            FamilyName = s.Genus.Family?.Name
+            FamilyName = s.Genus?.Family?.Name
         });
         var paginatedResult = new PaginatedList<SpeciesGetPagedQueryResult>(
             result,
