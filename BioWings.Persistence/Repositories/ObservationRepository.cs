@@ -211,4 +211,57 @@ public class ObservationRepository(AppDbContext dbContext) : GenericRepository<O
             .OrderByDescending(x => x.ObservationCount)
             .Take(5)
             .ToListAsync(cancellationToken);
+
+    public async  Task<(List<Observation>, int)> GetFilteredAsync(List<string> columns, List<string> filterValues, int pageNumber = 1, int pageSize = 25, CancellationToken cancellationToken = default)
+    {
+        IQueryable<Observation> query = dbContext.Observations
+       .Include(o => o.Species)
+           .ThenInclude(s => s.Genus)
+               .ThenInclude(g => g.Family)
+       .Include(o => o.Species)
+           .ThenInclude(s => s.Authority)
+       .Include(o => o.Location)
+           .ThenInclude(l => l.Province)
+       .Include(o => o.Observer)
+       .AsNoTracking();
+
+        if (columns != null && filterValues != null && columns.Count == filterValues.Count)
+        {
+            for (int i = 0; i < columns.Count; i++)
+            {
+                string column = columns[i];
+                string filterValue = filterValues[i];
+
+                if (string.IsNullOrWhiteSpace(column) || string.IsNullOrWhiteSpace(filterValue))
+                    continue;
+
+                filterValue = filterValue.Trim().ToLower();
+
+                query = column.ToLower() switch
+                {
+                    "provincename" => query.Where(o => o.Location.Province.Name.ToLower().Contains(filterValue)),
+                    "genusname" => query.Where(o => o.Species.Genus.Name.ToLower().Contains(filterValue)),
+                    "familyname" => query.Where(o => o.Species.Genus.Family.Name.ToLower().Contains(filterValue)),
+                    "scientificname" => query.Where(o => o.Species.ScientificName.ToLower().Contains(filterValue)),
+                    "hesselbarthname" => query.Where(o => o.Species.HesselbarthName.ToLower().Contains(filterValue)),
+                    "numberseen" => query.Where(o => o.NumberSeen == int.Parse(filterValue)),
+                    "observationdate" => DateTime.TryParse(filterValue, out DateTime date)
+                       ? query.Where(o => o.ObservationDate.Date == date.Date)
+                       : query,
+                    _ => query
+
+                };
+            }
+        }
+
+        int totalCount = await query.CountAsync(cancellationToken);
+
+        var observations = await query
+            .OrderByDescending(o => o.ObservationDate)
+            .Skip((pageNumber - 1) * pageSize)
+            .Take(pageSize)
+            .ToListAsync(cancellationToken);
+
+        return (observations, totalCount);
+    }
 }

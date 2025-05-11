@@ -19,6 +19,8 @@ public interface IObservationRepository : IGenericRepository<Observation>
     IQueryable<Observation> GetObservationsForExporting(DateTime? startDate, DateTime? endDate, int? recordLimit, bool exportAllDates, bool exportAllRecords, List<ExpertColumnInfo> columns);
     IQueryable<Observation> GetObservationsByProvinceIdForExporting(int provinceId);
     Task<List<ProvinceStatDto>> GetTopProvincesAsync(CancellationToken cancellationToken = default);
+    Task<(List<Observation>, int)> GetFilteredAsync(List<string> columns, List<string> filterValues, int pageNumber = 1, int pageSize = 25, CancellationToken cancellationToken = default);
+
 }
 
 

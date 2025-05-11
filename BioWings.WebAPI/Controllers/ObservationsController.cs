@@ -1,5 +1,6 @@
 ﻿using BioWings.Application.Features.Commands.ObservationCommands;
 using BioWings.Application.Features.Queries.ObservationQueries;
+using BioWings.Application.Results;
 using MediatR;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
@@ -82,6 +83,14 @@ public class ObservationsController(IMediator mediator) : BaseController
     {
         var searchQuery = new ObservationSearchQuery { PageNumber=pageNumber, PageSize=pageSize, SearchTerm=searchTerm };
         var result = await mediator.Send(searchQuery);
+        return CreateResult(result);
+    }
+    // GET: api/Observations/Filter
+    [HttpGet("Filter")]
+    public async Task<IActionResult> GetFiltered([FromQuery] List<string> columnNames, [FromQuery] List<string> columnValues, [FromQuery] int pageNumber = 1,[FromQuery] int pageSize = 25)
+    {
+        var query=new ObservationGetFilteredQuery { ColumnNames=columnNames, ColumnValues=columnValues, PageNumber=pageNumber, PageSize=pageSize };
+        var result = await mediator.Send(query);
         return CreateResult(result);
     }
     // GET: api/Observations/Count
