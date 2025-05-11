@@ -19,7 +19,7 @@ $(document).ready(function () {
     initializeViewDetails();
     initializeCreateModal();
 });
-
+  
 // Debounce yardımcı fonksiyonu - arama için
 function debounce(func, wait) {
     let timeout;
