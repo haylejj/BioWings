@@ -3,14 +3,23 @@ using BioWings.Application.Interfaces;
 using BioWings.Application.Results;
 using BioWings.Application.Services;
 using BioWings.Domain.Entities;
+using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.Logging;
 
 namespace BioWings.Application.Features.Handlers.SpeciesHandlers.Write;
-public class SpeciesUpdateCommandHandler(ISpeciesRepository speciesRepository, IAuthorityRepository authorityRepository, IUnitOfWork unitOfWork, ILogger<SpeciesUpdateCommandHandler> logger) : IRequestHandler<SpeciesUpdateCommand, ServiceResult>
+public class SpeciesUpdateCommandHandler(ISpeciesRepository speciesRepository,IGenusRepository genusRepository, IValidator<SpeciesUpdateCommand> validator, IAuthorityRepository authorityRepository, IUnitOfWork unitOfWork, ILogger<SpeciesUpdateCommandHandler> logger) : IRequestHandler<SpeciesUpdateCommand, ServiceResult>
 {
     public async Task<ServiceResult> Handle(SpeciesUpdateCommand request, CancellationToken cancellationToken)
     {
+        var validationResult = validator.Validate(request);
+        if (!validationResult.IsValid)
+        {
+            var errorMessages = validationResult.Errors.Select(x => x.ErrorMessage).ToList();
+            logger.LogWarning("Species update validation failed: {Errors}",string.Join(", ", errorMessages));
+            return ServiceResult.Error(errorMessages);
+        }
+
         var species = await speciesRepository.GetByIdAsync(request.Id, cancellationToken);
         if (species == null)
         {
@@ -37,6 +46,14 @@ public class SpeciesUpdateCommandHandler(ISpeciesRepository speciesRepository, I
                 await unitOfWork.SaveChangesAsync(cancellationToken);
             }
         }
+        //if (request.FamilyId.HasValue)
+        //{
+        //    var genus = await genusRepository.GetByIdAsync(request.GenusId.GetValueOrDefault(0), cancellationToken);
+        //    if (genus == null || genus.FamilyId != request.FamilyId)
+        //    {
+        //        return ServiceResult.Error("Selected Genus does not belong to the selected Family.");
+        //    }
+        //}
 
         species.AuthorityId = authority?.Id;
         species.GenusId = request.GenusId;

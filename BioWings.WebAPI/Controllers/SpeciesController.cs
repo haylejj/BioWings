@@ -42,7 +42,7 @@ public class SpeciesController(IMediator mediator) : BaseController
 
     // POST: api/Species
     [HttpPost]
-    public async Task<IActionResult> Create(SpeciesCreateCommand command)
+    public async Task<IActionResult> Create([FromBody] SpeciesCreateCommand command)
     {
         var result = await mediator.Send(command);
         return CreateResult(result);

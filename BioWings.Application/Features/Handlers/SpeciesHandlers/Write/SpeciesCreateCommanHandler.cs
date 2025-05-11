@@ -1,20 +1,27 @@
-﻿using BioWings.Application.Features.Commands.SpeciesCommands;
+﻿using BioWings.Application.Features.Commands.ObservationCommands;
+using BioWings.Application.Features.Commands.SpeciesCommands;
 using BioWings.Application.Interfaces;
 using BioWings.Application.Results;
 using BioWings.Application.Services;
 using BioWings.Domain.Entities;
+using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.Logging;
+using System.ComponentModel.DataAnnotations;
 
 namespace BioWings.Application.Features.Handlers.SpeciesHandlers.Write;
-public class SpeciesCreateCommanHandler(ISpeciesRepository speciesRepository, IAuthorityRepository authorityRepository, IUnitOfWork unitOfWork, ILogger<SpeciesCreateCommanHandler> logger) : IRequestHandler<SpeciesCreateCommand, ServiceResult>
+public class SpeciesCreateCommanHandler(ISpeciesRepository speciesRepository, IValidator<SpeciesCreateCommand> validator, IAuthorityRepository authorityRepository, IUnitOfWork unitOfWork, ILogger<SpeciesCreateCommanHandler> logger) : IRequestHandler<SpeciesCreateCommand, ServiceResult>
 {
     public async Task<ServiceResult> Handle(SpeciesCreateCommand request, CancellationToken cancellationToken)
     {
-        if (request == null)
+        var validationResult = validator.Validate(request);
+        if (!validationResult.IsValid)
         {
-            logger.LogError("SpeciesCreateCommand request is null");
-            return ServiceResult.Error("SpeciesCreateCommand request is null");
+            var errorMessages = validationResult.Errors.Select(x => x.ErrorMessage).ToList();
+
+            logger.LogWarning("Species creation validation failed: {Errors}",string.Join(", ", errorMessages));
+
+            return ServiceResult.Error(errorMessages);
         }
         Authority? authority = null;
         if (!string.IsNullOrEmpty(request.AuthorityName) && request.AuthorityYear.HasValue)
