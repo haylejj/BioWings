@@ -42,13 +42,11 @@ document.getElementById('kt_createmodal_observation').addEventListener('show.bs.
 $(document).ready(function () {
     // Doldurulması zorunlu alanlar.
     const requiredFields = [
-        'createSquareRef',
         'createLatitude',
         'createLongitude',
         'createProvinceName',
         'createName',
         'createScientificName',
-        'createObserverName',
         'createObservationDate',
         'createNumberSeen'
     ];
