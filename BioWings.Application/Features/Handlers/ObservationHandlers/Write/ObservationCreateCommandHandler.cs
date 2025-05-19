@@ -157,11 +157,7 @@ public class ObservationCreateCommandHandler(IObservationRepository observationR
 
     private async Task<ServiceResult<Location>> GetOrCreateLocation(ObservationCreateCommand request, int? provinceId, CancellationToken cancellationToken)
     {
-        var location = await locationRepository.GetByCoordinatesAsync(
-            Math.Round(request.Latitude, 6),
-            Math.Round(request.Longitude, 6),
-            request.SquareRef,
-            cancellationToken);
+        var location = await locationRepository.GetByCoordinatesAsync(Math.Round(request.Latitude, 6),Math.Round(request.Longitude, 6),request.SquareRef,request.CoordinatePrecisionLevel,cancellationToken);
 
         if (location == null)
         {

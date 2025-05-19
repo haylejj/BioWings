@@ -1,6 +1,7 @@
 ﻿using BioWings.Application.Interfaces;
 using BioWings.Application.Services;
 using BioWings.Domain.Entities;
+using BioWings.Domain.Enums;
 using BioWings.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 using MySqlConnector;
@@ -14,7 +15,7 @@ public class LocationRepository(AppDbContext dbContext, IUnitOfWork unitOfWork) 
     private readonly DbContext dbContext1 = unitOfWork.GetContext();
     public async Task<Location?> FirstOrDefaultAsync(Expression<Func<Location, bool>> predicate, CancellationToken cancellationToken = default) => await _dbSet.FirstOrDefaultAsync(predicate, cancellationToken);
 
-    public Task<Location?> GetByCoordinatesAsync(decimal latitude, decimal longitude, string squareRef, CancellationToken cancellationToken = default)
+    public Task<Location?> GetByCoordinatesAsync(decimal latitude, decimal longitude, string squareRef,CoordinatePrecisionLevel coordinatePrecisionLevel, CancellationToken cancellationToken = default)
     {
         latitude = Math.Round(latitude, 6);
         longitude = Math.Round(longitude, 6);
@@ -24,6 +25,7 @@ public class LocationRepository(AppDbContext dbContext, IUnitOfWork unitOfWork) 
         {
             query = query.Where(l => l.SquareRef == squareRef);
         }
+        query = query.Where(l => l.CoordinatePrecisionLevel == coordinatePrecisionLevel);
         return query.Where(l => l.Latitude == latitude && l.Longitude == longitude)
             .FirstOrDefaultAsync(cancellationToken);
     }

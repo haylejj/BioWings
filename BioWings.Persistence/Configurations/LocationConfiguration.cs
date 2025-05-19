@@ -62,9 +62,7 @@ public class LocationConfiguration : IEntityTypeConfiguration<Location>
             .HasForeignKey(x => x.LocationId)
             .OnDelete(DeleteBehavior.Cascade);
 
-        builder.HasIndex(x => x.ProvinceId);
-        builder.HasIndex(x => x.SquareRef);
-        builder.HasIndex(x => new { x.Latitude, x.Longitude, x.SquareRef });
+        builder.HasIndex(x => new { x.SquareRef, x.CoordinatePrecisionLevel, x.Latitude, x.Longitude });
 
     }
 }
