@@ -1,8 +1,10 @@
-﻿// Leaflet haritası için gerekli değişkenler
+﻿// Leaflet haritası için gerekli değişkenler - detay haritası ekledik
 let createMap = null;
 let updateMap = null;
+let detailMap = null;  // Detay haritası için yeni değişken
 let createMarker = null;
 let updateMarker = null;
+let detailMarker = null;  // Detay markerı için yeni değişken
 
 // Sayfa yüklendiğinde çalışacak fonksiyon
 $(document).ready(function () {
@@ -62,6 +64,46 @@ $(document).ready(function () {
                 } else {
                     setDefaultMapView(updateMap);
                 }
+            }
+        }, 300);
+    });
+
+    // Detay modalı açıldığında haritayı göster - YENİ EKLENEN KOD
+    $(document).on('click', '.view-details', function () {
+        // observation değişkenini almak için modalın görünür olmasını bekleyelim
+        setTimeout(() => {
+            // modalCoordinates elementindeki koordinat bilgilerini alalım
+            const coordinatesText = $('#modalCoordinates').text();
+
+            // "Latitude:" ve "Longitude:" içeren satırları parse edelim
+            const latMatch = coordinatesText.match(/Latitude: ([0-9.-]+)/);
+            const lngMatch = coordinatesText.match(/Longitude: ([0-9.-]+)/);
+
+            if (latMatch && lngMatch) {
+                const lat = parseFloat(latMatch[1]);
+                const lng = parseFloat(lngMatch[1]);
+
+                // Modal görünür olduktan sonra, harita containerını ekleyelim
+                if (!document.getElementById('detailMapContainer')) {
+                    addDetailMapContainer();
+                }
+
+                // Haritayı ekledikten 300ms sonra (animasyon tamamlanması için)
+                setTimeout(() => {
+                    if (!detailMap && window.L) {
+                        initializeDetailMap(lat, lng);
+                    } else if (detailMap) {
+                        detailMap.invalidateSize();
+                        detailMap.setView([lat, lng], 10);
+
+                        // Marker güncelleme
+                        if (detailMarker) {
+                            detailMarker.setLatLng([lat, lng]);
+                        } else {
+                            detailMarker = L.marker([lat, lng]).addTo(detailMap);
+                        }
+                    }
+                }, 300);
             }
         }, 300);
     });
@@ -196,7 +238,7 @@ async function addMapToModal(containerId, latInputId, lngInputId) {
                 }
 
                 // Haritayı yeniden boyutlandır
-                const map = containerId === 'createMapContainer' ? createMap : updateMap;
+                const map = containerId === 'createMapContainer' ? createMap : (containerId === 'updateMapContainer' ? updateMap : detailMap);
                 if (map) {
                     setTimeout(() => {
                         map.invalidateSize();
@@ -281,6 +323,89 @@ async function addMapToModal(containerId, latInputId, lngInputId) {
             }
         }, 100);
     });
+}
+
+// Detay modalına harita eklemek için konteyner oluşturan fonksiyon - YENİ EKLENEN FONKSİYON
+function addDetailMapContainer() {
+    // Koordinatlar elementini bul
+    const coordinatesElement = document.getElementById('modalCoordinates');
+    if (!coordinatesElement) {
+        console.error('Coordinates element not found in details modal');
+        return;
+    }
+
+    const coordinatesContainer = coordinatesElement.closest('.field-container');
+
+    // Harita konteynerini oluştur
+    const mapContainer = document.createElement('div');
+    mapContainer.id = 'detailMapContainer';
+    mapContainer.className = 'map-container';
+    mapContainer.style.marginTop = '15px';
+
+    // Harita etrafında bir konteyner oluştur
+    const mapWrapper = document.createElement('div');
+    mapWrapper.className = 'field-container mb-5';
+    mapWrapper.style.position = 'relative';
+
+    // Başlık elementi oluştur
+    const mapTitle = document.createElement('div');
+    mapTitle.className = 'fs-6 fw-semibold mb-2';
+    mapTitle.textContent = 'Haritada Konum';
+
+    // Büyüt/Küçült butonu ekle
+    const toggleButton = document.createElement('button');
+    toggleButton.type = 'button';
+    toggleButton.className = 'map-toggle-button';
+    toggleButton.textContent = 'Haritayı Genişlet';
+    toggleButton.onclick = function () {
+        const container = document.getElementById('detailMapContainer');
+        if (container.classList.contains('expanded')) {
+            container.classList.remove('expanded');
+            this.textContent = 'Haritayı Genişlet';
+        } else {
+            container.classList.add('expanded');
+            this.textContent = 'Haritayı Daralt';
+        }
+
+        // Haritayı yeniden boyutlandır
+        if (detailMap) {
+            setTimeout(() => {
+                detailMap.invalidateSize();
+            }, 300);
+        }
+    };
+
+    // Elementleri DOM'a ekle
+    mapWrapper.appendChild(mapTitle);
+    mapWrapper.appendChild(mapContainer);
+    mapWrapper.appendChild(toggleButton);
+
+    // Coordinates elementinden sonra ekle
+    coordinatesContainer.after(mapWrapper);
+}
+
+// Detay haritasını başlatan fonksiyon - YENİ EKLENEN FONKSİYON
+function initializeDetailMap(lat, lng) {
+    if (!window.L) return;
+
+    const mapElement = document.getElementById('detailMapContainer');
+    if (!mapElement) return;
+
+    detailMap = L.map('detailMapContainer').setView([lat, lng], 10);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(detailMap);
+
+    // Markerı ekle
+    detailMarker = L.marker([lat, lng]).addTo(detailMap);
+
+    // Popup ekle - daha açıklayıcı bir gösterim için
+    detailMarker.bindPopup(`
+        <b>Konum bilgisi:</b><br>
+        Enlem: ${lat}<br>
+        Boylam: ${lng}
+    `).openPopup();
 }
 
 // Diğer koordinat alanlarını güncelleyen fonksiyon
