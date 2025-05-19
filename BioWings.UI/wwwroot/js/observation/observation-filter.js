@@ -1,4 +1,5 @@
-﻿// Filtre işlevselliği
+﻿// Sütun başlığına input alanları ekleyip modal açmak yerine
+// doğrudan input ile filtreleme yapma
 $(document).ready(function () {
     // URL'den aktif filtreleri al
     const urlParams = new URLSearchParams(window.location.search);
@@ -21,31 +22,52 @@ $(document).ready(function () {
         clearAllFilters();
     });
 
-    // Sütun başlıklarına tıklama işlevselliği
-    $('#observationTable thead th').each(function (index) {
-        const title = $(this).text().trim();
+    // Sütun başlıklarına input alanları ekle
+    $('#observationTable thead tr.text-start').before(`
+        <tr class="filter-row">
+            <th></th> <!-- ID sütunu boş bırakıldı -->
+            <th><input type="text" class="form-control form-control-sm filter-input" data-column="genusName" placeholder="Genus Search"></th>
+            <th><input type="text" class="form-control form-control-sm filter-input" data-column="familyName" placeholder="Family Search"></th>
+            <th><input type="text" class="form-control form-control-sm filter-input" data-column="scientificName" placeholder="Scientific Search"></th>
+            <th><input type="text" class="form-control form-control-sm filter-input" data-column="hesselbarthName" placeholder="Hesselbarth Search"></th>
+            <th><input type="text" class="form-control form-control-sm filter-input" data-column="provinceName" placeholder="Province Search"></th>
+            <th><input type="text" class="form-control form-control-sm filter-input" data-column="numberSeen" placeholder="Number Search"></th>
+            <th><input type="text" class="form-control form-control-sm filter-input" data-column="observationDate" placeholder="Observation Date Search"></th>
+            <th></th>
+            <th>
+                <button id="applyFilters" class="btn btn-sm btn-icon btn-light-primary" title="Filtreleri Uygula">
+                    <i class="fas fa-filter"></i>
+                </button>
+                <button id="clearFilters" class="btn btn-sm btn-icon btn-light-danger ms-1" title="Filtreleri Temizle">
+                    <i class="fas fa-times"></i>
+                </button>
+            </th>
+        </tr>
+    `);
 
-        // İşlemler sütunu hariç tüm sütunlara filtreleme özelliği ekle
-        if (title && !$(this).hasClass('actions-column')) {
-            $(this).addClass('filterable-column');
-            $(this).css('cursor', 'pointer');
-
-            // Sütun bilgilerini belirle
-            let columnName = getColumnNameFromIndex(index);
-
-            if (columnName) {
-                $(this).data('column-name', columnName);
-
-                // Tıklama olayı
-                $(this).on('click', function () {
-                    const colName = $(this).data('column-name');
-                    const colTitle = $(this).text().trim();
-
-                    // Filtre modal'ını aç
-                    openFilterModal(colName, colTitle);
-                });
-            }
+    // İnput değerlerini URL'den doldur
+    if (columnNames.length > 0 && columnValues.length > 0) {
+        for (let i = 0; i < columnNames.length; i++) {
+            $(`.filter-input[data-column="${columnNames[i]}"]`).val(columnValues[i]);
         }
+    }
+
+    // Enter tuşuna basınca filtreleme yap
+    $('.filter-input').on('keypress', function (e) {
+        if (e.which === 13) {
+            applyFilters();
+        }
+    });
+
+    // Filtre uygulama butonuna tıklama
+    $('#applyFilters').on('click', function () {
+        applyFilters();
+    });
+
+    // Filtreleri temizleme butonuna tıklama
+    $('#clearFilters').on('click', function () {
+        $('.filter-input').val('');
+        clearAllFilters();
     });
 
     // Filtre form submit
@@ -75,6 +97,31 @@ $(document).ready(function () {
         // URL oluştur ve yönlendir
         navigateWithFilters(newColumnNames, newColumnValues);
     });
+
+    // Filtreleri uygula
+    function applyFilters() {
+        let newColumnNames = [];
+        let newColumnValues = [];
+
+        // Dolu inputlardan filtreleri topla
+        $('.filter-input').each(function () {
+            const value = $(this).val().trim();
+            if (value) {
+                const column = $(this).data('column');
+                newColumnNames.push(column);
+                newColumnValues.push(value);
+            }
+        });
+
+        // Filtre yoksa ana sayfaya dön
+        if (newColumnNames.length === 0) {
+            window.location.href = '/Observation/Index';
+            return;
+        }
+
+        // URL oluştur ve yönlendir
+        navigateWithFilters(newColumnNames, newColumnValues);
+    }
 
     // Filtre gösterme fonksiyonu
     function showActiveFilters(names, values) {
@@ -148,20 +195,6 @@ $(document).ready(function () {
         window.location.href = url;
     }
 
-    // Sütun index'inden sütun adını alma
-    function getColumnNameFromIndex(index) {
-        switch (index) {
-            case 1: return 'genusName';
-            case 2: return 'familyName';
-            case 3: return 'scientificName';
-            case 4: return 'hesselbarthName';
-            case 5: return 'provinceName';
-            case 6: return 'numberSeen';
-            case 7: return 'observationDate';
-            default: return null; // Filtrelenemeyen sütunlar
-        }
-    }
-
     // Sütun adını gösterim adına çevirme
     function getColumnDisplayName(columnName) {
         switch (columnName) {
@@ -175,59 +208,24 @@ $(document).ready(function () {
             default: return columnName;
         }
     }
-
-    // Filtre modalını açma
-    function openFilterModal(columnName, columnTitle) {
-        // Modal içeriğini ayarla
-        $('#columnFilterTitle').text(columnTitle + ' Filtresi');
-        $('#columnNameInput').val(columnName);
-        $('#columnFilterInput').val('').attr('placeholder', columnTitle + ' için ara...');
-
-        // Modalı göster
-        $('#columnFilterModal').modal('show');
-
-        // Input'a odaklan
-        setTimeout(() => {
-            $('#columnFilterInput').focus();
-        }, 500);
-    }
 });
 
+// Filtreleme alanları için stil ekle
 $(document).ready(function () {
-    // Filtrelenebilir sütunlara özel stil ve title ekle
-    $('#observationTable thead th').each(function (index) {
-        if (index > 0 && index < 8) {
-            // Title ekle
-            $(this).attr('title', 'Filtrelemek için tıklayınız');
-
-            // Özel stiller ekle
-            $(this).css({
-                'cursor': 'pointer',
-                'position': 'relative',
-                'padding-right': '20px',  // İkon için ekstra alan
-                'transition': 'color 0.2s ease'
-            });
-
-            // Hover ile renk değişimi
-            $(this).hover(
-                function () {
-                    $(this).css('color', '#4d7cff');  // Mavi tonunda hover rengi
-                    $(this).find('.filter-icon').css('opacity', '1');
-                },
-                function () {
-                    $(this).css('color', '');  // Normal renge dön
-                    $(this).find('.filter-icon').css('opacity', '0.5');
-                }
-            );
-
-            // Filtre ikonu ekle
-            const originalText = $(this).text();
-            $(this).html(`
-                <div style="display: flex; align-items: center; justify-content: space-between;">
-                    <span>${originalText}</span>
-                    <i class="fas fa-filter filter-icon" style="font-size: 0.9em; margin-left: 5px; opacity: 0.5;"></i>
-                </div>
-            `);
+    $('<style>').text(`
+        .filter-row th {
+            padding: 4px 8px;
         }
-    });
+        .filter-input {
+            font-size: 12px;
+            height: 30px;
+            padding: 2px 8px;
+        }
+        /* DataTable sıralama oklarını korumak için stil düzenlemeleri */
+        .sorting:before, .sorting:after,
+        .sorting_asc:before, .sorting_asc:after,
+        .sorting_desc:before, .sorting_desc:after {
+            bottom: 0.5em !important;
+        }
+    `).appendTo('head');
 });
