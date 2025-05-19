@@ -17,14 +17,6 @@ public class ObserverConfiguration : IEntityTypeConfiguration<Observer>
             .IsRequired()
             .HasMaxLength(20);
 
-        builder.Property(x => x.Email)
-            .HasMaxLength(40);
-
-        builder.Property(x => x.Phone)
-            .HasMaxLength(20);
-
-        builder.Property(x => x.PasswordHash)
-            .HasMaxLength(70);
 
         builder.HasMany(x => x.Observations)
             .WithOne(x => x.Observer)
