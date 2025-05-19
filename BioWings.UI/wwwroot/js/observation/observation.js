@@ -16,7 +16,7 @@ var table = $('#observationTable').DataTable({
     "searching": false,
     "paging": false,
     "info": false,
-    "ordering": true,
+    "ordering": false,
     "order": [[0, "asc"]]
 });
 

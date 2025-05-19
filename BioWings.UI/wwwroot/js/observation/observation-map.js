@@ -72,8 +72,10 @@ $(document).ready(function () {
     $(document).on('click', '.view-details', function () {
         // observation değişkenini almak için modalın görünür olmasını bekleyelim
         setTimeout(() => {
-            // modalCoordinates elementindeki koordinat bilgilerini alalım
-            const coordinatesText = $('#modalCoordinates').text();
+            const plainCoordinates = document.getElementById('plain-coordinates');
+            if (!plainCoordinates) return;
+
+            const coordinatesText = plainCoordinates.textContent;
 
             // "Latitude:" ve "Longitude:" içeren satırları parse edelim
             const latMatch = coordinatesText.match(/Latitude: ([0-9.-]+)/);
