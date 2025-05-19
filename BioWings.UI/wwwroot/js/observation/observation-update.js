@@ -123,13 +123,11 @@ async function updateObservation(id) {
 $(document).ready(function () {
     // Doldurulması zorunlu alanlar.
     const requiredFields = [
-        'updateSquareRef',
         'updateLatitude',
         'updateLongitude',
         'updateProvinceName',
         'updateName',
         'updateScientificName',
-        'updateObserverName',
         'updateObservationDate',
         'updateNumberSeen'
     ];

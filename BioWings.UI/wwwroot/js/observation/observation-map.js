@@ -42,6 +42,7 @@ $(document).ready(function () {
                 setDefaultMapView(createMap);
             }
         }, 300);
+        moveMapToEndOfLocationCard('kt_createmodal_observation');
     });
 
     // Update modal açıldığında haritayı göster
@@ -66,6 +67,7 @@ $(document).ready(function () {
                 }
             }
         }, 300);
+        moveMapToEndOfLocationCard('kt_updatemodal_observation');
     });
 
     // Detay modalı açıldığında haritayı göster - YENİ EKLENEN KOD
@@ -194,6 +196,62 @@ function initializeMaps() {
         updateMap = map.map;
         updateMarker = map.marker;
     });
+}
+
+// Create/Update modallarında harita konumunu değiştiren fonksiyon
+function moveMapToEndOfLocationCard(modalId) {
+    setTimeout(() => {
+        // Map wrapper'ı bul
+        const mapWrapper = document.querySelector(`#${modalId} .field-container.mb-5[style*="position: relative"]`);
+        if (!mapWrapper) return;
+
+        // Location card'ı bul
+        const locationCard = mapWrapper.closest('.modal-section');
+        if (!locationCard) return;
+
+        // Card body'i bul
+        const cardBody = locationCard.querySelector('.card-body');
+        if (!cardBody) return;
+
+        // Harita wrapper'ını card body'nin sonuna taşı
+        cardBody.appendChild(mapWrapper);
+
+        // Stil düzeltmeleri
+        mapWrapper.style.marginTop = '20px';
+
+        // Map başlık metnini Türkçe yap
+        const mapTitle = mapWrapper.querySelector('.fs-6.fw-semibold.mb-2');
+        if (mapTitle) {
+            mapTitle.textContent = 'Haritada Konum';
+        }
+
+        // Buton metinlerini Türkçe yap
+        const toggleButton = mapWrapper.querySelector('.map-toggle-button');
+        if (toggleButton) {
+            toggleButton.textContent = 'Haritayı Genişlet';
+
+            // Buton click olayını güncelle
+            const originalClick = toggleButton.onclick;
+            toggleButton.onclick = function () {
+                const result = originalClick.call(this);
+
+                // Buton metnini güncelle
+                if (this.textContent === 'Collapse Map') {
+                    this.textContent = 'Haritayı Daralt';
+                } else if (this.textContent === 'Expand Map') {
+                    this.textContent = 'Haritayı Genişlet';
+                }
+
+                return result;
+            };
+        }
+
+        // Açıklama metnini Türkçe yap
+        const caption = mapWrapper.querySelector('.map-caption');
+        if (caption) {
+            caption.textContent = 'Koordinatları belirlemek için haritaya tıklayın';
+        }
+    }, 500);  // Modalın açılması için biraz daha uzun bir süre bekleyin
 }
 
 // Modala harita ekleyen fonksiyon
@@ -329,25 +387,39 @@ async function addMapToModal(containerId, latInputId, lngInputId) {
 
 // Detay modalına harita eklemek için konteyner oluşturan fonksiyon - YENİ EKLENEN FONKSİYON
 function addDetailMapContainer() {
-    // Koordinatlar elementini bul
-    const coordinatesElement = document.getElementById('modalCoordinates');
-    if (!coordinatesElement) {
-        console.error('Coordinates element not found in details modal');
+    // DÜZELTME: Location Card'ını doğru bir şekilde bulmak için başlık metni kullanıyoruz
+    const locationCardHeaders = document.querySelectorAll('#kt_modal_observation .card-header .card-label');
+    let locationCard = null;
+
+    // Başlık metni "Location Details" olan kartı bul
+    locationCardHeaders.forEach(header => {
+        if (header.textContent.trim() === 'Location Details') {
+            locationCard = header.closest('.modal-section');
+        }
+    });
+
+    if (!locationCard) {
+        console.error('Location card not found in details modal');
         return;
     }
 
-    const coordinatesContainer = coordinatesElement.closest('.field-container');
+    // Location Card'ın body kısmını bul
+    const cardBody = locationCard.querySelector('.card-body');
+    if (!cardBody) {
+        console.error('Card body not found in location card');
+        return;
+    }
 
     // Harita konteynerini oluştur
     const mapContainer = document.createElement('div');
     mapContainer.id = 'detailMapContainer';
     mapContainer.className = 'map-container';
-    mapContainer.style.marginTop = '15px';
+    mapContainer.style.marginTop = '20px';
 
-    // Harita etrafında bir konteyner oluştur
-    const mapWrapper = document.createElement('div');
-    mapWrapper.className = 'field-container mb-5';
-    mapWrapper.style.position = 'relative';
+    // Harita başlık ve kontrol elementlerini içeren div
+    const mapHeader = document.createElement('div');
+    mapHeader.className = 'mb-3';
+    mapHeader.style.position = 'relative';
 
     // Başlık elementi oluştur
     const mapTitle = document.createElement('div');
@@ -377,16 +449,29 @@ function addDetailMapContainer() {
         }
     };
 
-    // Elementleri DOM'a ekle
-    mapWrapper.appendChild(mapTitle);
-    mapWrapper.appendChild(mapContainer);
-    mapWrapper.appendChild(toggleButton);
+    // Header elementlerine butonları ekle
+    mapHeader.appendChild(mapTitle);
 
-    // Coordinates elementinden sonra ekle
-    coordinatesContainer.after(mapWrapper);
+    // Elementleri bir araya getir
+    const mapWrapper = document.createElement('div');
+    mapWrapper.className = 'row g-5 g-xl-8 mt-3';
+
+    // Tam genişlik için bir kolon oluştur
+    const mapColumn = document.createElement('div');
+    mapColumn.className = 'col-12';
+
+    // Harita elementlerini kolona ekle
+    mapColumn.appendChild(mapHeader);
+    mapColumn.appendChild(mapContainer);
+    mapColumn.appendChild(toggleButton);
+
+    // Kolonu wrapper'a ekle
+    mapWrapper.appendChild(mapColumn);
+
+    // Wrapper'ı card body'nin sonuna ekle
+    cardBody.appendChild(mapWrapper);
 }
 
-// Detay haritasını başlatan fonksiyon - YENİ EKLENEN FONKSİYON
 function initializeDetailMap(lat, lng) {
     if (!window.L) return;
 
