@@ -81,7 +81,7 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <span class="badge badge-light-primary fw-bold">@item.ActionName</span>
+                                    <span class="badge badge-primary fw-bold">@item.ActionName</span>
                                 </td>
                                 <td>
                                     <span class="text-gray-800 fw-bold">@item.MenuName</span>
@@ -90,27 +90,27 @@
                                     @switch (item.ActionType)
                                     {
                                         case "Read":
-                                            <span class="badge badge-light-success fw-bold">
-                                                <i class="fas fa-eye me-1"></i>@item.ActionType
+                                            <span class="badge badge-success fw-bold">
+                                               @item.ActionType
                                             </span>
                                             break;
                                         case "Write":
-                                            <span class="badge badge-light-warning fw-bold">
-                                                <i class="fas fa-plus me-1"></i>@item.ActionType
+                                            <span class="badge badge-info fw-bold">
+                                               @item.ActionType
                                             </span>
                                             break;
                                         case "Update":
-                                            <span class="badge badge-light-info fw-bold">
-                                                <i class="fas fa-edit me-1"></i>@item.ActionType
+                                            <span class="badge badge-warning fw-bold">
+                                               @item.ActionType
                                             </span>
                                             break;
                                         case "Delete":
-                                            <span class="badge badge-light-danger fw-bold">
-                                                <i class="fas fa-trash me-1"></i>@item.ActionType
+                                            <span class="badge badge-danger fw-bold">
+                                                @item.ActionType
                                             </span>
                                             break;
                                         default:
-                                            <span class="badge badge-light-dark fw-bold">@item.ActionType</span>
+                                            <span class="badge badge-dark fw-bold">@item.ActionType</span>
                                             break;
                                     }
                                 </td>
@@ -120,19 +120,19 @@
                                 <td>
                                     @if (item.AreaName == "Admin")
                                     {
-                                        <span class="badge badge-light-danger fw-bold">
+                                        <span class="badge badge-danger fw-bold">
                                             <i class="fas fa-shield-alt me-1"></i>@item.AreaName
                                         </span>
                                     }
                                     else if (string.IsNullOrEmpty(item.AreaName))
                                     {
-                                        <span class="badge badge-light-success fw-bold">
+                                        <span class="badge badge-success fw-bold">
                                             <i class="fas fa-globe me-1"></i>Public
                                         </span>
                                     }
                                     else
                                     {
-                                        <span class="badge badge-light-primary fw-bold">@item.AreaName</span>
+                                        <span class="badge badge-primary fw-bold">@item.AreaName</span>
                                     }
                                 </td>
                             </tr>
