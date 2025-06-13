@@ -1,9 +1,11 @@
 ﻿using BioWings.Application.Results;
 using BioWings.UI.ViewModels.GenusViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
 namespace BioWings.UI.Controllers;
+[Authorize]
 public class GenusController(IHttpClientFactory httpClientFactory, ILogger<GenusController> logger) : Controller
 {
     public async Task<IActionResult> Index(string searchTerm, int pageNumber = 1, int pageSize = 25)

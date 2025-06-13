@@ -1,5 +1,6 @@
 using BioWings.Application.Results;
 using BioWings.UI.Areas.Admin.Models.Authorization;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Text;
@@ -9,6 +10,7 @@ namespace BioWings.UI.Areas.Admin.Controllers
     /// <summary>
     /// Yetkilendirme tanımlarını yöneten Admin controller'ı
     /// </summary>
+    [Authorize]
     [Area("Admin")]
     public class AuthorizationController(IHttpClientFactory httpClientFactory) : Controller
     {

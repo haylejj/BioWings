@@ -3,9 +3,11 @@ using BioWings.Application.Features.Commands.EncryptionCommands;
 using BioWings.Application.Features.Results.EncryptionResults;
 using BioWings.Application.Results;
 using BioWings.UI.ViewModels.EmailViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BioWings.UI.Controllers;
+[AllowAnonymous]
 public class EmailController(IHttpClientFactory httpClientFactory, ILogger<EmailController> logger) : Controller
 {
     public async Task<IActionResult> EmailConfirm([FromQuery] string code)

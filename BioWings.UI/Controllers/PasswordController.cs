@@ -1,7 +1,9 @@
 ﻿using BioWings.UI.ViewModels.EmailViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BioWings.UI.Controllers;
+[AllowAnonymous]
 public class PasswordController(IHttpClientFactory httpClientFactory, ILogger<PasswordController> logger) : Controller
 {
     [HttpGet]

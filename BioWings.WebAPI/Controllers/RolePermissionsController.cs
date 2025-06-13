@@ -1,6 +1,9 @@
 using BioWings.Application.Interfaces;
 using BioWings.Application.Services;
+using BioWings.Domain.Attributes;
+using BioWings.Domain.Constants;
 using BioWings.Domain.Entities;
+using BioWings.Domain.Enums;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BioWings.WebAPI.Controllers
@@ -16,6 +19,7 @@ namespace BioWings.WebAPI.Controllers
         /// </summary>
         /// <returns>Permission ID - Role ID listesi mapping'i</returns>
         [HttpGet("mappings")]
+        //[AuthorizeDefinition("Rol-İzin Yönetimi", ActionType.Read, "İzin-rol eşleşmelerini görüntüleme", AreaNames.Admin)]
         public async Task<IActionResult> GetMappings()
         {
             try
@@ -35,6 +39,7 @@ namespace BioWings.WebAPI.Controllers
         /// <param name="request">Kaydedilecek eşleşmeler</param>
         /// <returns>İşlem sonucu</returns>
         [HttpPost("save")]
+        //[AuthorizeDefinition("Rol-İzin Yönetimi", ActionType.Write, "İzin-rol eşleşmelerini kaydetme", AreaNames.Admin)]
         public async Task<IActionResult> SavePermissionRoles([FromBody] SavePermissionRolesRequest request)
         {
             try

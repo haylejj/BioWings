@@ -1,7 +1,9 @@
 ﻿using BioWings.Application.Results;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BioWings.UI.Controllers;
+[Authorize]
 public class ProvinceController(IHttpClientFactory httpClientFactory, ILogger<ProvinceController> logger) : Controller
 {
     public IActionResult Index()

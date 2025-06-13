@@ -1,9 +1,11 @@
 ﻿using BioWings.Application.Results;
 using BioWings.UI.ViewModels.StatisticsViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
 namespace BioWings.UI.Controllers;
+[Authorize]
 public class MainPageController(IHttpClientFactory httpClientFactory) : Controller
 {
     public async Task<IActionResult> Index()

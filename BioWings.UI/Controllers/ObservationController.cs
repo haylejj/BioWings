@@ -1,9 +1,11 @@
 ﻿using BioWings.Application.Results;
 using BioWings.UI.ViewModels.ObservationViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
 namespace BioWings.UI.Controllers;
+[Authorize]
 public class ObservationController(IHttpClientFactory httpClientFactory, ILogger<ObservationController> logger) : Controller
 {
     public async Task<IActionResult> Index(string searchTerm, List<string> columnNames, List<string> columnValues, int pageNumber = 1, int pageSize = 25)

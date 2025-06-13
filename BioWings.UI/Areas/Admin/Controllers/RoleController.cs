@@ -1,10 +1,12 @@
 ﻿using BioWings.Application.Results;
 using BioWings.UI.Areas.Admin.Models.Role;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Text;
 
 namespace BioWings.UI.Areas.Admin.Controllers;
+[Authorize]
 [Area("Admin")]
 public class RoleController(IHttpClientFactory httpClientFactory) : Controller
 {

@@ -2,10 +2,12 @@
 using BioWings.Application.Results;
 using BioWings.UI.ViewModels.CountryViewModels;
 using BioWings.UI.ViewModels.SignUpViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
 namespace BioWings.UI.Controllers;
+[AllowAnonymous]
 public class SignUpController(IHttpClientFactory httpClientFactory, ILogger<SignUpController> logger) : Controller
 {
     [HttpGet]

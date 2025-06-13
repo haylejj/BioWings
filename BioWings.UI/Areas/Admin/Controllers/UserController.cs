@@ -1,11 +1,13 @@
 ﻿using BioWings.Application.Results;
 using BioWings.UI.Areas.Admin.Models.User;
 using BioWings.UI.ViewModels.CountryViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Text;
 
 namespace BioWings.UI.Areas.Admin.Controllers;
+[Authorize]
 [Area("Admin")]
 public class UserController(IHttpClientFactory httpClientFactory) : Controller
 {

@@ -1,0 +1,223 @@
+@{
+    ViewData["Title"] = ViewBag.Title ?? "Hata";
+    var statusCode = ViewBag.StatusCode ?? 0;
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-10">
+            <div class="card @GetCardClass(statusCode)">
+                <div class="card-header @GetHeaderClass(statusCode)">
+                    <h1 class="card-title mb-0">
+                        <i class="@GetIconClass(statusCode) me-2"></i>
+                        @ViewData["Title"]
+                    </h1>
+                </div>
+                <div class="card-body">
+                    <div class="text-center mb-4">
+                        <div class="display-1 @GetTextClass(statusCode) mb-3">
+                            <i class="@GetIconClass(statusCode)"></i>
+                        </div>
+                        <h3 class="@GetTextClass(statusCode)">@statusCode - @GetStatusText(statusCode)</h3>
+                    </div>
+                    
+                    <div class="alert @GetAlertClass(statusCode)" role="alert">
+                        <h4 class="alert-heading">
+                            <i class="fas fa-exclamation-triangle me-2"></i>
+                            @ViewData["Title"]
+                        </h4>
+                        <p class="mb-0">@(ViewBag.Message ?? GetDefaultMessage(statusCode))</p>
+                    </div>
+
+                    <div class="row mt-4">
+                        <div class="col-md-6 mb-3">
+                            <div class="card border-light">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <i class="fas fa-lightbulb text-warning me-2"></i>
+                                        Öneriler
+                                    </h5>
+                                    <ul class="list-unstyled mb-0">
+                                        @foreach (var suggestion in GetSuggestions(statusCode))
+                                        {
+                                            <li><i class="fas fa-check text-success me-2"></i>@suggestion</li>
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="card border-light">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <i class="fas fa-compass text-info me-2"></i>
+                                        Hızlı Erişim
+                                    </h5>
+                                    <div class="d-grid gap-2">
+                                        <a asp-controller="Home" asp-action="Index" class="btn btn-outline-primary btn-sm">
+                                            <i class="fas fa-home me-2"></i>Ana Sayfa
+                                        </a>
+                                        @if (statusCode == 401)
+                                        {
+                                            <a asp-controller="Login" asp-action="Index" class="btn btn-outline-success btn-sm">
+                                                <i class="fas fa-sign-in-alt me-2"></i>Giriş Yap
+                                            </a>
+                                        }
+                                        <a asp-controller="Species" asp-action="Index" class="btn btn-outline-info btn-sm">
+                                            <i class="fas fa-leaf me-2"></i>Türler
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-center mt-4">
+                        <div class="btn-group" role="group">
+                            @if (statusCode >= 500)
+                            {
+                                <button onclick="location.reload()" class="btn btn-warning">
+                                    <i class="fas fa-redo me-2"></i>
+                                    Sayfayı Yenile
+                                </button>
+                            }
+                            <button onclick="goBack()" class="btn btn-outline-secondary">
+                                <i class="fas fa-arrow-left me-2"></i>
+                                Geri Dön
+                            </button>
+                            <a asp-controller="Home" asp-action="Index" class="btn btn-primary">
+                                <i class="fas fa-home me-2"></i>
+                                Ana Sayfa
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer text-muted text-center">
+                    <small>
+                        <i class="fas fa-clock me-1"></i>
+                        @DateTime.Now.ToString("dd/MM/yyyy HH:mm")
+                        @if (statusCode >= 500)
+                        {
+                            <br>
+                            <span class="text-muted">Hata Kodu: #ERR@(statusCode)-@DateTime.Now.ToString("yyyyMMdd-HHmmss")</span>
+                        }
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function goBack() {
+            if (document.referrer && document.referrer !== window.location.href) {
+                window.history.back();
+            } else {
+                window.location.href = '@Url.Action("Index", "Home")';
+            }
+        }
+    </script>
+}
+
+@functions {
+    private string GetCardClass(int statusCode)
+    {
+        return statusCode switch
+        {
+            401 => "border-warning",
+            403 => "border-danger", 
+            404 => "border-warning",
+            >= 500 => "border-danger",
+            _ => "border-secondary"
+        };
+    }
+
+    private string GetHeaderClass(int statusCode)
+    {
+        return statusCode switch
+        {
+            401 => "bg-warning text-dark",
+            403 => "bg-danger text-white",
+            404 => "bg-warning text-dark", 
+            >= 500 => "bg-danger text-white",
+            _ => "bg-secondary text-white"
+        };
+    }
+
+    private string GetTextClass(int statusCode)
+    {
+        return statusCode switch
+        {
+            401 => "text-warning",
+            403 => "text-danger",
+            404 => "text-warning",
+            >= 500 => "text-danger", 
+            _ => "text-secondary"
+        };
+    }
+
+    private string GetIconClass(int statusCode)
+    {
+        return statusCode switch
+        {
+            401 => "fas fa-key",
+            403 => "fas fa-ban",
+            404 => "fas fa-search",
+            >= 500 => "fas fa-server",
+            _ => "fas fa-exclamation-triangle"
+        };
+    }
+
+    private string GetAlertClass(int statusCode)
+    {
+        return statusCode switch
+        {
+            401 => "alert-warning",
+            403 => "alert-danger",
+            404 => "alert-warning",
+            >= 500 => "alert-danger",
+            _ => "alert-secondary"
+        };
+    }
+
+    private string GetStatusText(int statusCode)
+    {
+        return statusCode switch
+        {
+            400 => "Bad Request",
+            401 => "Unauthorized", 
+            403 => "Forbidden",
+            404 => "Not Found",
+            500 => "Internal Server Error",
+            503 => "Service Unavailable",
+            _ => "Error"
+        };
+    }
+
+    private string GetDefaultMessage(int statusCode)
+    {
+        return statusCode switch
+        {
+            400 => "Gönderdiğiniz istek geçersiz.",
+            401 => "Bu sayfaya erişmek için giriş yapmanız gerekiyor.",
+            403 => "Bu işlemi gerçekleştirmek için yetkiniz bulunmamaktadır.",
+            404 => "Aradığınız sayfa bulunamadı.",
+            500 => "Sunucu tarafında bir hata oluştu.",
+            503 => "Hizmet şu anda kullanılamıyor.",
+            _ => "Beklenmeyen bir hata oluştu."
+        };
+    }
+
+    private List<string> GetSuggestions(int statusCode)
+    {
+        return statusCode switch
+        {
+            401 => new List<string> { "Giriş yapın", "Hesap bilgilerinizi kontrol edin", "Şifrenizi sıfırlayın" },
+            403 => new List<string> { "Sistem yöneticisine başvurun", "Farklı hesapla giriş yapın", "Yetkili sayfalardan devam edin" },
+            404 => new List<string> { "URL'yi kontrol edin", "Ana sayfadan tekrar deneyin", "Arama çubuğunu kullanın" },
+            >= 500 => new List<string> { "Sayfayı yenileyin", "Birkaç dakika bekleyin", "Farklı işlem deneyin", "Destek ekibine bildirin" },
+            _ => new List<string> { "Sayfayı yenileyin", "Ana sayfaya dönün", "Tekrar deneyin" }
+        };
+    }
+} 

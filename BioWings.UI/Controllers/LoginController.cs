@@ -3,12 +3,14 @@ using BioWings.Application.Features.Results.LoginResults;
 using BioWings.Application.Results;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using System.Text;
 using System.Text.Json;
 
 namespace BioWings.UI.Controllers;
+[AllowAnonymous]
 public class LoginController(IHttpClientFactory httpClientFactory, ILogger<LoginController> logger) : Controller
 {
     [HttpGet]

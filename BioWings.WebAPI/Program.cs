@@ -3,6 +3,7 @@ using BioWings.Infrastructure.Extensions;
 using BioWings.Infrastructure.Hubs;
 using BioWings.Persistence.Extensions;
 using BioWings.WebAPI.Exceptions;
+using BioWings.WebAPI.Filters;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Serilog;
@@ -27,7 +28,10 @@ builder.Services.AddCors(options =>
     });
 });
 // Add services to the container.
-builder.Services.AddControllers();
+builder.Services.AddControllers(options =>
+{
+    options.Filters.Add<PermissionAuthorizationFilter>();
+});
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddHttpClient();

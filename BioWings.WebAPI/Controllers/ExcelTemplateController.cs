@@ -1,4 +1,7 @@
 ﻿using BioWings.Application.Services;
+using BioWings.Domain.Attributes;
+using BioWings.Domain.Constants;
+using BioWings.Domain.Enums;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,6 +10,7 @@ namespace BioWings.WebAPI.Controllers;
 public class ExcelTemplateController(IExcelTemplateService excelTemplateService) : BaseController
 {
     [HttpGet("download")]
+    [AuthorizeDefinition("Şablon İndirme", ActionType.Read, "Gözlem import şablonu indirme", AreaNames.Public)]
     public IActionResult DownloadTemplate()
     {
         var fileContents = excelTemplateService.CreateImportTemplateWithMockData();
@@ -17,6 +21,7 @@ public class ExcelTemplateController(IExcelTemplateService excelTemplateService)
         );
     }
     [HttpGet("download/species")]
+    [AuthorizeDefinition("Şablon İndirme", ActionType.Read, "Tür import şablonu indirme", AreaNames.Public)]
     public IActionResult DownloadSpeciesTemplate()
     {
         var fileContents = excelTemplateService.CreateSpeciesTemplateWithMockData();

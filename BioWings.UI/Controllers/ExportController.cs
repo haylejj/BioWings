@@ -1,10 +1,12 @@
 ﻿using BioWings.Application.Results;
 using BioWings.UI.ViewModels.ExportViewModels;
 using BioWings.UI.ViewModels.ObservationViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
 namespace BioWings.UI.Controllers;
+[Authorize]
 public class ExportController(IHttpClientFactory httpClientFactory, ILogger<ObservationController> logger) : Controller
 {
     public async Task<IActionResult> Index()
