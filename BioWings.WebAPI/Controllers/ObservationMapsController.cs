@@ -20,7 +20,7 @@ public class ObservationMapsController(IMediator mediator, ILogger<ObservationMa
     // GET: api/ObservationMaps/Id
     [HttpGet("{id}")]
     [AuthorizeDefinition("Gözlem Haritası", ActionType.Read, "Gözlem harita detayını görüntüleme", AreaNames.Public)]
-    public async Task<IActionResult> Get(int id)
+    public async Task<IActionResult> GetById(int id)
     {
         var result = await mediator.Send(new ObservationMapGetByObservationIdQuery(id));
         return CreateResult(result);

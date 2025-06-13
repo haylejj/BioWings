@@ -52,12 +52,12 @@ public class TokenService(IConfiguration configuration) : ITokenService
     public TokenResponse CreateToken(User user, List<UserRoleGetByUserIdDto> roles)
     {
         var claims = new List<Claim>
-    {
+        {
         new(ClaimTypes.NameIdentifier, user.Id.ToString()),
-        new(ClaimTypes.Email, user.Email),
+            new(ClaimTypes.Email, user.Email),
         new(ClaimTypes.Name, $"{user.FirstName} {user.LastName}".Trim()),
-        new(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-    };
+            new(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+        };
 
         // Rolleri ekleyelim
         foreach (var role in roles)

@@ -63,25 +63,25 @@ namespace BioWings.WebAPI.Filters
                 if (!hasPermission)
                 {
                     logger.LogWarning("Kullanıcı {UserId} için {PermissionCode} izni bulunamadı.", userId, permissionCode);
-                    
-                    //// API request ise JSON response döndür
-                    //if (IsApiRequest(context.HttpContext))
-                    //{
-                    //    context.Result = new JsonResult(new
-                    //    {
-                    //        error = "Access Denied",
-                    //        message = "Bu işlemi gerçekleştirmek için yetkiniz bulunmamaktadır.",
-                    //        timestamp = DateTime.UtcNow
-                    //    })
-                    //    {
-                    //        StatusCode = 403
-                    //    };
-                    //}
-                    //else
-                    //{
-                        // UI request ise AccessDenied sayfasına yönlendir
+
+                    // API request ise JSON response döndür
+                    if (IsApiRequest(context.HttpContext))
+                    {
+                        context.Result = new JsonResult(new
+                        {
+                            error = "Access Denied",
+                            message = "Bu işlemi gerçekleştirmek için yetkiniz bulunmamaktadır.",
+                            timestamp = DateTime.UtcNow
+                        })
+                        {
+                            StatusCode = 403
+                        };
+                    }
+                    else
+                    {
+                        //UI request ise AccessDenied sayfasına yönlendir
                         context.Result = new RedirectToActionResult("AccessDenied", "Error", null);
-                    //}
+                    }
                     return;
                 }
 
