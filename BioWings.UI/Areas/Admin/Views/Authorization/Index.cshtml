@@ -1,0 +1,184 @@
+@model List<BioWings.UI.Areas.Admin.Models.Authorization.AuthorizationDefinitionViewModel>
+@{
+    ViewData["Title"] = "Yetkilendirme Tanımları";
+    Layout = "~/Areas/Admin/Views/AdminMainLayout/Index.cshtml";
+}
+
+<div class="card">
+    <div class="card-header border-0 pt-6">
+        <div class="card-title">
+            <h3 class="fw-bold m-0">Yetkilendirme Tanımları</h3>
+        </div>
+        <div class="card-toolbar">
+            <div class="d-flex justify-content-end">
+                <!-- Arama kutusu -->
+                <div class="input-group me-2" style="width: 300px;">
+                    <span class="input-group-text">
+                        <i class="fas fa-search"></i>
+                    </span>
+                    <input type="text" id="customSearch" class="form-control" placeholder="Controller, Action, Menü ara...">
+                </div>
+
+                <!-- Yenile butonu -->
+                <button type="button" class="btn btn-light-success" onclick="location.reload()">
+                    <span class="svg-icon svg-icon-2">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M14.5 20.7259C14.6448 21.2216 14.2384 21.7 13.7312 21.6194C12.1969 21.3825 10.7679 20.7252 9.57918 19.7174C8.39043 18.7096 7.48648 17.3854 6.9498 15.8661C6.41312 14.3469 6.26956 12.6954 6.53462 11.0821C6.79968 9.4687 7.46245 7.95364 8.46006 6.69997C9.45767 5.4463 10.7527 4.49481 12.2278 3.95378C13.7029 3.41275 15.3046 3.29963 16.8456 3.6259C18.3866 3.95218 19.8069 4.71906 20.9505 5.84235C22.0941 6.96564 22.9158 8.40034 23.3259 9.96839L23.5259 10.7684C23.6086 11.0924 23.3572 11.4016 23.0332 11.4016C22.7092 11.4016 22.4578 11.0924 22.3751 10.7684L22.1751 9.96839C21.8315 8.66887 21.1452 7.47604 20.1854 6.52657C19.2257 5.5771 18.0259 4.90318 16.7196 4.57887C15.4133 4.25456 14.0448 4.29175 12.7588 4.68689C11.4729 5.08202 10.3143 5.82024 9.40905 6.82332C8.50386 7.8264 7.88594 9.05923 7.62169 10.3934C7.35745 11.7276 7.45771 13.1108 7.91129 14.3944C8.36487 15.6779 9.15509 16.8154 10.2002 17.6846C11.2454 18.5538 12.5055 19.1224 13.8435 19.3314C14.3706 19.4142 14.8214 19.9893 14.5 20.7259Z" fill="currentColor"/>
+                        </svg>
+                    </span>
+                    Yenile
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-body py-4">
+        @if (ViewData.ContainsKey("ErrorMessage"))
+        {
+            <div class="alert alert-danger d-flex align-items-center p-5 mb-10">
+                <span class="svg-icon svg-icon-2hx svg-icon-danger me-4">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="currentColor"/>
+                        <rect x="11" y="14" width="7" height="2" rx="1" transform="rotate(-90 11 14)" fill="currentColor"/>
+                        <rect x="11" y="17" width="2" height="2" rx="1" transform="rotate(-90 11 17)" fill="currentColor"/>
+                    </svg>
+                </span>
+                <div class="d-flex flex-column">
+                    <h4 class="mb-1 text-danger">Hata!</h4>
+                    <span>@ViewData["ErrorMessage"]</span>
+                </div>
+            </div>
+        }
+
+        <!-- Ana tablo -->
+        <div class="table-responsive">
+            <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_authorization_table">
+                <thead>
+                    <tr class="text-start text-muted fw-bold fs-7 text-uppercase gs-0">
+                        <th class="min-w-125px">Controller</th>
+                        <th class="min-w-150px">Action</th>
+                        <th class="min-w-125px">Menü</th>
+                        <th class="min-w-100px">Yetki Türü</th>
+                        <th class="min-w-200px">Açıklama</th>
+                        <th class="min-w-100px">Alan</th>
+                    </tr>
+                </thead>
+                <tbody class="text-gray-600 fw-semibold">
+                    @if (Model != null && Model.Any())
+                    {
+                        foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <span class="svg-icon svg-icon-2 me-2">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path opacity="0.3" d="M22 12C22 17.5 17.5 22 12 22S2 17.5 2 12S6.5 2 12 2S22 6.5 22 12ZM12 7C10.3 7 9 8.3 9 10C9 11.7 10.3 13 12 13C13.7 13 15 11.7 15 10C15 8.3 13.7 7 12 7Z" fill="currentColor"/>
+                                                <path d="M12 22C14.6 22 17 20.8 19.1 18.9C17.2 16.9 14.8 15.8 12 15.8C9.2 15.8 6.8 16.9 4.9 18.9C7 20.8 9.4 22 12 22Z" fill="currentColor"/>
+                                            </svg>
+                                        </span>
+                                        <span class="fw-bold">@item.ControllerName</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="badge badge-light-primary fw-bold">@item.ActionName</span>
+                                </td>
+                                <td>
+                                    <span class="text-gray-800 fw-bold">@item.MenuName</span>
+                                </td>
+                                <td>
+                                    @switch (item.ActionType)
+                                    {
+                                        case "Read":
+                                            <span class="badge badge-light-success fw-bold">
+                                                <i class="fas fa-eye me-1"></i>@item.ActionType
+                                            </span>
+                                            break;
+                                        case "Write":
+                                            <span class="badge badge-light-warning fw-bold">
+                                                <i class="fas fa-plus me-1"></i>@item.ActionType
+                                            </span>
+                                            break;
+                                        case "Update":
+                                            <span class="badge badge-light-info fw-bold">
+                                                <i class="fas fa-edit me-1"></i>@item.ActionType
+                                            </span>
+                                            break;
+                                        case "Delete":
+                                            <span class="badge badge-light-danger fw-bold">
+                                                <i class="fas fa-trash me-1"></i>@item.ActionType
+                                            </span>
+                                            break;
+                                        default:
+                                            <span class="badge badge-light-dark fw-bold">@item.ActionType</span>
+                                            break;
+                                    }
+                                </td>
+                                <td>
+                                    <span class="text-gray-600">@item.Definition</span>
+                                </td>
+                                <td>
+                                    @if (item.AreaName == "Admin")
+                                    {
+                                        <span class="badge badge-light-danger fw-bold">
+                                            <i class="fas fa-shield-alt me-1"></i>@item.AreaName
+                                        </span>
+                                    }
+                                    else if (string.IsNullOrEmpty(item.AreaName))
+                                    {
+                                        <span class="badge badge-light-success fw-bold">
+                                            <i class="fas fa-globe me-1"></i>Public
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge badge-light-primary fw-bold">@item.AreaName</span>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="6" class="text-center py-10">
+                                <div class="d-flex flex-column align-items-center">
+                                    <span class="fs-5 fw-semibold text-gray-400">Henüz hiç yetkilendirme tanımı bulunamadı.</span>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Arama fonksiyonu
+    const searchInput = document.getElementById('customSearch');
+    const table = document.getElementById('kt_authorization_table');
+    const rows = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+
+    searchInput.addEventListener('keyup', function() {
+        const filter = this.value.toLowerCase();
+        
+        for (let i = 0; i < rows.length; i++) {
+            const row = rows[i];
+            const cells = row.getElementsByTagName('td');
+            let found = false;
+            
+            // İlk 6 sütunda arama yap
+            for (let j = 0; j < Math.min(cells.length, 6); j++) {
+                if (cells[j].textContent.toLowerCase().indexOf(filter) > -1) {
+                    found = true;
+                    break;
+                }
+            }
+            
+            row.style.display = found ? '' : 'none';
+        }
+    });
+});
+</script> 
