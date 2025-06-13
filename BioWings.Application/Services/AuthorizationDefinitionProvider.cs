@@ -77,9 +77,9 @@ namespace BioWings.Application.Services
                 }
             }
 
-            return authorizeDefinitions.OrderBy(x => x.AreaName)
-                                     .ThenBy(x => x.ControllerName)
+            return authorizeDefinitions.OrderBy(x => x.ControllerName)
                                      .ThenBy(x => x.ActionName)
+                                     .ThenBy(x => x.AreaName)
                                      .ToList();
         }
 

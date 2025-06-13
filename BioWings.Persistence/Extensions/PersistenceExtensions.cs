@@ -34,6 +34,7 @@ public static class PersistenceExtensions
         services.AddScoped<ICountryRepository, CountryRepository>();
         services.AddScoped<IRoleRepository, RoleRepository>();
         services.AddScoped<IUserRoleRepository, UserRoleRepository>();
+        services.AddScoped<IPermissionRepository, PermissionRepository>();
         return services;
     }
 }

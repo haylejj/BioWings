@@ -18,5 +18,6 @@ public class AppDbContext(DbContextOptions<AppDbContext> dbContextOptions) : DbC
     public DbSet<Role> Roles { get; set; }
     public DbSet<UserRole> UserRoles { get; set; }
     public DbSet<Country> Countries { get; set; }
+    public DbSet<Permission> Permissions { get; set; }
 }
 

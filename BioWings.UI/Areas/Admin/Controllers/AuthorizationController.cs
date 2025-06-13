@@ -2,6 +2,7 @@ using BioWings.Application.Results;
 using BioWings.UI.Areas.Admin.Models.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using System.Text;
 
 namespace BioWings.UI.Areas.Admin.Controllers
 {
@@ -44,6 +45,45 @@ namespace BioWings.UI.Areas.Admin.Controllers
                 ViewData["ErrorMessage"] = $"Beklenmeyen bir hata oluştu: {ex.Message}";
                 return View(new List<AuthorizationDefinitionViewModel>());
             }
+        }
+
+        /// <summary>
+        /// Yetkilendirme tanımlarını veritabanıyla senkronize eder
+        /// </summary>
+        /// <returns>Index sayfasına yönlendirme</returns>
+        [HttpPost]
+        public async Task<IActionResult> Sync()
+        {
+            try
+            {
+                var client = httpClientFactory.CreateClient();
+                var response = await client.PostAsync("https://localhost:7128/api/Permissions/sync", new StringContent("", Encoding.UTF8, "application/json"));
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+                    var apiResponse = JsonConvert.DeserializeObject<ApiResponse<int>>(content);
+                    
+                    if (apiResponse?.IsSuccess == true)
+                    {
+                        TempData["SuccessMessage"] = $"Senkronizasyon tamamlandı. {apiResponse.Data} yeni yetki eklendi.";
+                    }
+                    else
+                    {
+                        TempData["ErrorMessage"] = "Senkronizasyon sırasında bir hata oluştu.";
+                    }
+                }
+                else
+                {
+                    TempData["ErrorMessage"] = "Senkronizasyon işlemi başarısız oldu.";
+                }
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = $"Beklenmeyen bir hata oluştu: {ex.Message}";
+            }
+
+            return RedirectToAction(nameof(Index));
         }
     }
 } 
