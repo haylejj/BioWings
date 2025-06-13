@@ -54,6 +54,11 @@ namespace BioWings.Domain.Entities
         public string PermissionCode { get; private set; } = string.Empty;
 
         /// <summary>
+        /// Navigation property - RolePermissions
+        /// </summary>
+        public virtual ICollection<RolePermission> RolePermissions { get; set; } = new List<RolePermission>();
+
+        /// <summary>
         /// Permission code'unu otomatik oluşturur
         /// </summary>
         public void GeneratePermissionCode()

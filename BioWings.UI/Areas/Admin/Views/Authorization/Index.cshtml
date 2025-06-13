@@ -19,6 +19,16 @@
                     <input type="text" id="customSearch" class="form-control" placeholder="Controller, Action, Menü ara...">
                 </div>
 
+                <!-- Permission-Role Yönetimi butonu -->
+                <a href="@Url.Action("PermissionRoles")" class="btn btn-info me-2">
+                    <span class="svg-icon svg-icon-2">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18 14H20C20.6 14 21 13.6 21 13V11C21 10.4 20.6 10 20 10H18V14ZM10 14H16V10H10V14ZM2 14H8V10H2V14ZM18 8V4C18 3.4 17.6 3 17 3H7C6.4 3 6 3.4 6 4V8H4C3.4 8 3 8.4 3 9V15C3 15.6 3.4 16 4 16H6V20C6 20.6 6.4 21 7 21H17C17.6 21 18 20.6 18 20V16H20C20.6 16 21 15.6 21 15V9C21 8.4 20.6 8 20 8H18Z" fill="currentColor"/>
+                        </svg>
+                    </span>
+                    Role Yönetimi
+                </a>
+
                 <!-- Yetkileri Güncelle butonu -->
                 <form method="post" asp-action="Sync" class="d-inline me-2" id="syncForm">
                     <button type="button" class="btn btn-warning" id="syncButton">
