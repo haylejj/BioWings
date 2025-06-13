@@ -1,5 +1,8 @@
 ﻿using BioWings.Application.Features.Commands.SpeciesCommands;
 using BioWings.Application.Features.Queries.SpeciesQueries;
+using BioWings.Domain.Attributes;
+using BioWings.Domain.Constants;
+using BioWings.Domain.Enums;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,6 +10,7 @@ namespace BioWings.WebAPI.Controllers;
 public class SpeciesController(IMediator mediator) : BaseController
 {
     // GET: api/Species
+    [AuthorizeDefinition("Species",ActionType.Read, "Tüm Türleri Getir",AreaNames.Public)]
     [HttpGet]
     public async Task<IActionResult> GetAll()
     {
@@ -15,6 +19,7 @@ public class SpeciesController(IMediator mediator) : BaseController
         return CreateResult(result);
     }
     // GET: api/Species/Paged
+    [AuthorizeDefinition("Species", ActionType.Read, "Tüm Türleri Sayfalama İle Getir", AreaNames.Public)]
     [HttpGet("Paged")]
     public async Task<IActionResult> GetPaged([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 25)
     {
@@ -23,6 +28,7 @@ public class SpeciesController(IMediator mediator) : BaseController
         return CreateResult(result);
     }
     // GET: api/Species/Search
+    [AuthorizeDefinition("Species", ActionType.Read, "Türleri Search İle Getir", AreaNames.Public)]
     [HttpGet("Search")]
     public async Task<IActionResult> Search([FromQuery] string searchTerm, [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 25)
     {
@@ -32,6 +38,7 @@ public class SpeciesController(IMediator mediator) : BaseController
     }
 
     // GET: api/Species/{id}
+    [AuthorizeDefinition("Species", ActionType.Read, "Türü Id'ye göre getir.", AreaNames.Public)]
     [HttpGet("{id}")]
     public async Task<IActionResult> GetById(int id)
     {
@@ -39,8 +46,8 @@ public class SpeciesController(IMediator mediator) : BaseController
         var result = await mediator.Send(query);
         return CreateResult(result);
     }
-
     // POST: api/Species
+    [AuthorizeDefinition("Species", ActionType.Write, "Tür Ekleme", AreaNames.Public)]
     [HttpPost]
     public async Task<IActionResult> Create([FromBody] SpeciesCreateCommand command)
     {
@@ -48,6 +55,7 @@ public class SpeciesController(IMediator mediator) : BaseController
         return CreateResult(result);
     }
     // POST: api/Species/Range
+    [AuthorizeDefinition("Species", ActionType.Write, "Birden Fazla Tür Ekleme", AreaNames.Public)]
     [HttpPost("Range")]
     public async Task<IActionResult> CreateRange(SpeciesCreateRangeCommand command)
     {
@@ -55,6 +63,7 @@ public class SpeciesController(IMediator mediator) : BaseController
         return CreateResult(result);
     }
     // POST: api/Species/Import
+    [AuthorizeDefinition("Species", ActionType.Write, "Import ile Tür Ekleme", AreaNames.Public)]
     [HttpPost("Import")]
     public async Task<IActionResult> Import(SpeciesImportCreateCommand speciesImportCreateCommand)
     {
@@ -63,6 +72,7 @@ public class SpeciesController(IMediator mediator) : BaseController
     }
 
     // PUT: api/Species
+    [AuthorizeDefinition("Species", ActionType.Update, "Tür Güncelleme", AreaNames.Public)]
     [HttpPut]
     public async Task<IActionResult> Update(SpeciesUpdateCommand command)
     {
@@ -71,6 +81,7 @@ public class SpeciesController(IMediator mediator) : BaseController
     }
 
     // DELETE: api/Species/{id}
+    [AuthorizeDefinition("Species", ActionType.Delete, "Tür Silme", AreaNames.Public)]
     [HttpDelete("{id}")]
     public async Task<IActionResult> Remove(int id)
     {
