@@ -10,7 +10,7 @@ public class FamilyController(IHttpClientFactory httpClientFactory, ILogger<Fami
 {
     public async Task<IActionResult> Index(string searchTerm, int pageNumber = 1, int pageSize = 25)
     {
-        var client = httpClientFactory.CreateClient();
+        var client = httpClientFactory.CreateClient("ApiClient");
         var url = string.IsNullOrEmpty(searchTerm)
         ? $"https://localhost:7128/api/Families/Paged?pageNumber={pageNumber}&pageSize={pageSize}"
             : $"https://localhost:7128/api/Families/Search?searchTerm={Uri.EscapeDataString(searchTerm)}&pageNumber={pageNumber}&pageSize={pageSize}";

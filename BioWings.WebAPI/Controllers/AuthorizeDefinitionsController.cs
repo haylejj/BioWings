@@ -17,7 +17,7 @@ namespace BioWings.WebAPI.Controllers
         /// </summary>
         /// <returns>Yetkilendirme tanımlarının listesi</returns>
         [HttpGet]
-        //[AuthorizeDefinition("Sistem Yönetimi", ActionType.Read, "Yetkilendirme tanımlarını görüntüleme", AreaNames.Admin)]
+        [AuthorizeDefinition("Sistem Yönetimi", ActionType.Read, "Yetkilendirme tanımlarını görüntüleme", AreaNames.Admin)]
         public async Task<IActionResult> GetAll()
         {
             var query = new AuthorizeDefinitionGetQuery();

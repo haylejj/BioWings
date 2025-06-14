@@ -13,7 +13,7 @@ public class UserController(IHttpClientFactory httpClientFactory) : Controller
 {
     public async Task<IActionResult> Index()
     {
-        var client = httpClientFactory.CreateClient();
+        var client = httpClientFactory.CreateClient("ApiClient");
         var response = await client.GetAsync("https://localhost:7128/api/Users");
         if (!response.IsSuccessStatusCode)
         {
@@ -23,7 +23,7 @@ public class UserController(IHttpClientFactory httpClientFactory) : Controller
         var content = await response.Content.ReadAsStringAsync();
         var data = JsonConvert.DeserializeObject<ApiResponse<List<UserGetViewModel>>>(content);
         //dropdown list for countries
-        var countryClient = httpClientFactory.CreateClient();
+        var countryClient = httpClientFactory.CreateClient("ApiClient");
         var countryResponse = await countryClient.GetAsync("https://localhost:7128/api/Country");
         if (!countryResponse.IsSuccessStatusCode)
         {
@@ -48,7 +48,7 @@ public class UserController(IHttpClientFactory httpClientFactory) : Controller
     [HttpPost]
     public async Task<IActionResult> Update(UserViewModel model)
     {
-        var client = httpClientFactory.CreateClient();
+        var client = httpClientFactory.CreateClient("ApiClient");
         var content = new StringContent(JsonConvert.SerializeObject(model.UpdateViewModel), Encoding.UTF8, "application/json");
         var response = await client.PutAsync("https://localhost:7128/api/Users", content);
         if (!response.IsSuccessStatusCode)

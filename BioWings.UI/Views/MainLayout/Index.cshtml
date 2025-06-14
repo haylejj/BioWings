@@ -351,6 +351,18 @@
     <script src="~/assets/js/custom/apps/customers/list/export.js"></script>
     <script src="~/assets/js/custom/apps/customers/list/list.js"></script>
     <script src="~/assets/js/custom/apps/customers/add.js"></script>
+    <script>
+        $(document).ready(function() {
+            $.ajaxSetup({
+                beforeSend: function(xhr) {
+                    const token = '@(User.FindFirst("AccessToken")?.Value ?? "")';
+                    if (token) {
+                        xhr.setRequestHeader('Authorization', 'Bearer ' + token);
+                    }
+                }
+            });
+        });
+    </script>
 
     <!--end::Custom Javascript-->
     @await RenderSectionAsync("Scripts", required: false)

@@ -13,7 +13,7 @@ public class ProvinceController(IHttpClientFactory httpClientFactory, ILogger<Pr
     [HttpGet("ExportData/{provinceId}")]
     public async Task<IActionResult> ExportData([FromRoute] int provinceId)
     {
-        using (var httpClient = httpClientFactory.CreateClient())
+        using (var httpClient = httpClientFactory.CreateClient("ApiClient"))
         {
             // API'ye request gönder
             var response = await httpClient.GetAsync($"https://localhost:7128/api/Exports/ExportObservationsByProvince/{provinceId}");

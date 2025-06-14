@@ -12,7 +12,7 @@ public class GenusController(IHttpClientFactory httpClientFactory, ILogger<Genus
     {
         if (pageSize <= 0) pageSize = 25;
         if (pageNumber <= 0) pageNumber = 1;
-        var client = httpClientFactory.CreateClient();
+        var client = httpClientFactory.CreateClient("ApiClient");
         var url = string.IsNullOrEmpty(searchTerm)
             ? $"https://localhost:7128/api/Genera/Paged?pageNumber={pageNumber}&pageSize={pageSize}"
             : $"https://localhost:7128/api/Genera/Search?searchTerm={Uri.EscapeDataString(searchTerm)}&pageNumber={pageNumber}&pageSize={pageSize}";

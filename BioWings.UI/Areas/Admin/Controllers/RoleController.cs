@@ -12,7 +12,7 @@ public class RoleController(IHttpClientFactory httpClientFactory) : Controller
 {
     public async Task<IActionResult> Index()
     {
-        var client = httpClientFactory.CreateClient();
+        var client = httpClientFactory.CreateClient("ApiClient");
         var response = await client.GetAsync("https://localhost:7128/api/Roles");
         if (!response.IsSuccessStatusCode)
         {
@@ -34,7 +34,7 @@ public class RoleController(IHttpClientFactory httpClientFactory) : Controller
     [HttpPost]
     public async Task<IActionResult> Update(RoleViewModel model)
     {
-        var client = httpClientFactory.CreateClient();
+        var client = httpClientFactory.CreateClient("ApiClient");
         var content = new StringContent(JsonConvert.SerializeObject(model.UpdateViewModel), Encoding.UTF8, "application/json");
         var response = await client.PutAsync("https://localhost:7128/api/Roles", content);
         if (!response.IsSuccessStatusCode)

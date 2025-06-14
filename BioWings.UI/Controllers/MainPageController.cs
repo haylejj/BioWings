@@ -10,7 +10,7 @@ public class MainPageController(IHttpClientFactory httpClientFactory) : Controll
 {
     public async Task<IActionResult> Index()
     {
-        var client = httpClientFactory.CreateClient();
+        var client = httpClientFactory.CreateClient("ApiClient");
         var response = await client.GetAsync("https://localhost:7128/api/Statistics");
         if (response.IsSuccessStatusCode)
         {

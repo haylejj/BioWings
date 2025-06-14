@@ -1,9 +1,17 @@
+using BioWings.UI.Handler;
 using BioWings.WebAPI.Exceptions;
 using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 //For Api consume 
 builder.Services.AddHttpClient();
+
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddTransient<TokenHandler>();
+
+builder.Services.AddHttpClient("ApiClient")
+   .AddHttpMessageHandler<TokenHandler>();
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 

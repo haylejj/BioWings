@@ -10,7 +10,7 @@ public class ObserverController(IHttpClientFactory httpClientFactory, ILogger<Ob
 {
     public async Task<IActionResult> Index(string searchTerm, int pageNumber = 1, int pageSize = 25)
     {
-        var client = httpClientFactory.CreateClient();
+        var client = httpClientFactory.CreateClient("ApiClient");
         var url = string.IsNullOrEmpty(searchTerm)
             ? $"https://localhost:7128/api/Observers/Paged?pageNumber={pageNumber}&pageSize={pageSize}"
             : $"https://localhost:7128/api/Observers/Search?searchTerm={Uri.EscapeDataString(searchTerm)}&pageNumber={pageNumber}&pageSize={pageSize}";

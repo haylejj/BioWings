@@ -417,6 +417,20 @@
     <script src="~/assets/js/custom/utilities/modals/create-app.js"></script>
     <script src="~/assets/js/custom/utilities/modals/new-target.js"></script>
     <script src="~/assets/js/custom/utilities/modals/users-search.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $.ajaxSetup({
+                beforeSend: function(xhr) {
+                    const token = '@(User.FindFirst("AccessToken")?.Value ?? "")';
+                    if (token) {
+                        xhr.setRequestHeader('Authorization', 'Bearer ' + token);
+                    }
+                }
+            });
+        });
+    </script>
+
     <!--end::Custom Javascript-->
     @await RenderSectionAsync("Scripts", required: false)
 </body>

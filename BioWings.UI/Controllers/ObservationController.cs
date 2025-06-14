@@ -12,7 +12,13 @@ public class ObservationController(IHttpClientFactory httpClientFactory, ILogger
     {
         try
         {
-            var client = httpClientFactory.CreateClient();
+            var client = httpClientFactory.CreateClient("ApiClient");
+            //var token = User.FindFirst("AccessToken")?.Value;
+            //if (!string.IsNullOrEmpty(token))
+            //{
+            //    client.DefaultRequestHeaders.Authorization =
+            //        new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+            //}
             string url;
 
             // Çoklu filtreleme için kontrol

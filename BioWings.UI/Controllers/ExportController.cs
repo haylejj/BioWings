@@ -11,7 +11,7 @@ public class ExportController(IHttpClientFactory httpClientFactory, ILogger<Obse
 {
     public async Task<IActionResult> Index()
     {
-        var client = httpClientFactory.CreateClient();
+        var client = httpClientFactory.CreateClient("ApiClient");
         var response = await client.GetAsync("https://localhost:7128/api/Observations/Count");
         int observationRecordCount = 0;
         if (response.IsSuccessStatusCode)
@@ -29,7 +29,7 @@ public class ExportController(IHttpClientFactory httpClientFactory, ILogger<Obse
     }
     public async Task<IActionResult> GetColumnNames()
     {
-        var client = httpClientFactory.CreateClient();
+        var client = httpClientFactory.CreateClient("ApiClient");
         var response = await client.GetAsync("https://localhost:7128/api/Exports/GetColumnNames");
         if (response.IsSuccessStatusCode)
         {
@@ -58,7 +58,7 @@ public class ExportController(IHttpClientFactory httpClientFactory, ILogger<Obse
     }
     public async Task<IActionResult> ExportData([FromBody] ExportCreateViewModel exportCreateViewModel)
     {
-        using (var httpClient = httpClientFactory.CreateClient())
+        using (var httpClient = httpClientFactory.CreateClient("ApiClient"))
         {
             // API'ye request gönder
             var response = await httpClient.PostAsJsonAsync("https://localhost:7128/api/Exports/ExportData", exportCreateViewModel);

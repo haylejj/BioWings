@@ -22,7 +22,7 @@ namespace BioWings.UI.Areas.Admin.Controllers
         {
             try
             {
-                var client = httpClientFactory.CreateClient();
+                var client = httpClientFactory.CreateClient("ApiClient");
                 var response = await client.GetAsync("https://localhost:7128/api/AuthorizeDefinitions");
                 
                 if (!response.IsSuccessStatusCode)
@@ -58,7 +58,7 @@ namespace BioWings.UI.Areas.Admin.Controllers
         {
             try
             {
-                var client = httpClientFactory.CreateClient();
+                var client = httpClientFactory.CreateClient("ApiClient");
                 var response = await client.PostAsync("https://localhost:7128/api/Permissions/sync", new StringContent("", Encoding.UTF8, "application/json"));
 
                 if (response.IsSuccessStatusCode)
@@ -96,7 +96,7 @@ namespace BioWings.UI.Areas.Admin.Controllers
         {
             try
             {
-                var client = httpClientFactory.CreateClient();
+                var client = httpClientFactory.CreateClient("ApiClient");
                 
                 // Permission'ları al
                 var permissionsResponse = await client.GetAsync("https://localhost:7128/api/Permissions");
@@ -105,17 +105,17 @@ namespace BioWings.UI.Areas.Admin.Controllers
                     ViewData["ErrorMessage"] = "Permission verileri yüklenirken bir hata oluştu.";
                     return View(new PermissionRoleManagementViewModel());
                 }
-
+                var client2 = httpClientFactory.CreateClient("ApiClient");
                 // Rolleri al
-                var rolesResponse = await client.GetAsync("https://localhost:7128/api/Roles");
+                var rolesResponse = await client2.GetAsync("https://localhost:7128/api/Roles");
                 if (!rolesResponse.IsSuccessStatusCode)
                 {
                     ViewData["ErrorMessage"] = "Role verileri yüklenirken bir hata oluştu.";
                     return View(new PermissionRoleManagementViewModel());
                 }
-
+                var client3 = httpClientFactory.CreateClient("ApiClient");
                 // Permission-Role eşleşmelerini al
-                var mappingsResponse = await client.GetAsync("https://localhost:7128/api/RolePermissions/mappings");
+                var mappingsResponse = await client3.GetAsync("https://localhost:7128/api/RolePermissions/mappings");
                 
                 var permissionsContent = await permissionsResponse.Content.ReadAsStringAsync();
                 var rolesContent = await rolesResponse.Content.ReadAsStringAsync();
@@ -150,7 +150,7 @@ namespace BioWings.UI.Areas.Admin.Controllers
                         MenuName = (string)p.menuName,
                         AreaName = (string)p.areaName,
                         SelectedRoleIds = new List<int>()
-                    }).ToList();
+                    }).OrderBy(x=> x.ControllerName).ThenBy(x=> x.ActionName).ToList();
                 }
 
                 // Eşleşmeleri map et
@@ -215,7 +215,7 @@ namespace BioWings.UI.Areas.Admin.Controllers
                     }
                 }
 
-                var client = httpClientFactory.CreateClient();
+                var client = httpClientFactory.CreateClient("ApiClient");
                 var request = new SavePermissionRolesRequest { PermissionRoles = permissionRoles };
                 var content = new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json");
                 

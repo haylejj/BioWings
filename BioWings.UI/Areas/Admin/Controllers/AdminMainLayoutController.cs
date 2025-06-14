@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 
 namespace BioWings.UI.Areas.Admin.Controllers;
-[Authorize]
+[AllowAnonymous]
 public class AdminMainLayoutController : Controller
 {
     public IActionResult Index()
