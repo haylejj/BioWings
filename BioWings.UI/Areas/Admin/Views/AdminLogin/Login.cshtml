@@ -1,0 +1,314 @@
+@using BioWings.Application.DTOs.LoginDtos
+@model LoginDto
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <title>BioWings - Admin Girişi</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="shortcut icon" href="~/assets/media/logos/favicon.ico" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
+    <link href="~/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .login-card {
+            border-radius: 12px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .auth-logo {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 1.5rem;
+        }
+
+        .login-form-container {
+            padding: 3rem 3rem;
+        }
+
+        .app-title {
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: #181C32;
+            margin-bottom: 0.75rem;
+        }
+
+        .app-subtitle {
+            color: #7E8299;
+            font-size: 1rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .password-toggle {
+            cursor: pointer;
+        }
+
+        #kt_app_root {
+            width: 100%;
+        }
+
+        .invalid-email {
+            border-color: #f1416c !important;
+        }
+
+        .admin-badge {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #5a6fd8 0%, #694a91 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+    </style>
+</head>
+
+<body id="kt_body" class="app-blank">
+    <!-- Main Content -->
+    <div class="d-flex flex-column flex-root" id="kt_app_root">
+        <div class="d-flex flex-column flex-lg-row flex-column-fluid justify-content-center align-items-center min-vh-100">
+            <div class="d-flex flex-column flex-lg-row-fluid w-lg-500px p-10">
+                <div class="d-flex flex-center flex-column flex-lg-row-fluid">
+                    <div class="w-lg-500px p-10 login-card">
+                        <form class="form w-100" action="/adminpanel/login" method="post" id="kt_sign_in_form">
+                            @Html.AntiForgeryToken()
+                            <div class="text-center mb-11">
+                                <!-- Logo -->
+                                <div class="text-center">
+                                    <img src="~/assets/media/logos/butterfly1-logo.svg" alt="BioWings Logo" class="auth-logo" />
+                                </div>
+                                <div class="admin-badge">
+                                    <i class="fas fa-crown me-1"></i>
+                                    Admin Panel
+                                </div>
+                                <h1 class="app-title">BioWings Admin Paneli</h1>
+                                <div class="app-subtitle">
+                                    Admin paneline giriş yapmak için bilgilerinizi giriniz.
+                                </div>
+                            </div>
+
+                            <!-- Email / Username Input -->
+                            <div class="fv-row mb-8">
+                                <input type="email" placeholder="Email" name="Email" autocomplete="off"
+                                       class="form-control bg-transparent" asp-for="Email" id="email" required
+                                       pattern="[a-z0-9._%+\-]+@@[a-z0-9.\-]+\.[a-z]{2,}$" />
+                                <div class="fv-plugins-message-container invalid-feedback">
+                                    <span asp-validation-for="Email"></span>
+                                </div>
+                            </div>
+
+                            <!-- Password Input -->
+                            <div class="fv-row mb-3 position-relative">
+                                <input type="password" placeholder="Şifre" name="Password" autocomplete="off" class="form-control bg-transparent" id="password-field" asp-for="Password" />
+                                <span class="password-toggle position-absolute top-50 end-0 translate-middle-y me-3">
+                                    <i class="fas fa-eye-slash toggle-password" onclick="togglePassword()"></i>
+                                </span>
+                                <div class="fv-plugins-message-container invalid-feedback">
+                                    <span asp-validation-for="Password"></span>
+                                </div>
+                            </div>
+
+                            <!-- Remember Me -->
+                            <div class="d-flex flex-stack flex-wrap gap-3 fs-base fw-semibold mb-8">
+                                <div class="form-check form-check-custom form-check-solid">
+                                    <input class="form-check-input" type="checkbox" name="RememberMe" value="true" id="flexCheckDefault" asp-for="RememberMe" />
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        Beni Hatırla
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Hidden div for errors -->
+                            <div id="validation-errors" class="d-none">
+                                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                            </div>
+
+                            <!-- Submit Button -->
+                            <div class="d-grid mb-10">
+                                <button type="submit" id="kt_sign_in_submit" class="btn btn-primary">
+                                    <span class="indicator-label">
+                                        <i class="fas fa-sign-in-alt me-2"></i>
+                                        Admin Girişi
+                                    </span>
+                                    <span class="indicator-progress">
+                                        Lütfen bekleyin...
+                                        <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                                    </span>
+                                </button>
+                            </div>
+                            
+                            <!-- Normal Login Link -->
+                            <div class="text-gray-500 text-center fw-semibold fs-6">
+                                Normal kullanıcı mısınız?
+                                <a href="/" class="link-primary">Buraya tıklayın</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="w-lg-500px d-flex flex-stack px-10 mx-auto">
+                    <div class="d-flex fw-semibold text-white fs-base gap-5 w-100 justify-content-center">
+                        <a href="#" target="_blank" class="text-white">Gizlilik Politikası</a>
+                        <a href="#" target="_blank" class="text-white">Kullanım Şartları</a>
+                        <a href="#" target="_blank" class="text-white">Destek</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>var hostUrl = "~/assets/";</script>
+    <script src="~/assets/plugins/global/plugins.bundle.js"></script>
+    <script src="~/assets/js/scripts.bundle.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        // Password toggle function
+        function togglePassword() {
+            const passwordField = document.getElementById('password-field');
+            const passwordToggle = document.querySelector('.toggle-password');
+
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                passwordToggle.classList.remove('fa-eye-slash');
+                passwordToggle.classList.add('fa-eye');
+            } else {
+                passwordField.type = 'password';
+                passwordToggle.classList.remove('fa-eye');
+                passwordToggle.classList.add('fa-eye-slash');
+            }
+        }
+
+        // Form validation
+        document.addEventListener('DOMContentLoaded', function () {
+            // Form element
+            const form = document.getElementById('kt_sign_in_form');
+            const submitButton = document.getElementById('kt_sign_in_submit');
+            const validationErrorsContainer = document.getElementById('validation-errors');
+
+            // Check if there are validation errors on page load
+            showValidationErrors();
+
+            // Form validation
+            form.addEventListener('submit', function (e) {
+                submitButton.setAttribute('data-kt-indicator', 'on');
+                submitButton.disabled = true;
+            });
+        });
+
+        // Show validation errors in SweetAlert
+        function showValidationErrors() {
+            const validationErrorsContainer = document.getElementById('validation-errors');
+
+            if (validationErrorsContainer && validationErrorsContainer.textContent.trim() !== '') {
+                // Extract all error messages
+                const errors = [];
+                const errorItems = validationErrorsContainer.querySelectorAll('ul > li');
+
+                if (errorItems.length > 0) {
+                    errorItems.forEach(function (item) {
+                        if (item.textContent.trim() !== '') {
+                            errors.push(item.textContent.trim());
+                        }
+                    });
+                } else if (validationErrorsContainer.textContent.trim() !== '') {
+                    // If there are no list items but the container has text
+                    errors.push(validationErrorsContainer.textContent.trim());
+                }
+
+                if (errors.length > 0) {
+                    // Show SweetAlert with errors
+                    Swal.fire({
+                        title: 'Admin Girişi Başarısız',
+                        html: 'Admin paneline giriş yapılırken bir hata oluştu. Lütfen bilgilerinizi kontrol ediniz.',
+                        icon: 'error',
+                        confirmButtonText: 'Tamam'
+                    });
+                }
+            }
+
+            // Check for specific field validation errors
+            const emailError = document.querySelector('[asp-validation-for="Email"]');
+            const passwordError = document.querySelector('[asp-validation-for="Password"]');
+
+            if ((emailError && emailError.textContent.trim() !== '') ||
+                (passwordError && passwordError.textContent.trim() !== '')) {
+
+                const fieldErrors = [];
+
+                if (emailError && emailError.textContent.trim() !== '') {
+                    fieldErrors.push(`Email: ${emailError.textContent.trim()}`);
+                }
+
+                if (passwordError && passwordError.textContent.trim() !== '') {
+                    fieldErrors.push(`Şifre: ${passwordError.textContent.trim()}`);
+                }
+
+                if (fieldErrors.length > 0) {
+                    Swal.fire({
+                        title: 'Form Hatası',
+                        html: 'Admin paneline giriş yapılırken bir hata oluştu. Lütfen form alanlarını kontrol ediniz.',
+                        icon: 'warning',
+                        confirmButtonText: 'Tamam'
+                    });
+                }
+            }
+        }
+
+        // Server-side validation check
+        @if (!ViewData.ModelState.IsValid)
+        {
+            <text>
+                    document.addEventListener('DOMContentLoaded', function () {
+                        const errors = [];
+                @foreach (var modelStateEntry in ViewData.ModelState.Values)
+                {
+                    foreach (var error in modelStateEntry.Errors)
+                    {
+                        <text>
+                                                errors.push('@Html.Raw(error.ErrorMessage)');
+                        </text>
+                    }
+                }
+
+                        if (errors.length > 0) {
+                            Swal.fire({
+                                title: 'Admin Doğrulama Hatası',
+                                html: 'Admin paneline giriş yapılırken bir hata oluştu. Lütfen bilgilerinizi kontrol ediniz.',
+                                icon: 'error',
+                                confirmButtonText: 'Tamam'
+                            });
+                        }
+                    });
+            </text>
+        }
+    </script>
+</body>
+</html> 
