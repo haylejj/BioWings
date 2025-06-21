@@ -1,11 +1,14 @@
 ﻿using BioWings.Application.Results;
+using BioWings.Domain.Configuration;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 
 namespace BioWings.UI.Controllers;
 [Authorize]
-public class ProvinceController(IHttpClientFactory httpClientFactory, ILogger<ProvinceController> logger) : Controller
+public class ProvinceController(IHttpClientFactory httpClientFactory, ILogger<ProvinceController> logger, IOptions<ApiSettings> options) : Controller
 {
+    private readonly string _baseUrl = options.Value.BaseUrl;
     public IActionResult Index()
     {
         return View();
@@ -16,7 +19,7 @@ public class ProvinceController(IHttpClientFactory httpClientFactory, ILogger<Pr
         using (var httpClient = httpClientFactory.CreateClient("ApiClient"))
         {
             // API'ye request gönder
-            var response = await httpClient.GetAsync($"https://localhost:7128/api/Exports/ExportObservationsByProvince/{provinceId}");
+            var response = await httpClient.GetAsync($"{_baseUrl}/Exports/ExportObservationsByProvince/{provinceId}");
 
             if (!response.IsSuccessStatusCode)
             {
