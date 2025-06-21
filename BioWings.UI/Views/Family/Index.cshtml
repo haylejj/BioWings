@@ -4,12 +4,9 @@
     Layout = "~/Views/MainLayout/Index.cshtml";
 }
 
-<!--begin::Card-->
 <div class="card">
     <div class="card-header border-0 pt-6">
-        <!--begin::Card title-->
         <div class="card-title">
-            <!--begin::Search-->
             <div class="d-flex align-items-center position-relative my-1">
                 <span class="svg-icon svg-icon-1 position-absolute ms-6">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -19,9 +16,7 @@
                 </span>
                 <input type="text" id="searchInput" class="form-control form-control-solid w-250px ps-14" placeholder="Search Family">
             </div>
-            <!--end::Search-->
         </div>
-        <!--begin::Card toolbar-->
         <div class="card-toolbar">
             <div class="d-flex justify-content-end">
                 <button type="button" class="btn btn-light-dark" data-bs-toggle="modal" data-bs-target="#kt_createmodal_family">
@@ -37,7 +32,6 @@
         </div>
     </div>
 
-    <!--begin::Card body-->
     <div class="card-body py-4">
         <table class="table align-middle table-row-dashed fs-6 gy-5 dataTable no-footer" id="familyTable">
             <thead>
@@ -70,7 +64,6 @@
             </tbody>
         </table>
 
-        <!--begin::Pagination-->
         @if (Model.TotalCount > 0)
         {
             <div class="d-flex flex-stack flex-wrap pt-10">
@@ -136,7 +129,6 @@
                 <p class="fs-6 fw-semibold text-gray-700">No records found</p>
             </div>
         }
-        <!--end::Pagination-->
     </div>
 </div>
 
@@ -204,6 +196,7 @@
         </div>
     </div>
 </div>
+
 @section Styles {
     <style>
         #familyTable {
@@ -282,275 +275,11 @@
     </style>
 }
 @section Scripts {
-    <script>
-        // DataTable initialization
-        var table = $('#familyTable').DataTable({
-            "searching": false,
-            "paging": false,
-            "info": false,
-            "ordering": true,
-            "autoWidth": false,
-            "order": [[0, "asc"]],
-            "columnDefs": [
-                {
-                    "targets": 0,
-                    "width": "10%", // Reduce ID column width
-                    "className": "fw-bold"
-                },
-                {
-                    "targets": 1,
-                    "width": "75%", // Increase Name column width
-                    "className": "fw-semibold"
-                },
-                {
-                    "targets": -1,
-                    "width": "15%", // Set Actions column width
-                    "className": "text-end",
-                    "orderable": false
-                }
-            ]
-        });
-
-        // Search functionality
-        $(document).ready(function() {
-            const searchInput = $('#searchInput');
-
-            const debouncedSearch = debounce(function(value) {
-                if (value.trim().length === 0) {
-                    window.location.href = '/Family/Index';
-                } else {
-                    const currentPageSize = new URLSearchParams(window.location.search).get('pageSize') || '@Model.PageSize';
-                    window.location.href = `/Family/Index?searchTerm=${encodeURIComponent(value.trim())}&pageNumber=1&pageSize=${currentPageSize}`;
-                }
-            }, 500);
-
-            searchInput.off('keyup').on('keyup', function() {
-                debouncedSearch(this.value);
-            });
-
-            const urlParams = new URLSearchParams(window.location.search);
-            const searchTerm = urlParams.get('searchTerm');
-            if (searchTerm) {
-                searchInput.val(decodeURIComponent(searchTerm));
-            }
-        });
-
-        function debounce(func, wait) {
-            let timeout;
-            return function executedFunction(...args) {
-                const later = () => {
-                    clearTimeout(timeout);
-                    func(...args);
-                };
-                clearTimeout(timeout);
-                timeout = setTimeout(later, wait);
-            };
-        }
-
-        function loadPage(pageNumber) {
-            const searchTerm = $('#searchInput').val().trim();
-            const baseUrl = '/Family/Index';
-            const queryParams = new URLSearchParams(window.location.search);
-
-            queryParams.set('pageNumber', pageNumber);
-            const currentPageSize = queryParams.get('pageSize') || '@Model.PageSize';
-            queryParams.set('pageSize', currentPageSize);
-
-            if (searchTerm) {
-                queryParams.set('searchTerm', searchTerm);
-            } else {
-                queryParams.delete('searchTerm');
-            }
-
-            window.location.href = `${baseUrl}?${queryParams.toString()}`;
-        }
-
-        // Delete functionality
-        function confirmDelete(id) {
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "This Family will be permanently deleted!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!',
-                cancelButtonText: 'Cancel'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    $.ajax({
-                        url: `https://localhost:7128/api/Families/${id}`,
-                        type: 'DELETE',
-                        success: function(response) {
-                            Swal.fire({
-                                title: 'Deleted!',
-                                text: 'Family has been deleted successfully.',
-                                icon: 'success',
-                                timer: 2000,
-                                showConfirmButton: true
-                            }).then(() => {
-                                window.location.reload();
-                            });
-                        },
-                        error: function(xhr, status, error) {
-                            Swal.fire({
-                                title: 'Error!',
-                                text: 'An error occurred during deletion.',
-                                icon: 'error'
-                            });
-                        }
-                    });
-                }
-            });
-        }
-
-        // Create functionality
-        $('#createFamilyButton').on('click', function() {
-            if (!$('#create_family_form')[0].checkValidity()) {
-                Swal.fire({
-                    title: 'Validation Error!',
-                    text: 'Please fill in all required fields.',
-                    icon: 'error',
-                    confirmButtonText: 'OK'
-                });
-                return;
-            }
-
-            const formData = {
-                name: $('#createName').val()
-            };
-
-            $.ajax({
-                url: 'https://localhost:7128/api/Families',
-                type: 'POST',
-                contentType: 'application/json',
-                data: JSON.stringify(formData),
-                success: function(response) {
-                    if (response.isSuccess) {
-                        Swal.fire({
-                            title: 'Success!',
-                            text: 'Family created successfully',
-                            icon: 'success',
-                            timer: 2000,
-                            showConfirmButton: true
-                        }).then(() => {
-                            $('#kt_createmodal_family').modal('hide');
-                            window.location.reload();
-                        });
-                    } else {
-                        Swal.fire({
-                            title: 'Error!',
-                            text: response.errorList ? response.errorList.join(', ') : 'Failed to create family',
-                            icon: 'error'
-                        });
-                    }
-                },
-                error: function(xhr, status, error) {
-                    let errorMessage = 'Failed to create family';
-                    if (xhr.responseJSON && xhr.responseJSON.errorList) {
-                        errorMessage = xhr.responseJSON.errorList.join(', ');
-                    }
-                    Swal.fire({
-                        title: 'Error!',
-                        text: errorMessage,
-                        icon: 'error'
-                    });
-                    }
-            });
-        });
-
-        // Update functionality
-        async function updateFamily(id) {
-            try {
-                const response = await fetch(`https://localhost:7128/api/Families/${id}`);
-                if (!response.ok) {
-                    throw new Error('Failed to fetch family data');
-                }
-
-                const result = await response.json();
-                const family = result.data;
-
-                $('#updateId').val(family.id);
-                $('#updateName').val(family.name);
-
-                const modal = new bootstrap.Modal(document.getElementById('kt_updatemodal_family'));
-                modal.show();
-            } catch (error) {
-                console.error('Error:', error);
-                Swal.fire({
-                    title: 'Error!',
-                    text: 'Failed to fetch family data: ' + error.message,
-                    icon: 'error'
-                });
-            }
-        }
-
-        $('#updateFamilyButton').on('click', function() {
-            if (!$('#update_family_form')[0].checkValidity()) {
-                Swal.fire({
-                    title: 'Validation Error!',
-                    text: 'Please fill in all required fields.',
-                    icon: 'error',
-                    confirmButtonText: 'OK'
-                });
-                return;
-            }
-
-            const formData = {
-                id: parseInt($('#updateId').val()),
-                name: $('#updateName').val()
-            };
-
-            $.ajax({
-                url: 'https://localhost:7128/api/Families',
-                type: 'PUT',
-                contentType: 'application/json',
-                data: JSON.stringify(formData),
-                success: function(response, status, xhr) {
-                    if (xhr.status === 204) {
-                        Swal.fire({
-                            title: 'Success!',
-                            text: 'Family updated successfully',
-                            icon: 'success',
-                            timer: 2000,
-                            showConfirmButton: true
-                        }).then(() => {
-                            $('#kt_updatemodal_family').modal('hide');
-                            window.location.reload();
-                        });
-                    } else {
-                        Swal.fire({
-                            title: 'Error!',
-                            text: response?.errorList ? response.errorList.join(', ') : 'Failed to update family',
-                            icon: 'error'
-                        });
-                    }
-                },
-                error: function(xhr, status, error) {
-                    let errorMessage = 'Failed to update family';
-                    if (xhr.responseJSON && xhr.responseJSON.errorList) {
-                        errorMessage = xhr.responseJSON.errorList.join(', ');
-                    }
-                    Swal.fire({
-                        title: 'Error!',
-                        text: errorMessage,
-                        icon: 'error'
-                    });
-                }
-            });
-        });
-
-        // Modal cleanup
-        $('#kt_createmodal_family').on('hidden.bs.modal', function() {
-            $('#create_family_form')[0].reset();
-            $('.is-invalid').removeClass('is-invalid');
-            $('.invalid-feedback').remove();
-        });
-
-        $('#kt_updatemodal_family').on('hidden.bs.modal', function() {
-            $('#update_family_form')[0].reset();
-            $('.is-invalid').removeClass('is-invalid');
-            $('.invalid-feedback').remove();
-        });
-    </script>
+    <!-- Family Module Scripts -->
+    <script src="~/js/family/family-datatable.js"></script>
+    <script src="~/js/family/family-search.js"></script>
+    <script src="~/js/family/family-create.js"></script>
+    <script src="~/js/family/family-update.js"></script>
+    <script src="~/js/family/family-delete.js"></script>
+    <script src="~/js/family/family-modals.js"></script>
 }
