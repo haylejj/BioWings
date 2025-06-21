@@ -1,20 +1,24 @@
 ﻿using BioWings.Application.Features.Results.SignUpResults;
 using BioWings.Application.Results;
+using BioWings.Domain.Configuration;
 using BioWings.UI.ViewModels.CountryViewModels;
 using BioWings.UI.ViewModels.SignUpViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 
 namespace BioWings.UI.Controllers;
 [AllowAnonymous]
-public class SignUpController(IHttpClientFactory httpClientFactory, ILogger<SignUpController> logger) : Controller
+[Route("signup")]
+public class SignUpController(IHttpClientFactory httpClientFactory, ILogger<SignUpController> logger,IOptions<ApiSettings> options) : Controller
 {
-    [HttpGet]
+    private readonly string _baseUrl = options.Value.BaseUrl;
+    [HttpGet("")]
     public async Task<IActionResult> SignUp()
     {
         var client = httpClientFactory.CreateClient();
-        var response = await client.GetAsync("https://localhost:7128/api/Country");
+        var response = await client.GetAsync($"{_baseUrl}/Country");
         if (response.IsSuccessStatusCode)
         {
             var content = await response.Content.ReadAsStringAsync();
@@ -24,7 +28,7 @@ public class SignUpController(IHttpClientFactory httpClientFactory, ILogger<Sign
         }
         return View();
     }
-    [HttpPost]
+    [HttpPost("")]
     public async Task<IActionResult> SignUp(SignUpViewModel model)
     {
         // Sonuç için hazırlayacağımız JSON nesnesi
@@ -33,7 +37,7 @@ public class SignUpController(IHttpClientFactory httpClientFactory, ILogger<Sign
         if (ModelState.IsValid)
         {
             var client = httpClientFactory.CreateClient();
-            var response = await client.PostAsJsonAsync("https://localhost:7128/api/SignUp", model);
+            var response = await client.PostAsJsonAsync($"{_baseUrl}/SignUp", model);
             // API yanıtını okuyalım
             var content = await response.Content.ReadAsStringAsync();
 
@@ -41,7 +45,6 @@ public class SignUpController(IHttpClientFactory httpClientFactory, ILogger<Sign
             {
                 logger.LogInformation("HttpPost request to SignUp Api was successfully. User signed up successfully");
 
-                // AJAX isteği için JSON yanıtı
                 if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
                 {
                     return Json(new
@@ -52,23 +55,19 @@ public class SignUpController(IHttpClientFactory httpClientFactory, ILogger<Sign
                     });
                 }
 
-                // Normal form submit için redirect
                 return RedirectToAction("Login", "Login");
             }
             else
             {
                 try
                 {
-                    // API'dan dönen ServiceResult yanıtını dönüştür
                     var errorResponse = JsonConvert.DeserializeObject<ApiResponse<SignUpResult>>(content);
                     var errorMessage = "";
 
                     if (errorResponse != null && errorResponse.ErrorList != null && errorResponse.ErrorList.Any())
                     {
-                        // API'dan gelen özel hata mesajlarını topla
                         errorMessage = string.Join(" ", errorResponse.ErrorList);
 
-                        // ModelState'e ekle
                         foreach (var error in errorResponse.ErrorList)
                         {
                             ModelState.AddModelError(string.Empty, error);
@@ -123,7 +122,7 @@ public class SignUpController(IHttpClientFactory httpClientFactory, ILogger<Sign
     private async Task LoadCountriesAsync()
     {
         var client = httpClientFactory.CreateClient();
-        var response = await client.GetAsync("https://localhost:7128/api/Country");
+        var response = await client.GetAsync($"{_baseUrl}/Country");
         if (response.IsSuccessStatusCode)
         {
             var content = await response.Content.ReadAsStringAsync();

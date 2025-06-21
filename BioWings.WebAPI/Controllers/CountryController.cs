@@ -11,7 +11,7 @@ namespace BioWings.WebAPI.Controllers;
 public class CountryController(IMediator mediator) : BaseController
 {
     [HttpGet]
-    [AuthorizeDefinition("Ülke Yönetimi", ActionType.Read, "Tüm ülkeleri görüntüleme", AreaNames.Public)]
+    //[AuthorizeDefinition("Ülke Yönetimi", ActionType.Read, "Tüm ülkeleri görüntüleme", AreaNames.Public)]
     public async Task<IActionResult> Get()
     {
         var query = new CountryGetQuery();
@@ -34,7 +34,7 @@ public class CountryController(IMediator mediator) : BaseController
     }
     // GET: api/Country/{id}
     [HttpGet("{id}")]
-    [AuthorizeDefinition("Ülke Yönetimi", ActionType.Read, "Ülke detayını görüntüleme", AreaNames.Public)]
+    //[AuthorizeDefinition("Ülke Yönetimi", ActionType.Read, "Ülke detayını görüntüleme", AreaNames.Public)]
     public async Task<IActionResult> GetById(int id)
     {
         var query = new CountryGetByIdQuery(id);
