@@ -13,7 +13,7 @@ async function updateSpecies(id) {
 }
 
 async function fetchSpeciesData(id) {
-    const response = await fetch(`https://localhost:7128/api/Species/${id}`);
+    const response = await fetch(`${API_CONFIG.BASE_URL}/Species/${id}`);
     if (!response.ok) {
         throw new Error('Failed to fetch species data');
     }
@@ -143,7 +143,7 @@ function validateAuthorityFieldsUpdate() {
 
 function submitUpdate(formData) {
     $.ajax({
-        url: 'https://localhost:7128/api/Species',
+        url: `${API_CONFIG.BASE_URL}/Species`,
         type: 'PUT',
         contentType: 'application/json',
         data: JSON.stringify(formData),

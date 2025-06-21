@@ -1,7 +1,4 @@
-﻿// species.js - Temel işlemler ve ortak fonksiyonlar
-
-// DataTable initialization
-var speciesTable;
+﻿var speciesTable;
 
 // Sayfa yüklendiğinde çalışacak işlemler
 $(document).ready(function () {
@@ -79,7 +76,7 @@ function initializeSearchFunctionality() {
 // Dropdown doldurma işlemleri
 async function populateDropdowns(prefix) {
     try {
-        await populateDropdown(`${prefix}GenusId`, 'https://localhost:7128/api/Genera', 'Genus');
+        await populateDropdown(`${prefix}GenusId`, `${API_CONFIG.BASE_URL}/Genera`, 'Genus');
     } catch (error) {
         console.error('Error loading dropdowns:', error);
         Swal.fire({
@@ -154,5 +151,5 @@ function showError(message) {
 
 // Template indirme
 function downloadTemplate() {
-    window.location.href = 'https://localhost:7128/api/ExcelTemplate/download/species';
+    window.location.href = `${API_CONFIG.BASE_URL}/ExcelTemplate/download/species`;
 }

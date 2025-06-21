@@ -70,7 +70,7 @@ function submitCreate(formData) {
     const jsonData = JSON.stringify(apiModel);
 
     $.ajax({
-        url: 'https://localhost:7128/api/Species',
+        url: `${API_CONFIG.BASE_URL}/Species`,
         type: 'POST',
         contentType: 'application/json',
         data: jsonData,

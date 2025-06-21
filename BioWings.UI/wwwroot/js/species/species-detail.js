@@ -1,5 +1,4 @@
-﻿// species-detail.js - Detay görüntüleme işlemleri
-
+﻿
 function initializeViewDetails() {
     $('.view-details').on('click', function () {
         const speciesData = $(this).data('species');

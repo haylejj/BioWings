@@ -34,7 +34,7 @@ var KTImport = function () {
             const formData = new FormData();
             formData.append('file', selectedFile);
 
-            fetch('https://localhost:7128/api/Species/Import', {
+            fetch(`${API_CONFIG.BASE_URL}/Species/Import`, {
                 method: 'POST',
                 body: formData,
                 mode: 'cors',

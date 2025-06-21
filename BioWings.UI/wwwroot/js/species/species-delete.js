@@ -19,7 +19,7 @@ function confirmDelete(id) {
 
 function deleteSpecies(id) {
     $.ajax({
-        url: `https://localhost:7128/api/Species/${id}`,
+        url: `${API_CONFIG.BASE_URL}/Species/${id}`,
         type: 'DELETE',
         success: function (response, textStatus, xhr) {
             // Check if status is 204 No Content (successful deletion with no content returned)
