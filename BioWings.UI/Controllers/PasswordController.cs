@@ -1,12 +1,16 @@
-﻿using BioWings.UI.ViewModels.EmailViewModels;
+﻿using BioWings.Domain.Configuration;
+using BioWings.UI.ViewModels.EmailViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 
 namespace BioWings.UI.Controllers;
 [AllowAnonymous]
-public class PasswordController(IHttpClientFactory httpClientFactory, ILogger<PasswordController> logger) : Controller
+[Route("password")]
+public class PasswordController(IHttpClientFactory httpClientFactory, ILogger<PasswordController> logger, IOptions<ApiSettings> options) : Controller
 {
-    [HttpGet]
+    private readonly string _baseUrl = options.Value.BaseUrl;
+    [HttpGet("change")]
     public IActionResult ChangePassword(string token)
     {
         if (string.IsNullOrWhiteSpace(token))
@@ -16,14 +20,14 @@ public class PasswordController(IHttpClientFactory httpClientFactory, ILogger<Pa
         ViewBag.Token=token;
         return View(new ChangePasswordViewModel { Token = token, ConfirmPassword="", Password="" });
     }
-    [HttpPost]
+    [HttpPost("change")]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> ChangePassword(ChangePasswordViewModel changePasswordViewModel)
     {
         try
         {
             var client = httpClientFactory.CreateClient();
-            var response = await client.PostAsJsonAsync("https://localhost:7128/api/Email/changePassword", changePasswordViewModel);
+            var response = await client.PostAsJsonAsync($"{_baseUrl}/Email/changePassword", changePasswordViewModel);
             return response.IsSuccessStatusCode
                 ? Json(new { success = true, message = "Şifre değiştirme işlemi başarılı" })
                 : (IActionResult)Json(new { success = false, message = "Şifre değiştirme işlemi başarısız oldu." });
@@ -34,12 +38,12 @@ public class PasswordController(IHttpClientFactory httpClientFactory, ILogger<Pa
             return Json(new { success = false, message = "Şifre değiştirme işlemi başarısız oldu." });
         }
     }
-    [HttpGet]
+    [HttpGet("forget")]
     public IActionResult ForgetPassword()
     {
         return View();
     }
-    [HttpPost]
+    [HttpPost("forget")]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> ForgetPassword(ForgetPasswordViewModel model)
     {
@@ -51,7 +55,7 @@ public class PasswordController(IHttpClientFactory httpClientFactory, ILogger<Pa
         try
         {
             var client = httpClientFactory.CreateClient();
-            var response = await client.PostAsJsonAsync("https://localhost:7128/api/Email/resetPasswordLink",
+            var response = await client.PostAsJsonAsync($"{_baseUrl}/Email/resetPasswordLink",
                 new { Email = model.Email });
 
             return response.IsSuccessStatusCode

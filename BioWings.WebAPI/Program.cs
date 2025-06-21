@@ -1,4 +1,5 @@
 using BioWings.Application.Extensions;
+using BioWings.Domain.Configuration;
 using BioWings.Infrastructure.Extensions;
 using BioWings.Infrastructure.Hubs;
 using BioWings.Persistence.Extensions;
@@ -35,6 +36,10 @@ builder.Services.AddControllers(options =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddHttpClient();
+
+// Configure ApiSettings
+builder.Services.Configure<ApiSettings>(builder.Configuration.GetSection("ApiSettings"));
+
 // Add services from the Application project
 builder.Services.AddApplicationExtensions(builder.Configuration);
 // Add services from the Persistence project
