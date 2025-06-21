@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BioWings.UI.Controllers;
 [Authorize]
-public class ObservationMapController(IHttpClientFactory httpClientFactory, ILogger<ObservationMapController> logger) : Controller
+public class ObservationMapController() : Controller
 {
     public IActionResult Index()
     {
