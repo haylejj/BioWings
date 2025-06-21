@@ -126,14 +126,12 @@
                     <div class="w-lg-500px p-10">
                         <div class="card shadow-sm">
                             <div class="card-body p-10 text-center">
-                                <!-- Logo -->
                                 <div class="text-center">
                                     <img src="~/assets/media/logos/butterfly1-logo.svg" alt="BioWings Logo" class="auth-logo" />
                                 </div>
 
                                 @if (Model.IsSuccess)
                                 {
-                                    <!-- Success Checkmark -->
                                     <div class="success-checkmark">
                                         <div class="check-icon"></div>
                                     </div>
@@ -142,7 +140,6 @@
                                 }
                                 else
                                 {
-                                    <!-- Error Icon -->
                                     <div class="error-icon">
                                         <div class="icon">
                                             <i class="fas fa-exclamation-triangle"></i>
@@ -156,7 +153,6 @@
                                     @Model.Message
                                 </div>
 
-                                <!-- Buttons -->
                                 <div class="d-grid @(Model.ShowResendButton ? "gap-3" : "") mt-8">
                                     @if (Model.ShowResendButton && !string.IsNullOrEmpty(Model.Email))
                                     {
@@ -187,58 +183,11 @@
         </div>
     </div>
 
-    <!-- Scripts -->
     <script>var hostUrl = "~/assets/";</script>
     <script src="~/assets/plugins/global/plugins.bundle.js"></script>
     <script src="~/assets/js/scripts.bundle.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.all.min.js"></script>
-    <script>
-        function resendConfirmationEmail(email) {
-            // Show loading
-            const resendLabel = document.getElementById('resend-label');
-            const resendProgress = document.getElementById('resend-progress');
-
-            resendLabel.classList.add('d-none');
-            resendProgress.classList.remove('d-none');
-
-            // Make API call
-            fetch('https://localhost:7128/api/Email/resendEmailConfirmation', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ email: email })
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                // Handle success
-                Swal.fire({
-                    title: 'Başarılı',
-                    text: 'Onay e-postası tekrar gönderildi.',
-                    icon: 'success',
-                    confirmButtonText: 'Tamam'
-                });
-            })
-            .catch(error => {
-                // Handle error
-                Swal.fire({
-                    title: 'Hata',
-                    text: 'Onay e-postası gönderilirken bir hata oluştu.',
-                    icon: 'error',
-                    confirmButtonText: 'Tamam'
-                });
-            })
-            .finally(() => {
-                // Hide loading
-                resendLabel.classList.remove('d-none');
-                resendProgress.classList.add('d-none');
-            });
-        }
-    </script>
+    <script src="~/js/config.js"></script>
+    <script src="~/js/email/email-confirm.js"></script>
 </body>
 </html>
