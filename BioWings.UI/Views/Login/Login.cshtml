@@ -67,7 +67,6 @@
 </head>
 
 <body id="kt_body" class="app-blank">
-    <!-- Main Content -->
     <div class="d-flex flex-column flex-root" id="kt_app_root">
         <div class="d-flex flex-column flex-lg-row flex-column-fluid justify-content-center align-items-center min-vh-100">
             <div class="d-flex flex-column flex-lg-row-fluid w-lg-500px p-10">
@@ -76,7 +75,6 @@
                         <form class="form w-100" action="/Login/Login" method="post" id="kt_sign_in_form">
                             @Html.AntiForgeryToken()
                             <div class="text-center mb-11">
-                                <!-- Logo -->
                                 <div class="text-center">
                                     <img src="~/assets/media/logos/butterfly1-logo.svg" alt="BioWings Logo" class="auth-logo" />
                                 </div>
@@ -86,7 +84,6 @@
                                 </div>
                             </div>
 
-                            <!-- Email / Username Input -->
                             <div class="fv-row mb-8">
                                 <input type="email" placeholder="Email" name="Email" autocomplete="off"
                                        class="form-control bg-transparent" asp-for="Email" id="email" required
@@ -96,18 +93,13 @@
                                 </div>
                             </div>
 
-                            <!-- Password Input -->
-                            <div class="fv-row mb-3 position-relative">
-                                <input type="password" placeholder="Şifre" name="Password" autocomplete="off" class="form-control bg-transparent" id="password-field" asp-for="Password" />
-                                <span class="password-toggle position-absolute top-50 end-0 translate-middle-y me-3">
-                                    <i class="fas fa-eye-slash toggle-password" onclick="togglePassword()"></i>
-                                </span>
-                                <div class="fv-plugins-message-container invalid-feedback">
-                                    <span asp-validation-for="Password"></span>
+                            <div class="fv-row mb-3" data-kt-password-meter="true">
+                                <div class="position-relative mb-3">
+                                    <input type="password" placeholder="Şifre" name="Password" autocomplete="off"
+                                           class="form-control bg-transparent" id="password-field" asp-for="Password" />
                                 </div>
                             </div>
 
-                            <!-- Remember Me and Forgot Password -->
                             <div class="d-flex flex-stack flex-wrap gap-3 fs-base fw-semibold mb-8">
                                 <div class="form-check form-check-custom form-check-solid">
                                     <input class="form-check-input" type="checkbox" name="RememberMe" value="true" id="flexCheckDefault" asp-for="RememberMe" />
@@ -118,12 +110,7 @@
                                 <a href="/Password/ForgetPassword" class="link-primary">Şifremi Unuttum</a>
                             </div>
 
-                            <!-- Hidden div for errors -->
-                            <div id="validation-errors" class="d-none">
-                                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
-                            </div>
-
-                            <!-- Submit Button -->
+                           
                             <div class="d-grid mb-10">
                                 <button type="submit" id="kt_sign_in_submit" class="btn btn-primary">
                                     <span class="indicator-label">Giriş Yap</span>
@@ -133,7 +120,6 @@
                                     </span>
                                 </button>
                             </div>
-                            <!-- Sign Up Link -->
                             <div class="text-gray-500 text-center fw-semibold fs-6">
                                 Hesabınız yok mu?
                                 <a href="/SignUp/SignUp" class="link-primary">Kayıt Olun</a>
@@ -149,135 +135,18 @@
                     </div>
                 </div>
             </div>
-            <!-- Arka plan resmi tamamen kaldırıldı -->
         </div>
     </div>
 
-    <!-- Scripts -->
+    <div id="login-error" data-error="@(TempData["LoginError"] ?? "")" style="display: none;"></div>
+
     <script>var hostUrl = "~/assets/";</script>
     <script src="~/assets/plugins/global/plugins.bundle.js"></script>
     <script src="~/assets/js/scripts.bundle.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
-        // Password toggle function
-        function togglePassword() {
-            const passwordField = document.getElementById('password-field');
-            const passwordToggle = document.querySelector('.toggle-password');
 
-            if (passwordField.type === 'password') {
-                passwordField.type = 'text';
-                passwordToggle.classList.remove('fa-eye-slash');
-                passwordToggle.classList.add('fa-eye');
-            } else {
-                passwordField.type = 'password';
-                passwordToggle.classList.remove('fa-eye');
-                passwordToggle.classList.add('fa-eye-slash');
-            }
-        }
-
-        // Form validation
-        document.addEventListener('DOMContentLoaded', function () {
-            // Form element
-            const form = document.getElementById('kt_sign_in_form');
-            const submitButton = document.getElementById('kt_sign_in_submit');
-            const validationErrorsContainer = document.getElementById('validation-errors');
-
-            // Check if there are validation errors on page load
-            showValidationErrors();
-
-            // Form validation
-            form.addEventListener('submit', function (e) {
-                submitButton.setAttribute('data-kt-indicator', 'on');
-                submitButton.disabled = true;
-            });
-        });
-
-        // Show validation errors in SweetAlert
-        function showValidationErrors() {
-            const validationErrorsContainer = document.getElementById('validation-errors');
-
-            if (validationErrorsContainer && validationErrorsContainer.textContent.trim() !== '') {
-                // Extract all error messages
-                const errors = [];
-                const errorItems = validationErrorsContainer.querySelectorAll('ul > li');
-
-                if (errorItems.length > 0) {
-                    errorItems.forEach(function (item) {
-                        if (item.textContent.trim() !== '') {
-                            errors.push(item.textContent.trim());
-                        }
-                    });
-                } else if (validationErrorsContainer.textContent.trim() !== '') {
-                    // If there are no list items but the container has text
-                    errors.push(validationErrorsContainer.textContent.trim());
-                }
-
-                if (errors.length > 0) {
-                    // Show SweetAlert with errors
-                    Swal.fire({
-                        title: 'Giriş Yapılamadı',
-                        html: 'Giriş yapılırken bir hata oluştu. Lütfen bilgilerinizi kontrol ediniz.',
-                        icon: 'error',
-                        confirmButtonText: 'Tamam'
-                    });
-                }
-            }
-
-            // Check for specific field validation errors
-            const emailError = document.querySelector('[asp-validation-for="Email"]');
-            const passwordError = document.querySelector('[asp-validation-for="Password"]');
-
-            if ((emailError && emailError.textContent.trim() !== '') ||
-                (passwordError && passwordError.textContent.trim() !== '')) {
-
-                const fieldErrors = [];
-
-                if (emailError && emailError.textContent.trim() !== '') {
-                    fieldErrors.push(`Email: ${emailError.textContent.trim()}`);
-                }
-
-                if (passwordError && passwordError.textContent.trim() !== '') {
-                    fieldErrors.push(`Şifre: ${passwordError.textContent.trim()}`);
-                }
-
-                if (fieldErrors.length > 0) {
-                    Swal.fire({
-                        title: 'Form Hatası',
-                        html: 'Giriş yapılırken bir hata oluştu. Lütfen form alanlarını kontrol ediniz.',
-                        icon: 'warning',
-                        confirmButtonText: 'Tamam'
-                    });
-                }
-            }
-        }
-
-        // Server-side validation check
-        @if (!ViewData.ModelState.IsValid)
-        {
-            <text>
-                    document.addEventListener('DOMContentLoaded', function () {
-                        const errors = [];
-                @foreach (var modelStateEntry in ViewData.ModelState.Values)
-                {
-                    foreach (var error in modelStateEntry.Errors)
-                    {
-                        <text>
-                                                errors.push('@Html.Raw(error.ErrorMessage)');
-                        </text>
-                    }
-                }
-
-                        if (errors.length > 0) {
-                            Swal.fire({
-                                title: 'Doğrulama Hatası',
-                                html: 'Giriş yapılırken bir hata oluştu. Lütfen bilgilerinizi kontrol ediniz.',
-                                icon: 'error',
-                                confirmButtonText: 'Tamam'
-                            });
-                        }
-                    });
-            </text>
-        }
-    </script>
+    <script src="~/js/login/login-validation.js"></script>
+    <script src="~/js/login/login-form-handler.js"></script>
+    <script src="~/js/login/login-server-validation.js"></script>
 </body>
 </html>

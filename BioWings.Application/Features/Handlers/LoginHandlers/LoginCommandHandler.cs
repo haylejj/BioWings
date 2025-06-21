@@ -16,12 +16,18 @@ public class LoginCommandHandler(ILoginService loginService, ILogger<LoginComman
         if (result)
         {
             var user = await userRepository.GetByEmailAsync(request.Email, cancellationToken);
+            if (user == null)
+            {
+                logger.LogWarning("User not found with email {Email} after successful login", request.Email);
+                return ServiceResult<LoginResult>.Error("User not found");
+            }
+
             var userRoles = await userRoleRepository.GetUserRolesByUserIdAsync(user.Id, cancellationToken);
             var token = tokenService.CreateToken(user, userRoles);
             logger.LogInformation("User with email {Email} logged in", request.Email);
             return ServiceResult<LoginResult>.Success(new LoginResult { Token = token.AccessToken, RefreshToken = token.RefreshToken, Expiration = token.Expiration, Roles = userRoles.Select(x => x.RoleName).ToList() });
         }
-        logger.LogWarning("User with email {Email} not logged in", request.Email);
+        logger.LogWarning("Login failed for user with email {Email}", request.Email);
         return ServiceResult<LoginResult>.Error("Invalid email or password");
     }
 }

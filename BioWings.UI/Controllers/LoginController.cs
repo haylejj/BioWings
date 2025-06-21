@@ -1,18 +1,21 @@
 ﻿using BioWings.Application.DTOs.LoginDtos;
 using BioWings.Application.Features.Results.LoginResults;
 using BioWings.Application.Results;
+using BioWings.Domain.Configuration;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using System.Security.Claims;
 using System.Text;
 using System.Text.Json;
 
 namespace BioWings.UI.Controllers;
 [AllowAnonymous]
-public class LoginController(IHttpClientFactory httpClientFactory, ILogger<LoginController> logger) : Controller
+public class LoginController(IHttpClientFactory httpClientFactory, ILogger<LoginController> logger, IOptions<ApiSettings> options) : Controller
 {
+    private readonly string _baseUrl = options.Value.BaseUrl;
     [HttpGet]
     public IActionResult Login()
     {
@@ -26,11 +29,8 @@ public class LoginController(IHttpClientFactory httpClientFactory, ILogger<Login
         {
             if (!ModelState.IsValid)
             {
-                // ModelState hatalarını loglayalım
-                foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
-                {
-                    Console.WriteLine($"ModelState Error: {error.ErrorMessage}");
-                }
+                var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage);
+                logger.LogWarning("Validation failed for {Email}: {Errors}", loginDto.Email, string.Join(", ", errors));
                 return View(loginDto);
             }
 
@@ -40,7 +40,7 @@ public class LoginController(IHttpClientFactory httpClientFactory, ILogger<Login
             var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
 
 
-            var response = await client.PostAsync("https://localhost:7128/api/Login", content);
+            var response = await client.PostAsync($"{_baseUrl}/Login", content);
 
 
             if (response.IsSuccessStatusCode)
@@ -52,12 +52,12 @@ public class LoginController(IHttpClientFactory httpClientFactory, ILogger<Login
                 if (result.IsSuccess && result.Data != null)
                 {
                     var claims = new List<Claim>
-                {
-                    new(ClaimTypes.Email, loginDto.Email),
-                    new("AccessToken", result.Data.Token),
-                    new("RefreshToken", result.Data.RefreshToken),
-                    new("TokenExpiration", result.Data.Expiration.ToString("o"))
-                };
+                    {
+                        new(ClaimTypes.Email, loginDto.Email),
+                        new("AccessToken", result.Data.Token),
+                        new("RefreshToken", result.Data.RefreshToken),
+                        new("TokenExpiration", result.Data.Expiration.ToString("o"))
+                    };
 
                     if (result.Data.Roles != null)
                     {
@@ -88,31 +88,28 @@ public class LoginController(IHttpClientFactory httpClientFactory, ILogger<Login
                 }
                 else
                 {
-                    var errorMessage = result.ErrorList?.FirstOrDefault() ?? "Giriş başarısız oldu.";
-                    ModelState.AddModelError(string.Empty, errorMessage);
+                    TempData["LoginError"] = result.ErrorList?.FirstOrDefault() ?? "Login failed.";
                 }
             }
             else
             {
-                var errorContent = await response.Content.ReadAsStringAsync();
-                ModelState.AddModelError(string.Empty, $"Giriş yapılamadı. HTTP Status: {response.StatusCode}");
+                TempData["LoginError"] = "Unable to login.";
             }
         }
         catch (HttpRequestException ex)
         {
-            Console.WriteLine();
-            logger.LogError(ex, "HTTP Request Exception");
-            ModelState.AddModelError(string.Empty, $"API bağlantı hatası: {ex.Message}");
+            logger.LogError(ex, "HTTP Request Exception for {Email}", loginDto.Email);
+            TempData["LoginError"] = "Connection error. Please try again.";
         }
         catch (JsonException ex)
         {
-            logger.LogError(ex, "JSON Exception");
-            ModelState.AddModelError(string.Empty, "Sunucu yanıtı işlenirken hata oluştu.");
+            logger.LogError(ex, "JSON Exception for {Email}", loginDto.Email);
+            TempData["LoginError"] = "Server response error.";
         }
         catch (Exception ex)
         {
-            logger.LogError(ex, "Unexpected Exception");
-            ModelState.AddModelError(string.Empty, "Beklenmeyen bir hata oluştu. Lütfen daha sonra tekrar deneyin.");
+            logger.LogError(ex, "Login error for {Email}", loginDto.Email);
+            TempData["LoginError"] = "An unexpected error occurred.";
         }
 
         return View();
