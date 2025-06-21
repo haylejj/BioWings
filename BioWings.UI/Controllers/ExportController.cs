@@ -1,41 +1,49 @@
 ﻿using BioWings.Application.Results;
+using BioWings.Domain.Configuration;
 using BioWings.UI.ViewModels.ExportViewModels;
 using BioWings.UI.ViewModels.ObservationViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 
 namespace BioWings.UI.Controllers;
 [Authorize]
-public class ExportController(IHttpClientFactory httpClientFactory, ILogger<ObservationController> logger) : Controller
+public class ExportController(IHttpClientFactory httpClientFactory, ILogger<ObservationController> logger, IOptions<ApiSettings> options) : Controller
 {
+    private readonly string _baseUrl = options.Value.BaseUrl;
+
     public async Task<IActionResult> Index()
     {
         var client = httpClientFactory.CreateClient("ApiClient");
-        var response = await client.GetAsync("https://localhost:7128/api/Observations/Count");
+        var response = await client.GetAsync($"{_baseUrl}/Observations/Count");
         int observationRecordCount = 0;
+
         if (response.IsSuccessStatusCode)
         {
             var content = await response.Content.ReadAsStringAsync();
             var apiResponse = JsonConvert.DeserializeObject<ApiResponse<ObservationGetCountViewModel>>(content);
             if (apiResponse.IsSuccess && apiResponse.Data != null)
             {
-                observationRecordCount=apiResponse.Data.Count;
+                observationRecordCount = apiResponse.Data.Count;
             }
         }
-        ViewBag.observationCount=observationRecordCount;
 
+        ViewBag.observationCount = observationRecordCount;
         return View();
     }
+
     public async Task<IActionResult> GetColumnNames()
     {
         var client = httpClientFactory.CreateClient("ApiClient");
-        var response = await client.GetAsync("https://localhost:7128/api/Exports/GetColumnNames");
+        var response = await client.GetAsync($"{_baseUrl}/Exports/GetColumnNames");
+
         if (response.IsSuccessStatusCode)
         {
             var content = await response.Content.ReadAsStringAsync();
             var columns = JsonConvert.DeserializeObject<ApiResponse<List<ExportColumnViewModel>>>(content);
             logger.LogInformation($"Deserialized Columns: {JsonConvert.SerializeObject(columns)}");
+
             if (columns.IsSuccess && columns.Data != null)
             {
                 var groupedColumns = columns.Data
@@ -56,12 +64,13 @@ public class ExportController(IHttpClientFactory httpClientFactory, ILogger<Obse
             ErrorList = new List<string> { "An error occurred while fetching columns" }
         });
     }
+
     public async Task<IActionResult> ExportData([FromBody] ExportCreateViewModel exportCreateViewModel)
     {
         using (var httpClient = httpClientFactory.CreateClient("ApiClient"))
         {
             // API'ye request gönder
-            var response = await httpClient.PostAsJsonAsync("https://localhost:7128/api/Exports/ExportData", exportCreateViewModel);
+            var response = await httpClient.PostAsJsonAsync($"{_baseUrl}/Exports/ExportData", exportCreateViewModel);
 
             if (!response.IsSuccessStatusCode)
             {
@@ -71,8 +80,9 @@ public class ExportController(IHttpClientFactory httpClientFactory, ILogger<Obse
 
             var result = await response.Content.ReadFromJsonAsync<ServiceResult<byte[]>>();
             logger.LogInformation("Exported data successfully");
-            return File(result.Data, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", $"exportObservations_{DateTime.Now:yyyy-MM-dd_HH-mm}.xlsx");
-        }
 
+            return File(result.Data, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                       $"exportObservations_{DateTime.Now:yyyy-MM-dd_HH-mm}.xlsx");
+        }
     }
 }

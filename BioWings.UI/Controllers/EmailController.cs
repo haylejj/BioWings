@@ -2,14 +2,17 @@
 using BioWings.Application.Features.Commands.EncryptionCommands;
 using BioWings.Application.Features.Results.EncryptionResults;
 using BioWings.Application.Results;
+using BioWings.Domain.Configuration;
 using BioWings.UI.ViewModels.EmailViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 
 namespace BioWings.UI.Controllers;
 [AllowAnonymous]
-public class EmailController(IHttpClientFactory httpClientFactory, ILogger<EmailController> logger) : Controller
+public class EmailController(IHttpClientFactory httpClientFactory, ILogger<EmailController> logger, IOptions<ApiSettings> options) : Controller
 {
+    private readonly string _baseUrl = options.Value.BaseUrl;
     public async Task<IActionResult> EmailConfirm([FromQuery] string code)
     {
         // Başarısız durumları için kullanacağımız genel model
@@ -29,7 +32,7 @@ public class EmailController(IHttpClientFactory httpClientFactory, ILogger<Email
         try
         {
             var client = httpClientFactory.CreateClient();
-            var responseDecrypt = await client.PostAsJsonAsync("https://localhost:7128/api/Encryption/decrypt", new DecryptCommand(code));
+            var responseDecrypt = await client.PostAsJsonAsync($"{_baseUrl}/Encryption/decrypt", new DecryptCommand(code));
             if (!responseDecrypt.IsSuccessStatusCode)
             {
                 model.Message = "Geçersiz doğrulama kodu formatı.";
@@ -42,7 +45,7 @@ public class EmailController(IHttpClientFactory httpClientFactory, ILogger<Email
 
             // Email doğrulama işlemini gerçekleştir
             var client2 = httpClientFactory.CreateClient();
-            var response = await client2.PostAsJsonAsync("https://localhost:7128/api/Email/confirm", new EmailConfirmCommand { Email = email, Token = token });
+            var response = await client2.PostAsJsonAsync($"{_baseUrl}/Email/confirm", new EmailConfirmCommand { Email = email, Token = token });
 
             if (response.IsSuccessStatusCode)
             {

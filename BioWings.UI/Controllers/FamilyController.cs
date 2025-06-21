@@ -10,13 +10,13 @@ namespace BioWings.UI.Controllers;
 [Authorize]
 public class FamilyController(IHttpClientFactory httpClientFactory, ILogger<FamilyController> logger, IOptions<ApiSettings> options) : Controller
 {
+    private readonly string _baseUrl = options.Value.BaseUrl;
     public async Task<IActionResult> Index(string searchTerm, int pageNumber = 1, int pageSize = 25)
     {
-        var baseUrl = options.Value.BaseUrl;
         var client = httpClientFactory.CreateClient("ApiClient");
         var url = string.IsNullOrEmpty(searchTerm)
-            ? $"{baseUrl}/Families/Paged?pageNumber={pageNumber}&pageSize={pageSize}"
-            : $"{baseUrl}/Families/Search?searchTerm={Uri.EscapeDataString(searchTerm)}&pageNumber={pageNumber}&pageSize={pageSize}";
+            ? $"{_baseUrl}/Families/Paged?pageNumber={pageNumber}&pageSize={pageSize}"
+            : $"{_baseUrl}/Families/Search?searchTerm={Uri.EscapeDataString(searchTerm)}&pageNumber={pageNumber}&pageSize={pageSize}";
         var response = await client.GetAsync(url);
         if (response.IsSuccessStatusCode)
         {
