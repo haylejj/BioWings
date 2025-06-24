@@ -1,19 +1,22 @@
 ﻿using BioWings.Application.Results;
+using BioWings.Domain.Configuration;
 using BioWings.UI.Areas.Admin.Models.Role;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using System.Text;
 
 namespace BioWings.UI.Areas.Admin.Controllers;
 [Authorize]
 [Area("Admin")]
-public class RoleController(IHttpClientFactory httpClientFactory) : Controller
+public class RoleController(IHttpClientFactory httpClientFactory, IOptions<ApiSettings> options) : Controller
 {
+    private readonly string _baseUrl = options.Value.BaseUrl;
     public async Task<IActionResult> Index()
     {
         var client = httpClientFactory.CreateClient("ApiClient");
-        var response = await client.GetAsync("https://localhost:7128/api/Roles");
+        var response = await client.GetAsync($"{_baseUrl}/Roles");
         if (!response.IsSuccessStatusCode)
         {
             TempData["ErrorMessage"]="An error occurred while fetching the roles";
@@ -36,7 +39,7 @@ public class RoleController(IHttpClientFactory httpClientFactory) : Controller
     {
         var client = httpClientFactory.CreateClient("ApiClient");
         var content = new StringContent(JsonConvert.SerializeObject(model.UpdateViewModel), Encoding.UTF8, "application/json");
-        var response = await client.PutAsync("https://localhost:7128/api/Roles", content);
+        var response = await client.PutAsync($"{_baseUrl}/Roles", content);
         if (!response.IsSuccessStatusCode)
         {
             TempData["ErrorMessageForUpdate"]="An error occurred while updating the role";
