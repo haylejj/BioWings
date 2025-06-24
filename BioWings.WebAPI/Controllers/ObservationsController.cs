@@ -1,6 +1,5 @@
 ﻿using BioWings.Application.Features.Commands.ObservationCommands;
 using BioWings.Application.Features.Queries.ObservationQueries;
-using BioWings.Application.Results;
 using BioWings.Domain.Attributes;
 using BioWings.Domain.Constants;
 using BioWings.Domain.Enums;
@@ -101,9 +100,9 @@ public class ObservationsController(IMediator mediator) : BaseController
     // GET: api/Observations/Filter
     [HttpGet("Filter")]
     [AuthorizeDefinition("Gözlem Yönetimi", ActionType.Read, "Gözlem filtreleme", AreaNames.Public)]
-    public async Task<IActionResult> GetFiltered([FromQuery] List<string> columnNames, [FromQuery] List<string> columnValues, [FromQuery] int pageNumber = 1,[FromQuery] int pageSize = 25)
+    public async Task<IActionResult> GetFiltered([FromQuery] List<string> columnNames, [FromQuery] List<string> columnValues, [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 25)
     {
-        var query=new ObservationGetFilteredQuery { ColumnNames=columnNames, ColumnValues=columnValues, PageNumber=pageNumber, PageSize=pageSize };
+        var query = new ObservationGetFilteredQuery { ColumnNames=columnNames, ColumnValues=columnValues, PageNumber=pageNumber, PageSize=pageSize };
         var result = await mediator.Send(query);
         return CreateResult(result);
     }

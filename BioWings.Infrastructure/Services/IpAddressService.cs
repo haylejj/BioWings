@@ -42,13 +42,9 @@ public class IpAddressService : IIpAddressService
         if (!string.IsNullOrEmpty(remoteIp))
         {
             // IPv6 localhost'u IPv4'e çevir
-            if (remoteIp == "::1")
-            {
-                return "127.0.0.1";
-            }
-            return remoteIp;
+            return remoteIp == "::1" ? "127.0.0.1" : remoteIp;
         }
 
         return "Unknown";
     }
-} 
+}

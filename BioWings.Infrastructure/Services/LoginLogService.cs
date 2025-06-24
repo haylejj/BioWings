@@ -5,15 +5,8 @@ using BioWings.Domain.Entities;
 
 namespace BioWings.Infrastructure.Services;
 
-public class LoginLogService : ILoginLogService
+public class LoginLogService(ILoginLogRepository loginLogRepository) : ILoginLogService
 {
-    private readonly ILoginLogRepository _loginLogRepository;
-
-    public LoginLogService(ILoginLogRepository loginLogRepository)
-    {
-        _loginLogRepository = loginLogRepository;
-    }
-
     public async Task LogLoginAttemptAsync(LoginLogCreateDto loginLogDto, CancellationToken cancellationToken = default)
     {
         var loginLog = new LoginLog
@@ -27,20 +20,21 @@ public class LoginLogService : ILoginLogService
             FailureReason = loginLogDto.FailureReason
         };
 
-        await _loginLogRepository.CreateAsync(loginLog, cancellationToken);
+        await loginLogRepository.CreateAsync(loginLog, cancellationToken);
     }
 
     public async Task<IEnumerable<LoginLogCreateDto>> GetUserLoginHistoryAsync(int userId, CancellationToken cancellationToken = default)
     {
-        var loginLogs = await _loginLogRepository.GetLoginLogsByUserIdAsync(userId, cancellationToken);
-        
+        var loginLogs = await loginLogRepository.GetLoginLogsByUserIdAsync(userId, cancellationToken);
+
         return loginLogs.Select(ll => new LoginLogCreateDto
         {
+            Id = ll.Id,
             UserId = ll.UserId,
-            UserName = ll.UserName,
-            IpAddress = ll.IpAddress,
+            UserName = ll.UserName ?? "Bilinmeyen Kullanıcı",
+            IpAddress = ll.IpAddress ?? "0.0.0.0",
             LoginDateTime = ll.LoginDateTime,
-            UserAgent = ll.UserAgent,
+            UserAgent = ll.UserAgent ?? "Bilinmeyen Agent",
             IsSuccessful = ll.IsSuccessful,
             FailureReason = ll.FailureReason
         });
@@ -48,17 +42,18 @@ public class LoginLogService : ILoginLogService
 
     public async Task<IEnumerable<LoginLogCreateDto>> GetRecentLoginAttemptsAsync(int count = 100, CancellationToken cancellationToken = default)
     {
-        var loginLogs = await _loginLogRepository.GetRecentLoginLogsAsync(count, cancellationToken);
-        
+        var loginLogs = await loginLogRepository.GetRecentLoginLogsAsync(count, cancellationToken);
+
         return loginLogs.Select(ll => new LoginLogCreateDto
         {
+            Id = ll.Id,
             UserId = ll.UserId,
-            UserName = ll.UserName,
-            IpAddress = ll.IpAddress,
+            UserName = ll.UserName ?? "Bilinmeyen Kullanıcı",
+            IpAddress = ll.IpAddress ?? "0.0.0.0",
             LoginDateTime = ll.LoginDateTime,
-            UserAgent = ll.UserAgent,
+            UserAgent = ll.UserAgent ?? "Bilinmeyen Agent",
             IsSuccessful = ll.IsSuccessful,
             FailureReason = ll.FailureReason
         });
     }
-} 
+}

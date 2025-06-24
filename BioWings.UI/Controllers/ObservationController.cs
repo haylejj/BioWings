@@ -25,7 +25,7 @@ public class ObservationController(IHttpClientFactory httpClientFactory, ILogger
             if (columnNames != null && columnValues != null && columnNames.Count > 0 && columnNames.Count == columnValues.Count)
             {
                 // URL için query parametreleri oluştur
-                List<string> filterParams = new List<string>();
+                List<string> filterParams = new();
 
                 for (int i = 0; i < columnNames.Count; i++)
                 {

@@ -4,34 +4,33 @@ using BioWings.Application.Results;
 using MediatR;
 using System.Net;
 
-namespace BioWings.Application.Features.Queries.AuthorizeDefinitionQueries
+namespace BioWings.Application.Features.Queries.AuthorizeDefinitionQueries;
+
+/// <summary>
+/// Yetkilendirme tanımlarını getiren query handler
+/// </summary>
+public class AuthorizeDefinitionGetQueryHandler : IRequestHandler<AuthorizeDefinitionGetQuery, ServiceResult<List<AuthorizeDefinitionViewModel>>>
 {
-    /// <summary>
-    /// Yetkilendirme tanımlarını getiren query handler
-    /// </summary>
-    public class AuthorizeDefinitionGetQueryHandler : IRequestHandler<AuthorizeDefinitionGetQuery, ServiceResult<List<AuthorizeDefinitionViewModel>>>
+    private readonly IAuthorizationDefinitionProvider _authorizationDefinitionProvider;
+
+    public AuthorizeDefinitionGetQueryHandler(IAuthorizationDefinitionProvider authorizationDefinitionProvider)
     {
-        private readonly IAuthorizationDefinitionProvider _authorizationDefinitionProvider;
+        _authorizationDefinitionProvider = authorizationDefinitionProvider;
+    }
 
-        public AuthorizeDefinitionGetQueryHandler(IAuthorizationDefinitionProvider authorizationDefinitionProvider)
+    public async Task<ServiceResult<List<AuthorizeDefinitionViewModel>>> Handle(AuthorizeDefinitionGetQuery request, CancellationToken cancellationToken)
+    {
+        try
         {
-            _authorizationDefinitionProvider = authorizationDefinitionProvider;
+            var definitions = _authorizationDefinitionProvider.GetAuthorizeDefinitions();
+            return ServiceResult<List<AuthorizeDefinitionViewModel>>.Success(definitions, HttpStatusCode.OK);
         }
-
-        public async Task<ServiceResult<List<AuthorizeDefinitionViewModel>>> Handle(AuthorizeDefinitionGetQuery request, CancellationToken cancellationToken)
+        catch (Exception ex)
         {
-            try
-            {
-                var definitions = _authorizationDefinitionProvider.GetAuthorizeDefinitions();
-                return ServiceResult<List<AuthorizeDefinitionViewModel>>.Success(definitions, HttpStatusCode.OK);
-            }
-            catch (Exception ex)
-            {
-                return ServiceResult<List<AuthorizeDefinitionViewModel>>.Error(
-                    $"Yetkilendirme tanımları alınırken hata oluştu: {ex.Message}", 
-                    HttpStatusCode.InternalServerError
-                );
-            }
+            return ServiceResult<List<AuthorizeDefinitionViewModel>>.Error(
+                $"Yetkilendirme tanımları alınırken hata oluştu: {ex.Message}",
+                HttpStatusCode.InternalServerError
+            );
         }
     }
-} 
+}

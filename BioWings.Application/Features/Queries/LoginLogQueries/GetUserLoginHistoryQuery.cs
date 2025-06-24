@@ -7,4 +7,4 @@ namespace BioWings.Application.Features.Queries.LoginLogQueries;
 public class GetUserLoginHistoryQuery : IRequest<ServiceResult<IEnumerable<LoginLogCreateDto>>>
 {
     public int UserId { get; set; }
-} 
+}

@@ -1,18 +1,17 @@
-namespace BioWings.UI.Areas.Admin.Models.Authorization
+namespace BioWings.UI.Areas.Admin.Models.Authorization;
+
+/// <summary>
+/// Role bilgisi
+/// </summary>
+public class RoleInfo
 {
     /// <summary>
-    /// Role bilgisi
+    /// Role ID
     /// </summary>
-    public class RoleInfo
-    {
-        /// <summary>
-        /// Role ID
-        /// </summary>
-        public int Id { get; set; }
+    public int Id { get; set; }
 
-        /// <summary>
-        /// Role adı
-        /// </summary>
-        public string Name { get; set; } = string.Empty;
-    }
-} 
+    /// <summary>
+    /// Role adı
+    /// </summary>
+    public string Name { get; set; } = string.Empty;
+}

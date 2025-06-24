@@ -2,14 +2,13 @@
 using BioWings.Application.Interfaces;
 using BioWings.Application.Results;
 using BioWings.Application.Services;
-using BioWings.Application.Validators.Observation;
 using BioWings.Domain.Entities;
 using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.Logging;
 
 namespace BioWings.Application.Features.Handlers.ObservationHandlers.Write;
-public class ObservationCreateCommandHandler(IObservationRepository observationRepository, ISpeciesRepository speciesRepository, ISubspeciesRepository subspeciesRepository, ILocationRepository locationRepository, IProvinceRepository provinceRepository, IObserverRepository observerRepository, IAuthorityRepository authorityRepository, IFamilyRepository familyRepository, IGenusRepository genusRepository, IUnitOfWork unitOfWork, ILogger<ObservationCreateCommandHandler> logger,IValidator<ObservationCreateCommand> validator) : IRequestHandler<ObservationCreateCommand, ServiceResult>
+public class ObservationCreateCommandHandler(IObservationRepository observationRepository, ISpeciesRepository speciesRepository, ISubspeciesRepository subspeciesRepository, ILocationRepository locationRepository, IProvinceRepository provinceRepository, IObserverRepository observerRepository, IAuthorityRepository authorityRepository, IFamilyRepository familyRepository, IGenusRepository genusRepository, IUnitOfWork unitOfWork, ILogger<ObservationCreateCommandHandler> logger, IValidator<ObservationCreateCommand> validator) : IRequestHandler<ObservationCreateCommand, ServiceResult>
 {
     public async Task<ServiceResult> Handle(ObservationCreateCommand request, CancellationToken cancellationToken)
     {
@@ -157,7 +156,7 @@ public class ObservationCreateCommandHandler(IObservationRepository observationR
 
     private async Task<ServiceResult<Location>> GetOrCreateLocation(ObservationCreateCommand request, int? provinceId, CancellationToken cancellationToken)
     {
-        var location = await locationRepository.GetByCoordinatesAsync(Math.Round(request.Latitude, 6),Math.Round(request.Longitude, 6),request.SquareRef,request.CoordinatePrecisionLevel,cancellationToken);
+        var location = await locationRepository.GetByCoordinatesAsync(Math.Round(request.Latitude, 6), Math.Round(request.Longitude, 6), request.SquareRef, request.CoordinatePrecisionLevel, cancellationToken);
 
         if (location == null)
         {

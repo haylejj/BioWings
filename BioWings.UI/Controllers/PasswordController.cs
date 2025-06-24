@@ -30,7 +30,7 @@ public class PasswordController(IHttpClientFactory httpClientFactory, ILogger<Pa
             var response = await client.PostAsJsonAsync($"{_baseUrl}/Email/changePassword", changePasswordViewModel);
             return response.IsSuccessStatusCode
                 ? Json(new { success = true, message = "Şifre değiştirme işlemi başarılı" })
-                : (IActionResult)Json(new { success = false, message = "Şifre değiştirme işlemi başarısız oldu." });
+                : Json(new { success = false, message = "Şifre değiştirme işlemi başarısız oldu." });
         }
         catch (Exception ex)
         {
@@ -60,7 +60,7 @@ public class PasswordController(IHttpClientFactory httpClientFactory, ILogger<Pa
 
             return response.IsSuccessStatusCode
                 ? Json(new { success = true, message = "Şifre sıfırlama bağlantısı gönderildi" })
-                : (IActionResult)Json(new { success = false, message = "E-posta gönderimi başarısız oldu" });
+                : Json(new { success = false, message = "E-posta gönderimi başarısız oldu" });
         }
         catch (Exception ex)
         {

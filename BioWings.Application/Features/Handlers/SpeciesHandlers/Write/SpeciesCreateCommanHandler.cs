@@ -1,5 +1,4 @@
-﻿using BioWings.Application.Features.Commands.ObservationCommands;
-using BioWings.Application.Features.Commands.SpeciesCommands;
+﻿using BioWings.Application.Features.Commands.SpeciesCommands;
 using BioWings.Application.Interfaces;
 using BioWings.Application.Results;
 using BioWings.Application.Services;
@@ -7,7 +6,6 @@ using BioWings.Domain.Entities;
 using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.Logging;
-using System.ComponentModel.DataAnnotations;
 
 namespace BioWings.Application.Features.Handlers.SpeciesHandlers.Write;
 public class SpeciesCreateCommanHandler(ISpeciesRepository speciesRepository, IValidator<SpeciesCreateCommand> validator, IAuthorityRepository authorityRepository, IUnitOfWork unitOfWork, ILogger<SpeciesCreateCommanHandler> logger) : IRequestHandler<SpeciesCreateCommand, ServiceResult>
@@ -19,7 +17,7 @@ public class SpeciesCreateCommanHandler(ISpeciesRepository speciesRepository, IV
         {
             var errorMessages = validationResult.Errors.Select(x => x.ErrorMessage).ToList();
 
-            logger.LogWarning("Species creation validation failed: {Errors}",string.Join(", ", errorMessages));
+            logger.LogWarning("Species creation validation failed: {Errors}", string.Join(", ", errorMessages));
 
             return ServiceResult.Error(errorMessages);
         }

@@ -13,4 +13,4 @@ public class GetUserLoginHistoryQueryHandler(ILoginLogService loginLogService) :
         var result = await loginLogService.GetUserLoginHistoryAsync(request.UserId, cancellationToken);
         return ServiceResult<IEnumerable<LoginLogCreateDto>>.Success(result);
     }
-} 
+}

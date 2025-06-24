@@ -8,4 +8,4 @@ public interface ILoginLogRepository
     Task<IEnumerable<LoginLog>> GetLoginLogsByUserIdAsync(int userId, CancellationToken cancellationToken = default);
     Task<IEnumerable<LoginLog>> GetRecentLoginLogsAsync(int count = 100, CancellationToken cancellationToken = default);
     Task<IEnumerable<LoginLog>> GetLoginLogsByDateRangeAsync(DateTime startDate, DateTime endDate, CancellationToken cancellationToken = default);
-} 
+}

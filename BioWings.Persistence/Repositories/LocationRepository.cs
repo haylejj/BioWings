@@ -15,7 +15,7 @@ public class LocationRepository(AppDbContext dbContext, IUnitOfWork unitOfWork) 
     private readonly DbContext dbContext1 = unitOfWork.GetContext();
     public async Task<Location?> FirstOrDefaultAsync(Expression<Func<Location, bool>> predicate, CancellationToken cancellationToken = default) => await _dbSet.FirstOrDefaultAsync(predicate, cancellationToken);
 
-    public Task<Location?> GetByCoordinatesAsync(decimal latitude, decimal longitude, string squareRef,CoordinatePrecisionLevel coordinatePrecisionLevel, CancellationToken cancellationToken = default)
+    public Task<Location?> GetByCoordinatesAsync(decimal latitude, decimal longitude, string squareRef, CoordinatePrecisionLevel coordinatePrecisionLevel, CancellationToken cancellationToken = default)
     {
         latitude = Math.Round(latitude, 6);
         longitude = Math.Round(longitude, 6);

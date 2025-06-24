@@ -8,7 +8,7 @@ using MediatR;
 using Microsoft.Extensions.Logging;
 
 namespace BioWings.Application.Features.Handlers.SpeciesHandlers.Write;
-public class SpeciesUpdateCommandHandler(ISpeciesRepository speciesRepository,IGenusRepository genusRepository, IValidator<SpeciesUpdateCommand> validator, IAuthorityRepository authorityRepository, IUnitOfWork unitOfWork, ILogger<SpeciesUpdateCommandHandler> logger) : IRequestHandler<SpeciesUpdateCommand, ServiceResult>
+public class SpeciesUpdateCommandHandler(ISpeciesRepository speciesRepository, IGenusRepository genusRepository, IValidator<SpeciesUpdateCommand> validator, IAuthorityRepository authorityRepository, IUnitOfWork unitOfWork, ILogger<SpeciesUpdateCommandHandler> logger) : IRequestHandler<SpeciesUpdateCommand, ServiceResult>
 {
     public async Task<ServiceResult> Handle(SpeciesUpdateCommand request, CancellationToken cancellationToken)
     {
@@ -16,7 +16,7 @@ public class SpeciesUpdateCommandHandler(ISpeciesRepository speciesRepository,IG
         if (!validationResult.IsValid)
         {
             var errorMessages = validationResult.Errors.Select(x => x.ErrorMessage).ToList();
-            logger.LogWarning("Species update validation failed: {Errors}",string.Join(", ", errorMessages));
+            logger.LogWarning("Species update validation failed: {Errors}", string.Join(", ", errorMessages));
             return ServiceResult.Error(errorMessages);
         }
 

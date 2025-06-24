@@ -13,4 +13,4 @@ public class GetRecentLoginAttemptsQueryHandler(ILoginLogService loginLogService
         var result = await loginLogService.GetRecentLoginAttemptsAsync(request.Count, cancellationToken);
         return ServiceResult<IEnumerable<LoginLogCreateDto>>.Success(result);
     }
-} 
+}

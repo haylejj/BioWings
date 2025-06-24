@@ -1,19 +1,18 @@
-namespace BioWings.Domain.Constants
+namespace BioWings.Domain.Constants;
+
+/// <summary>
+/// Yetkilendirme tanımlamaları için kullanılan sabit değerleri içerir
+/// </summary>
+public static class AreaNames
 {
     /// <summary>
-    /// Yetkilendirme tanımlamaları için kullanılan sabit değerleri içerir
+    /// Admin alanı
     /// </summary>
-    public static class AreaNames
-    {
-        /// <summary>
-        /// Admin alanı
-        /// </summary>
-        public const string Admin = "Admin";
+    public const string Admin = "Admin";
 
-        /// <summary>
-        /// User alanı
-        /// </summary>
-        public const string Public = "";
+    /// <summary>
+    /// User alanı
+    /// </summary>
+    public const string Public = "";
 
-    }
-} 
+}

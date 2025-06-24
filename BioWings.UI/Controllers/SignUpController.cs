@@ -11,7 +11,7 @@ using Newtonsoft.Json;
 namespace BioWings.UI.Controllers;
 [AllowAnonymous]
 [Route("signup")]
-public class SignUpController(IHttpClientFactory httpClientFactory, ILogger<SignUpController> logger,IOptions<ApiSettings> options) : Controller
+public class SignUpController(IHttpClientFactory httpClientFactory, ILogger<SignUpController> logger, IOptions<ApiSettings> options) : Controller
 {
     private readonly string _baseUrl = options.Value.BaseUrl;
     [HttpGet("")]
@@ -45,17 +45,14 @@ public class SignUpController(IHttpClientFactory httpClientFactory, ILogger<Sign
             {
                 logger.LogInformation("HttpPost request to SignUp Api was successfully. User signed up successfully");
 
-                if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
-                {
-                    return Json(new
+                return Request.Headers["X-Requested-With"] == "XMLHttpRequest"
+                    ? Json(new
                     {
                         success = true,
                         message = "Kayıt işlemi başarılı. Onay emaili gönderildi.",
                         redirectUrl = "/Login/Login"
-                    });
-                }
-
-                return RedirectToAction("Login", "Login");
+                    })
+                    : RedirectToAction("Login", "Login");
             }
             else
             {

@@ -1,0 +1,166 @@
+@using BioWings.UI.Areas.Admin.Models.LoginLog
+@model LoginLogIndexViewModel
+@{
+    ViewData["Title"] = ViewBag.PageTitle ?? "Giriş Logları";
+    Layout = "~/Areas/Admin/Views/AdminMainLayout/Index.cshtml";
+}
+
+<div class="row g-5 g-xl-8">
+    <div class="col-xl-4">
+        <div class="card bg-white border-0 shadow-sm h-xl-100 mb-5">
+            <div class="card-body d-flex align-items-center">
+                <div class="symbol symbol-60px me-4">
+                    <div class="symbol-circle bg-light-primary">
+                        <i class="fas fa-chart-bar text-primary fs-2"></i>
+                    </div>
+                </div>
+                <div class="flex-grow-1">
+                    <div class="text-gray-900 fw-bold fs-1 mb-1">@Model.TotalCount</div>
+                    <div class="text-gray-600 fw-semibold fs-6">Toplam Giriş</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-4">
+        <div class="card bg-white border-0 shadow-sm h-xl-100 mb-5">
+            <div class="card-body d-flex align-items-center">
+                <div class="symbol symbol-60px me-4">
+                    <div class="symbol-circle bg-light-success">
+                        <i class="fas fa-check-circle text-success fs-2"></i>
+                    </div>
+                </div>
+                <div class="flex-grow-1">
+                    <div class="text-gray-900 fw-bold fs-1 mb-1">@Model.SuccessfulCount</div>
+                    <div class="text-gray-600 fw-semibold fs-6">Başarılı Giriş</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-4">
+        <div class="card bg-white border-0 shadow-sm h-xl-100 mb-5">
+            <div class="card-body d-flex align-items-center">
+                <div class="symbol symbol-60px me-4">
+                    <div class="symbol-circle bg-light-danger">
+                        <i class="fas fa-times-circle text-danger fs-2"></i>
+                    </div>
+                </div>
+                <div class="flex-grow-1">
+                    <div class="text-gray-900 fw-bold fs-1 mb-1">@Model.FailedCount</div>
+                    <div class="text-gray-600 fw-semibold fs-6">Başarısız Giriş</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header border-0 pt-6">
+        <div class="card-title">
+        </div>
+        <div class="card-toolbar">
+            <div class="d-flex justify-content-end" data-kt-user-table-toolbar="base">
+                <!-- Özel arama kutusu -->
+                <div class="input-group me-2" style="width: 250px;">
+                    <span class="input-group-text">
+                        <i class="fas fa-search"></i>
+                    </span>
+                    <input type="text" id="customSearch" class="form-control" placeholder="Giriş loglarında ara...">
+                </div>
+
+                <button type="button" class="btn btn-light-primary" onclick="location.reload()">
+                    <span class="svg-icon svg-icon-2">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M14.5 20.7259C14.6 21.2259 14.2 21.7259 13.7 21.7259C13.2 21.7259 12.7 21.2259 12.8 20.7259L13.4 17.7259C11.9 17.9259 10.4 17.6259 9.10001 16.9259C7.80001 16.2259 6.90001 15.0259 6.50001 13.7259C6.10001 12.4259 6.30001 11.0259 7.00001 9.82594C7.70001 8.62594 8.90001 7.72594 10.2 7.32594C11.5 6.92594 12.9 7.12594 14.1 7.82594C15.3 8.52594 16.2 9.72594 16.6 11.0259C17 12.3259 16.8 13.7259 16.1 14.9259C15.4 16.1259 14.2 17.0259 12.9 17.4259L14.5 20.7259Z" fill="currentColor"></path>
+                            <path opacity="0.3" d="M16.6 11.0259C16.8 11.5259 16.9 12.0259 16.9 12.5259C16.9 13.0259 16.8 13.5259 16.6 14.0259C16.4 14.5259 16.1 15.0259 15.7 15.4259C15.3 15.8259 14.8 16.1259 14.3 16.3259C13.8 16.5259 13.3 16.6259 12.8 16.6259C12.3 16.6259 11.8 16.5259 11.3 16.3259C10.8 16.1259 10.3 15.8259 9.90001 15.4259C9.50001 15.0259 9.20001 14.5259 9.00001 14.0259C8.80001 13.5259 8.70001 13.0259 8.70001 12.5259C8.70001 12.0259 8.80001 11.5259 9.00001 11.0259C9.20001 10.5259 9.50001 10.0259 9.90001 9.62594C10.3 9.22594 10.8 8.92594 11.3 8.72594C11.8 8.52594 12.3 8.42594 12.8 8.42594C13.3 8.42594 13.8 8.52594 14.3 8.72594C14.8 8.92594 15.3 9.22594 15.7 9.62594C16.1 10.0259 16.4 10.5259 16.6 11.0259Z" fill="currentColor"></path>
+                        </svg>
+                    </span>
+                    Yenile
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="card-body py-4">
+        @if (ViewData.ContainsKey("ErrorMessage"))
+        {
+            <div class="alert alert-danger alert-dismissible fade show">
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                <strong>Hata!</strong> @ViewData["ErrorMessage"]
+            </div>
+        }
+
+        <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_datatable">
+            <thead>
+                <tr class="text-start text-muted fw-bold fs-7 text-uppercase gs-0">
+                    <th class="min-w-100px">Id</th>
+                    <th class="min-w-150px">Kullanıcı</th>
+                    <th class="min-w-200px">IP Adresi</th>
+                    <th class="min-w-150px">Tarih & Saat</th>
+                    <th class="min-w-100px">Durum</th>
+                    <th class="min-w-350px">User Agent</th>
+                    <th class="min-w-150px">Hata Sebebi</th>
+                </tr>
+            </thead>
+            <tbody class="text-gray-600 fw-semibold">
+                @if (Model.LoginLogs != null && Model.LoginLogs.Any())
+                {
+                    foreach (var log in Model.LoginLogs)
+                    {
+                        <tr>
+                            <td>
+                                <span class="badge badge-info">@log.Id</span>
+                            </td>
+                            <td>
+                                <div class="d-flex flex-column">
+                                    <a href="javascript:void(0)" onclick="showUserHistory(@log.UserId)" class="text-gray-800 text-hover-primary mb-1">@log.UserName</a>
+                                    <span class="text-muted">ID: @log.UserId</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <span class="badge badge-primary fs-6 fw-bold px-3 py-2">@log.IpAddress</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="text-gray-900">@log.FormattedDateTime</div>
+                            </td>
+                            <td>
+                                <span class="badge badge-@log.StatusBadge fs-7 fw-bold">@log.StatusText</span>
+                            </td>
+                            <td>
+                                <div class="text-muted" data-bs-toggle="tooltip" title="@log.UserAgent">
+                                    @(log.UserAgent.Length > 50 ? log.UserAgent.Substring(0, 50) + "..." : log.UserAgent)
+                                </div>
+                            </td>
+                            <td>
+                                @if (!string.IsNullOrEmpty(log.FailureReason))
+                                {
+                                    <span class="badge badge-danger">@log.FailureReason</span>
+                                }
+                                else
+                                {
+                                    <span class="text-muted">-</span>
+                                }
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="7" class="text-center py-10">
+                            <div class="text-gray-600 fs-5">Henüz giriş log'u bulunmuyor.</div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    <script src="~/js/admin-loginlog/loginlog-index.js"></script>
+} 

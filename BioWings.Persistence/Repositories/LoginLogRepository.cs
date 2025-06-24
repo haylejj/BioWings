@@ -47,4 +47,4 @@ public class LoginLogRepository : ILoginLogRepository
             .OrderByDescending(ll => ll.LoginDateTime)
             .ToListAsync(cancellationToken);
     }
-} 
+}

@@ -6,9 +6,9 @@ public class ObservationCreateCommandValidator : AbstractValidator<ObservationCr
 {
     public ObservationCreateCommandValidator()
     {
-        RuleFor(x=> x.ScientificName).NotEmpty().NotNull().WithMessage("Scientific name is required");
-        RuleFor(x=> x.Name).NotEmpty().NotNull().WithMessage("Name is required");   
-        RuleFor(x=> x.ProvinceId).NotEmpty().NotNull().WithMessage("Province is required");
+        RuleFor(x => x.ScientificName).NotEmpty().NotNull().WithMessage("Scientific name is required");
+        RuleFor(x => x.Name).NotEmpty().NotNull().WithMessage("Name is required");
+        RuleFor(x => x.ProvinceId).NotEmpty().NotNull().WithMessage("Province is required");
         RuleFor(x => x.Latitude).NotEmpty().NotNull().WithMessage("Latitude is required");
         RuleFor(x => x.Longitude).NotEmpty().NotNull().WithMessage("Longitude is required");
         RuleFor(x => x.ObservationDate).NotEmpty().WithMessage("Observation date is required");

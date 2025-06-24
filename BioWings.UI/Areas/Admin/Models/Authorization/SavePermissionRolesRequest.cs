@@ -1,13 +1,12 @@
-namespace BioWings.UI.Areas.Admin.Models.Authorization
+namespace BioWings.UI.Areas.Admin.Models.Authorization;
+
+/// <summary>
+/// Form submit için kullanılacak model
+/// </summary>
+public class SavePermissionRolesRequest
 {
     /// <summary>
-    /// Form submit için kullanılacak model
+    /// Permission ID - Seçili Role ID'leri mapping'i
     /// </summary>
-    public class SavePermissionRolesRequest
-    {
-        /// <summary>
-        /// Permission ID - Seçili Role ID'leri mapping'i
-        /// </summary>
-        public Dictionary<int, List<int>> PermissionRoles { get; set; } = new Dictionary<int, List<int>>();
-    }
-} 
+    public Dictionary<int, List<int>> PermissionRoles { get; set; } = new Dictionary<int, List<int>>();
+}

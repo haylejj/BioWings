@@ -19,7 +19,7 @@ public class UsersController(IMediator mediator) : BaseController
         var result = await mediator.Send(query);
         return CreateResult(result);
     }
-    
+
     // GET: api/Users/Paged
     [HttpGet("Paged")]
     [AuthorizeDefinition("Kullanıcı Yönetimi", ActionType.Read, "Sayfalı kullanıcı listesini görüntüleme", AreaNames.Admin)]
@@ -48,7 +48,7 @@ public class UsersController(IMediator mediator) : BaseController
         var result = await mediator.Send(command);
         return CreateResult(result);
     }
-    
+
     [HttpPost("ByAdmin")]
     [AuthorizeDefinition("Kullanıcı Yönetimi", ActionType.Write, "Admin tarafından kullanıcı oluşturma", AreaNames.Admin)]
     public async Task<IActionResult> CreateByAdmin(UserCreateByAdminCommand command)

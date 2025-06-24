@@ -2,7 +2,6 @@ using BioWings.Domain.Configuration;
 using BioWings.UI.Handler;
 using BioWings.WebAPI.Exceptions;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using System.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 //For Api consume 

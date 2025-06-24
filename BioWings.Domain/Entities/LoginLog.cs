@@ -10,7 +10,7 @@ public class LoginLog : BaseEntity
     public string UserAgent { get; set; }
     public bool IsSuccessful { get; set; }
     public string? FailureReason { get; set; }
-    
+
     // Navigation property
     public virtual User User { get; set; }
-} 
+}

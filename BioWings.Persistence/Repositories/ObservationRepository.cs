@@ -212,7 +212,7 @@ public class ObservationRepository(AppDbContext dbContext) : GenericRepository<O
             .Take(5)
             .ToListAsync(cancellationToken);
 
-    public async  Task<(List<Observation>, int)> GetFilteredAsync(List<string> columns, List<string> filterValues, int pageNumber = 1, int pageSize = 25, CancellationToken cancellationToken = default)
+    public async Task<(List<Observation>, int)> GetFilteredAsync(List<string> columns, List<string> filterValues, int pageNumber = 1, int pageSize = 25, CancellationToken cancellationToken = default)
     {
         IQueryable<Observation> query = dbContext.Observations
        .Include(o => o.Species)

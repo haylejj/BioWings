@@ -10,7 +10,7 @@ namespace BioWings.WebAPI.Controllers;
 public class SpeciesController(IMediator mediator) : BaseController
 {
     // GET: api/Species
-    [AuthorizeDefinition("Species",ActionType.Read, "Tüm Türleri Getir",AreaNames.Public)]
+    [AuthorizeDefinition("Species", ActionType.Read, "Tüm Türleri Getir", AreaNames.Public)]
     [HttpGet]
     public async Task<IActionResult> GetAll()
     {

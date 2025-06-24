@@ -6,7 +6,7 @@ public class SpeciesCreateCommandValidator : AbstractValidator<SpeciesCreateComm
 {
     public SpeciesCreateCommandValidator()
     {
-        RuleFor(x=> x.Name)
+        RuleFor(x => x.Name)
             .NotEmpty()
             .NotNull()
             .WithMessage("Species name is required.")
