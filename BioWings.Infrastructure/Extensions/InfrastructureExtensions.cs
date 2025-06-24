@@ -25,6 +25,8 @@ public static class InfrastructureExtensions
         services.AddScoped<IEncryptionService, EncryptionService>();
         services.Configure<EncryptionSettings>(configuration.GetSection("EncryptionSettings"));
         services.AddScoped<ILoginService, LoginService>();
+        services.AddScoped<ILoginLogService, LoginLogService>();
+        services.AddScoped<IIpAddressService, IpAddressService>();
         return services;
     }
 }

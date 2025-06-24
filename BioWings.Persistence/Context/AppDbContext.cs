@@ -20,5 +20,6 @@ public class AppDbContext(DbContextOptions<AppDbContext> dbContextOptions) : DbC
     public DbSet<Country> Countries { get; set; }
     public DbSet<Permission> Permissions { get; set; }
     public DbSet<RolePermission> RolePermissions { get; set; }
+    public DbSet<LoginLog> LoginLogs { get; set; }
 }
 

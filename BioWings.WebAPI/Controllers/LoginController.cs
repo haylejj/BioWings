@@ -1,19 +1,20 @@
 ﻿using BioWings.Application.Features.Commands.LoginCommands;
-using BioWings.Domain.Attributes;
-using BioWings.Domain.Constants;
-using BioWings.Domain.Enums;
+using BioWings.Infrastructure.Services;
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BioWings.WebAPI.Controllers;
 
 
-public class LoginController(IMediator mediator) : BaseController
+public class LoginController(IMediator mediator, IIpAddressService ipAddressService) : BaseController
 {
     [HttpPost]
     public async Task<IActionResult> Login(LoginCommand command)
     {
+        // IP adresi ve User Agent bilgisini ekle
+        command.IpAddress = ipAddressService.GetClientIpAddress(HttpContext);
+        command.UserAgent = HttpContext.Request.Headers["User-Agent"].FirstOrDefault() ?? "Unknown";
+
         var result = await mediator.Send(command);
         return CreateResult(result);
     }
