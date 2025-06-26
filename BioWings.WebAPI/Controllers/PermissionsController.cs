@@ -41,8 +41,9 @@ public class PermissionsController(IMediator mediator) : BaseController
 
     /// <summary>
     /// Yetkilendirme tanımlarını veritabanıyla senkronize eder
+    /// Hem yeni permission'ları ekler hem de koddan silinmiş olanları temizler
     /// </summary>
-    /// <returns>Eklenen yetki sayısı</returns>
+    /// <returns>Senkronizasyon sonucu</returns>
     [HttpPost("sync")]
     [AuthorizeDefinition("Yetki Yönetimi", ActionType.Write, "Yetkileri senkronize etme", AreaNames.Admin)]
     public async Task<IActionResult> Sync()

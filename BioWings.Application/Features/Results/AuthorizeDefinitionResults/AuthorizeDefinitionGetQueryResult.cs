@@ -1,9 +1,9 @@
-namespace BioWings.Application.DTOs;
+namespace BioWings.Application.Features.Results.AuthorizeDefinitionResults;
 
 /// <summary>
-/// Yetkilendirme tanımı bilgilerini taşıyan ViewModel
+/// Yetkilendirme tanımı get query sonucu
 /// </summary>
-public class AuthorizeDefinitionViewModel
+public class AuthorizeDefinitionGetQueryResult
 {
     /// <summary>
     /// Controller adı
@@ -11,17 +11,17 @@ public class AuthorizeDefinitionViewModel
     public string ControllerName { get; set; } = string.Empty;
 
     /// <summary>
-    /// Action adı
+    /// Action adı (HTTP method ile birlikte)
     /// </summary>
     public string ActionName { get; set; } = string.Empty;
 
     /// <summary>
-    /// Hangi menüye ait olduğu
+    /// Menü adı
     /// </summary>
     public string MenuName { get; set; } = string.Empty;
 
     /// <summary>
-    /// Yetki türü (Read, Write, Update, Delete)
+    /// Action türü (Read, Write, Update, Delete)
     /// </summary>
     public string ActionType { get; set; } = string.Empty;
 
@@ -31,7 +31,7 @@ public class AuthorizeDefinitionViewModel
     public string Definition { get; set; } = string.Empty;
 
     /// <summary>
-    /// Hangi Area'ya ait olduğu
+    /// Area adı
     /// </summary>
     public string AreaName { get; set; } = string.Empty;
-}
+} 

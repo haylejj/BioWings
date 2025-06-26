@@ -1,9 +1,9 @@
-using BioWings.Application.DTOs;
+using BioWings.Application.Features.Results.AuthorizeDefinitionResults;
 
 namespace BioWings.Application.Interfaces;
 
 /// <summary>
-/// Yetkilendirme tanımlarını sağlayan servisin arayüzü
+/// Yetkilendirme tanımlarını sağlayan servis interface'i
 /// </summary>
 public interface IAuthorizationDefinitionProvider
 {
@@ -11,5 +11,5 @@ public interface IAuthorizationDefinitionProvider
     /// Tüm AuthorizeDefinition attribute'larını tarar ve yetkilendirme tanımlarını döndürür
     /// </summary>
     /// <returns>Yetkilendirme tanımlarının listesi</returns>
-    List<AuthorizeDefinitionViewModel> GetAuthorizeDefinitions();
+    List<AuthorizeDefinitionGetQueryResult> GetAuthorizeDefinitions();
 }

@@ -67,11 +67,22 @@ public class AuthorizationController(IHttpClientFactory httpClientFactory, IOpti
             if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();
-                var apiResponse = JsonConvert.DeserializeObject<ApiResponse<int>>(content);
+                var apiResponse = JsonConvert.DeserializeObject<ApiResponse<dynamic>>(content);
 
                 if (apiResponse?.IsSuccess == true)
                 {
-                    TempData["SuccessMessage"] = $"Senkronizasyon tamamlandı. {apiResponse.Data} yeni yetki eklendi.";
+                    var addedCount = (int)(apiResponse.Data.addedCount ?? 0);
+                    var removedCount = (int)(apiResponse.Data.removedCount ?? 0);
+                    var totalPermissions = (int)(apiResponse.Data.totalPermissions ?? 0);
+
+                    var message = $"Senkronizasyon tamamlandı. ";
+                    if (addedCount > 0)
+                        message += $"{addedCount} yeni yetki eklendi. ";
+                    if (removedCount > 0)
+                        message += $"{removedCount} eski yetki silindi. ";
+                    message += $"Toplam: {totalPermissions} yetki.";
+
+                    TempData["SuccessMessage"] = message;
                 }
                 else
                 {

@@ -1,4 +1,4 @@
-using BioWings.Application.DTOs;
+using BioWings.Application.Features.Results.AuthorizeDefinitionResults;
 using BioWings.Application.Interfaces;
 using BioWings.Domain.Attributes;
 using Microsoft.AspNetCore.Mvc;
@@ -16,9 +16,9 @@ public class AuthorizationDefinitionProvider : IAuthorizationDefinitionProvider
     /// Tüm AuthorizeDefinition attribute'larını tarar ve yetkilendirme tanımlarını döndürür
     /// </summary>
     /// <returns>Yetkilendirme tanımlarının listesi</returns>
-    public List<AuthorizeDefinitionViewModel> GetAuthorizeDefinitions()
+    public List<AuthorizeDefinitionGetQueryResult> GetAuthorizeDefinitions()
     {
-        var authorizeDefinitions = new List<AuthorizeDefinitionViewModel>();
+        var authorizeDefinitions = new List<AuthorizeDefinitionGetQueryResult>();
         var types = new List<Type>();
 
         // WebAPI assembly'sini tara
@@ -64,7 +64,7 @@ public class AuthorizationDefinitionProvider : IAuthorizationDefinitionProvider
 
                     var actionName = method.Name + (httpMethod != null ? $" [{httpMethod.HttpMethods.First()}]" : "");
 
-                    authorizeDefinitions.Add(new AuthorizeDefinitionViewModel
+                    authorizeDefinitions.Add(new AuthorizeDefinitionGetQueryResult
                     {
                         ControllerName = controllerName,
                         ActionName = actionName,

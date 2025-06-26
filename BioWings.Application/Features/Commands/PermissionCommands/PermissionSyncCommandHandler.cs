@@ -1,3 +1,4 @@
+using BioWings.Application.DTOs.PermissionDTOs;
 using BioWings.Application.Interfaces;
 using BioWings.Application.Results;
 using BioWings.Application.Services;
@@ -13,23 +14,30 @@ namespace BioWings.Application.Features.Commands.PermissionCommands;
 /// </summary>
 public class PermissionSyncCommandHandler(
     IPermissionRepository permissionRepository,
+    IRolePermissionRepository rolePermissionRepository,
     IAuthorizationDefinitionProvider authorizationDefinitionProvider,
-    IUnitOfWork unitOfWork) : IRequestHandler<PermissionSyncCommand, ServiceResult<int>>
+    IUnitOfWork unitOfWork) : IRequestHandler<PermissionSyncCommand, ServiceResult<PermissionSyncResult>>
 {
-    public async Task<ServiceResult<int>> Handle(PermissionSyncCommand request, CancellationToken cancellationToken)
+    public async Task<ServiceResult<PermissionSyncResult>> Handle(PermissionSyncCommand request, CancellationToken cancellationToken)
     {
         var authorizeDefinitions = authorizationDefinitionProvider.GetAuthorizeDefinitions();
 
         int addedCount = 0;
+        int removedCount = 0;
+
+        // 1. Kod'dan gelen permission code'larını oluştur
+        var currentPermissionCodes = new HashSet<string>();
+        var newPermissions = new List<Permission>();
 
         foreach (var definition in authorizeDefinitions)
         {
-
             var httpMethod = ExtractHttpMethod(definition.ActionName);
             var cleanActionName = CleanActionName(definition.ActionName);
 
             var areaName = string.IsNullOrWhiteSpace(definition.AreaName) ? "Global" : definition.AreaName;
             var permissionCode = $"{areaName}.{definition.ControllerName}.{cleanActionName}.{definition.ActionType}.{httpMethod}";
+            
+            currentPermissionCodes.Add(permissionCode);
 
             var exists = await permissionRepository.ExistsByPermissionCodeAsync(permissionCode, cancellationToken);
 
@@ -50,14 +58,48 @@ public class PermissionSyncCommandHandler(
                     areaName: definition.AreaName
                 );
 
-                await permissionRepository.AddAsync(permission, cancellationToken);
+                newPermissions.Add(permission);
                 addedCount++;
             }
         }
 
+        // 2. Yeni permission'ları ekle
+        if (newPermissions.Any())
+        {
+            await permissionRepository.AddRangeAsync(newPermissions, cancellationToken);
+        }
+
+        // 3. Veritabanındaki tüm permission'ları al
+        var allDbPermissions = await permissionRepository.GetAllAsync(cancellationToken);
+
+        // 4. Kod'da artık olmayan permission'ları bul ve sil
+        var permissionsToRemove = allDbPermissions
+            .Where(p => !currentPermissionCodes.Contains(p.PermissionCode))
+            .ToList();
+
+        if (permissionsToRemove.Any())
+        {
+            // Önce bu permission'lara ait role-permission ilişkilerini sil
+            foreach (var permission in permissionsToRemove)
+            {
+                await rolePermissionRepository.DeleteByPermissionIdAsync(permission.Id, cancellationToken);
+            }
+
+            // Sonra permission'ları sil
+            permissionRepository.RemoveRange(permissionsToRemove);
+            removedCount = permissionsToRemove.Count;
+        }
+
         await unitOfWork.SaveChangesAsync(cancellationToken);
 
-        return ServiceResult<int>.Success(addedCount);
+        var result = new PermissionSyncResult
+        {
+            AddedCount = addedCount,
+            RemovedCount = removedCount,
+            TotalPermissions = currentPermissionCodes.Count
+        };
+
+        return ServiceResult<PermissionSyncResult>.Success(result);
     }
 
     /// <summary>
