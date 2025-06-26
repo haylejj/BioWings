@@ -174,7 +174,9 @@
                                         <a href="/Admin/Profile" class="menu-link px-5">Profilim</a>
                                     </div>
                                     <div class="menu-item px-5">
-                                        <a href="/Admin/Logout" class="menu-link px-5">Çıkış Yap</a>
+                                        <form asp-area="Admin" asp-controller="AdminLogout" asp-action="Logout" method="post" asp-antiforgery="true" style="display:inline;">
+                                            <button type="submit" class="menu-link px-5 border-0 bg-transparent text-start w-100">Çıkış Yap</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
