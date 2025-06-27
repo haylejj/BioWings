@@ -19,7 +19,7 @@ public class EmailController(IMediator mediator) : BaseController
         return CreateResult(result);
     }
     [HttpPost("changePassword")]
-    public async Task<IActionResult> ChangePassword(ChangePasswordCommand command)
+    public async Task<IActionResult> ChangePassword(ResetPasswordCommand command)
     {
         var result = await mediator.Send(command);
         return CreateResult(result);

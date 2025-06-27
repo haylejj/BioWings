@@ -6,9 +6,9 @@ using MediatR;
 using Microsoft.Extensions.Logging;
 
 namespace BioWings.Application.Features.Handlers.EmailHandlers;
-public class ChangePasswordCommandHandler(ILogger<ChangePasswordCommandHandler> logger, IUnitOfWork unitOfWork, IUserRepository userRepository, IEncryptionService encryptionService, IPasswordHashService passwordHashService) : IRequestHandler<ChangePasswordCommand, ServiceResult>
+public class ResetPasswordCommandHandler(ILogger<ResetPasswordCommandHandler> logger, IUnitOfWork unitOfWork, IUserRepository userRepository, IEncryptionService encryptionService, IPasswordHashService passwordHashService) : IRequestHandler<ResetPasswordCommand, ServiceResult>
 {
-    public async Task<ServiceResult> Handle(ChangePasswordCommand request, CancellationToken cancellationToken)
+    public async Task<ServiceResult> Handle(ResetPasswordCommand request, CancellationToken cancellationToken)
     {
         var decodedToken = encryptionService.Decrypt(request.Token);
         var tokenParts = decodedToken.Split('|');

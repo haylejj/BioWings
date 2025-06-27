@@ -75,4 +75,13 @@ public class UsersController(IMediator mediator) : BaseController
         var result = await mediator.Send(command);
         return CreateResult(result);
     }
+
+    // POST: api/Users/ChangePassword
+    [HttpPost("ChangePassword")]
+    [AuthorizeDefinition("Kullanıcı İşlemleri", ActionType.Update, "Kullanıcı şifre değiştirme", AreaNames.Public)]
+    public async Task<IActionResult> ChangePassword(ChangePasswordCommand command)
+    {
+        var result = await mediator.Send(command);
+        return CreateResult(result);
+    }
 }

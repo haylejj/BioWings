@@ -192,38 +192,18 @@
                         </div>
 
                         <div class="app-navbar flex-shrink-0">
-                            <div class="app-navbar-item ms-1 ms-lg-3" id="kt_header_user_menu_toggle">
-                                <div class="cursor-pointer symbol symbol-35px symbol-md-40px" data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
-                                    <div class="symbol-label fs-2 bg-light-primary text-primary">
-                                        <i class="ki-duotone ki-user fs-2">
-                                            <span class="path1"></span>
-                                            <span class="path2"></span>
-                                        </i>
-                                    </div>
+                            <div class="app-navbar-item ms-1 ms-md-3" id="kt_header_user_menu_toggle">
+                                <div class="cursor-pointer symbol symbol-30px symbol-md-40px" data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
+                                    <img src="~/assets/media/avatars/blank.png" alt="user" />
                                 </div>
                                 <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg menu-state-color fw-semibold py-4 fs-6 w-275px" data-kt-menu="true">
-                                    <div class="menu-item px-3">
-                                        <div class="menu-content d-flex align-items-center px-3">
-                                            <div class="symbol symbol-50px me-5">
-                                                <div class="symbol-label fs-2 bg-light-primary text-primary">
-                                                    <i class="ki-duotone ki-user fs-1">
-                                                        <span class="path1"></span>
-                                                        <span class="path2"></span>
-                                                    </i>
-                                                </div>
-                                            </div>
-@*                                             <div class="d-flex flex-column">
-                                                <div class="fw-bold d-flex align-items-center fs-5">Kullanıcı</div>
-                                                <a href="#" class="fw-semibold text-muted text-hover-primary fs-7">kullanici@example.com</a>
-                                            </div> *@
-                                        </div>
+                                    <div class="menu-item px-5">
+                                        <a href="/User/ChangePassword" class="menu-link px-5">Şifre Değiştir</a>
                                     </div>
                                     <div class="menu-item px-5">
-                                        <form action="/Logout/Logout" method="post" style="margin: 0;">
+                                        <form action="/Logout/Logout" method="post" style="display:inline;">
                                             @Html.AntiForgeryToken()
-                                            <button type="submit" class="menu-link px-5 btn btn-link text-start w-100 p-0" style="border: none; background: none; color: inherit; text-decoration: none;">
-                                                <i class="fas fa-sign-out-alt me-2"></i>Çıkış Yap
-                                            </button>
+                                            <button type="submit" class="menu-link px-5 border-0 bg-transparent text-start w-100">Çıkış Yap</button>
                                         </form>
                                     </div>
                                 </div>
