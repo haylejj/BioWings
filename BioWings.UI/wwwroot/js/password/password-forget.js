@@ -12,6 +12,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
         fetch('/password/forget', {
             method: 'POST',
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest'
+            },
             body: formData
         })
             .then(response => {

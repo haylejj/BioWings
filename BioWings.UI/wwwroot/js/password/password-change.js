@@ -59,6 +59,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
         fetch('/password/change', {
             method: 'POST',
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest'
+            },
             body: formData
         })
         .then(response => response.json())

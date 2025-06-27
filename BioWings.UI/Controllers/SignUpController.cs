@@ -29,6 +29,7 @@ public class SignUpController(IHttpClientFactory httpClientFactory, ILogger<Sign
         return View();
     }
     [HttpPost("")]
+    [ValidateAntiForgeryToken]
     public async Task<IActionResult> SignUp(SignUpViewModel model)
     {
         // Sonuç için hazırlayacağımız JSON nesnesi
