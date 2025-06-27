@@ -15,7 +15,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BioWings.Application\BioWings.Application.csproj" />
-    <ProjectReference Include="..\BioWings.WebAPI\BioWings.WebAPI.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,0 +1,104 @@
+@{
+    ViewData["Title"] = ViewBag.Title ?? "Geçersiz İstek";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-10">
+            <div class="card border-danger">
+                <div class="card-header bg-danger text-white">
+                    <h1 class="card-title mb-0">
+                        <i class="fas fa-times-circle me-2"></i>
+                        @ViewData["Title"]
+                    </h1>
+                </div>
+                <div class="card-body">
+                    <div class="text-center mb-4">
+                        <div class="display-1 text-danger mb-3">
+                            <i class="fas fa-exclamation-circle"></i>
+                        </div>
+                        <h3 class="text-danger">400 - Bad Request</h3>
+                    </div>
+                    
+                    <div class="alert alert-danger" role="alert">
+                        <h4 class="alert-heading">
+                            <i class="fas fa-exclamation-triangle me-2"></i>
+                            Geçersiz İstek
+                        </h4>
+                        <p class="mb-0">@(ViewBag.Message ?? "Gönderdiğiniz istek geçersiz.")</p>
+                    </div>
+
+                    <div class="row mt-4">
+                        <div class="col-md-6 mb-3">
+                            <div class="card border-light">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <i class="fas fa-info-circle text-info me-2"></i>
+                                        Olası Nedenler
+                                    </h5>
+                                    <ul class="list-unstyled mb-0">
+                                        <li><i class="fas fa-dot-circle text-danger me-2"></i>Hatalı veri formatı</li>
+                                        <li><i class="fas fa-dot-circle text-danger me-2"></i>Eksik parametre</li>
+                                        <li><i class="fas fa-dot-circle text-danger me-2"></i>Geçersiz değer</li>
+                                        <li><i class="fas fa-dot-circle text-danger me-2"></i>Bozuk request</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="card border-light">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <i class="fas fa-tools text-warning me-2"></i>
+                                        Çözüm Önerileri
+                                    </h5>
+                                    <ul class="list-unstyled mb-0">
+                                        <li><i class="fas fa-check text-success me-2"></i>Sayfayı yenileyin</li>
+                                        <li><i class="fas fa-check text-success me-2"></i>Formu tekrar doldurun</li>
+                                        <li><i class="fas fa-check text-success me-2"></i>Ana sayfadan başlayın</li>
+                                        <li><i class="fas fa-check text-success me-2"></i>Desteğe başvurun</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-center mt-4">
+                        <div class="btn-group" role="group">
+                            <button onclick="goBack()" class="btn btn-outline-secondary">
+                                <i class="fas fa-arrow-left me-2"></i>
+                                Geri Dön
+                            </button>
+                            <a asp-controller="Home" asp-action="Index" class="btn btn-primary">
+                                <i class="fas fa-home me-2"></i>
+                                Ana Sayfa
+                            </a>
+                            <button onclick="location.reload()" class="btn btn-outline-danger">
+                                <i class="fas fa-redo me-2"></i>
+                                Yenile
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer text-muted text-center">
+                    <small>
+                        <i class="fas fa-clock me-1"></i>
+                        @DateTime.Now.ToString("dd/MM/yyyy HH:mm")
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function goBack() {
+            if (document.referrer && document.referrer !== window.location.href) {
+                window.history.back();
+            } else {
+                window.location.href = '@Url.Action("Index", "Home")';
+            }
+        }
+    </script>
+} 

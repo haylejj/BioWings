@@ -58,6 +58,62 @@ public class ErrorController(ILogger<ErrorController> logger) : Controller
     }
 
     /// <summary>
+    /// Doğrulama hatası sayfası
+    /// </summary>
+    /// <returns>Validation Error view</returns>
+    public IActionResult ValidationError()
+    {
+        logger.LogWarning("Doğrulama hatası - Path: {Path}", HttpContext.Request.Path);
+
+        ViewBag.Title = "Doğrulama Hatası";
+        ViewBag.Message = "Gönderdiğiniz veriler geçersiz. Lütfen bilgilerinizi kontrol edin.";
+
+        return View();
+    }
+
+    /// <summary>
+    /// Bad Request hatası sayfası
+    /// </summary>
+    /// <returns>Bad Request view</returns>
+    public IActionResult BadRequest()
+    {
+        logger.LogWarning("Bad Request hatası - Path: {Path}", HttpContext.Request.Path);
+
+        ViewBag.Title = "Geçersiz İstek";
+        ViewBag.Message = "Gönderdiğiniz istek geçersiz.";
+
+        return View();
+    }
+
+    /// <summary>
+    /// Yetkisiz erişim hatası sayfası
+    /// </summary>
+    /// <returns>Unauthorized view</returns>
+    public IActionResult Unauthorized()
+    {
+        logger.LogWarning("Yetkisiz erişim - Path: {Path}", HttpContext.Request.Path);
+
+        ViewBag.Title = "Yetkisiz Erişim";
+        ViewBag.Message = "Bu işlemi gerçekleştirmek için yetkiniz bulunmamaktadır.";
+
+        return View();
+    }
+
+    /// <summary>
+    /// Internal Server Error sayfası
+    /// </summary>
+    /// <returns>Internal Server Error view</returns>
+    public IActionResult InternalServerError()
+    {
+        logger.LogError("Internal Server Error - Path: {Path}", HttpContext.Request.Path);
+
+        ViewBag.Title = "Sunucu Hatası";
+        ViewBag.Message = "Beklenmeyen bir hata oluştu. Lütfen daha sonra tekrar deneyin.";
+
+        return View();
+    }
+
+    /// <summary>
     /// Genel hata sayfası (özel HTTP durum kodları için)
     /// </summary>
     /// <param name="statusCode">HTTP durum kodu</param>

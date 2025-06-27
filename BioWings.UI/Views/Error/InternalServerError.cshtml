@@ -1,0 +1,122 @@
+@{
+    ViewData["Title"] = ViewBag.Title ?? "Sunucu Hatası";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-10">
+            <div class="card border-danger">
+                <div class="card-header bg-danger text-white">
+                    <h1 class="card-title mb-0">
+                        <i class="fas fa-server me-2"></i>
+                        @ViewData["Title"]
+                    </h1>
+                </div>
+                <div class="card-body">
+                    <div class="text-center mb-4">
+                        <div class="display-1 text-danger mb-3">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <h3 class="text-danger">500 - Internal Server Error</h3>
+                    </div>
+                    
+                    <div class="alert alert-danger" role="alert">
+                        <h4 class="alert-heading">
+                            <i class="fas fa-exclamation-triangle me-2"></i>
+                            Sunucu Hatası
+                        </h4>
+                        <p class="mb-0">@(ViewBag.Message ?? "Beklenmeyen bir hata oluştu. Lütfen daha sonra tekrar deneyin.")</p>
+                    </div>
+
+                    <div class="row mt-4">
+                        <div class="col-md-6 mb-3">
+                            <div class="card border-light">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <i class="fas fa-info-circle text-info me-2"></i>
+                                        Ne Oldu?
+                                    </h5>
+                                    <p class="mb-0">Sunucu tarafında beklenmeyen bir hata meydana geldi. Bu durumda sizin bir hatan yok, sistem yöneticilerimiz durumdan haberdar edildi.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="card border-light">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <i class="fas fa-tools text-warning me-2"></i>
+                                        Ne Yapabilirsiniz?
+                                    </h5>
+                                    <ul class="list-unstyled mb-0">
+                                        <li><i class="fas fa-check text-success me-2"></i>Birkaç dakika bekleyin</li>
+                                        <li><i class="fas fa-check text-success me-2"></i>Sayfayı yenileyin</li>
+                                        <li><i class="fas fa-check text-success me-2"></i>Ana sayfadan tekrar deneyin</li>
+                                        <li><i class="fas fa-check text-success me-2"></i>Problem devam ederse desteğe yazın</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="alert alert-light border-left-danger mt-4" role="alert">
+                        <h6 class="alert-heading">
+                            <i class="fas fa-headset text-primary me-2"></i>
+                            Destek İletişim
+                        </h6>
+                        <p class="mb-1">Eğer sorun devam ederse bizimle iletişime geçin:</p>
+                        <small class="text-muted">
+                            <i class="fas fa-envelope me-1"></i> destek@biowings.com
+                            <span class="mx-2">|</span>
+                            <i class="fas fa-phone me-1"></i> 0 (XXX) XXX XX XX
+                        </small>
+                    </div>
+
+                    <div class="text-center mt-4">
+                        <div class="btn-group" role="group">
+                            <button onclick="goBack()" class="btn btn-outline-secondary">
+                                <i class="fas fa-arrow-left me-2"></i>
+                                Geri Dön
+                            </button>
+                            <a asp-controller="Home" asp-action="Index" class="btn btn-primary">
+                                <i class="fas fa-home me-2"></i>
+                                Ana Sayfa
+                            </a>
+                            <button onclick="location.reload()" class="btn btn-outline-danger">
+                                <i class="fas fa-redo me-2"></i>
+                                Tekrar Dene
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer text-muted text-center">
+                    <small>
+                        <i class="fas fa-clock me-1"></i>
+                        @DateTime.Now.ToString("dd/MM/yyyy HH:mm")
+                        <span class="mx-2">|</span>
+                        <i class="fas fa-bug me-1"></i>
+                        Hata ID: @Guid.NewGuid().ToString("N")[..8].ToUpper()
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function goBack() {
+            if (document.referrer && document.referrer !== window.location.href) {
+                window.history.back();
+            } else {
+                window.location.href = '@Url.Action("Index", "Home")';
+            }
+        }
+
+        // Otomatik yenileme seçeneği (10 saniye sonra)
+        setTimeout(function() {
+            if (confirm('Sayfa otomatik olarak yenilensin mi?')) {
+                location.reload();
+            }
+        }, 10000);
+    </script>
+} 
