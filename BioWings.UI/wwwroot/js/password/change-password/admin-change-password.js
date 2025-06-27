@@ -49,15 +49,17 @@ function submitAdminChangePasswordForm(form, submitButton) {
     })
     .then(data => {
         if (data.success) {
-            // Successful password change
+            // Successful password change - logout and redirect to admin login
             Swal.fire({
                 icon: 'success',
                 title: 'Başarılı!',
-                text: 'Admin şifreniz başarıyla değiştirildi.',
-                confirmButtonText: 'Tamam'
+                text: 'Admin şifreniz başarıyla değiştirildi. Güvenliğiniz için tekrar giriş yapmanız gerekmektedir.',
+                confirmButtonText: 'Admin Giriş Sayfasına Git',
+                allowOutsideClick: false,
+                allowEscapeKey: false
             }).then(() => {
-                form.reset();
-                resetPasswordValidation();
+                // Server-side logout zaten yapıldı, doğrudan admin login sayfasına yönlendir
+                window.location.href = '/adminpanel/login';
             });
         } else {
             // Error case
@@ -89,7 +91,7 @@ function submitAdminChangePasswordForm(form, submitButton) {
         });
     })
     .finally(() => {
-        // Remove loading state
+        // Reset loading state
         submitButton.removeAttribute('data-kt-indicator');
         submitButton.disabled = false;
     });

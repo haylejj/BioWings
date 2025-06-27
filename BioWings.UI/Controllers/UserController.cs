@@ -7,6 +7,8 @@ using Microsoft.Extensions.Options;
 using System.Security.Claims;
 using System.Text;
 using System.Text.Json;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace BioWings.UI.Controllers;
 
@@ -71,10 +73,15 @@ public class UserController(IHttpClientFactory httpClientFactory, ILogger<UserCo
             if (response.IsSuccessStatusCode)
             {
                 logger.LogInformation("Password changed successfully for user {Email}", emailClaim.Value);
+                
+                // Şifre değiştirme başarılı olduğunda server-side logout işlemi yap
+                await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+                
                 return Json(new
                 {
                     success = true,
-                    message = "Şifreniz başarıyla değiştirildi. Güvenliğiniz için bir sonraki girişinizde yeni şifrenizi kullanınız."
+                    message = "Şifreniz başarıyla değiştirildi. Güvenliğiniz için tekrar giriş yapmanız gerekmektedir.",
+                    shouldLogout = true // JavaScript tarafında kullanılacak flag
                 });
             }
             else
@@ -114,6 +121,5 @@ public class UserController(IHttpClientFactory httpClientFactory, ILogger<UserCo
             });
         }
     }
-
 
 }

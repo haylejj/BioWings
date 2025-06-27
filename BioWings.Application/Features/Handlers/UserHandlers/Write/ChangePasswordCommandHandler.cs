@@ -46,10 +46,14 @@ public class ChangePasswordCommandHandler(
             // Şifreyi güncelle
             user.PasswordHash = passwordHashService.HashPassword(request.NewPassword);
             
+            // Güvenlik için refresh token'ı temizle - kullanıcı tekrar giriş yapması gerekecek
+            user.RefreshToken = null;
+            user.RefreshTokenExpireDate = null;
+            
             userRepository.Update(user);
             await unitOfWork.SaveChangesAsync(cancellationToken);
 
-            logger.LogInformation("Password changed successfully for user {UserEmail}", request.UserEmail);
+            logger.LogInformation("Password changed successfully for user {UserEmail}. Refresh token invalidated for security.", request.UserEmail);
             return ServiceResult.Success();
         }
         catch (Exception ex)

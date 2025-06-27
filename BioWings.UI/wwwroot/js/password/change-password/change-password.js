@@ -49,15 +49,17 @@ function submitChangePasswordForm(form, submitButton) {
     })
     .then(data => {
         if (data.success) {
-            // Successful password change
+            // Successful password change - logout and redirect to login
             Swal.fire({
                 icon: 'success',
                 title: 'Başarılı!',
-                text: 'Şifreniz başarıyla değiştirildi.',
-                confirmButtonText: 'Tamam'
+                text: 'Şifreniz başarıyla değiştirildi. Güvenliğiniz için tekrar giriş yapmanız gerekmektedir.',
+                confirmButtonText: 'Giriş Sayfasına Git',
+                allowOutsideClick: false,
+                allowEscapeKey: false
             }).then(() => {
-                form.reset();
-                resetPasswordValidation();
+                // Server-side logout zaten yapıldı, doğrudan login sayfasına yönlendir
+                window.location.href = '/Login/Login';
             });
         } else {
             // Error case
@@ -89,7 +91,7 @@ function submitChangePasswordForm(form, submitButton) {
         });
     })
     .finally(() => {
-        // Remove loading state
+        // Reset loading state
         submitButton.removeAttribute('data-kt-indicator');
         submitButton.disabled = false;
     });
