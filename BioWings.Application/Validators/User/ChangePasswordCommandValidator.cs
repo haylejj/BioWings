@@ -8,9 +8,13 @@ public class ChangePasswordCommandValidator : AbstractValidator<ChangePasswordCo
 {
     public ChangePasswordCommandValidator()
     {
-        RuleFor(x => x.UserId)
-            .GreaterThan(0)
-            .WithMessage("Kullanıcı ID geçerli olmalıdır");
+        RuleFor(x => x.UserEmail)
+            .NotEmpty()
+            .WithMessage("Kullanıcı email adresi gereklidir")
+            .NotNull()
+            .WithMessage("Kullanıcı email adresi gereklidir")
+            .EmailAddress()
+            .WithMessage("Geçerli bir email adresi giriniz");
 
         RuleFor(x => x.CurrentPassword)
             .NotEmpty()

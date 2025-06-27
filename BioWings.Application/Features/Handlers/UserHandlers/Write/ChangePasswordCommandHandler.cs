@@ -28,18 +28,18 @@ public class ChangePasswordCommandHandler(
                 return ServiceResult.Error(errorMessages);
             }
 
-            // Kullanıcıyı bul
-            var user = await userRepository.GetByIdAsync(request.UserId, cancellationToken);
+            // Kullanıcıyı email ile bul
+            var user = await userRepository.GetByEmailAsync(request.UserEmail, cancellationToken);
             if (user == null)
             {
-                logger.LogWarning("User with ID {UserId} not found", request.UserId);
+                logger.LogWarning("User with email {UserEmail} not found", request.UserEmail);
                 return ServiceResult.Error("Kullanıcı bulunamadı");
             }
 
             // Mevcut şifreyi kontrol et
             if (!passwordHashService.VerifyPassword(request.CurrentPassword, user.PasswordHash))
             {
-                logger.LogWarning("Current password verification failed for user {UserId}", request.UserId);
+                logger.LogWarning("Current password verification failed for user {UserEmail}", request.UserEmail);
                 return ServiceResult.Error("Mevcut şifre yanlış");
             }
 
@@ -49,12 +49,12 @@ public class ChangePasswordCommandHandler(
             userRepository.Update(user);
             await unitOfWork.SaveChangesAsync(cancellationToken);
 
-            logger.LogInformation("Password changed successfully for user {UserId}", request.UserId);
+            logger.LogInformation("Password changed successfully for user {UserEmail}", request.UserEmail);
             return ServiceResult.Success();
         }
         catch (Exception ex)
         {
-            logger.LogError(ex, "Error changing password for user {UserId}", request.UserId);
+            logger.LogError(ex, "Error changing password for user {UserEmail}", request.UserEmail);
             return ServiceResult.Error("Şifre değiştirme sırasında bir hata oluştu");
         }
     }
