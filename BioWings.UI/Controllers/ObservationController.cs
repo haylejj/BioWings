@@ -2,17 +2,31 @@
 using BioWings.UI.ViewModels.ObservationViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
+using BioWings.Domain.Configuration;
 
 namespace BioWings.UI.Controllers;
+
 [Authorize]
-public class ObservationController(IHttpClientFactory httpClientFactory, ILogger<ObservationController> logger) : Controller
+public class ObservationController : Controller
 {
+    private readonly IHttpClientFactory _httpClientFactory;
+    private readonly ILogger<ObservationController> _logger;
+    private readonly string _baseUrl;
+
+    public ObservationController(IHttpClientFactory httpClientFactory, ILogger<ObservationController> logger, IOptions<ApiSettings> apiSettings)
+    {
+        _httpClientFactory = httpClientFactory;
+        _logger = logger;
+        _baseUrl = apiSettings.Value.BaseUrl;
+    }
+
     public async Task<IActionResult> Index(string searchTerm, List<string> columnNames, List<string> columnValues, int pageNumber = 1, int pageSize = 25)
     {
         try
         {
-            var client = httpClientFactory.CreateClient("ApiClient");
+            var client = _httpClientFactory.CreateClient("ApiClient");
             //var token = User.FindFirst("AccessToken")?.Value;
             //if (!string.IsNullOrEmpty(token))
             //{
@@ -36,19 +50,19 @@ public class ObservationController(IHttpClientFactory httpClientFactory, ILogger
                 }
 
                 string filterQueryString = string.Join("&", filterParams);
-                url = $"https://localhost:7128/api/Observations/Filter?{filterQueryString}&pageNumber={pageNumber}&pageSize={pageSize}";
+                url = $"{_baseUrl}/Observations/Filter?{filterQueryString}&pageNumber={pageNumber}&pageSize={pageSize}";
 
-                logger.LogInformation($"Filtering observations with multiple filters: {filterQueryString}");
+                _logger.LogInformation($"Filtering observations with multiple filters: {filterQueryString}");
             }
             else if (!string.IsNullOrEmpty(searchTerm))
             {
-                url = $"https://localhost:7128/api/Observations/Search?searchTerm={Uri.EscapeDataString(searchTerm)}&pageNumber={pageNumber}&pageSize={pageSize}";
-                logger.LogInformation($"Searching observations with term: {searchTerm}");
+                url = $"{_baseUrl}/Observations/Search?searchTerm={Uri.EscapeDataString(searchTerm)}&pageNumber={pageNumber}&pageSize={pageSize}";
+                _logger.LogInformation($"Searching observations with term: {searchTerm}");
             }
             else
             {
-                url = $"https://localhost:7128/api/Observations/Paged?pageNumber={pageNumber}&pageSize={pageSize}";
-                logger.LogInformation("Fetching all observations with paging");
+                url = $"{_baseUrl}/Observations/Paged?pageNumber={pageNumber}&pageSize={pageSize}";
+                _logger.LogInformation("Fetching all observations with paging");
             }
 
             var response = await client.GetAsync(url);
@@ -70,15 +84,15 @@ public class ObservationController(IHttpClientFactory httpClientFactory, ILogger
                 return View(observations.Data);
             }
 
-            logger.LogError($"API request failed with status code: {response.StatusCode}");
+            _logger.LogError($"API request failed with status code: {response.StatusCode}");
             var errorContent = await response.Content.ReadAsStringAsync();
-            logger.LogError($"Error content: {errorContent}");
+            _logger.LogError($"Error content: {errorContent}");
             ModelState.AddModelError(string.Empty, "An error occurred while fetching observations");
             return View();
         }
         catch (Exception ex)
         {
-            logger.LogError(ex, "Exception occurred in Index action");
+            _logger.LogError(ex, "Exception occurred in Index action");
             ModelState.AddModelError(string.Empty, $"An unexpected error occurred: {ex.Message}");
             return View();
         }

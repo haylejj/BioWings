@@ -1,11 +1,12 @@
 ﻿using BioWings.Application.Features.Commands.LoginCommands;
 using BioWings.Infrastructure.Services;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BioWings.WebAPI.Controllers;
 
-
+[AllowAnonymous]
 public class LoginController(IMediator mediator, IIpAddressService ipAddressService) : BaseController
 {
     [HttpPost]

@@ -25,13 +25,31 @@ public class PermissionAuthorizationFilter(
     {
         try
         {
+            // 0. AllowAnonymous kontrolü
+            var hasAllowAnonymous = context.ActionDescriptor.EndpointMetadata
+                .Any(em => em.GetType() == typeof(Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute));
+
+            if (hasAllowAnonymous)
+            {
+                logger.LogDebug("AllowAnonymous attribute bulundu. Yetkilendirme kontrolü atlanıyor.");
+                return;
+            }
+
             // 1. AuthorizeDefinition attribute'unu bul
             var authorizeDefinition = GetAuthorizeDefinitionAttribute(context);
 
-            // Eğer attribute yoksa, yetkilendirme kontrolü yapma
+            // Eğer attribute yoksa, güvenlik gereği ENGELLE (Secure by Default)
             if (authorizeDefinition == null)
             {
-                logger.LogDebug("AuthorizeDefinition attribute bulunamadı. Yetkilendirme kontrolü atlanıyor.");
+                logger.LogWarning("AuthorizeDefinition attribute bulunamadı ve AllowAnonymous değil. Erişim engelleniyor: {Path}", context.HttpContext.Request.Path);
+                context.Result = new JsonResult(new
+                {
+                    error = "Access Denied",
+                    message = "This endpoint is protected by default. Missing authorization definition.",
+                })
+                {
+                    StatusCode = 403
+                };
                 return;
             }
 

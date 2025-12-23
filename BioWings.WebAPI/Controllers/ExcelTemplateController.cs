@@ -2,11 +2,10 @@
 using BioWings.Domain.Attributes;
 using BioWings.Domain.Constants;
 using BioWings.Domain.Enums;
-using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BioWings.WebAPI.Controllers;
-[EnableCors("AllowMvcApp")]
+
 public class ExcelTemplateController(IExcelTemplateService excelTemplateService) : BaseController
 {
     [HttpGet("download")]

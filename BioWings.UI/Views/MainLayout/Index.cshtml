@@ -233,9 +233,18 @@
         </i>
     </div>
 
-    <script>var hostUrl = "~/assets/";</script>
+    <script>
+        var hostUrl = "~/assets/";
+        window.API_CONFIG = {
+            BASE_URL: '@Configuration["ApiSettings:BaseUrl"]'
+        };
+        // Compatibility for existing JS files
+        var apiConfig = {
+            baseUrl: window.API_CONFIG.BASE_URL
+        };
+    </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="~/js/apiconfig.js"></script>
+    <!-- apiconfig.js replaced by dynamic config above -->
     <script src="~/assets/plugins/global/plugins.bundle.js"></script>
     <script src="~/assets/js/scripts.bundle.js"></script>
 

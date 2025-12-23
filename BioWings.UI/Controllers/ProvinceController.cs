@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 
 namespace BioWings.UI.Controllers;
+
 [Authorize]
 public class ProvinceController(IHttpClientFactory httpClientFactory, ILogger<ProvinceController> logger, IOptions<ApiSettings> options) : Controller
 {
@@ -28,6 +29,13 @@ public class ProvinceController(IHttpClientFactory httpClientFactory, ILogger<Pr
             }
 
             var result = await response.Content.ReadFromJsonAsync<ServiceResult<byte[]>>();
+
+            if (result == null || result.Data == null)
+            {
+                logger.LogError("API returned null data for export");
+                return BadRequest("No data received from API");
+            }
+
             logger.LogInformation("Exported data successfully");
             return File(result.Data, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", $"exportObservations_{DateTime.Now:yyyy-MM-dd_HH-mm}.xlsx");
         }

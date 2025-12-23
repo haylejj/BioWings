@@ -1,8 +1,11 @@
 ﻿using BioWings.Application.Features.Commands.SignUpCommands;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BioWings.WebAPI.Controllers;
+
+[AllowAnonymous]
 public class SignUpController(IMediator mediator) : BaseController
 {
     // POST: api/SignUp

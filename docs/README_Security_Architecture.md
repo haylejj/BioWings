@@ -437,7 +437,7 @@ public TokenResponse CreateToken(User user, List<UserRoleGetByUserIdDto> roles)
 ```json
 {
   "JwtSettings": {
-    "SecretKey": "V3ryS3cur3K3yF0rJWT_S1gn1ng_BioWings2025!",
+    "SecretKey": "YOUR_SUPER_SECRET_KEY_PLACEHOLDER_CHANGE_ME!",
     "Issuer": "https://localhost:7128",
     "Audience": "https://localhost:7269",
     "AccessTokenExpiration": 60,

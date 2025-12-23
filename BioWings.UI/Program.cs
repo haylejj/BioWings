@@ -1,20 +1,10 @@
-using BioWings.Domain.Configuration;
-using BioWings.UI.Handler;
 using BioWings.UI.Exceptions;
-using Microsoft.AspNetCore.Authentication.Cookies;
+using BioWings.UI.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
-//For Api consume 
-builder.Services.AddHttpClient();
 
-builder.Services.AddHttpContextAccessor();
-builder.Services.AddTransient<TokenHandler>();
-
-builder.Services.AddHttpClient("ApiClient")
-   .AddHttpMessageHandler<TokenHandler>();
-
-// inject ApiSettings from appsettings.json
-builder.Services.Configure<ApiSettings>(builder.Configuration.GetSection("ApiSettings"));
+// Add HttpClient and ApiSettings
+builder.Services.AddUiHttpClient(builder.Configuration);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -22,18 +12,8 @@ builder.Services.AddControllersWithViews();
 //global exception handler
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 
-builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-    .AddCookie(options =>
-    {
-        options.Cookie.HttpOnly = true;
-        options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
-        options.Cookie.SameSite = SameSiteMode.Lax;
-        options.ExpireTimeSpan = TimeSpan.FromHours(12);
-        options.SlidingExpiration = true;
-        options.LoginPath = "/Login/Login";
-        options.LogoutPath = "/Logout/Logout";
-        options.AccessDeniedPath = "/Home/AccessDenied";
-    });
+// Add Authentication
+builder.Services.AddUiAuthentication();
 
 builder.Services.AddAuthorization();
 

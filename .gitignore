@@ -25,3 +25,7 @@ artifacts/
 *.snupkg
 **/[Pp]ackages/*
 !**/[Pp]ackages/build/
+
+# App Settings
+appsettings.json
+appsettings.*.json
