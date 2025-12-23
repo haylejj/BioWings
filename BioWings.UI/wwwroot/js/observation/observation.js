@@ -100,7 +100,5 @@ document.getElementById('searchInfoBtn').addEventListener('click', function () {
     });
 });
 
-// API konfigürasyonu
-const apiConfig = {
-    baseUrl: 'https://localhost:7128'
-};
+// API konfigürasyonu - window.API_CONFIG Layout'tan geliyor
+// apiConfig zaten global olarak tanımlı

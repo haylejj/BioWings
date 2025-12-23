@@ -558,7 +558,7 @@
 
         function showDetails(id) {
             $.ajax({
-                url: `https://localhost:7128/api/Observations/${id}`,
+                url: `${window.API_CONFIG.BASE_URL}/Observations/${id}`,
                 method: 'GET',
                 success: function(response) {
                     if (response.isSuccess && response.data) {
@@ -664,7 +664,7 @@
             function showUpdateModal(id) {
             // Önce illeri getir
             $.ajax({
-                url: 'https://localhost:7128/api/Provinces',
+                url: `${window.API_CONFIG.BASE_URL}/Provinces`,
                 method: 'GET',
                 success: function(provinceResponse) {
                     if (provinceResponse.isSuccess && provinceResponse.data) {
@@ -678,7 +678,7 @@
 
                         // Sonra gözlem detaylarını getir
                         $.ajax({
-                            url: `https://localhost:7128/api/Observations/${id}`,
+                            url: `${window.API_CONFIG.BASE_URL}/Observations/${id}`,
                             method: 'GET',
                             success: function(response) {
                                 if (response.isSuccess && response.data) {
@@ -823,7 +823,7 @@
             console.log('Gönderilen veriler:', formData);
 
             $.ajax({
-                url: 'https://localhost:7128/api/Observations',
+                url: `${window.API_CONFIG.BASE_URL}/Observations`,
                 method: 'PUT',
                 contentType: 'application/json',
                 data: JSON.stringify(formData),

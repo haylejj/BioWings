@@ -78,3 +78,73 @@ Güvenlik sistemi, UI ve API arasındaki iletişimi güvenli hale getirmek için
   - `[AuthorizeDefinition]` attribute'u ile kod tarafında deklaratif izin tanımlamaları.
   - Her istekte anlık izin kontrolü sağlayan **PermissionAuthorizationFilter**.
 
+## 🐳 Docker ile Kurulum
+
+Proje, Docker ile kolayca çalıştırılabilir. Tüm servisler (API, UI, MySQL, Redis, Nominatim, MailHog) tek komutla ayağa kalkar.
+
+### Gereksinimler
+
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/) (Windows/Mac) veya Docker Engine (Linux)
+- En az 8GB RAM
+- En az 20GB disk alanı
+
+### Hızlı Başlangıç
+
+```bash
+# 1. Repo'yu klonla
+git clone https://github.com/Butterfly-Lovers/BioWings.git
+cd BioWings
+
+# 2. Ortam değişkenlerini yapılandır
+cp .env.example .env
+# .env dosyasını düzenle ve gerekli değerleri gir
+
+# 3. Tüm servisleri başlat
+docker-compose up -d --build
+
+# 4. Logları izle (opsiyonel)
+docker-compose logs -f
+```
+
+### Servis Adresleri
+
+| Servis | URL | Açıklama |
+|--------|-----|----------|
+| **UI** | http://localhost:5000 | Web arayüzü |
+| **API** | http://localhost:7128 | REST API |
+| **MailHog** | http://localhost:8025 | E-posta test arayüzü |
+| **MySQL** | localhost:3307 | Veritabanı |
+| **Redis** | localhost:6379 | Cache sunucusu |
+
+### ⚠️ Veritabanı Hakkında
+
+Docker ilk başlatıldığında veritabanı **boş** olarak oluşturulur. Mevcut verilerle çalışmak için:
+
+1. [MySQL Workbench](https://dev.mysql.com/downloads/workbench/) veya benzeri bir araç kullan
+2. `localhost:3307` adresine bağlan (kullanıcı: `root`, şifre: `.env` dosyasındaki)
+
+### Sık Kullanılan Komutlar
+
+```bash
+# Servisleri durdur
+docker-compose down
+
+# Servisleri yeniden başlat
+docker-compose restart
+
+# Belirli servisi yeniden build et
+docker-compose up -d --build biowings-webapi
+
+# Tüm verileri sil ve sıfırdan başla
+docker-compose down -v
+```
+
+## 📚 Dokümantasyon
+
+- [Docker Kurulum Kılavuzu](docs/Docker_Setup.md)
+- [Güvenlik Mimarisi](docs/README_Security_Architecture.md)
+- [API Versiyonlama](docs/Api_Versioning.md)
+
+## 📄 Lisans
+
+Bu proje açık kaynak olarak geliştirilmektedir.

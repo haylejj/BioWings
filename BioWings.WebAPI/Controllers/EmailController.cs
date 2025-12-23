@@ -1,9 +1,11 @@
 ﻿using BioWings.Application.Features.Commands.EmailCommands;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BioWings.WebAPI.Controllers;
 
+[AllowAnonymous]
 public class EmailController(IMediator mediator) : BaseController
 {
     [HttpPost("confirm")]

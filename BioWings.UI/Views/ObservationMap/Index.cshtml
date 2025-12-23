@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Gözlem Haritası";
     Layout = "~/Views/MainLayout/Index.cshtml";
 }
@@ -25,12 +24,11 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
-
         #map {
             width: 100%;
             border: 1px solid #eee;
             border-radius: 8px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
         }
 
         /* Info Box ve Legend Stilleri */
@@ -38,15 +36,15 @@
             padding: 12px;
             background: white;
             border-radius: 8px;
-            box-shadow: 0 1px 5px rgba(0,0,0,0.2);
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
         }
 
-            .info-box h4 {
-                margin: 0 0 10px;
-                font-size: 16px;
-                font-weight: bold;
-                color: #333;
-            }
+        .info-box h4 {
+            margin: 0 0 10px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+        }
 
         .legend {
             line-height: 18px;
@@ -86,21 +84,21 @@
             background: none !important;
         }
 
-            .custom-cluster-icon div {
-                box-shadow: 0 3px 14px rgba(0,0,0,0.2);
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                padding: 2px;
-            }
+        .custom-cluster-icon div {
+            box-shadow: 0 3px 14px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2px;
+        }
 
-            .custom-cluster-icon small {
-                display: block;
-                font-size: 9px;
-                margin-top: 1px;
-                white-space: nowrap;
-            }
+        .custom-cluster-icon small {
+            display: block;
+            font-size: 9px;
+            margin-top: 1px;
+            white-space: nowrap;
+        }
 
         .custom-popup {
             max-height: 500px;
@@ -113,11 +111,11 @@
             border-bottom: 1px solid #dee2e6;
         }
 
-            .popup-header .scientific-name {
-                font-size: 14px;
-                color: #666;
-                margin-top: 4px;
-            }
+        .popup-header .scientific-name {
+            font-size: 14px;
+            color: #666;
+            margin-top: 4px;
+        }
 
         .popup-body {
             padding: 15px;
@@ -130,7 +128,8 @@
             margin-left: 26px;
         }
 
-        .taxonomy-section, .observation-section {
+        .taxonomy-section,
+        .observation-section {
             margin-bottom: 15px;
         }
 
@@ -147,18 +146,19 @@
             line-height: 1.5;
         }
 
-            .info-group:last-child {
-                margin-bottom: 0;
-            }
+        .info-group:last-child {
+            margin-bottom: 0;
+        }
 
-            .info-group i {
-                width: 18px;
-                color: #666;
-                margin-right: 8px;
-                float: left;
-            }
+        .info-group i {
+            width: 18px;
+            color: #666;
+            margin-right: 8px;
+            float: left;
+        }
 
-        .taxonomy-details div, .alternative-names div {
+        .taxonomy-details div,
+        .alternative-names div {
             margin-bottom: 4px;
         }
 
@@ -169,34 +169,34 @@
             clear: both;
         }
 
-            .info-group.notes i {
-                float: none;
-            }
+        .info-group.notes i {
+            float: none;
+        }
 
         /* Marker Cluster Stilleri */
         .marker-cluster-small {
             background-color: rgba(181, 226, 140, 0.9);
         }
 
-            .marker-cluster-small div {
-                background-color: rgba(110, 204, 57, 0.9);
-            }
+        .marker-cluster-small div {
+            background-color: rgba(110, 204, 57, 0.9);
+        }
 
         .marker-cluster-medium {
             background-color: rgba(241, 211, 87, 0.9);
         }
 
-            .marker-cluster-medium div {
-                background-color: rgba(240, 194, 12, 0.9);
-            }
+        .marker-cluster-medium div {
+            background-color: rgba(240, 194, 12, 0.9);
+        }
 
         .marker-cluster-large {
             background-color: rgba(253, 156, 115, 0.9);
         }
 
-            .marker-cluster-large div {
-                background-color: rgba(241, 128, 23, 0.9);
-            }
+        .marker-cluster-large div {
+            background-color: rgba(241, 128, 23, 0.9);
+        }
 
         /* Leaflet Genel Stilleri */
         .leaflet-popup-content {
@@ -248,27 +248,27 @@
             transition: transform 0.2s ease;
         }
 
-            .custom-marker:hover {
-                transform: scale(1.2);
-                z-index: 1000 !important;
-            }
+        .custom-marker:hover {
+            transform: scale(1.2);
+            z-index: 1000 !important;
+        }
 
         /* Loading Spinner */
         #loading {
             z-index: 1000;
             background: rgba(255, 255, 255, 0.9);
             border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
     </style>
 }
 
 
 @section Scripts {
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
-<script>
-                var map;
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+    <script>
+        var map;
         var markers;
         const MIN_ZOOM_LEVEL = 7;
         let isInitialLoad = true;
@@ -276,16 +276,16 @@
         $(document).ready(function () {
             // Hoş geldiniz mesajı
             $('.card-body').prepend(`
-                <div class="alert alert-info alert-dismissible fade show" role="alert">
-                    <strong>Hoş Geldiniz!</strong>
-                    <p>
-                        Bu haritada gözlem noktalarını görebilirsiniz.
-                        Kırmızı noktalar tek gözlemleri, renkli kümeler ise yakın gözlem gruplarını gösterir.
-                        Detaylı bilgi için noktalara tıklayın.
-                    </p>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-            `);
+                    <div class="alert alert-info alert-dismissible fade show" role="alert">
+                        <strong>Hoş Geldiniz!</strong>
+                        <p>
+                            Bu haritada gözlem noktalarını görebilirsiniz.
+                            Kırmızı noktalar tek gözlemleri, renkli kümeler ise yakın gözlem gruplarını gösterir.
+                            Detaylı bilgi için noktalara tıklayın.
+                        </p>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                `);
 
             // Debounce fonksiyonu
             function debounce(func, wait) {
@@ -336,33 +336,33 @@
                 this.update();
                 return this._div;
             };
-                    info.update = function (totalCount) {
-                        const displayCount = totalCount > 5000 ? '+5000' : totalCount || 0;
-            this._div.innerHTML = `
-                <h4>Gözlem Haritası</h4>
-                <div class="total-count">
-                    <strong>Toplam Gözlem:</strong> ${displayCount || 0}
-                </div>
-                <div class="legend">
-                    <div class="legend-item">
-                        <i style="background: #FF4444; border: 2px solid white; border-radius: 50%; box-shadow: 0 0 4px rgba(0,0,0,0.3);"></i>
-                        <span>Tekil Gözlem</span>
+            info.update = function (totalCount) {
+                const displayCount = totalCount > 5000 ? '+5000' : totalCount || 0;
+                this._div.innerHTML = `
+                    <h4>Gözlem Haritası</h4>
+                    <div class="total-count">
+                        <strong>Toplam Gözlem:</strong> ${displayCount || 0}
                     </div>
-                    <div class="legend-item">
-                        <i style="background: #4285F4; border: 2px solid white; border-radius: 50%; box-shadow: 0 0 4px rgba(0,0,0,0.3);"></i>
-                        <span>< 50 Gözlem</span>
+                    <div class="legend">
+                        <div class="legend-item">
+                            <i style="background: #FF4444; border: 2px solid white; border-radius: 50%; box-shadow: 0 0 4px rgba(0,0,0,0.3);"></i>
+                            <span>Tekil Gözlem</span>
+                        </div>
+                        <div class="legend-item">
+                            <i style="background: #4285F4; border: 2px solid white; border-radius: 50%; box-shadow: 0 0 4px rgba(0,0,0,0.3);"></i>
+                            <span>< 50 Gözlem</span>
+                        </div>
+                        <div class="legend-item">
+                            <i style="background: #F4B400; border: 2px solid white; border-radius: 50%; box-shadow: 0 0 4px rgba(0,0,0,0.3);"></i>
+                            <span>50-100 Gözlem</span>
+                        </div>
+                        <div class="legend-item">
+                            <i style="background: #DB4437; border: 2px solid white; border-radius: 50%; box-shadow: 0 0 4px rgba(0,0,0,0.3);"></i>
+                            <span>> 100 Gözlem</span>
+                        </div>
                     </div>
-                    <div class="legend-item">
-                        <i style="background: #F4B400; border: 2px solid white; border-radius: 50%; box-shadow: 0 0 4px rgba(0,0,0,0.3);"></i>
-                        <span>50-100 Gözlem</span>
-                    </div>
-                    <div class="legend-item">
-                        <i style="background: #DB4437; border: 2px solid white; border-radius: 50%; box-shadow: 0 0 4px rgba(0,0,0,0.3);"></i>
-                        <span>> 100 Gözlem</span>
-                    </div>
-                </div>
-            `;
-        };
+                `;
+            };
             info.addTo(map);
 
             // Marker cluster group
@@ -409,22 +409,22 @@
 
                     return L.divIcon({
                         html: `<div style="
-                            background-color: ${color};
-                            width: ${size}px;
-                            height: ${size}px;
-                            border-radius: 50%;
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            color: white;
-                            font-weight: bold;
-                            border: 2px solid white;
-                            box-shadow: 0 0 4px rgba(0,0,0,0.3);">
-                            <div>
-                                <span>${childCount}</span>
-                                ${speciesCount > 1 ? `<small style="display:block;font-size:9px;">${speciesCount} tür</small>` : ''}
-                            </div>
-                        </div>`,
+                                background-color: ${color};
+                                width: ${size}px;
+                                height: ${size}px;
+                                border-radius: 50%;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                color: white;
+                                font-weight: bold;
+                                border: 2px solid white;
+                                box-shadow: 0 0 4px rgba(0,0,0,0.3);">
+                                <div>
+                                    <span>${childCount}</span>
+                                    ${speciesCount > 1 ? `<small style="display:block;font-size:9px;">${speciesCount} tür</small>` : ''}
+                                </div>
+                            </div>`,
                         className: 'custom-cluster-icon ' + className,
                         iconSize: L.point(size, size),
                         iconAnchor: L.point(size / 2, size / 2)
@@ -453,14 +453,14 @@
                     'display': 'none'
                 })
                 .html(`
-                    <div class="spinner-border text-primary" role="status"></div>
-                    <div class="mt-2">Gözlem noktaları yükleniyor...</div>
-                    <div class="mt-1 small text-muted">
-                        <i class="fas fa-info-circle"></i>
-                        Haritayı hareket ettirdiğinizde veriler otomatik güncellenir
-                    </div>
-                    <div id="progress-text" class="mt-1 small text-muted"></div>
-                `)
+                        <div class="spinner-border text-primary" role="status"></div>
+                        <div class="mt-2">Gözlem noktaları yükleniyor...</div>
+                        <div class="mt-1 small text-muted">
+                            <i class="fas fa-info-circle"></i>
+                            Haritayı hareket ettirdiğinizde veriler otomatik güncellenir
+                        </div>
+                        <div id="progress-text" class="mt-1 small text-muted"></div>
+                    `)
                 .appendTo($('.card-body'));
 
             // Marker oluşturma fonksiyonu
@@ -485,13 +485,13 @@
                         icon: L.divIcon({
                             className: 'custom-marker',
                             html: `<div style="
-                                background-color: #FF4444;
-                                width: 12px;
-                                height: 12px;
-                                border-radius: 50%;
-                                border: 2px solid white;
-                                box-shadow: 0 0 4px rgba(0,0,0,0.3);">
-                            </div>`,
+                                    background-color: #FF4444;
+                                    width: 12px;
+                                    height: 12px;
+                                    border-radius: 50%;
+                                    border: 2px solid white;
+                                    box-shadow: 0 0 4px rgba(0,0,0,0.3);">
+                                </div>`,
                             iconSize: [12, 12],
                             iconAnchor: [6, 6]
                         }),
@@ -526,28 +526,28 @@
             // Yükleniyor popup içeriği
             function createLoadingPopup() {
                 return `
-                    <div class="custom-popup">
-                        <div class="popup-header">
-                            <h6>Yükleniyor...</h6>
-                        </div>
-                        <div class="popup-body">
-                            <div class="d-flex justify-content-center">
-                                <div class="spinner-border text-primary" role="status">
-                                    <span class="visually-hidden">Yükleniyor...</span>
+                        <div class="custom-popup">
+                            <div class="popup-header">
+                                <h6>Yükleniyor...</h6>
+                            </div>
+                            <div class="popup-body">
+                                <div class="d-flex justify-content-center">
+                                    <div class="spinner-border text-primary" role="status">
+                                        <span class="visually-hidden">Yükleniyor...</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                `;
+                    `;
             }
 
             // Detay bilgilerini getiren fonksiyon
             function fetchObservationDetails(id, marker) {
                 $.ajax({
-                    url: `https://localhost:7128/api/ObservationMaps/${id}`,
+                    url: `${window.API_CONFIG.BASE_URL}/ObservationMaps/${id}`,
                     method: 'GET',
                     success: function (response) {
-                        const detailData=response.data;
+                        const detailData = response.data;
                         const popupContent = createDetailPopup(detailData);
                         marker.getPopup().setContent(popupContent);
                         marker.getPopup().update();
@@ -561,133 +561,133 @@
             }
 
             // Detay popup içeriği oluşturma
-                   function createDetailPopup(detail) {
-            const formatDate = (dateString) => {
-                if (!dateString) return 'Tarih Yok';
-                const cleanDate = dateString.split('.')[0];
-                const date = new Date(cleanDate);
+            function createDetailPopup(detail) {
+                const formatDate = (dateString) => {
+                    if (!dateString) return 'Tarih Yok';
+                    const cleanDate = dateString.split('.')[0];
+                    const date = new Date(cleanDate);
 
-                if (isNaN(date.getTime())) {
-                    return 'Geçersiz Tarih';
-                }
+                    if (isNaN(date.getTime())) {
+                        return 'Geçersiz Tarih';
+                    }
 
-                return date.toLocaleDateString('tr-TR', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric'
-                });
-            };
+                    return date.toLocaleDateString('tr-TR', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                    });
+                };
 
-            const authorityInfo = detail.authortyName ?
-                `${detail.authortyName}${detail.authorityYear ? `, ${detail.authorityYear}` : ''}` : '';
+                const authorityInfo = detail.authortyName ?
+                    `${detail.authortyName}${detail.authorityYear ? `, ${detail.authorityYear}` : ''}` : '';
 
-            // Koordinat gösterimini güvenli hale getirme
-            const coordinates = (detail.latitude != null && detail.longitude != null) ?
-                `<small>(${Number(detail.latitude).toFixed(6)}, ${Number(detail.longitude).toFixed(6)})</small>` :
-                '<small>Koordinat bilgisi yok</small>';
+                // Koordinat gösterimini güvenli hale getirme
+                const coordinates = (detail.latitude != null && detail.longitude != null) ?
+                    `<small>(${Number(detail.latitude).toFixed(6)}, ${Number(detail.longitude).toFixed(6)})</small>` :
+                    '<small>Koordinat bilgisi yok</small>';
 
-            return `
-                 <div class="custom-popup">
-                    <div class="popup-header">
-                        <h6>Gözlem Detayı</h6>
-                    </div>
-
-                    <div class="popup-body">
-                            <div class="taxonomy-section">
-                                ${detail.speciesName ? `
-                                <div class="info-group">
-                                    <i class="fas fa-bug"></i>
-                                    <strong>Tür:</strong> ${detail.speciesName}
-                                </div>
-                            ` : ''}
-
-                            ${detail.scientificName ? `
-                                <div class="info-group">
-                                    <i class="fas fa-microscope"></i>
-                                    <strong>Bilimsel Adı:</strong> <em>${detail.scientificName}</em>
-                                </div>
-                            ` : ''}
-                            ${detail.familyName ? `
-                                <div class="info-group">
-                                    <i class="fas fa-sitemap"></i>
-                                    <strong>Familya:</strong> ${detail.familyName}
-                                </div>
-                            ` : ''}
-
-                            ${detail.genusName ? `
-                                <div class="info-group">
-                                    <i class="fas fa-dna"></i>
-                                    <strong>Cins:</strong> ${detail.genusName}
-                                </div>
-                            ` : ''}
-
-                            ${detail.kocakName ? `
-                                <div class="info-group">
-                                    <i class="fas fa-tag"></i>
-                                    <strong>Koçak:</strong> ${detail.kocakName}
-                                </div>
-                            ` : ''}
-
-                            ${detail.hesselbartName ? `
-                                <div class="info-group">
-                                    <i class="fas fa-tag"></i>
-                                    <strong>Hesselbart:</strong> ${detail.hesselbartName}
-                                </div>
-                            ` : ''}
-
-                            ${authorityInfo ? `
-                                <div class="info-group">
-                                    <i class="fas fa-user-edit"></i>
-                                    <strong>Authority:</strong> ${authorityInfo}
-                                </div>
-                            ` : ''}
-                        </div>
-
-                        <div class="observation-details">
-                            <div class="info-group">
-                                <i class="fas fa-calendar-alt"></i>
-                                <strong>Gözlem Tarihi:</strong> ${formatDate(detail.observationDate)}
-                            </div>
-
-                            <div class="info-group">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <strong>İl:</strong> ${detail.provinceName || '-'}
-                                <div class="coordinates">
-                                    ${coordinates}
-                                </div>
-                            </div>
-
-                            <div class="info-group">
-                                <i class="fas fa-binoculars"></i>
-                                <strong>Gözlem Sayısı:</strong> ${detail.numberSeen || 1}
-                            </div>
-
-                            ${detail.notes ? `
-                                <div class="info-group notes">
-                                    <i class="fas fa-sticky-note"></i>
-                                    <strong>Notlar:</strong><br>
-                                    ${detail.notes}
-                                </div>
-                            ` : ''}
-                        </div>
-                    </div>
-                </div>
-            `;
-        }
-                    function createErrorPopup() {
                 return `
-                    <div class="custom-popup">
+                     <div class="custom-popup">
                         <div class="popup-header">
-                            <h6>Hata</h6>
+                            <h6>Gözlem Detayı</h6>
                         </div>
+
                         <div class="popup-body">
-                            <div class="info-group">
-                                <i class="fas fa-exclamation-triangle text-danger"></i>
-                                Detay bilgileri yüklenirken bir hata oluştu. Lütfen tekrar deneyin.
+                                <div class="taxonomy-section">
+                                    ${detail.speciesName ? `
+                                    <div class="info-group">
+                                        <i class="fas fa-bug"></i>
+                                        <strong>Tür:</strong> ${detail.speciesName}
+                                    </div>
+                                ` : ''}
+
+                                ${detail.scientificName ? `
+                                    <div class="info-group">
+                                        <i class="fas fa-microscope"></i>
+                                        <strong>Bilimsel Adı:</strong> <em>${detail.scientificName}</em>
+                                    </div>
+                                ` : ''}
+                                ${detail.familyName ? `
+                                    <div class="info-group">
+                                        <i class="fas fa-sitemap"></i>
+                                        <strong>Familya:</strong> ${detail.familyName}
+                                    </div>
+                                ` : ''}
+
+                                ${detail.genusName ? `
+                                    <div class="info-group">
+                                        <i class="fas fa-dna"></i>
+                                        <strong>Cins:</strong> ${detail.genusName}
+                                    </div>
+                                ` : ''}
+
+                                ${detail.kocakName ? `
+                                    <div class="info-group">
+                                        <i class="fas fa-tag"></i>
+                                        <strong>Koçak:</strong> ${detail.kocakName}
+                                    </div>
+                                ` : ''}
+
+                                ${detail.hesselbartName ? `
+                                    <div class="info-group">
+                                        <i class="fas fa-tag"></i>
+                                        <strong>Hesselbart:</strong> ${detail.hesselbartName}
+                                    </div>
+                                ` : ''}
+
+                                ${authorityInfo ? `
+                                    <div class="info-group">
+                                        <i class="fas fa-user-edit"></i>
+                                        <strong>Authority:</strong> ${authorityInfo}
+                                    </div>
+                                ` : ''}
+                            </div>
+
+                            <div class="observation-details">
+                                <div class="info-group">
+                                    <i class="fas fa-calendar-alt"></i>
+                                    <strong>Gözlem Tarihi:</strong> ${formatDate(detail.observationDate)}
+                                </div>
+
+                                <div class="info-group">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <strong>İl:</strong> ${detail.provinceName || '-'}
+                                    <div class="coordinates">
+                                        ${coordinates}
+                                    </div>
+                                </div>
+
+                                <div class="info-group">
+                                    <i class="fas fa-binoculars"></i>
+                                    <strong>Gözlem Sayısı:</strong> ${detail.numberSeen || 1}
+                                </div>
+
+                                ${detail.notes ? `
+                                    <div class="info-group notes">
+                                        <i class="fas fa-sticky-note"></i>
+                                        <strong>Notlar:</strong><br>
+                                        ${detail.notes}
+                                    </div>
+                                ` : ''}
                             </div>
                         </div>
                     </div>
                 `;
+            }
+            function createErrorPopup() {
+                return `
+                        <div class="custom-popup">
+                            <div class="popup-header">
+                                <h6>Hata</h6>
+                            </div>
+                            <div class="popup-body">
+                                <div class="info-group">
+                                    <i class="fas fa-exclamation-triangle text-danger"></i>
+                                    Detay bilgileri yüklenirken bir hata oluştu. Lütfen tekrar deneyin.
+                                </div>
+                            </div>
+                        </div>
+                    `;
             }
 
             // Markerları yükleme fonksiyonu
@@ -705,7 +705,7 @@
                 $('#loading').show();
 
                 $.ajax({
-                    url: 'https://localhost:7128/api/ObservationMaps',
+                    url: `${window.API_CONFIG.BASE_URL}/ObservationMaps`,
                     method: 'GET',
                     data: {
                         minLat: bounds.getSouth(),
@@ -714,7 +714,7 @@
                         maxLng: bounds.getEast(),
                         zoomLevel: zoom
                     },
-                    success: function(response) {
+                    success: function (response) {
                         if (response && response.data && Array.isArray(response.data)) {
                             markers.clearLayers();
                             let validMarkerCount = 0;
@@ -735,11 +735,11 @@
                             isInitialLoad = false;
                         }
                     },
-                    error: function(xhr, status, error) {
+                    error: function (xhr, status, error) {
                         console.error('API Error:', error);
                         showErrorMessage();
                     },
-                    complete: function() {
+                    complete: function () {
                         $('#loading').hide();
                     }
                 });
@@ -749,22 +749,22 @@
             function showZoomMessage() {
                 if (!$('#zoom-message').length) {
                     $('.card-body').prepend(`
-                        <div id="zoom-message" class="alert alert-info alert-dismissible fade show" role="alert">
-                            <strong>Bilgi!</strong> Daha detaylı gözlem noktalarını görmek için lütfen haritayı yakınlaştırın.
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-                    `);
+                            <div id="zoom-message" class="alert alert-info alert-dismissible fade show" role="alert">
+                                <strong>Bilgi!</strong> Daha detaylı gözlem noktalarını görmek için lütfen haritayı yakınlaştırın.
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        `);
                 }
             }
 
             // Hata mesajı gösterme
             function showErrorMessage() {
                 $('.card-body').prepend(`
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        <strong>Hata!</strong> Veriler yüklenirken bir sorun oluştu. Lütfen tekrar deneyin.
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                `);
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>Hata!</strong> Veriler yüklenirken bir sorun oluştu. Lütfen tekrar deneyin.
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    `);
             }
 
             // Debounce fonksiyonu tanımlama
@@ -789,6 +789,5 @@
             // İlk yükleme
             loadMarkers();
         });
-</script>
+    </script>
 }
-

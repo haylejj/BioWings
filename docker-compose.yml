@@ -1,0 +1,113 @@
+services:
+  biowings-db:
+    image: mysql:8.0
+    restart: always
+    command: --lower_case_table_names=1
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    ports:
+      - "${DB_PORT}:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - biowings-network
+
+  biowings-redis:
+    image: redis:alpine
+    restart: always
+    ports:
+      - "${REDIS_PORT}:6379"
+    volumes:
+      - biowings-redis-data:/data
+    networks:
+      - biowings-network
+
+  biowings-nominatim:
+    image: mediagis/nominatim:4.4
+    restart: on-failure
+    ports:
+      - "${NOMINATIM_PORT}:8080"
+    environment:
+      PBF_URL: ${NOMINATIM_PBF_URL}
+      REPLICATION_URL: ${NOMINATIM_REPLICATION_URL}
+      IMPORT_WIKIPEDIA: false
+      NOMINATIM_PASSWORD: ${NOMINATIM_PASSWORD}
+    volumes:
+      - nominatim_data:/var/lib/postgresql/14/main
+    networks:
+      - biowings-network
+
+  biowings-webapi:
+    image: biowings-webapi
+    build:
+      context: .
+      dockerfile: BioWings.WebAPI/Dockerfile
+    ports:
+      - "${WEBAPI_HTTP_PORT}:8080"
+      - "${WEBAPI_HTTPS_PORT}:8081"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
+      - ConnectionStrings__MySqlConnection=Server=biowings-db;Database=${MYSQL_DATABASE};User=${MYSQL_USER};Password=${MYSQL_PASSWORD};
+      - Redis__ConnectionString=biowings-redis:6379
+      - ApiSettings__FrontendUrl=${FRONTEND_URL}
+      - NominatimSettings__BaseUrl=${NOMINATIM_BASE_URL}
+      - JwtSettings__Issuer=${JWT_ISSUER}
+      - JwtSettings__Audience=${JWT_AUDIENCE}
+      - JwtSettings__SecretKey=${JWT_SECRET_KEY}
+      - JwtSettings__AccessTokenExpiration=${JWT_ACCESS_TOKEN_EXPIRATION}
+      - JwtSettings__RefreshTokenExpiration=${JWT_REFRESH_TOKEN_EXPIRATION}
+      - EmailSettings__SmtpServer=biowings-mailhog
+      - EmailSettings__Port=1025
+      - EmailSettings__Username=${EMAIL_USERNAME}
+      - EmailSettings__Password=${EMAIL_PASSWORD}
+      - EmailSettings__SenderEmail=${EMAIL_SENDER_EMAIL}
+      - EmailSettings__SenderName=${EMAIL_SENDER_NAME}
+      - MailHog__Host=biowings-mailhog
+      - MailHog__Port=1025
+      - MailHog__EnableSsl=false
+      - MailHog__FromEmail=dev@biowings.local
+      - EncryptionSettings__Key=${ENCRYPTION_KEY}
+      - EncryptionSettings__IV=${ENCRYPTION_IV}
+    depends_on:
+      - biowings-db
+      - biowings-redis
+    networks:
+      - biowings-network
+
+  biowings-ui:
+    image: biowings-ui
+    build:
+      context: .
+      dockerfile: BioWings.UI/Dockerfile
+    ports:
+      - "${UI_HTTP_PORT}:8080"
+      - "${UI_HTTPS_PORT}:8081"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
+      - ApiSettings__BaseUrl=${API_BASE_URL}
+      - ApiSettings__FrontendApiUrl=${FRONTEND_API_URL}
+    depends_on:
+      - biowings-webapi
+    networks:
+      - biowings-network
+
+  biowings-mailhog:
+    image: mailhog/mailhog:latest
+    restart: always
+    ports:
+      - "${MAILHOG_SMTP_PORT}:1025"
+      - "${MAILHOG_UI_PORT}:8025"
+    networks:
+      - biowings-network
+
+volumes:
+  db_data:
+  nominatim_data:
+  biowings-redis-data:
+
+networks:
+  biowings-network:
+    driver: bridge

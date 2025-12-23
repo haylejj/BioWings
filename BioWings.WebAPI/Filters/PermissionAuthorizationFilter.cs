@@ -1,5 +1,6 @@
 using BioWings.Application.Interfaces;
 using BioWings.Domain.Attributes;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using System.Reflection;
@@ -25,13 +26,10 @@ public class PermissionAuthorizationFilter(
     {
         try
         {
-            // 0. AllowAnonymous kontrolü
-            var hasAllowAnonymous = context.ActionDescriptor.EndpointMetadata
-                .Any(em => em.GetType() == typeof(Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute));
-
-            if (hasAllowAnonymous)
+            // 0. AllowAnonymous kontrolü - Varsa hiçbir yetkilendirme yapma
+            if (HasAllowAnonymous(context))
             {
-                logger.LogDebug("AllowAnonymous attribute bulundu. Yetkilendirme kontrolü atlanıyor.");
+                logger.LogDebug("AllowAnonymous attribute bulundu, yetkilendirme atlanıyor: {Path}", context.HttpContext.Request.Path);
                 return;
             }
 
@@ -134,6 +132,25 @@ public class PermissionAuthorizationFilter(
             .GetCustomAttribute<AuthorizeDefinitionAttribute>();
 
         return controllerAttribute;
+    }
+
+    /// <summary>
+    /// Action veya Controller'da AllowAnonymous attribute'u var mı kontrol eder
+    /// </summary>
+    /// <param name="context">Authorization context</param>
+    /// <returns>AllowAnonymous var mı?</returns>
+    private bool HasAllowAnonymous(AuthorizationFilterContext context)
+    {
+        var actionDescriptor = context.ActionDescriptor as Microsoft.AspNetCore.Mvc.Controllers.ControllerActionDescriptor;
+        if (actionDescriptor == null) return false;
+
+        // Action method'unda AllowAnonymous var mı?
+        var actionAttribute = actionDescriptor.MethodInfo.GetCustomAttribute<AllowAnonymousAttribute>();
+        if (actionAttribute != null) return true;
+
+        // Controller'da AllowAnonymous var mı?
+        var controllerAttribute = actionDescriptor.ControllerTypeInfo.GetCustomAttribute<AllowAnonymousAttribute>();
+        return controllerAttribute != null;
     }
 
     /// <summary>

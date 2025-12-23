@@ -1,12 +1,16 @@
 ﻿using BioWings.Application.DTOs.NominatimApiDtos;
 using BioWings.Application.Services;
+using BioWings.Infrastructure.Settings;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using System.Globalization;
 using System.Text.Json;
 
 namespace BioWings.Infrastructure.Services;
-public class GeocodingService(ILogger<GeocodingService> logger, IHttpClientFactory httpClientFactory) : IGeocodingService
+
+public class GeocodingService(ILogger<GeocodingService> logger, IHttpClientFactory httpClientFactory, IOptions<NominatimSettings> options) : IGeocodingService
 {
+    private readonly string _baseUrl = options.Value.BaseUrl;
     private Dictionary<string, (int easting, int northing)> _gridOffsets = CreateGridOffsets();
     public int CalculateUTMZone(double longitude) => (int)Math.Floor((longitude + 180) / 6) + 1;
 
@@ -88,7 +92,7 @@ public class GeocodingService(ILogger<GeocodingService> logger, IHttpClientFacto
     public async Task<(double latitude, double longitude)> GetLatitudeAndLongitudeByProvinceNameAsync(string provinceName)
     {
         var client = httpClientFactory.CreateClient();
-        var url = $"http://localhost:8080/search?q={provinceName},Turkey&format=json";
+        var url = $"{_baseUrl}/search?q={provinceName},Turkey&format=json";
         try
         {
             var response = await client.GetAsync(url);
@@ -114,7 +118,7 @@ public class GeocodingService(ILogger<GeocodingService> logger, IHttpClientFacto
         var client = httpClientFactory.CreateClient();
         try
         {
-            var url = "http://localhost:8080/reverse?format=json&lat=" + latitude.ToString(CultureInfo.InvariantCulture) + "&lon=" + longitude.ToString(CultureInfo.InvariantCulture) + "&accept-language=tr";
+            var url = $"{_baseUrl}/reverse?format=json&lat=" + latitude.ToString(CultureInfo.InvariantCulture) + "&lon=" + longitude.ToString(CultureInfo.InvariantCulture) + "&accept-language=tr";
             var response = await client.GetAsync(url);
             if (response.IsSuccessStatusCode)
             {

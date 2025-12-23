@@ -236,7 +236,7 @@
     <script>
         var hostUrl = "~/assets/";
         window.API_CONFIG = {
-            BASE_URL: '@Configuration["ApiSettings:BaseUrl"]'
+            BASE_URL: '@(Configuration["ApiSettings:FrontendApiUrl"] ?? Configuration["ApiSettings:BaseUrl"])'
         };
         // Compatibility for existing JS files
         var apiConfig = {

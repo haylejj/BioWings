@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
 namespace BioWings.Application.Features.Handlers.EmailHandlers;
+
 public class ResetPasswordLinkCommandHandler(IUserRepository userRepository, IEmailService emailService, ILogger<ResetPasswordLinkCommandHandler> logger, IUnitOfWork unitOfWork, IEncryptionService encryptionService, IOptions<ApiSettings> apiSettings) : IRequestHandler<ResetPasswordLinkCommand, ServiceResult>
 {
     public async Task<ServiceResult> Handle(ResetPasswordLinkCommand request, CancellationToken cancellationToken)
@@ -188,8 +189,16 @@ public class ResetPasswordLinkCommandHandler(IUserRepository userRepository, IEm
                 </div>
             </body>
             </html>";
-        await emailService.SendEmailAsync(request.Email, subject, body);
-        logger.LogInformation("Reset password link sent to {Email}", request.Email);
-        return ServiceResult.Success();
+        try
+        {
+            await emailService.SendEmailAsync(request.Email, subject, body);
+            logger.LogInformation("Reset password link sent to {Email}", request.Email);
+            return ServiceResult.Success();
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex, "Failed to send reset password email to {Email}", request.Email);
+            return ServiceResult.Error("Şifre sıfırlama e-postası gönderilemedi. Lütfen daha sonra tekrar deneyiniz.");
+        }
     }
 }

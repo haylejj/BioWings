@@ -29,3 +29,6 @@ artifacts/
 # App Settings
 appsettings.json
 appsettings.*.json
+
+# Environment Variables
+.env

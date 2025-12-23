@@ -13,11 +13,15 @@
             <div class="d-flex align-items-center position-relative my-1">
                 <span class="svg-icon svg-icon-1 position-absolute ms-6">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2" rx="1" transform="rotate(45 17.0365 15.1223)" fill="currentColor"></rect>
-                        <path d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z" fill="currentColor"></path>
+                        <rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2" rx="1"
+                            transform="rotate(45 17.0365 15.1223)" fill="currentColor"></rect>
+                        <path
+                            d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z"
+                            fill="currentColor"></path>
                     </svg>
                 </span>
-                <input type="text" id="searchInput" class="form-control form-control-solid w-250px ps-14" placeholder="Gözlemci Ara">
+                <input type="text" id="searchInput" class="form-control form-control-solid w-250px ps-14"
+                    placeholder="Gözlemci Ara">
             </div>
             <!--end::Search-->
         </div>
@@ -57,24 +61,18 @@
                         <td>
                             <div class="d-flex justify-content-center">
                                 <a href="/Observer/Observations/@item.Id"
-                                   class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-2 cursor-pointer"
-                                   data-bs-toggle="tooltip"
-                                   data-bs-placement="top"
-                                   title="Gözlemleri Görüntüle">
+                                    class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-2 cursor-pointer"
+                                    data-bs-toggle="tooltip" data-bs-placement="top" title="Gözlemleri Görüntüle">
                                     <i class="fas fa-binoculars text-primary"></i>
                                 </a>
                                 <a onclick="confirmDelete(@item.Id)"
-                                   class="btn btn-icon btn-bg-light btn-active-color-danger btn-sm me-2 cursor-pointer"
-                                   data-bs-toggle="tooltip"
-                                   data-bs-placement="top"
-                                   title="Sil">
+                                    class="btn btn-icon btn-bg-light btn-active-color-danger btn-sm me-2 cursor-pointer"
+                                    data-bs-toggle="tooltip" data-bs-placement="top" title="Sil">
                                     <i class="fas fa-trash text-danger"></i>
                                 </a>
                                 <a onclick="updateObserver(@item.Id)"
-                                   class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm cursor-pointer"
-                                   data-bs-toggle="tooltip"
-                                   data-bs-placement="top"
-                                   title="Düzenle">
+                                    class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm cursor-pointer"
+                                    data-bs-toggle="tooltip" data-bs-placement="top" title="Düzenle">
                                     <i class="fas fa-edit text-primary"></i>
                                 </a>
                             </div>
@@ -193,14 +191,14 @@
         });
 
         // Search functionality
-        $(document).ready(function() {
-                var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-                var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-                    return new bootstrap.Tooltip(tooltipTriggerEl)
-                });
+        $(document).ready(function () {
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl)
+            });
             const searchInput = $('#searchInput');
 
-            const debouncedSearch = debounce(function(value) {
+            const debouncedSearch = debounce(function (value) {
                 if (value.trim().length === 0) {
                     window.location.href = '/Observer/Index';
                 } else {
@@ -209,7 +207,7 @@
                 }
             }, 500);
 
-            searchInput.off('keyup').on('keyup', function() {
+            searchInput.off('keyup').on('keyup', function () {
                 debouncedSearch(this.value);
             });
 
@@ -269,9 +267,9 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     $.ajax({
-                        url: `https://localhost:7128/api/Observers/${id}`,
+                        url: `${window.API_CONFIG.BASE_URL}/Observers/${id}`,
                         type: 'DELETE',
-                        success: function(response) {
+                        success: function (response) {
                             Swal.fire({
                                 title: 'Silindi!',
                                 text: 'Gözlemci başarıyla silindi.',
@@ -282,7 +280,7 @@
                                 window.location.reload();
                             });
                         },
-                        error: function(xhr, status, error) {
+                        error: function (xhr, status, error) {
                             Swal.fire({
                                 title: 'Hata!',
                                 text: 'Silme işlemi sırasında bir hata oluştu.',
